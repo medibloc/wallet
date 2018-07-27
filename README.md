@@ -1,1 +1,1 @@
-# medwallet
+# medibloc-wallet

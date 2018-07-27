@@ -1,0 +1,56 @@
+@import '../../app/variables.css';
+
+:root {
+  --padding-top: 40px;
+}
+
+.create {
+  & .accountVisual {
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+
+    & .refreshButton {
+      position: absolute;
+      top: 40px;
+      right: 125px;
+    }
+  }
+
+  & .accountAddress {
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+
+    & > input {
+      height: 64px;
+    }
+
+    & > label {
+      font-size: var(--font-size-h6);
+      color: var(--color-black-87);
+      height: 24px;
+    }
+  }
+
+  & .saveAccountCheckbox {
+    display: inline-flex;
+  }
+
+  & .continueButton {
+    width: 480px;
+    height: 56px;
+    margin-top: 40px;
+  }
+}
+
+.hasPaddingTop {
+  padding-top: var(--padding-top);
+}
+
+.account-address {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+}

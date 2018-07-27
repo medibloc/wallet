@@ -1,0 +1,171 @@
+import { randomBytes } from 'crypto';
+import blockTypes from '../../constants/blockTypes';
+import txTypes from '../../constants/transactionTypes';
+import { valueTransferTx, vestTx, withdrawVestingTx } from '../transaction';
+import { extractAddress, getAccountFromPrivKey } from '../account';
+
+export const getAccount = (activePeer, address) =>
+  new Promise((resolve, reject) => {
+    activePeer.getAccountState(address, blockTypes.tail).then((data) => {
+      if (data) {
+        resolve({
+          ...data,
+          serverPublicKey: address,
+        });
+      } else {
+        reject(data);
+      }
+    }).catch(error => reject(error));
+  });
+
+export const send = (activePeer, to, value, nonce, privKey) =>
+  new Promise((resolve, reject) => {
+    const password = randomBytes(32).toString('hex');
+    const account = getAccountFromPrivKey(privKey, password);
+    const extractAddress1 = extractAddress(account.pubKey);
+
+    const tx = valueTransferTx({
+      from: extractAddress1,
+      to,
+      value,
+      nonce,
+    });
+    console.log(JSON.parse(JSON.stringify(tx)));
+
+    account.signTx(tx, password);
+    activePeer.sendTransaction(tx).then((res) => {
+      console.log(res);
+      if (res.hash) {
+        resolve({
+          transactionId: res.hash,
+        });
+      } else {
+        reject(res);
+      }
+    }).catch(error => reject(error));
+  });
+
+export const transactions = ({ activePeer, address, txTypeFilter }) =>
+  new Promise((resolve, reject) => {
+    activePeer.getCurrentAccountTxs(address).then((data) => {
+      if (data && data.transactions) {
+        if (txTypeFilter) {
+          const filteredTxs = data.transactions.filter((tx) => {
+            let flag = false;
+            if (tx && tx.data && tx.data.type) {
+              txTypes.forEach((v) => {
+                if (tx.data.type === v) {
+                  flag = true;
+                }
+              });
+            }
+            return flag;
+          });
+          resolve({
+            count: filteredTxs.length,
+            transactions: filteredTxs,
+          });
+        } else {
+          resolve({
+            count: data.transactions.length,
+            transactions: data.transactions,
+          });
+        }
+      }
+      reject(data);
+    }).catch(error => reject(error));
+
+    // activePeer.getAccountState(address, blockTypes.tail).then((data) => {
+    //   if (data) {
+    //     let txs = [];
+    //     if ((filter === txFilters.outgoing || filter === txFilters.all)
+    //       && data.txs_send && data.txs_send.length) {
+    //       txs = txs.concat(data.txs_send);
+    //     }
+    //     if ((filter === txFilters.incoming || filter === txFilters.all)
+    //       && data.txs_get && data.txs_get.length) {
+    //       txs = txs.concat(data.txs_get);
+    //     }
+    //     resolve({ transactions: txs, count: txs.length });
+    //   } else {
+    //     reject(data);
+    //   }
+    // }).catch(error => reject(error));
+  });
+
+// export const transactions = ({ activePeer, address, limit = 20, offset = 0,
+// orderBy = 'timestamp:desc', filter = txFilters.all }) => {
+//   let params = {
+//     recipientId: (filter === txFilters.incoming || filter === txFilters.all)
+//      ? address : undefined,
+//     senderId: (filter === txFilters.outgoing || filter === txFilters.all)
+//      ? address : undefined,
+//     limit,
+//     offset,
+//     orderBy,
+//   };
+//   params = JSON.parse(JSON.stringify(params));
+//   return requestToActivePeer(activePeer, 'transactions', params);
+// };
+
+// export const unconfirmedTransactions = (activePeer, address, limit = 20,
+//  offset = 0, orderBy = 'timestamp:desc') =>
+//   requestToActivePeer(activePeer, 'transactions/unconfirmed', {
+//     senderId: address,
+//     recipientId: address,
+//     limit,
+//     offset,
+//     orderBy,
+//   });
+
+export const vest = (activePeer, value, nonce, privKey) =>
+  new Promise((resolve, reject) => {
+    const password = randomBytes(32).toString('hex');
+    const account = getAccountFromPrivKey(privKey, password);
+    const extractAddress1 = extractAddress(account.pubKey);
+
+    const tx = vestTx({
+      from: extractAddress1,
+      value,
+      nonce,
+    });
+    console.log(JSON.parse(JSON.stringify(tx)));
+
+    account.signTx(tx, password);
+    activePeer.sendTransaction(tx).then((res) => {
+      console.log(res);
+      if (res.hash) {
+        resolve({
+          transactionId: res.hash,
+        });
+      } else {
+        reject(res);
+      }
+    }).catch(error => reject(error));
+  });
+
+export const withdrawVesting = (activePeer, value, nonce, privKey) =>
+  new Promise((resolve, reject) => {
+    const password = randomBytes(32).toString('hex');
+    const account = getAccountFromPrivKey(privKey, password);
+    const extractAddress1 = extractAddress(account.pubKey);
+
+    const tx = withdrawVestingTx({
+      from: extractAddress1,
+      value,
+      nonce,
+    });
+    console.log(JSON.parse(JSON.stringify(tx)));
+
+    account.signTx(tx, password);
+    activePeer.sendTransaction(tx).then((res) => {
+      console.log(res);
+      if (res.hash) {
+        resolve({
+          transactionId: res.hash,
+        });
+      } else {
+        reject(res);
+      }
+    }).catch(error => reject(error));
+  });

@@ -1,0 +1,10 @@
+{
+  "name": "medibloc-wallet",
+  "version": "0.1.0",
+  "description": "MediBloc Wallet",
+  "main": "./build/main.js",
+  "author": {
+    "name": "MediBloc",
+    "email": "dev@medibloc.org"
+  }
+}

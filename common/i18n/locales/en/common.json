@@ -1,0 +1,11 @@
+{
+  "An error occurred while creating the transaction.": "An error occurred while creating the transaction.",
+  "Custom Node": "Custom Node",
+  "Mainnet": "Mainnet",
+  "Passphrase is not valid": "Passphrase is not valid",
+  "Passphrase should have 12 words, entered passphrase has {{length}}": "Passphrase should have 12 words, entered passphrase has {{length}}",
+  "Please check the highlighted words": "Please check the highlighted words",
+  "Testnet": "Testnet",
+  "URL is invalid": "URL is invalid",
+  "Unable to connect to the node": "Unable to connect to the node"
+}

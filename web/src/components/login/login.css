@@ -1,0 +1,9 @@
+@import './../app/variables.css';
+
+.wrapper {
+  animation: delayedFadeIn 300ms;
+  overflow: visible !important;
+  display: block !important;
+  clear: both;
+  padding-right: 16px;
+}

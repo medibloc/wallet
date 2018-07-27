@@ -1,0 +1,24 @@
+{
+  "name": "medibloc-wallet",
+  "version": "0.1.0",
+  "description": "MediBloc Wallet",
+  "homepage": "https://github.com/medibloc/wallet",
+  "bugs": "https://github.com/medibloc/wallet/issues",
+  "scripts": {
+    "eslint:common": "cd common && npm run eslint",
+    "eslint:web": "cd web && npm run eslint",
+    "eslint": "npm run eslint:common && npm run eslint:web",
+    "test:common": "cd common && npm run test",
+    "test:web": "cd web && npm run test",
+    "test": "npm run test:common && npm run test:web",
+    "start:web:dev": "cd web && npm run dev"
+  },
+  "author": "MediBloc <dev@medibloc.org>",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medibloc/wallet"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

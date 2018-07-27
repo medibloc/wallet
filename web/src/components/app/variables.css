@@ -1,0 +1,170 @@
+/*****************************************
+
+Please Read the guide line
+before adding any rules here
+
+# No component specific rule
+This file is inteded to solely include
+global/common variables, every rule added here
+must be used at least in 2 different
+components.
+
+# Usecases
+Try to isolate these variables with another
+variable in the component specific stylesheet
+in order to make component-wide changes
+faster and consistent.
+
+# Avoid rules and mixins
+Please avoid defining any rules here
+In addition, mixins have their own files,
+Please prefer only variables here.
+
+# Use with :global
+Please do not define any variables ourside
+the :root scope, since then it won't be
+available application wide
+
+# naming
+variable names should correspond to the
+role of the value not th presentation
+for example, a color name can include
+the css rule it belongs to e.g. color
+or "background-color" and "primary/secondary"
+or "warn/action" ineastd of "red/green"
+
+****************************************/
+
+:root {
+  /*************************
+        Font
+  *************************/
+  --font-size-h1: 65px;
+  --font-size-h2: 44px;
+  --font-size-h3: 28px;
+  --font-size-h4: 26px;
+  --font-size-h5: 20px;
+  --font-size-h6: 16px;
+  --font-size-small: 14px;
+  --heading-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+  --content-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-semi-bold: 500;
+  --font-weight-bold: 600;
+  --font-weight-very-bold: 700;
+  --subtitle-font-size: 16px;
+  --main-menu-font-size: 18px;
+  --paragraph-font-size-l: 15px;
+  --paragraph-font-size-s: 14px;
+  --input-font-size: 16px;
+  --button-font-size: 16px;
+
+  /* Font xl breakpoint */
+  --font-size-h2-xl: 44px;
+
+  /* Font l breakpoint */
+  --font-size-h2-l: 44px;
+
+  /* Font m breakpoint */
+  --font-size-h2-m: 44px;
+  --font-size-h3-m: 30px;
+  --font-size-h5-m: 16px;
+
+  /* Font s breakpoint */
+  --font-size-h2-s: 44px;
+  --font-size-h5-s: 16px;
+
+  /*************************
+        Sizes
+  *************************/
+  --sidebar-width: 104px;
+  --sidebar-width-xl: 104px;
+  --main-box-width: 480px;
+  --main-box-height: 75vh; /* stylelint-disable-line */
+  --border-radius-normal: 3px;
+  --header-height-m: 100px;
+  --header-height-s: 67px;
+  --m-menu-bar-height: 72px;
+  --s-menu-bar-height: 62px;
+  --m-top-bar-height: 90px;
+  --s-top-bar-height: 57px;
+  --footer-height-m: 72px;
+  --footer-height-s: 62px;
+
+  /*************************
+        Colors
+  *************************/
+  --color-primary-dark: #001a3e;
+  --color-primary-less-dark: #002449;
+  --color-primary-semi-dark: #01f;
+  --color-primary-medium: #3c7fb4;
+  --color-primary-standard: #2475b9;
+  --color-primary-light: #008bff;
+  --color-primary-very-light: #e8f0fa;
+  --color-black: #000;
+  --color-grayscale-dark: #3c5068;
+  --color-grayscale-medium: #74869b;
+  --color-grayscale-light: #ccd9e4;
+  --color-grayscale-mobile-background: #f9fbfd;
+  --color-grayscale-darker-mobile-background: #eff4f9;
+  --color-white: #fff;
+  --color-error: #da1d00;
+  --color-action-dark: #c80039;
+  --color-action-medium: #ed4537;
+  --color-action-light: #ff6236;
+  --color-success-dark: #008722;
+  --color-action-light-2: #93f4fe;
+  --color-action-medium-2: #004aff;
+  --color-link: #0077bd;
+  --color-tertiary-medium: #17499b;
+  --color-form-bg: #f6f8fb;
+  --color-dodger-blue: #4f8df3;
+  --color-pale-gray: #f7f8f9;
+  --color-black-16: rgba(0, 0, 0, 0.16);
+  --color-black-60: rgba(0, 0, 0, 0.6);
+  --color-black-87: rgba(0, 0, 0, 0.87);
+  --gradient-theme: linear-gradient(27deg, var(--color-tertiary-medium) 0%, var(--color-grayscale-light) 100%);
+  --gradient-action-orange: linear-gradient(-27deg, var(--color-action-dark) 0%, var(--color-action-light) 100%);
+  --gradient-action-blue: linear-gradient(136deg, var(--color-tertiary-medium) 0%, var(--color-primary-medium) 100%);
+  --gradient-action-blue-hover: linear-gradient(224deg, var(--color-primary-medium) 0%, var(--color-tertiary-medium) 100%);
+  --gradient-greyscale: linear-gradient(to right, var(--row-background-color), #f5f8fc);
+  --gradient-greyscale-mobile: linear-gradient(to right, var(--color-grayscale-mobile-background), var(--color-grayscale-darker-mobile-background));
+  --gradient-tertiary: linear-gradient(45deg, var(--color-tertiary-medium) 0%, var(--color-primary-medium) 100%);
+
+  /*************************
+        Z-Indexes
+  *************************/
+  --normal-index: 1;
+  --headerbar-index: 20;
+  --menubar-index: 4;
+  --accounts-index: 21;
+
+  /*************************
+        Margins
+  *************************/
+  --box-overflow-y: -23px;
+
+  /*************************
+        Paddings
+  *************************/
+  --box-padding: 16px;
+  --box-padding-top: 40px;
+  --box-padding-left-XL: 48px;
+  --box-padding-left-L: 32px;
+  --box-padding-left-M: 19px;
+
+  /*************************
+        Box props
+  *************************/
+  --normal-shadow: 0 22px 22px 0 rgba(0, 0, 0, 0.22);
+
+  /*************************
+        Media Queries
+  *************************/
+  @custom-media --xLarge-viewport (min-width: 1400px);
+  @custom-media --large-viewport (max-width: 1400px);
+  @custom-media --medium-viewport (max-width: 1024px);
+  @custom-media --small-viewport (max-width: 768px);
+  @custom-media --xSmall-viewport (max-width: 414px);
+  @custom-media --xxSmall-viewport (max-width: 320px);
+}
