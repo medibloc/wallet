@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import MultiStep from '../multiStep';
 import Create from '../passphrase/create/create';
 import Password from '../passphrase/password/password';
+import Safekeeping from '../passphrase/safekeeping/safekeeping';
 import networks from '../../../../common/src/constants/networks';
 import getNetwork from '../../../../common/src/utils/getNetwork';
 import Box from '../box';
@@ -67,6 +68,7 @@ class Register extends React.Component {
         finalCallback={this.onRegister.bind(this)}>
         <Create title={'Create'} t={t} />
         <Password title={'Password'} t={t} />
+        <Safekeeping title={'Safekeeping'} t={t} />
       </MultiStep>
     </Box>);
   }

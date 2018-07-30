@@ -22,12 +22,6 @@ export const extractAddress = (data) => {
   return pubKey;
 };
 
-// export const getAccountFromPassphrase = (passphrase, password) => {
-//   const privKey = cryptography.getKeyPairFromPassphrase(passphrase).privKey;
-//   const encryptedPrivKey = cryptography.encryptKey(password, privKey);
-//   return account(password, encryptedPrivKey);
-// };
-
 export const getAccountFromPrivKey = (privKey, password) => {
   const encryptedPrivKey = cryptography.encryptKey(password, privKey);
   return new Account(password, encryptedPrivKey);

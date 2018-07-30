@@ -43,7 +43,7 @@ or "warn/action" ineastd of "red/green"
   --font-size-h2: 44px;
   --font-size-h3: 28px;
   --font-size-h4: 26px;
-  --font-size-h5: 20px;
+  --font-size-h5: 18px;
   --font-size-h6: 16px;
   --font-size-small: 14px;
   --heading-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
@@ -118,7 +118,10 @@ or "warn/action" ineastd of "red/green"
   --color-link: #0077bd;
   --color-tertiary-medium: #17499b;
   --color-form-bg: #f6f8fb;
+  --color-aquamarine: #0bcec0;
+  --color-bright-blue: #005cee;
   --color-dodger-blue: #4f8df3;
+  --color-dusk-blud: #2f599f;
   --color-pale-gray: #f7f8f9;
   --color-black-16: rgba(0, 0, 0, 0.16);
   --color-black-60: rgba(0, 0, 0, 0.6);

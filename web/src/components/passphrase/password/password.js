@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import Box from '../../box';
 import { PrimaryButton } from '../../toolbox/buttons/button';
 import Input from '../../toolbox/inputs/input';
+import { extractPrivKey, getAccountFromPrivKey } from '../../../../../common/src/utils/account';
 import styles from './password.css';
 // import routes from '../../constants/routes';
 
@@ -32,7 +33,6 @@ class Password extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   validatePassword(value) {
-    console.log('validatePassword', value, value.length);
     const data = { password: value };
     data.passwordValidity = value.length < 8 ? 'must be at least 8 characters' : '';
     return data;
@@ -56,40 +56,48 @@ class Password extends React.Component {
 
   render() {
     const { t, nextStep, passphrase } = this.props;
-    return (<Box className={`${styles.password}`}>
+    return (<Box className={`${styles.passwordWrapper}`}>
       <header>
         <h2>{t('Protect Your Account')}</h2>
       </header>
       <Input type='text'
-        label={t('Account label')}
+        title={t('Account label')}
         name={'label'}
-        className={`${styles.accountLabel}`}
+        parentclassname={`${styles.accountLabel}`}
         theme={styles}
         value={this.state.label}
         error={this.state.labelValidity}
         onChange={this.changeHandler.bind(this, 'label')}/>
       <Input type='text'
-        label={t('Password')}
+        title={t('Password')}
         name={'password'}
-        className={`${styles.password}`}
+        parentclassname={`${styles.password}`}
         theme={styles}
+        required={true}
         value={this.state.password}
         error={this.state.passwordValidity}
         onChange={this.changeHandler.bind(this, 'password')}/>
-      <h6> must be at least 8 characters </h6>
+      {/* <h6> must be at least 8 characters </h6> */}
       <Input type='text'
-        label={t('Confirm password')}
+        title={t('Confirm password')}
         name={'confirmPassword'}
-        className={`${styles.confirmPassword}`}
+        parentclassname={`${styles.confirmPassword}`}
         theme={styles}
+        required={true}
         value={this.state.confirmPassword}
         error={this.state.confirmPasswordValidity}
         onChange={this.changeHandler.bind(this, 'confirmPassword')}/>
       <PrimaryButton label={t('Next')}
         className={`${styles.nextButton}`}
-        onClick={() => nextStep({
-          passphrase,
-        })}/>
+        onClick={() => {
+          const label = this.state.label;
+          const encKey = getAccountFromPrivKey(extractPrivKey(passphrase), this.state.password);
+          return nextStep({
+            encKey,
+            label,
+            passphrase,
+          });
+        }}/>
     </Box>);
   }
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import Input from 'react-toolbox/lib/input';
 import { themr } from 'react-css-themr';
-import inputTheme from './input.css';
+import styles from './input.css';
 
-const ToolBoxInput = props => <Input
-  {...props}
-  theme={props.theme}
-/>;
-// innerRef={(ref) => {
-//   if (ref !== null && props.shouldfocus) {
-//     ref.focus();
-//   }
-// }}
+const ToolBoxInput = props => (
+  <div className={`${styles.inputWrapper} ${props.parentclassname}`}>
+    <h6>{props.title}</h6>
+    <Input
+      {...props}
+      theme={props.theme}
+    />
+  </div>
+);
 
-export default themr('TBInput', inputTheme)(ToolBoxInput);
+export default themr('TBInput', styles)(ToolBoxInput);

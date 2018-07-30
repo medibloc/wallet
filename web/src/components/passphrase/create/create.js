@@ -8,6 +8,7 @@ import Input from '../../toolbox/inputs/input';
 import CheckBox from '../../toolbox/checkbox/checkbox';
 import styles from './create.css';
 import AccountVisual from '../../accountVisual';
+import Footer from '../../register/footer/footer';
 // import Reload from '../../../assets/images/icons/reload.svg';
 import { generatePassphrase } from './../../../../../common/src/utils/passphrase';
 import { extractAddress } from '../../../../../common/src/utils/account';
@@ -24,22 +25,6 @@ class Create extends React.Component {
     };
   }
 
-  // componentDidUpdate() {
-  //   if (this.props.account.passphrase !== undefined) {
-  //     this.props.history.push(`${routes.dashboard.path}`);
-  //   }
-  // }
-
-  // onRegister(passphrase) {
-  //   const network = Object.assign({}, getNetwork(networks.default.code));
-  //
-  //   // set active peer
-  //   this.props.activePeerSet({
-  //     passphrase,
-  //     network,
-  //   });
-  // }
-
   refreshAddress() {
     const passphrase = generatePassphrase();
     console.log(passphrase);
@@ -49,14 +34,10 @@ class Create extends React.Component {
     });
   }
 
-  // backToLogin() {
-  //   this.props.history.push('/');
-  // }
-
   render() {
     const { t, nextStep } = this.props;
     return (
-      <section className={`${styles.create}`}>
+      <section className={`${styles.createWrapper}`}>
         <header>
           <h2>{t('Create New Account')}</h2>
         </header>
@@ -70,10 +51,10 @@ class Create extends React.Component {
             icon='R'>
           </IconButton>
         </div>
-        <h6> {t('This avatar is unique. You cannot change it later.')} </h6>
+        <small> {t('This avatar is unique. You cannot change it later.')} </small>
         <Input type='text'
-          className={`${styles.accountAddress}`}
-          label={t('Account address')}
+          parentclassname={`${styles.accountAddress}`}
+          title={t('Account address')}
           value={this.state.address}
           disabled={true} />
         <CheckBox
@@ -84,8 +65,7 @@ class Create extends React.Component {
           onClick={() => nextStep({
             passphrase: this.state.passphrase,
           })}/>
-        <h6> {t('or')} </h6>
-        <h6> {t('Sign in')} | {t('Restore an account from a backup')} </h6>
+        <Footer t={t} />
       </section>
     );
   }

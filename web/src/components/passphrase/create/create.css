@@ -1,56 +1,60 @@
 @import '../../app/variables.css';
 
 :root {
-  --padding-top: 40px;
+  --margin-top: 50px;
 }
 
-.create {
-  & .accountVisual {
-    position: relative;
+.createWrapper {
+  margin-top: var(--margin-top);
+
+  & header h2 {
+    margin: 0px;
+  }
+
+  & > .accountVisual {
     flex-direction: row;
     justify-content: center;
+    position: relative;
 
-    & .refreshButton {
+    & > .refreshButton {
       position: absolute;
-      top: 40px;
       right: 125px;
+      top: 40px;
     }
   }
 
-  & .accountAddress {
-    width: 480px;
+  & > small {
+    margin-top: 8px;
+  }
+
+  & > .accountAddress {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
+    width: 480px;
 
-    & > input {
+    & > div {
+      padding-top: 8px;
+    }
+
+    & input {
       height: 64px;
     }
+  }
 
-    & > label {
+  & > .saveAccountCheckbox {
+    display: inline-flex;
+
+    & > span {
       font-size: var(--font-size-h6);
-      color: var(--color-black-87);
-      height: 24px;
+      color: var(--color-black-60);
+      font-weight: normal;
     }
   }
 
-  & .saveAccountCheckbox {
-    display: inline-flex;
-  }
-
-  & .continueButton {
-    width: 480px;
+  & > .continueButton {
     height: 56px;
     margin-top: 40px;
+    width: 480px;
   }
-}
-
-.hasPaddingTop {
-  padding-top: var(--padding-top);
-}
-
-.account-address {
-  display: flex;
-  flex-direction: column;
-  width: 480px;
 }

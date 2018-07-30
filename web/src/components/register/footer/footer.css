@@ -1,0 +1,7 @@
+@import './../../app/variables.css';
+
+.footer {
+  & h6 {
+    margin: 20px 0 0;
+  }
+}

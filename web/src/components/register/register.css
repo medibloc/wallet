@@ -17,7 +17,7 @@
     overflow: hidden;
   }
 
-  & span {
+  & > span {
     font-size: var(--font-size-h6);
     color: var(--color-black-60);
     font-weight: normal;
@@ -29,10 +29,10 @@
     margin-bottom: 0;
   }
 
-  & h6 {
+  & h6,
+  & small {
     display: flex;
     justify-content: center;
-    margin: 18px 0 0;
   }
 }
 

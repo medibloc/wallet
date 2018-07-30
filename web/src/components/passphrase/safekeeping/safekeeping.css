@@ -1,0 +1,35 @@
+@import '../../app/variables.css';
+
+:root {
+  --margin-top: 50px;
+}
+
+.safekeeping {
+  margin-top: var(--margin-top);
+
+  & > .comment1 {
+    & > h6 {
+      text-align: center;
+    }
+  }
+
+  & > .comment2 {
+    margin-top: 48px;
+
+    & > h6 {
+      color: var(--color-black-87);
+    }
+  }
+
+  & > .passphrase {
+    margin-top: 26px;
+  }
+
+  & > .nextButton {
+    margin-top: 40px;
+  }
+
+  & > .comment3 {
+    margin-top: 16px;
+  }
+}
