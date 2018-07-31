@@ -8,7 +8,7 @@ import styles from './safekeeping.css';
 
 class Safekeeping extends React.Component {
   render() {
-    const { t, nextStep, encKey, label, passphrase } = this.props;
+    const { t, nextStep, passphrase } = this.props;
     return (<Box className={`${styles.safekeeping}`}>
       <header>
         <h2>{t('Save backup phrase')}</h2>
@@ -27,8 +27,6 @@ class Safekeeping extends React.Component {
         label={t('I\'ve written it down')}
         className={`${styles.nextButton}`}
         onClick={() => nextStep({
-          encKey,
-          label,
           passphrase,
         })}/>
       <div className={`${styles.comment3}`}>

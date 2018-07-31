@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { activePeerSet } from '../../../../common/src/actions/peers';
+import { accountSaved } from '../../../../common/src/actions/savedAccounts';
 import Register from './register';
 
 const mapStateToProps = state => ({
@@ -8,6 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  accountSaved: data => dispatch(accountSaved(data)),
   activePeerSet: data => dispatch(activePeerSet(data)),
 });
 

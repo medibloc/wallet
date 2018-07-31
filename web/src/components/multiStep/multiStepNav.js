@@ -1,5 +1,6 @@
 import React from 'react';
-import { FontIcon } from '../fontIcon';
+// import { FontIcon } from '../fontIcon';
+import backButton from '../../assets/images/icons/backButton@2x.png';
 import styles from './multiStep.css';
 
 const MultiStepNav = ({ steps, showBackButton,
@@ -25,7 +26,7 @@ const MultiStepNav = ({ steps, showBackButton,
       {
         showBackButton ?
           <a onClick={backButtonFn} className={`${styles.backButton} multistep-back`}>
-            <FontIcon className={styles.icon}>arrow-left</FontIcon>
+            <img className={styles.icon} src={backButton} />
           </a> : null
       }
       <span className={styles.backButtonShadow}></span>

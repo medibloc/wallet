@@ -47,11 +47,9 @@ export const transactionsFilterSet = ({ activePeer, address, limit, txTypeFilter
 //     });
 //   };
 
-export const loadTransactions = ({ activePeer, publicKey, address }) =>
+export const loadTransactions = ({ activePeer, address }) =>
   (dispatch) => {
-    const lastActiveAddress = publicKey ?
-      extractAddress(publicKey) :
-      null;
+    const lastActiveAddress = address ? address : null;
     const isSameAccount = lastActiveAddress === address;
     // loadingStarted(actionTypes.transactionsLoad);
     // TODO: get transaction details

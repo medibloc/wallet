@@ -156,7 +156,7 @@ export const sent = ({ activePeer, account, to,
       dispatch({
         data: {
           id: data.transactionId,
-          senderPublicKey: account.publicKey,
+          senderAddress: account.address,
           senderId: account.address,
           to,
           amount: toRawMed(amount),
@@ -240,7 +240,7 @@ export const vested = ({ activePeer, account, amount, passphrase }) =>
       dispatch({
         data: {
           id: data.transactionId,
-          senderPublicKey: account.publicKey,
+          senderAddress: account.address,
           senderId: account.address,
           amount: toRawMed(amount),
           type: transactionTypes.vest,
@@ -268,7 +268,7 @@ export const withdrewVesting = ({ activePeer, account, amount, passphrase }) =>
       dispatch({
         data: {
           id: data.transactionId,
-          senderPublicKey: account.publicKey,
+          senderAddress: account.address,
           senderId: account.address,
           amount: toRawMed(amount),
           type: transactionTypes.withdrawVesting,

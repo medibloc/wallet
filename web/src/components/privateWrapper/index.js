@@ -6,7 +6,7 @@ export const PrivateWrapperComponent = ({ isAuthenticated, children }) => (
 );
 
 const mapStateToProps = state => ({
-  isAuthenticated: !!state.account.publicKey,
+  isAuthenticated: !!state.account.address,
 });
 
 export default connect(mapStateToProps)(PrivateWrapperComponent);

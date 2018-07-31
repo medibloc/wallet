@@ -5,7 +5,7 @@ import networks from '../constants/networks';
 const peerSet = (data, config) => ({
   data: Object.assign({
     passphrase: data.passphrase,
-    publicKey: data.publicKey,
+    address: data.address,
     activePeer: client(config.nodes),
     noSavedAccounts: data.noSavedAccounts,
     options: { code: config.code },
@@ -14,6 +14,13 @@ const peerSet = (data, config) => ({
 });
 
 const pickMainnetNode = () => {
+  const nodes = [
+    'http://localhost:9921',
+  ];
+  return nodes;
+};
+
+const pickTestnetNode = () => {
   const nodes = [
     'http://localhost:9921',
   ];
@@ -30,26 +37,16 @@ const pickMainnetNode = () => {
  */
 export const activePeerSet = data =>
   (dispatch) => {
-    const addHttp = (url) => {
-      const reg = /^(?:f|ht)tps?:\/\//i;
-      return reg.test(url) ? url : `http://${url}`;
-    };
     const config = data.network || {};
 
     if (config.code === networks.mainnet.code) {
       config.nodes = pickMainnetNode();
     }
 
-    if (config.address) {
-      const { hostname, port, protocol } = new URL(addHttp(config.address));
+    if (config.code === networks.mainnet.code) {
+      config.nodes = pickTestnetNode();
+    }
 
-      config.node = hostname;
-      config.ssl = protocol === 'https:';
-      config.port = port || (config.ssl ? 443 : 80);
-    }
-    if (config.testnet === undefined && config.port !== undefined) {
-      config.testnet = config.port === '7000';
-    }
     if (config.custom) {
       config.nodes = ['http://localhost:9921'];
       dispatch(peerSet(data, config));

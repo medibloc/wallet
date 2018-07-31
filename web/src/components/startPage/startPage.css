@@ -1,0 +1,37 @@
+@import '../app/variables.css';
+
+.startPageWrapper {
+  margin: 227px 0 0;
+  width: 680px;
+  height: 440px;
+
+  & > .startPage {
+    margin: 0;
+
+    & > .button {
+      border-bottom: 1px solid var(--color-black-60);
+      border-radius: 0;
+      color: var(--color-black-87);
+      font-size: 44px;
+      font-weight: normal;
+      height: 96px;
+      margin: 0;
+      width: 680px;
+    }
+
+    & > .hasMarginTop {
+      margin-top: 48px;
+    }
+  }
+}
+
+.wrapper {
+  width: 680px;
+
+  & > img {
+    display: block;
+    width: 180px;
+    height: 25px;
+    margin: 0 auto;
+  }
+}

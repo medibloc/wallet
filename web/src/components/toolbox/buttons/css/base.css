@@ -32,24 +32,26 @@
   color: var(--color-white) !important;
   background: var(--color-dodger-blue);
 
+  &:disabled {
+    color: var(--color-mid-blue-60) !important;
+  }
+
   &:hover {
-    background: var(--color-action-medium-2) !important;
+    background: var(--color-mid-blue) !important;
   }
 }
 
 @define-mixin buttonSecondary--light {
   background: none !important;
-  color: var(--color-white) !important;
-  box-shadow: 0 0 0 2px var(--color-white);
+  color: var(--color-black-87) !important;
 
   &:disabled {
-    color: var(--color-grayscale-light) !important;
-    box-shadow: 0 0 0 2px var(--color-grayscale-light);
+    color: var(--color-mid-blue-60) !important;
   }
 
   &:hover {
-    color: var(--color-black) !important;
-    background-color: var(--color-white) !important;
+    color: var(--color-white) !important;
+    background-color: var(--color-mid-blue) !important;
   }
 }
 

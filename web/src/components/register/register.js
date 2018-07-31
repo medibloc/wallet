@@ -8,55 +8,25 @@ import Safekeeping from '../passphrase/safekeeping/safekeeping';
 import networks from '../../../../common/src/constants/networks';
 import getNetwork from '../../../../common/src/utils/getNetwork';
 import Box from '../box';
-// import { PrimaryButton } from '../toolbox/buttons/button';
-// import IconButton from '../toolbox/buttons/iconButton';
-// import Input from '../toolbox/inputs/input';
-// import CheckBox from '../toolbox/checkbox/checkbox';
 import styles from './register.css';
-// import AccountVisual from '../accountVisual';
-import { generatePassphrase } from './../../../../common/src/utils/passphrase';
-import { extractAddress } from '../../../../common/src/utils/account';
-// import { extractAddress } from '../../../../common/src/utils/account';
-// import routes from '../../constants/routes';
 
 class Register extends React.Component {
-  constructor() {
-    super();
-    const passphrase = generatePassphrase();
-    this.state = {
-      passphrase,
-      address: extractAddress(passphrase),
-    };
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  componentDidMount() {
-    document.body.classList.add('contentFocused');
-  }
-
-  // componentDidUpdate() {
-  //   if (this.props.account.passphrase !== undefined) {
-  //     this.props.history.push(`${routes.dashboard.path}`);
-  //   }
-  // }
-
-  // eslint-disable-next-line class-methods-use-this
-  componentWillUnmount() {
-    document.body.classList.remove('contentFocused');
-  }
-
-  onRegister(passphrase) {
-    const network = Object.assign({}, getNetwork(networks.default.code));
-
-    // set active peer
-    this.props.activePeerSet({
-      passphrase,
-      network,
-    });
-  }
-
   backToLogin() {
     this.props.history.push('/');
+  }
+
+  onRegister({ address, encKey, label, passphrase }) {
+    const network = Object.assign({}, getNetwork(networks.default.code));
+
+    this.props.accountSaved({
+      address,
+      encKey,
+      label,
+      network,
+      passphrase,
+    });
+
+    this.props.history.push('/login');
   }
 
   render() {
@@ -67,8 +37,8 @@ class Register extends React.Component {
         prevPage={this.backToLogin.bind(this)}
         finalCallback={this.onRegister.bind(this)}>
         <Create title={'Create'} t={t} />
-        <Password title={'Password'} t={t} />
         <Safekeeping title={'Safekeeping'} t={t} />
+        <Password title={'Password'} t={t} />
       </MultiStep>
     </Box>);
   }

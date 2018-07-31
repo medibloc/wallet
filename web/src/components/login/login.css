@@ -1,9 +1,91 @@
-@import './../app/variables.css';
+@import '../app/variables.css';
+
+:root {
+  --margin-top: 50px;
+}
+
+.loginWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 480px;
+
+  & > .login {
+    margin-top: var(--margin-top);
+    width: 100%;
+
+    & > .accountLabel {
+      display: flex;
+      margin-top: 48px;
+    }
+
+    & > .password {
+      margin-top: 24px;
+    }
+
+    & > .nextButton {
+      margin-top: 72px;
+    }
+
+    & div {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    & > span {
+      font-size: var(--font-size-h6);
+      color: var(--color-black-60);
+      font-weight: normal;
+    }
+
+    & h2 {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    & h6,
+    & small {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
 
 .wrapper {
-  animation: delayedFadeIn 300ms;
-  overflow: visible !important;
-  display: block !important;
-  clear: both;
-  padding-right: 16px;
+  & > img {
+    display: block;
+    width: 180px;
+    height: 25px;
+    margin: 0 auto;
+  }
+}
+
+.dropDownWrapper {
+  display: flex;
+  flex-direction: row !important;
+
+  & > .accountVisual {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin: 0 12px;
+    justify-content: center;
+  }
+
+  & > .accountVisual:focus {
+    background-color: var(--color-white);
+  }
+
+  & > .address {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+  }
+}
+
+.dropDownWrapper:focus {
+  background-color: var(--color-white);
 }

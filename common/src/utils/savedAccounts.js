@@ -1,19 +1,6 @@
-import { validateUrl } from './login';
-import { extractAddress } from './account';
-
-const isValidSavedAccount = ({ publicKey, network, address }) => {
-  try {
-    return extractAddress(publicKey) &&
-      network >= 0 && network <= 2 &&
-      (validateUrl(address).addressValidity === '' || network !== 2);
-  } catch (e) {
-    return false;
-  }
-};
-
 export const getSavedAccounts = () => {
   try {
-    return JSON.parse(localStorage.getItem('accounts')).filter(isValidSavedAccount);
+    return JSON.parse(localStorage.getItem('accounts'));
   } catch (e) {
     return [];
   }
@@ -21,26 +8,26 @@ export const getSavedAccounts = () => {
 
 export const setSavedAccounts = (accounts) => {
   accounts = accounts.map(({
-    publicKey, network, address, balance,
+    address, encKey, network, nodes, balance,
   }) => ({
-    publicKey, network, address, balance,
+    address, encKey, network, nodes, balance,
   }));
   localStorage.setItem('accounts', JSON.stringify(accounts));
 };
 
 export const getLastActiveAccount = () => (getSavedAccounts()[localStorage.getItem('lastActiveAccountIndex')] || getSavedAccounts()[0]);
 
-export const getIndexOfSavedAccount = (savedAccounts, { publicKey, network, address }) =>
+export const getIndexOfSavedAccount = (savedAccounts, { address, network, nodes }) =>
   savedAccounts.findIndex(account => (
-    account.publicKey === publicKey &&
+    account.address === address &&
     account.network === network &&
-    account.address === address
+    account.nodes === nodes
   ));
 
-export const setLastActiveAccount = ({ publicKey, network, address }) => {
+export const setLastActiveAccount = ({ address, network, nodes }) => {
   const lastActiveAccountIndex = getIndexOfSavedAccount(
     getSavedAccounts(),
-    { publicKey, network, address },
+    { address, network, nodes },
   );
 
   if (lastActiveAccountIndex > -1) {

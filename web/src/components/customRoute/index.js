@@ -20,7 +20,7 @@ export const CustomRouteRender = ({ path, component, isPrivate, exact,
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: !!state.account.publicKey,
+  isAuthenticated: !!state.account.address,
 });
 
 export default withRouter(connect(mapStateToProps)(translate()(CustomRouteRender)));

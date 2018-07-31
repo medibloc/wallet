@@ -17,9 +17,11 @@
     position: relative;
 
     & > .refreshButton {
+      height: 24px;
       position: absolute;
       right: 125px;
-      top: 40px;
+      top: 44px;
+      width: 24px;
     }
   }
 

@@ -26,3 +26,5 @@ export const getAccountFromPrivKey = (privKey, password) => {
   const encryptedPrivKey = cryptography.encryptKey(password, privKey);
   return new Account(password, encryptedPrivKey);
 };
+
+export const getAccountFromEncKey = (encKey, password) => new Account(password, encKey);

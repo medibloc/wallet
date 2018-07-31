@@ -4,14 +4,14 @@ import * as savedAccountsUtils from '../../utils/savedAccounts';
 
 describe('Subscriber: savedAccounts(state)', () => {
   const account = {
-    publicKey: 'sample_key_1',
+    address: 'sample_key_1',
     network: 'Custom node',
-    address: 'http://localhost:4000',
+    url: 'http://localhost:4000',
   };
   const account2 = {
-    publicKey: 'sample_key_2',
+    address: 'sample_key_2',
     network: 'Custom node',
-    address: 'http://localhost:4000',
+    url: 'http://localhost:4000',
   };
   let savedAccountsUtilsMock;
 

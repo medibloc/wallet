@@ -24,7 +24,7 @@ const savedAccountsMiddleware = (store) => {
       }
 
       store.dispatch(activePeerSet({
-        publicKey: account.publicKey,
+        address: account.address,
         network,
       }));
     }
@@ -34,7 +34,7 @@ const savedAccountsMiddleware = (store) => {
 
   const updateSavedAccounts = (peers, accounts) => {
     accounts.forEach((account, i) => {
-      const address = extractAddress(account.publicKey);
+      const address = extractAddress(account.address);
       if (isSameNetwork(account, peers)) {
         getAccount(peers.data, address).then((result) => {
           if (result.balance !== account.balance) {
@@ -54,7 +54,7 @@ const savedAccountsMiddleware = (store) => {
 
   const checkTransactionsAndUpdateSavedAccounts = (peers, tx, savedAccounts) => {
     const changedAccounts = savedAccounts.accounts.filter((account) => {
-      const address = extractAddress(account.publicKey);
+      const address = extractAddress(account.address);
       const relevantTransactions = tx.filter((transaction) => {
         const sender = transaction ? transaction.senderId : null;
         const recipient = transaction ? transaction.recipientId : null;
@@ -79,20 +79,21 @@ const savedAccountsMiddleware = (store) => {
       case actionTypes.accountSwitched:
         store.dispatch(accountLoading());
         store.dispatch(activePeerSet({
-          publicKey: action.data.publicKey,
+          address: action.data.address,
           passphrase: action.data.passphrase,
           network: {
             ...getNetwork(action.data.network),
-            address: action.data.address,
+            nodes: action.data.nodes,
           },
         }));
         break;
       case actionTypes.activeAccountSaved:
         store.dispatch(accountSaved({
           balance: account.balance,
-          publicKey: account.publicKey,
+          address: account.address,
+          encKey: account.encKey,
           network: peers.options.code,
-          address: peers.options.address,
+          nodes: peers.options.nodes,
         }));
         break;
       case actionTypes.accountLoggedIn:
@@ -100,9 +101,9 @@ const savedAccountsMiddleware = (store) => {
         store.dispatch(accountSaved({
           passphrase: action.data.passphrase,
           balance: action.data.balance,
-          publicKey: action.data.publicKey,
+          address: action.data.address,
           network: peers.options.code,
-          address: peers.options.address,
+          nodes: peers.options.nodes,
         }));
         break;
       case actionTypes.accountRemoved:

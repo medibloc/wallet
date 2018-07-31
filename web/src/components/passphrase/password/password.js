@@ -4,9 +4,23 @@ import { translate } from 'react-i18next';
 import Box from '../../box';
 import { PrimaryButton } from '../../toolbox/buttons/button';
 import Input from '../../toolbox/inputs/input';
-import { extractPrivKey, getAccountFromPrivKey } from '../../../../../common/src/utils/account';
+import { extractAddress,
+  extractPrivKey,
+  getAccountFromPrivKey } from '../../../../../common/src/utils/account';
 import styles from './password.css';
 // import routes from '../../constants/routes';
+
+const validateLabel = (value) => {
+  const data = { label: value };
+  data.labelValidity = '';
+  return data;
+};
+
+const validatePassword = (value) => {
+  const data = { password: value };
+  data.passwordValidity = value.length < 8 ? 'must be at least 8 characters' : '';
+  return data;
+};
 
 class Password extends React.Component {
   constructor() {
@@ -18,24 +32,10 @@ class Password extends React.Component {
     };
 
     this.validators = {
-      label: this.validateLabel.bind(this),
-      password: this.validatePassword.bind(this),
+      label: validateLabel,
+      password: validatePassword,
       confirmPassword: this.validateConfirmPassword.bind(this),
     };
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  validateLabel(value) {
-    const data = { label: value };
-    data.labelValidity = '';
-    return data;
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  validatePassword(value) {
-    const data = { password: value };
-    data.passwordValidity = value.length < 8 ? 'must be at least 8 characters' : '';
-    return data;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -55,7 +55,7 @@ class Password extends React.Component {
   }
 
   render() {
-    const { t, nextStep, passphrase } = this.props;
+    const { t, passphrase } = this.props;
     return (<Box className={`${styles.passwordWrapper}`}>
       <header>
         <h2>{t('Protect Your Account')}</h2>
@@ -68,7 +68,7 @@ class Password extends React.Component {
         value={this.state.label}
         error={this.state.labelValidity}
         onChange={this.changeHandler.bind(this, 'label')}/>
-      <Input type='text'
+      <Input type='password'
         title={t('Password')}
         name={'password'}
         parentclassname={`${styles.password}`}
@@ -78,7 +78,7 @@ class Password extends React.Component {
         error={this.state.passwordValidity}
         onChange={this.changeHandler.bind(this, 'password')}/>
       {/* <h6> must be at least 8 characters </h6> */}
-      <Input type='text'
+      <Input type='password'
         title={t('Confirm password')}
         name={'confirmPassword'}
         parentclassname={`${styles.confirmPassword}`}
@@ -91,9 +91,10 @@ class Password extends React.Component {
         className={`${styles.nextButton}`}
         onClick={() => {
           const label = this.state.label;
-          const encKey = getAccountFromPrivKey(extractPrivKey(passphrase), this.state.password);
-          return nextStep({
-            encKey,
+          const account = getAccountFromPrivKey(extractPrivKey(passphrase), this.state.password);
+          this.props.finalCallback({
+            address: extractAddress(account.pubKey),
+            encKey: account.encryptedPrivKey,
             label,
             passphrase,
           });

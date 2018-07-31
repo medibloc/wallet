@@ -1,22 +1,20 @@
 const networks = {
   mainnet: { // network name translation t('Mainnet');
     name: 'Mainnet',
-    ssl: true,
-    port: 443,
     code: 0,
+    nodes: ['http://localhost:9921'],
   },
   testnet: { // network name translation t('Testnet');
     name: 'Testnet',
     testnet: true,
-    ssl: true,
-    port: 443,
     code: 1,
+    nodes: ['http://localhost:9921'],
   },
   customNode: { // network name translation t('Custom Node');
     name: 'Custom Node',
     custom: true,
-    address: 'http://localhost:9921',
     code: 2,
+    nodes: ['http://localhost:9921'],
   },
 };
 

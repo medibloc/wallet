@@ -10,10 +10,10 @@ export const listDelegates = (activePeer, options) =>
 export const getDelegate = (activePeer, options) =>
   requestToActivePeer(activePeer, 'delegates/get', options);
 
-export const vote = (activePeer, secret, publicKey, voteList, unvoteList, secondSecret = null) =>
+export const vote = (activePeer, secret, address, voteList, unvoteList, secondSecret = null) =>
   requestToActivePeer(activePeer, 'accounts/delegates', {
     secret,
-    publicKey,
+    address,
     delegates: voteList.map(delegate => `+${delegate}`).concat(
       unvoteList.map(delegate => `-${delegate}`),
     ),
@@ -23,8 +23,8 @@ export const vote = (activePeer, secret, publicKey, voteList, unvoteList, second
 export const getVotes = (activePeer, address) =>
   requestToActivePeer(activePeer, 'accounts/delegates/', { address });
 
-export const getVoters = (activePeer, publicKey) =>
-  requestToActivePeer(activePeer, 'delegates/voters', { publicKey });
+export const getVoters = (activePeer, address) =>
+  requestToActivePeer(activePeer, 'delegates/voters', { address });
 
 export const registerDelegate = (activePeer, username, secret, secondSecret = null) => {
   const data = { username, secret };

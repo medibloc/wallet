@@ -8,6 +8,7 @@ import Register from '../components/register';
 // import SignMessage from '../components/signMessage';
 // import Search from '../components/search';
 // import SearchResult from '../components/search/searchResult';
+import StartPage from '../components/startPage/startPage';
 // import TransactionDashboard from '../components/transactionDashboard';
 // import AccountTransactions from '../components/accountTransactions';
 // import Voting from '../components/voting';
@@ -75,8 +76,14 @@ export default {
     isPrivate: false,
   },
   register: {
-    path: '/',
+    path: '/register',
     component: Register,
+    isLoaded: true,
+    isPrivate: false,
+  },
+  startPage: {
+    path: '/',
+    component: StartPage,
     isLoaded: true,
     isPrivate: false,
     exact: true,

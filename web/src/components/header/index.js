@@ -12,7 +12,7 @@ const { lockDuration } = accountConfig;
 const mapStateToProps = state => ({
   account: state.account,
   autoLog: state.settings.autoLog,
-  isAuthenticated: !!state.account.publicKey,
+  isAuthenticated: !!state.account.address,
   peers: state.peers,
 });
 

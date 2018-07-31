@@ -20,12 +20,14 @@ const savedAccounts = (state = { accounts: [] }, action) => {
       if (indexOfAccount !== -1) {
         changedAccount = {
           ...accounts[indexOfAccount],
+          address: action.data.address,
           balance: action.data.balance,
-          vesting: action.data.vesting,
+          encKey: action.data.encKey,
+          label: action.data.label,
           passphrase: action.data.passphrase ?
             action.data.passphrase :
             accounts[indexOfAccount].passphrase,
-          publicKey: action.data.publicKey,
+          vesting: action.data.vesting,
         };
         accounts[indexOfAccount] = changedAccount;
       } else {
@@ -57,7 +59,7 @@ const savedAccounts = (state = { accounts: [] }, action) => {
       return {
         ...state,
         accounts: state.accounts.filter(account =>
-          !(account.publicKey === action.data.publicKey &&
+          !(account.address === action.data.address &&
           account.network === action.data.network)),
       };
     case actionTypes.removeSavedAccountPassphrase:

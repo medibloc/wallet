@@ -79,8 +79,8 @@ or "warn/action" ineastd of "red/green"
   *************************/
   --sidebar-width: 104px;
   --sidebar-width-xl: 104px;
-  --main-box-width: 480px;
-  --main-box-height: 75vh; /* stylelint-disable-line */
+  --main-box-width: 680px;
+  --main-box-height: 80vh; /* stylelint-disable-line */
   --border-radius-normal: 3px;
   --header-height-m: 100px;
   --header-height-s: 67px;
@@ -122,6 +122,8 @@ or "warn/action" ineastd of "red/green"
   --color-bright-blue: #005cee;
   --color-dodger-blue: #4f8df3;
   --color-dusk-blud: #2f599f;
+  --color-mid-blue: #2462c8;
+  --color-mid-blue-60: rgba(36, 98, 200, 0.6);
   --color-pale-gray: #f7f8f9;
   --color-black-16: rgba(0, 0, 0, 0.16);
   --color-black-60: rgba(0, 0, 0, 0.6);
