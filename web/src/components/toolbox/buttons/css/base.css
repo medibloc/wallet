@@ -4,15 +4,15 @@
   width: 100%;
   max-width: 100%;
   border-radius: 6px;
-  text-transform: capitalize;
+  text-transform: none;
   font-size: var(--font-size-h5);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   font-family: var(--content-font) !important;
   transition: none !important;
 
   &:disabled {
     background: none !important;
-    color: var(--color-pale-gray) !important;
+    color: var(--color-mid-blue-60) !important;
     box-shadow: 0 0 0 2px var(--color-grayscale-light);
   }
 }
@@ -24,7 +24,7 @@
 
   &:hover {
     color: var(--color-white) !important;
-    background: var(--color-primary-medium) !important;
+    background: var(--color-mid-blue) !important;
   }
 }
 
@@ -44,6 +44,7 @@
 @define-mixin buttonSecondary--light {
   background: none !important;
   color: var(--color-black-87) !important;
+  font-weight: var(--font-weight-light);
 
   &:disabled {
     color: var(--color-mid-blue-60) !important;

@@ -20,7 +20,7 @@
   & > span {
     font-size: var(--font-size-h6);
     color: var(--color-black-60);
-    font-weight: normal;
+    font-weight: var(--font-weight-normal);
   }
 
   & h2 {

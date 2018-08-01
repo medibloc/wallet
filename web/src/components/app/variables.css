@@ -48,10 +48,9 @@ or "warn/action" ineastd of "red/green"
   --font-size-small: 14px;
   --heading-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
   --content-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+  --font-weight-light: 300;
   --font-weight-normal: 400;
-  --font-weight-semi-bold: 500;
-  --font-weight-bold: 600;
-  --font-weight-very-bold: 700;
+  --font-weight-bold: 700;
   --subtitle-font-size: 16px;
   --main-menu-font-size: 18px;
   --paragraph-font-size-l: 15px;
@@ -79,8 +78,8 @@ or "warn/action" ineastd of "red/green"
   *************************/
   --sidebar-width: 104px;
   --sidebar-width-xl: 104px;
-  --main-box-width: 680px;
-  --main-box-height: 80vh; /* stylelint-disable-line */
+  --main-box-width: 1080px;
+  --main-box-height: 720px;
   --border-radius-normal: 3px;
   --header-height-m: 100px;
   --header-height-s: 67px;
@@ -148,6 +147,7 @@ or "warn/action" ineastd of "red/green"
         Margins
   *************************/
   --box-overflow-y: -23px;
+  --header-margin-top: 50px;
 
   /*************************
         Paddings

@@ -37,7 +37,7 @@
   & > div > div:nth-child(2) > label {
     font-size: var(--font-size-h6);
     color: var(--color-black-87);
-    font-weight: normal;
+    font-weight: var(--font-weight-normal);
   }
 
   & > div > ul {

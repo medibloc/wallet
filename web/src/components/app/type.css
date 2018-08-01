@@ -23,28 +23,29 @@ avaialble application-wide
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
 
 @font-face {
-  font-family: 'gilroy';
-  src:
-    url('../../assets/fonts/gilroy/gilroy-bold.woff2') format('woff2'),
-    url('../../assets/fonts/gilroy/gilroy-bold.woff') format('woff'),
-    url('../../assets/fonts/gilroy/gilroy-bold.ttf')  format('truetype');
-  font-weight: bold;
+  font-family: 'Noto Sans CJK KR';
+  src: url('../../assets/fonts/notocjkkr/NotoSansCJKKr-Light.otf') format('opentype');
+  font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'gilroy';
-  src:
-    url('../../assets/fonts/gilroy/gilroy-extra-bold.woff2') format('woff2'),
-    url('../../assets/fonts/gilroy/gilroy-extra-bold.woff') format('woff'),
-    url('../../assets/fonts/gilroy/gilroy-extra-bold.ttf')  format('truetype');
-  font-weight: bolder;
+  font-family: 'Noto Sans CJK KR';
+  src: url('../../assets/fonts/notocjkkr/NotoSansCJKKr-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
+  src: url('../../assets/fonts/notocjkkr/NotoSansCJKKr-Bold.otf') format('opentype');
+  font-weight: bold;
   font-style: normal;
 }
 
 body {
   font-family: var(--content-font);
-  font-weight: 300;
+  font-weight: var(--font-weight-normal);
 }
 
 h1,
@@ -57,11 +58,10 @@ h6 {
 }
 
 h1,
-h2,
 h3,
 h4 {
   font-family: var(--heading-font);
-  font-weight: 500;
+  font-weight: var(--font-weight-normal);
 }
 
 h1 {
@@ -69,8 +69,9 @@ h1 {
 }
 
 h2 {
-  font-size: var(--font-size-h2);
   color: var(--color-black-87);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-light);
 }
 
 h3 {
@@ -82,15 +83,15 @@ h4 {
 }
 
 h5 {
-  font-size: var(--font-size-h5);
   color: var(--color-black-87);
-  font-weight: normal;
+  font-size: var(--font-size-h5);
+  font-weight: var(--font-weight-normal);
 }
 
 h6 {
-  font-size: var(--font-size-h6);
   color: var(--color-black-60);
-  font-weight: normal;
+  font-size: var(--font-size-h6);
+  font-weight: var(--font-weight-normal);
 }
 
 p,
@@ -102,10 +103,11 @@ strong {
 }
 
 strong {
-  font-weight: bolder;
+  font-weight: var(--font-weight-bold);
 }
 
 small {
+  color: var(--color-black-60);
   font-size: var(--font-size-small);
 }
 

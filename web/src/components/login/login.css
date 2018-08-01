@@ -1,9 +1,5 @@
 @import '../app/variables.css';
 
-:root {
-  --margin-top: 50px;
-}
-
 .loginWrapper {
   align-items: center;
   display: flex;
@@ -12,7 +8,7 @@
   width: 480px;
 
   & > .login {
-    margin-top: var(--margin-top);
+    margin-top: var(--header-margin-top);
     width: 100%;
 
     & > .accountLabel {
@@ -21,7 +17,7 @@
     }
 
     & > .password {
-      margin-top: 24px;
+      margin-top: 4px;
     }
 
     & > .nextButton {
@@ -37,7 +33,7 @@
     & > span {
       font-size: var(--font-size-h6);
       color: var(--color-black-60);
-      font-weight: normal;
+      font-weight: var(--font-weight-normal);
     }
 
     & h2 {

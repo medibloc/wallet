@@ -39,7 +39,7 @@
     width: var(--back-button-width-l); /* to have equal width with its shadow */
     cursor: pointer;
     color: var(--link-color);
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
 
     & .icon {
       height: 56px;
@@ -108,7 +108,7 @@
       opacity: 1;
 
       &::after {
-        font-weight: bold;
+        font-weight: var(--font-weight-bold);
       }
     }
   }

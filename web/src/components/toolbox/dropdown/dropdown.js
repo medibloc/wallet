@@ -4,7 +4,7 @@ import { themr } from 'react-css-themr';
 import styles from './dropdown.css';
 
 const ToolBoxDropDown = props => (
-  <div className={`${styles.inputWrapper}`}>
+  <div className={`${styles.inputWrapper} ${props.parentclassname}`}>
     <DropDown
       {...props}
       theme={props.theme}

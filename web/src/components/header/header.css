@@ -30,8 +30,8 @@
 
 .unlocked {
   color: var(--color-error);
-  font-family: 'Open Sans';
-  font-weight: 600;
+  font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+  font-weight: var(--font-weight-bold);
   font-size: var(--font-size-small);
   line-height: 1.5em; /* stylelint-disable-line */
 }
@@ -126,8 +126,8 @@
     line-height: 25px;
     padding-right: 20px;
     height: var(--avatar-height);
-    font-family: 'Open Sans';
-    font-weight: 600;
+    font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+    font-weight: var(--font-weight-bold);
 
     & .balance {
       font-size: 24px;
@@ -246,7 +246,7 @@
 
       & .address {
         font-size: 12px;
-        font-weight: 400;
+        font-weight: var(--font-weight-normal);
       }
     }
 
@@ -293,7 +293,7 @@
 
       & .balance {
         font-size: 18px;
-        font-weight: 300;
+        font-weight: var(--font-weight-light);
 
         & small {
           font-size: 10px;

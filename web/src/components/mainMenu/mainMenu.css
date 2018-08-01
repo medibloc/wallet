@@ -124,7 +124,7 @@
   padding: 4.5vh 10px; /* stylelint-disable-line */
   font-size: var(--main-menu-font-size);
   color: var(--color-black);
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   font-family: var(--heading-font);
   display: flex;
   flex: 0 0 auto;
@@ -209,9 +209,9 @@
 
 .readMoreText {
   font-size: var(--read-more-font-size);
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   text-transform: capitalize;
-  font-family: 'gilroy', 'Open Sans', sans-serif;
+  font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
 }
 
 .readMoreIcon {

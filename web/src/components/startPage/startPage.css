@@ -1,9 +1,9 @@
 @import '../app/variables.css';
 
 .startPageWrapper {
-  margin: 227px 0 0;
-  width: 680px;
   height: 440px;
+  margin: 227px 0 0;
+  width: 100%;
 
   & > .startPage {
     margin: 0;
@@ -13,7 +13,6 @@
       border-radius: 0;
       color: var(--color-black-87);
       font-size: 44px;
-      font-weight: normal;
       height: 96px;
       margin: 0;
       width: 680px;

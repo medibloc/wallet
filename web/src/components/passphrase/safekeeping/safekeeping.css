@@ -1,13 +1,11 @@
 @import '../../app/variables.css';
 
-:root {
-  --margin-top: 50px;
-}
-
 .safekeeping {
-  margin-top: var(--margin-top);
+  margin-top: var(--header-margin-top);
 
   & > .comment1 {
+    margin-top: 8px;
+
     & > h6 {
       text-align: center;
     }

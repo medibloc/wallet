@@ -36,7 +36,7 @@
     z-index: 1;
 
     &.primary {
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
       padding: 9px;
     }
 

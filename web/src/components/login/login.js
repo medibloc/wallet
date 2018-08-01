@@ -84,6 +84,7 @@ class Login extends React.Component {
             { accounts ?
               <DropDown
                 label={t('Account label')}
+                parentclassname={`${styles.accountLabel}`}
                 source={accounts}
                 template={customItem}
                 value={this.state.selectedAddress}

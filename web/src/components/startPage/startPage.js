@@ -27,8 +27,8 @@ class StartPage extends React.Component {
           <div className={`${styles.startPageWrapper}`}>
             <section className={`${styles.startPage}`}>
               <SecondaryLightButton
-                label={'Sign in'}
                 className={`${styles.button}`}
+                label={'Sign in'}
                 onClick={() => history.push(`${routes.login.path}`)}/>
               <SecondaryLightButton
                 label={'Create wallet ID'}

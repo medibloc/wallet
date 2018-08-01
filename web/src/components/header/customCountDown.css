@@ -9,8 +9,8 @@
   color: var(--color-white);
   border-bottom: solid 2px var(--color-white);
   display: inline;
-  font-family: 'Open Sans';
-  font-weight: 600;
+  font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+  font-weight: var(--font-weight-bold);
   font-size: 12px;
 }
 
@@ -25,7 +25,7 @@
 .timerRow {
   display: flex;
   justify-content: flex-end;
-  font-weight: 600;
+  font-weight: var(--font-weight-bold);
   font-size: 12px;
-  font-family: 'Open Sans';
+  font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
 }

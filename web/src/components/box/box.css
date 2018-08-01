@@ -5,6 +5,7 @@
 }
 
 .wrapper {
+  align-items: center;
   position: relative;
   width: 100%;
   display: flex;
@@ -17,7 +18,7 @@
   flex-direction: column;
   overflow: auto;
   overflow-x: hidden;
-  margin: 0px;
+  margin: 0 auto;
   -webkit-overflow-scrolling: touch;
 
   & header {
