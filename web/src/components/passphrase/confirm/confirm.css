@@ -1,0 +1,26 @@
+@import '../../app/variables.css';
+
+.confirm {
+  margin-top: var(--header-margin-top);
+
+  & > .passphrase {
+    margin-top: 34px;
+  }
+
+  & > .nextButton {
+    margin-top: 40px;
+  }
+
+  h6 {
+    color: red;
+    visibility: hidden;
+  }
+}
+
+.visible {
+  visibility: visible;
+}
+
+.errorTitle {
+  margin-top: 10px;
+}

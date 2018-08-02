@@ -1,0 +1,9 @@
+@import './base.css';
+
+.button {
+  height: 40px !important;
+  width: 113px !important;
+
+  @mixin buttonBasics;
+  @mixin buttonChoice;
+}

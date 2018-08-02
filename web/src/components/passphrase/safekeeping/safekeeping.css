@@ -12,10 +12,17 @@
   }
 
   & > .comment2 {
+    flex-direction: row;
     margin-top: 48px;
 
     & > h6 {
       color: var(--color-black-87);
+    }
+
+    & > .copyLink {
+      border-bottom: 1px solid var(--color-dusk-blue);
+      color: var(--color-dusk-blue);
+      margin-left: 4px;
     }
   }
 

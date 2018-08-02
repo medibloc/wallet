@@ -7,6 +7,17 @@ import PassphraseBox from '../passphraseBox/passphrasebox';
 import styles from './safekeeping.css';
 
 class Safekeeping extends React.Component {
+  copyPassphrase() {
+    if (document) {
+      const el = document.createElement('textarea');
+      el.value = this.props.passphrase;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+  }
+
   render() {
     const { t, nextStep, passphrase } = this.props;
     return (<Box className={`${styles.safekeeping}`}>
@@ -18,7 +29,8 @@ class Safekeeping extends React.Component {
           'you’ll need to save your backup phrase in case this app is deleted')}</h6>
       </div>
       <div className={`${styles.comment2}`}>
-        <h6>{t('Please carefully write down these 12 words or copy them')}</h6>
+        <h6>{t('Please carefully write down these 12 words or')}{' '}</h6>
+        <a className={`${styles.copyLink}`} onClick={this.copyPassphrase.bind(this)}>{t('copy them')}</a>
       </div>
       <PassphraseBox
         className={`${styles.passphrase}`}

@@ -120,7 +120,8 @@ or "warn/action" ineastd of "red/green"
   --color-aquamarine: #0bcec0;
   --color-bright-blue: #005cee;
   --color-dodger-blue: #4f8df3;
-  --color-dusk-blud: #2f599f;
+  --color-dodger-blue-8: rgba(79, 141, 243, 0.08);
+  --color-dusk-blue: #2f599f;
   --color-mid-blue: #2462c8;
   --color-mid-blue-60: rgba(36, 98, 200, 0.6);
   --color-pale-gray: #f7f8f9;

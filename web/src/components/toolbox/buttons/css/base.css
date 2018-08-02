@@ -11,16 +11,13 @@
   transition: none !important;
 
   &:disabled {
-    background: none !important;
-    color: var(--color-mid-blue-60) !important;
-    box-shadow: 0 0 0 2px var(--color-grayscale-light);
+    background: var(--color-mid-blue-60) !important;
   }
 }
 
 @define-mixin buttonSecondary--blue {
   background: none !important;
   color: var(--color-primary-medium) !important;
-  box-shadow: 0 0 0 2px var(--color-primary-medium);
 
   &:hover {
     color: var(--color-white) !important;
@@ -28,13 +25,27 @@
   }
 }
 
+@define-mixin buttonChoice {
+  background: none !important;
+  border: 1px solid var(--color-black-16);
+  border-radius: 3px !important;
+  color: var(--color-black-60) !important;
+  font-size: var(--font-size-h6);
+
+  &:focus {
+    background: var(--color-dodger-blue) !important;
+    color: var(--color-black-87) !important;
+  }
+
+  &:hover {
+    background: var(--color-white) !important;
+    color: var(--color-black-87) !important;
+  }
+}
+
 @define-mixin buttonPrimary {
   color: var(--color-white) !important;
   background: var(--color-dodger-blue);
-
-  &:disabled {
-    color: var(--color-mid-blue-60) !important;
-  }
 
   &:hover {
     background: var(--color-mid-blue) !important;
@@ -46,31 +57,8 @@
   color: var(--color-black-87) !important;
   font-weight: var(--font-weight-light);
 
-  &:disabled {
-    color: var(--color-mid-blue-60) !important;
-  }
-
   &:hover {
     color: var(--color-white) !important;
     background-color: var(--color-mid-blue) !important;
-  }
-}
-
-@define-mixin buttonTertiary {
-  color: var(--color-white) !important;
-  background: var(--gradient-tertiary);
-
-  &:hover {
-    background: var(--color-tertiary-medium) !important;
-  }
-}
-
-@define-mixin buttonAction {
-  color: var(--color-white) !important;
-  background: var(--gradient-action-blue);
-  width: 140px;
-
-  &:hover {
-    background: var(--gradient-action-blue-hover) !important;
   }
 }

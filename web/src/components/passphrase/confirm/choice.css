@@ -1,0 +1,25 @@
+@import '../../app/variables.css';
+
+.choice {
+  flex-direction: row !important;
+  justify-content: space-evenly;
+  height: 42px;
+  margin: 41px 0 0;
+  width: 480px;
+
+  & > .word {
+    justify-content: center;
+  }
+
+  & > .word:hover {
+    background-color: var(--color-white);
+  }
+
+  & > .correctAnswer {
+    border: 1px solid var(--color-dodger-blue);
+  }
+
+  & > .wrongAnswer {
+    border: 1px solid red;
+  }
+}

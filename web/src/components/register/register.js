@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import MultiStep from '../multiStep';
+import Confirm from '../passphrase/confirm/confirm';
 import Create from '../passphrase/create/create';
 import Password from '../passphrase/password/password';
 import Safekeeping from '../passphrase/safekeeping/safekeeping';
@@ -38,6 +39,7 @@ class Register extends React.Component {
         finalCallback={this.onRegister.bind(this)}>
         <Create title={'Create'} t={t} />
         <Safekeeping title={'Safekeeping'} t={t} />
+        <Confirm title={'Confirm'} t={t} />
         <Password title={'Password'} t={t} />
       </MultiStep>
     </Box>);

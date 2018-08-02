@@ -22,7 +22,10 @@
   -webkit-overflow-scrolling: touch;
 
   & header {
-    height: 65px;
+    display: flex;
+    justify-content: center;
+    min-height: 65px;
+    text-align: center;
   }
 
   & footer {
