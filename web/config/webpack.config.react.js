@@ -129,6 +129,8 @@ module.exports = {
       translationFunctionNames: ['i18next.t', 'props.t', 'this.props.t', 't'],
       outputFilePath: '../common/i18n/locales/en/common.json',
       files: [
+        './src/**/*.js',
+        './app/src/**/*.js',
         '../common/src/**/*.js',
         '../common/app/src/**/*.js',
       ],
