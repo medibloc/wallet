@@ -32,7 +32,7 @@ class TBCheckBox extends React.Component {
         {...this.props}
         theme={this.props.theme}
         checked={this.state.check}
-        onChange={this.handleChange.bind(this, 'check')}
+        onChange={() => this.handleChange('check')}
       />
     );
   }

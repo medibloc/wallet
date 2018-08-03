@@ -110,7 +110,7 @@ class MainMenu extends React.Component {
           <div className={styles.sideBarWrapper}>
             <ToolboxTabs index={getIndex(history, tabs)}
               theme={styles}
-              onChange={this.navigate.bind(this, history, tabs)}
+              onChange={() => this.navigate(history, tabs)}
               disableAnimatedBottomBorder={true}
               className={`${styles.tabs} main-tabs`}>
               {tabs.map(({ image, id }, index) =>
@@ -128,44 +128,5 @@ class MainMenu extends React.Component {
     );
   }
 }
-
-// {/*<div onClick={this.menuToggle.bind(this)}*/}
-//      {/*className={`${styles.more} more-menu`}>*/}
-//   {/*<FontIcon value='more' className={styles.readMoreIcon} />*/}
-//   {/*<span className={styles.readMoreText}>{t('more')}</span>*/}
-// {/*</div>*/}
-
-// {/*<Drawer theme={styles}*/}
-//         {/*className='drawer'*/}
-//         {/*active={this.state.active}*/}
-//         {/*onOverlayClick={this.menuToggle.bind(this)}>*/}
-//   {/*<div>*/}
-//     {/*<header className={styles.header}>*/}
-//       {/*<Link to={`${routes.dashboard.path}`}><img src={logo}
-// className={styles.logo} /></Link>*/}
-//       {/*<FontIcon value='close' className={styles.close}
-// onClick={this.menuToggle.bind(this)} />*/}
-//     {/*</header>*/}
-//     {/*<ToolboxTabs index={getIndex(history, tabs)}*/}
-//                  {/*theme={styles}*/}
-//                  {/*onChange={this.navigate.bind(this, history, tabs)}*/}
-//                  {/*disableAnimatedBottomBorder={true}*/}
-//                  {/*className={`${styles.tabs} main-tabs`}>*/}
-//       {/*{tabs.map(({ image, id }, index) =>*/}
-//         {/*<Tab*/}
-//           {/*key={index}*/}
-//           {/*label={<TabTemplate img={image} />}*/}
-//           {/*id={id}*/}
-//           {/*disabled={itemShouldBeDisabled(index)}*/}
-//         {/*/>)}*/}
-//     {/*</ToolboxTabs>*/}
-//   {/*</div>*/}
-// {/*</Drawer>*/}
-
-// {/*<MenuBar*/}
-//   {/*menuToggle={this.menuToggle.bind(this)}*/}
-//   {/*settingToggle={this.settingToggle.bind(this)}*/}
-//   {/*menuStatus={this.state.active}*/}
-//   {/*settingStatus={this.state.setting} />*/}
 
 export default MainMenu;

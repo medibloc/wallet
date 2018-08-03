@@ -200,7 +200,7 @@ class Confirm extends React.Component {
         step={(totalStep - missing.length) + 1}
         totalStep={totalStep}
         wordOptions={wordOptions}
-        onSubmitAnswer={this.onSubmitAnswer.bind(this)} />
+        onSubmitAnswer={e => this.onSubmitAnswer(e)} />
       <PrimaryButton
         label={t('Confirm')}
         disabled={!isConfirmed}

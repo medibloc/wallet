@@ -8,7 +8,6 @@ import { extractAddress,
   extractPrivKey,
   getAccountFromPrivKey } from '../../../../../common/src/utils/account';
 import styles from './password.css';
-// import routes from '../../constants/routes';
 
 const validateLabel = (value) => {
   const data = { label: value };
@@ -67,7 +66,7 @@ class Password extends React.Component {
         theme={styles}
         value={this.state.label}
         error={this.state.labelValidity}
-        onChange={this.changeHandler.bind(this, 'label')}/>
+        onChange={(...args) => this.changeHandler('label', ...args)}/>
       <Input type='password'
         title={t('Password')}
         name={'password'}
@@ -76,8 +75,7 @@ class Password extends React.Component {
         required={true}
         value={this.state.password}
         error={this.state.passwordValidity}
-        onChange={this.changeHandler.bind(this, 'password')}/>
-      {/* <h6> must be at least 8 characters </h6> */}
+        onChange={(...args) => this.changeHandler('password', ...args)}/>
       <Input type='password'
         title={t('Confirm password')}
         name={'confirmPassword'}
@@ -86,7 +84,7 @@ class Password extends React.Component {
         required={true}
         value={this.state.confirmPassword}
         error={this.state.confirmPasswordValidity}
-        onChange={this.changeHandler.bind(this, 'confirmPassword')}/>
+        onChange={(...args) => this.changeHandler('confirmPassword', ...args)}/>
       <PrimaryButton label={t('Next')}
         className={`${styles.nextButton}`}
         onClick={() => {

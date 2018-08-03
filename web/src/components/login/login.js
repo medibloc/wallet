@@ -88,7 +88,7 @@ class Login extends React.Component {
                 source={accounts}
                 template={customItem}
                 value={this.state.selectedAddress}
-                onChange={this.handleAccountChange.bind(this)}
+                onChange={(...args) => this.handleAccountChange(...args)}
               /> : null}
             <Input type='password'
               title={t('Password')}
@@ -96,7 +96,7 @@ class Login extends React.Component {
               theme={styles}
               name={'password'}
               value={this.state.password}
-              onChange={this.handlePasswordChange.bind(this)}/>
+              onChange={(...args) => this.handlePasswordChange(...args)}/>
             <PrimaryButton
               label={t('Next')}
               className={`${styles.nextButton}`}

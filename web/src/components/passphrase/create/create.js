@@ -1,18 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
-// import Box from '../../box';
 import { PrimaryButton } from '../../toolbox/buttons/button';
-// import IconButton from '../../toolbox/buttons/iconButton';
 import Input from '../../toolbox/inputs/input';
-import CheckBox from '../../toolbox/checkbox/checkbox';
 import styles from './create.css';
 import AccountVisual from '../../accountVisual';
 import Footer from '../../register/footer/footer';
 import Refresh from '../../../assets/images/icons/baselineRefresh24Px@2x.png';
 import { generatePassphrase } from './../../../../../common/src/utils/passphrase';
 import { extractAddress } from '../../../../../common/src/utils/account';
-// import routes from '../../constants/routes';
 
 class Create extends React.Component {
   constructor() {
@@ -46,8 +42,8 @@ class Create extends React.Component {
           <img
             className={`${styles.refreshButton}`}
             src={Refresh}
-            onClick={this.refreshAddress.bind(this)}>
-          </img>
+            onClick={() => this.refreshAddress()}
+          />
         </div>
         <small> {t('This avatar is unique. You cannot change it later.')} </small>
         <Input type='text'
@@ -55,9 +51,6 @@ class Create extends React.Component {
           title={t('Account address')}
           value={this.state.address}
           disabled={true} />
-        <CheckBox
-          label={'Keep the account on this computer'}
-          className={`${styles.saveAccountCheckbox}`} />
         <PrimaryButton label={t('Continue')}
           className={`${styles.continueButton}`}
           onClick={() => nextStep({

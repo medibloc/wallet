@@ -35,8 +35,8 @@ class Register extends React.Component {
     return (<Box className={`${styles.wrapper}`}>
       <img src="../../assets/images/MEDIBLOC.png" />
       <MultiStep className={`${styles.register}`}
-        prevPage={this.backToLogin.bind(this)}
-        finalCallback={this.onRegister.bind(this)}>
+        prevPage={() => this.backToLogin()}
+        finalCallback={(...args) => this.onRegister(...args)}>
         <Create title={'Create'} t={t} />
         <Safekeeping title={'Safekeeping'} t={t} />
         <Confirm title={'Confirm'} t={t} />
