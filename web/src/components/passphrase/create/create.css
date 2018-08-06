@@ -37,7 +37,7 @@
     }
 
     & input {
-      height: 64px;
+      height: var(--input-height);
     }
   }
 

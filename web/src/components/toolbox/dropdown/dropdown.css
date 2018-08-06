@@ -2,10 +2,8 @@
 
 :root {
   --input-focus-border-color: var(--color-bright-blue);
-  --input-focus-color: var(--color-primary-standard);
   --input-border-color: var(--color-black-16);
   --input-color: var(--color-black-87);
-  --label-font-size: var(--font-size-small);
 }
 
 .inputWrapper {
@@ -24,7 +22,7 @@
   & > div > div:nth-child(2) > div {
     border: 1px solid var(--input-border-color);
     border-radius: 6px;
-    height: 64px;
+    height: 56px;
     margin-top: 6px;
     width: 480px;
   }
@@ -41,7 +39,7 @@
   }
 
   & > div > ul {
-    margin: 30px 0 0;
+    margin: 86px 0 0;
   }
 }
 
