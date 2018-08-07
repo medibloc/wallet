@@ -4,7 +4,7 @@ import networks from '../../../../common/src/constants/networks';
 import AccountVisual from '../accountVisual';
 import Box from '../box';
 import DropDown from '../toolbox/dropdown/dropdown';
-import Input from '../toolbox/inputs/input';
+import { Input } from '../toolbox/inputs/input';
 import Footer from '../register/footer/footer';
 import { PrimaryButton } from '../toolbox/buttons/button';
 import { extractAddress, getAccountFromEncKey } from '../../../../common/src/utils/account';

@@ -3,6 +3,7 @@
 // import Setting from '../components/setting';
 import Login from '../components/login';
 import Register from '../components/register';
+import Restore from '../components/restore';
 // import RegisterDelegate from '../components/registerDelegate';
 // import SecondPassphrase from '../components/secondPassphrase';
 // import SignMessage from '../components/signMessage';
@@ -78,6 +79,12 @@ export default {
   register: {
     path: '/register',
     component: Register,
+    isLoaded: true,
+    isPrivate: false,
+  },
+  restore: {
+    path: '/restore',
+    component: Restore,
     isLoaded: true,
     isPrivate: false,
   },

@@ -83,7 +83,6 @@ class Confirm extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   formStatus(answers) {
-    console.log(answers);
     if (!answers.reduce((acc, current) => (acc && current !== undefined), true) &&
       answers.reduce((acc, current) =>
         (acc && ((current === undefined) || (current && current.validity))), true)) {

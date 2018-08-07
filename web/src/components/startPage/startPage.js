@@ -29,7 +29,7 @@ class StartPage extends React.Component {
               <SecondaryLightButton
                 className={`${styles.button}`}
                 label={'Sign in'}
-                onClick={() => history.push(`${routes.login.path}`)}/>
+                onClick={() => history.push(`${routes.restore.path}`)}/>
               <SecondaryLightButton
                 label={'Create wallet ID'}
                 className={`${styles.button} ${styles.hasMarginTop}`}

@@ -1,16 +1,36 @@
 import React from 'react';
-import Input from 'react-toolbox/lib/input';
 import { themr } from 'react-css-themr';
-import styles from './input.css';
+import { Input as TBInput } from 'react-toolbox/lib/input';
+import inputPrimaryTheme from './css/primaryInput.css';
+import inputPassphraseTheme from './css/passphraseInput.css';
 
-const ToolBoxInput = props => (
-  <div className={`${styles.inputWrapper} ${props.parentclassname}`}>
-    <h6>{props.title}</h6>
-    <Input
-      {...props}
-      theme={props.theme}
-    />
-  </div>
-);
+class ToolBoxPrimaryInput extends React.Component {
+  render() {
+    return (
+      <div className={`${inputPrimaryTheme.inputWrapper} ${this.props.parentclassname}`}>
+        <h6>{this.props.title}</h6>
+        <TBInput
+          {...this.props}
+          theme={this.props.theme}
+        />
+      </div>
+    );
+  }
+}
 
-export default themr('TBInput', styles)(ToolBoxInput);
+class ToolBoxPassphraseInput extends React.Component {
+  render() {
+    return (
+      <TBInput
+        {...this.props}
+        theme={this.props.theme}
+      />
+    );
+  }
+}
+
+const Input = themr('input', inputPrimaryTheme)(ToolBoxPrimaryInput);
+const PassphraseInput = themr('passphraseInput', inputPassphraseTheme)(ToolBoxPassphraseInput);
+
+export { Input, PassphraseInput };
+export default Input;

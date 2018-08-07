@@ -1,0 +1,11 @@
+@import './base.css';
+
+@mixin inputBasics;
+@mixin inputPrimary;
+
+.inputWrapper {
+  & h6 {
+    color: var(--color-black-87);
+    justify-content: flex-start !important;
+  }
+}

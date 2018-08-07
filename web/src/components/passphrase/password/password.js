@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import Box from '../../box';
 import { PrimaryButton } from '../../toolbox/buttons/button';
-import Input from '../../toolbox/inputs/input';
+import { Input } from '../../toolbox/inputs/input';
 import { extractAddress,
   extractPrivKey,
   getAccountFromPrivKey } from '../../../../../common/src/utils/account';

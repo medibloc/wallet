@@ -22,7 +22,7 @@
   & > div > div:nth-child(2) > div {
     border: 1px solid var(--input-border-color);
     border-radius: 6px;
-    height: 56px;
+    height: var(--input-height);
     margin-top: 6px;
     width: 480px;
   }

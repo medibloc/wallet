@@ -1,3 +1,4 @@
+import { translate } from 'react-i18next';
 import { chunk } from 'lodash';
 import React from 'react';
 import styles from './passphrasebox.css';
@@ -6,24 +7,24 @@ const PassphraseBox = ({ className, missing, passphrase, words }) => (
   <div className={`${styles.passphraseBox} ${className}`}>
     {
       chunk(words || passphrase.split(' '), 4).map((arr, i1) => (
-        <div className={`${styles.row}`} key={i1}>
+        <div className={`${styles.row}`} key={`${arr}-${i1}`}>
           {arr.map((word, i2) => {
-            const index = (i1 * 4) + i2;
+            const i = (i1 * 4) + i2;
             return (
-              (missing && missing.includes(index)) ?
-                <span className={(index === missing[0]) ?
-                  `${styles.boxFocus}` : null} key={i2}>
+              (missing && missing.includes(i)) ?
+                <span className={(i === missing[0]) ?
+                  `${styles.boxFocus}` : null} key={`${word}-${i2}`}>
                   <div className={`${styles.number}`}>
-                    <small>{index + 1}</small>
+                    <small>{i + 1}</small>
                   </div>
-                  <div className={(index === missing[0]) ?
+                  <div className={(i === missing[0]) ?
                     `${styles.wordFocus}` : `${styles.word}`}>
                     <h6/>
                   </div>
                 </span> :
-                <span key={i2}>
+                <span key={`${word}-${i2}`}>
                   <div className={`${styles.number}`}>
-                    <small>{index + 1}</small>
+                    <small>{i + 1}</small>
                   </div>
                   <div className={`${styles.word}`}>
                     <h6>{word}</h6>
@@ -37,4 +38,4 @@ const PassphraseBox = ({ className, missing, passphrase, words }) => (
   </div>
 );
 
-export default PassphraseBox;
+export default translate()(PassphraseBox);

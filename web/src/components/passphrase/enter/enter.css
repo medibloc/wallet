@@ -1,0 +1,21 @@
+@import '../../app/variables.css';
+
+.enter {
+  margin-top: var(--header-margin-top);
+
+  & > .comment1 {
+    margin-top: 8px;
+
+    & > h6 {
+      text-align: center;
+    }
+  }
+
+  & > .passphrase {
+    margin-top: 26px;
+  }
+
+  & > .nextButton {
+    margin-top: 40px;
+  }
+}

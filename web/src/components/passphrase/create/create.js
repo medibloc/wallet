@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import { PrimaryButton } from '../../toolbox/buttons/button';
-import Input from '../../toolbox/inputs/input';
+import { Input } from '../../toolbox/inputs/input';
 import styles from './create.css';
 import AccountVisual from '../../accountVisual';
 import Footer from '../../register/footer/footer';

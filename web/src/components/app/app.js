@@ -39,7 +39,7 @@ class App extends React.Component {
       'login',
       'register',
       'startPage',
-      // 'restoreAccount',
+      'restore',
     ];
 
     return (

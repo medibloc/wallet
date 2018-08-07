@@ -1,0 +1,9 @@
+@import './base.css';
+
+.input input {
+  height: 24px !important;
+  width: 80px !important;
+}
+
+@mixin inputBasics;
+@mixin inputPassphrase;
