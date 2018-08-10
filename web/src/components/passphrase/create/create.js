@@ -29,7 +29,7 @@ class Create extends React.Component {
   }
 
   render() {
-    const { t, nextStep } = this.props;
+    const { history, t, nextStep } = this.props;
     return (
       <section className={`${styles.createWrapper}`}>
         <header>
@@ -56,7 +56,10 @@ class Create extends React.Component {
           onClick={() => nextStep({
             passphrase: this.state.passphrase,
           })}/>
-        <Footer t={t} />
+        <Footer
+          history={history}
+          t={t}
+          type={'register'} />
       </section>
     );
   }

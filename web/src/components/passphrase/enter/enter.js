@@ -40,7 +40,7 @@ class Enter extends React.Component {
   }
 
   render() {
-    const { t, nextStep } = this.props;
+    const { history, t, nextStep } = this.props;
     return (<Box className={`${styles.enter}`}>
       <header>
         <h2>{t('Enter your passphrase for sign in')}</h2>
@@ -63,7 +63,10 @@ class Enter extends React.Component {
         onClick={() => nextStep({
           passphrase: this.state.passphrase,
         })}/>
-      <Footer t={t}/>
+      <Footer
+        history={history}
+        t={t}
+        type={'restore'} />
     </Box>);
   }
 }

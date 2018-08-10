@@ -1,7 +1,34 @@
 @import './../../app/variables.css';
 
+:root {
+  --color-link: var(--color-dodger-blue);
+}
+
 .footer {
   & h6 {
     margin: 20px 0 0;
+  }
+
+  & .wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    font-family: var(--content-font);
+    font-size: var(--font-size-h6);
+    font-weight: var(--color-black-54);
+    margin: 20px 0 0;
+
+    & .login,
+    & .register,
+    & .restore {
+      color: var(--color-link);
+      height: 24px;
+      font-size: var(--font-size-h6);
+      margin: 0 16px;
+    }
+
+    & .divider {
+      color: var(--color-black-38);
+    }
   }
 }

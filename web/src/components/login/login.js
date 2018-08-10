@@ -98,7 +98,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { t, savedAccounts } = this.props;
+    const { history, t, savedAccounts } = this.props;
     let accounts;
     if (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) {
       accounts = savedAccounts.accounts.map(a => (Object.assign({},
@@ -146,7 +146,10 @@ class Login extends React.Component {
                   console.log('WRONG PASSWORD');
                 }
               }}/>
-            <Footer t={t} />
+            <Footer
+              history={history}
+              t={t}
+              type={'login'} />
           </section>
         </div>
       </Box>
