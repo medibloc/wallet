@@ -52,7 +52,7 @@ or "warn/action" ineastd of "red/green"
   --font-weight-normal: 400;
   --font-weight-bold: 700;
   --subtitle-font-size: 16px;
-  --main-menu-font-size: 18px;
+  --main-menu-font-size: 14px;
   --paragraph-font-size-l: 15px;
   --paragraph-font-size-s: 14px;
   --input-font-size: 16px;
@@ -76,10 +76,13 @@ or "warn/action" ineastd of "red/green"
   /*************************
         Sizes
   *************************/
-  --sidebar-width: 104px;
-  --sidebar-width-xl: 104px;
-  --main-box-width: 1080px;
+  --sidebar-width: 136px;
+  --sidebar-image-height: 72px;
+  --sidebar-image-width: 72px;
+  --main-box-width: 1260px;
   --main-box-height: 720px;
+  --pub-main-box-width: 1080px;
+  --pub-main-box-height: 720px;
   --border-radius-normal: 3px;
   --header-height-m: 100px;
   --header-height-s: 67px;
@@ -121,12 +124,15 @@ or "warn/action" ineastd of "red/green"
   --color-aquamarine: #0bcec0;
   --color-bright-blue: #005cee;
   --color-dodger-blue: #4f8df3;
+  --color-dodger-blue-16: rgba(79, 141, 243, 0.16);
   --color-dodger-blue-8: rgba(79, 141, 243, 0.08);
   --color-dusk-blue: #2f599f;
   --color-mid-blue: #2462c8;
   --color-mid-blue-60: rgba(36, 98, 200, 0.6);
   --color-pale-gray: #f7f8f9;
+  --color-black-4: rgba(0, 0, 0, 0.04);
   --color-black-16: rgba(0, 0, 0, 0.16);
+  --color-black-54: rgba(0, 0, 0, 0.54);
   --color-black-60: rgba(0, 0, 0, 0.6);
   --color-black-87: rgba(0, 0, 0, 0.87);
   --gradient-theme: linear-gradient(27deg, var(--color-tertiary-medium) 0%, var(--color-grayscale-light) 100%);

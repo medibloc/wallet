@@ -1,0 +1,60 @@
+@import '../app/variables.css';
+
+.wrapper {
+  display: flex;
+  height: 632px;
+  flex-direction: row;
+  width: 1280px;
+}
+
+.seeAllLink {
+  font-size: 15px;
+  color: var(--color-primary-standard);
+  margin-left: 40px;
+  text-decoration: none;
+  font-family: var(--content-font);
+  font-weight: var(--font-weight-bold);
+}
+
+.mainWrapper {
+  height: 100%;
+  flex-direction: column;
+  width: 846px;
+
+  & .finance {
+    height: 305px;
+    flex-direction: row;
+    width: 846px;
+
+    & .assets {
+      background: white;
+      border-radius: 1px;
+      height: 100%;
+      width: 412px;
+    }
+
+    & .graph {
+      background: white;
+      border-radius: 1px;
+      height: 100%;
+      margin: 0 0 0 22px;
+      width: 412px;
+    }
+  }
+
+  & .latestActivity {
+    background: white;
+    border-radius: 1px;
+    height: 305px;
+    margin: 22px 0 0;
+    width: 846px;
+  }
+}
+
+.sendWrapper {
+  background: white;
+  border-radius: 1px;
+  height: 100%;
+  margin: 0 0 0 22px;
+  width: 412px;
+}

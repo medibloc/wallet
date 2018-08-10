@@ -18,7 +18,7 @@ const updateTransactions = (store, peers) => {
     : state.account.address;
 
   getTransactions({
-    activePeer: peers.data, address, limit: 25, filter,
+    activePeer: peers.activePeer, address, limit: 25, filter,
   }).then((response) => {
     store.dispatch({
       data: {
@@ -29,7 +29,7 @@ const updateTransactions = (store, peers) => {
     });
     if (state.transactions.pending.length) {
       // store.dispatch(transactionsUpdateUnconfirmed({
-      //   activePeer: peers.data,
+      //   activePeer: peers.activePeer,
       //   address,
       //   pendingTransactions: state.transactions.pending,
       // }));
@@ -45,7 +45,7 @@ const hasRecentTransactions = txs => (
 const updateAccountData = (store, action) => {
   const { peers, account, transactions } = store.getState();
 
-  getAccount(peers.data, account.address).then((result) => {
+  getAccount(peers.activePeer, account.address).then((result) => {
     if (result.balance !== account.balance) {
       if (!action.data.windowIsFocused || !hasRecentTransactions(transactions)) {
         updateTransactions(store, peers, account);
@@ -73,7 +73,7 @@ const updateAccountData = (store, action) => {
 //   const state = store.getState();
 //
 //   if (delegateRegistrationTx) {
-//     getDelegate(state.peers.data, { publicKey: state.account.publicKey })
+//     getDelegate(state.peers.activePeer, { publicKey: state.account.publicKey })
 //       .then((delegateData) => {
 //         store.dispatch(accountUpdated(Object.assign({},
 //           { delegate: delegateData.delegate, isDelegate: true })));
@@ -90,7 +90,7 @@ const updateAccountData = (store, action) => {
 //     const { peers, account } = state;
 //
 //     store.dispatch(votesFetched({
-//       activePeer: peers.data,
+//       activePeer: peers.activePeer,
 //       address: account.address,
 //       type: 'update',
 //     }));

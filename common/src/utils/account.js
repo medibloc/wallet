@@ -1,4 +1,4 @@
-import { cryptography, local } from 'medjs';
+import { cryptography, local, utils } from 'medjs';
 
 const { Account } = local;
 
@@ -21,6 +21,10 @@ export const extractAddress = (data) => {
   const { pubKey } = cryptography.getKeyPairFromPassphrase(data);
   return pubKey;
 };
+
+export const isAddress = address => (
+  utils.isAddress(address)
+);
 
 export const getAccountFromPrivKey = (privKey, password) => {
   const encryptedPrivKey = cryptography.encryptKey(password, privKey);

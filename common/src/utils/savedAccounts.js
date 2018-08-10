@@ -1,33 +1,32 @@
 export const getSavedAccounts = () => {
-  try {
-    return JSON.parse(localStorage.getItem('accounts'));
-  } catch (e) {
+  const accounts = JSON.parse(localStorage.getItem('accounts'));
+  if (!accounts) {
     return [];
   }
+  return accounts;
 };
 
 export const setSavedAccounts = (accounts) => {
   accounts = accounts.map(({
-    address, encKey, network, nodes, balance,
+    address, balance, encKey, networkCode,
   }) => ({
-    address, encKey, network, nodes, balance,
+    address, balance, encKey, networkCode,
   }));
   localStorage.setItem('accounts', JSON.stringify(accounts));
 };
 
 export const getLastActiveAccount = () => (getSavedAccounts()[localStorage.getItem('lastActiveAccountIndex')] || getSavedAccounts()[0]);
 
-export const getIndexOfSavedAccount = (savedAccounts, { address, network, nodes }) =>
+export const getIndexOfSavedAccount = (savedAccounts, { address, networkCode }) =>
   savedAccounts.findIndex(account => (
     account.address === address &&
-    account.network === network &&
-    account.nodes === nodes
+    account.networkCode === networkCode
   ));
 
-export const setLastActiveAccount = ({ address, network, nodes }) => {
+export const setLastActiveAccount = ({ address, networkCode }) => {
   const lastActiveAccountIndex = getIndexOfSavedAccount(
     getSavedAccounts(),
-    { address, network, nodes },
+    { address, networkCode },
   );
 
   if (lastActiveAccountIndex > -1) {

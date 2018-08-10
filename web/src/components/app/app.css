@@ -9,24 +9,23 @@ body {
 }
 
 .bodyWrapper {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
   align-items: center;
-  display: flex;
   background: var(--color-pale-gray);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 
-  & > section {
-    width: 100%;
-    padding-left: calc(var(--sidebar-width) + 24px);
-    padding-right: 24px;
+  & > main > section {
     opacity: 0;
     transition: all ease 250ms;
+    width: var(--main-box-width);
   }
 
-  &.loaded > section {
+  &.loaded > main > section {
     opacity: 1;
   }
 
@@ -47,12 +46,4 @@ body {
 /* move to type */
 .text-center {
   text-align: center;
-}
-
-.mainBox {
-  margin: 0 auto;
-  max-width: var(--main-box-width);
-  max-height: var(--main-box-height);
-  min-width: var(--main-box-width);
-  min-height: var(--main-box-height);
 }

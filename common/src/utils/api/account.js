@@ -2,15 +2,17 @@ import { randomBytes } from 'crypto';
 import blockTypes from '../../constants/blockTypes';
 import txTypes from '../../constants/transactionTypes';
 import { valueTransferTx, vestTx, withdrawVestingTx } from '../transaction';
-import { extractAddress, getAccountFromPrivKey } from '../account';
+import { extractAddress, isAddress, getAccountFromPrivKey } from '../account';
 
 export const getAccount = (activePeer, address) =>
   new Promise((resolve, reject) => {
+    if (!isAddress(address)) {
+      reject('not a valid address');
+    }
     activePeer.getAccountState(address, blockTypes.tail).then((data) => {
       if (data) {
         resolve({
           ...data,
-          serverPublicKey: address,
         });
       } else {
         reject(data);

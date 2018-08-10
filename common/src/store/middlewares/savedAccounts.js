@@ -36,7 +36,7 @@ const savedAccountsMiddleware = (store) => {
     accounts.forEach((account, i) => {
       const address = extractAddress(account.address);
       if (isSameNetwork(account, peers)) {
-        getAccount(peers.data, address).then((result) => {
+        getAccount(peers.activePeer, address).then((result) => {
           if (result.balance !== account.balance) {
             accounts[i].balance = result.balance;
             store.dispatch({
@@ -80,10 +80,9 @@ const savedAccountsMiddleware = (store) => {
         store.dispatch(accountLoading());
         store.dispatch(activePeerSet({
           address: action.data.address,
-          passphrase: action.data.passphrase,
+          encKey: action.data.encKey,
           network: {
             ...getNetwork(action.data.network),
-            nodes: action.data.nodes,
           },
         }));
         break;
@@ -93,17 +92,15 @@ const savedAccountsMiddleware = (store) => {
           address: account.address,
           encKey: account.encKey,
           network: peers.options.code,
-          nodes: peers.options.nodes,
         }));
         break;
       case actionTypes.accountLoggedIn:
         updateSavedAccounts(peers, savedAccounts.accounts);
         store.dispatch(accountSaved({
-          passphrase: action.data.passphrase,
           balance: action.data.balance,
           address: action.data.address,
+          encKey: action.data.encKey,
           network: peers.options.code,
-          nodes: peers.options.nodes,
         }));
         break;
       case actionTypes.accountRemoved:

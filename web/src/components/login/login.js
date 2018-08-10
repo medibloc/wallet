@@ -8,6 +8,8 @@ import { Input } from '../toolbox/inputs/input';
 import Footer from '../register/footer/footer';
 import { PrimaryButton } from '../toolbox/buttons/button';
 import { extractAddress, getAccountFromEncKey } from '../../../../common/src/utils/account';
+import getNetwork from '../../../../common/src/utils/getNetwork';
+import routes from '../../constants/routes';
 
 const customItem = item => (
   <div className={`${styles.dropDownWrapper}`}>
@@ -32,10 +34,16 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
-      selectedAddress: '',
-      network: networks.default.code,
+      selectedAddress: this.props.account.address || '',
+      networkCode: networks.default.code,
       password: '',
     };
+  }
+
+  componentDidUpdate() {
+    if (this.props.account && this.props.account.address) {
+      // this.redirectToReferrer();
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -46,7 +54,7 @@ class Login extends React.Component {
     }
   }
 
-  checkPasswordCorrect(encKey, address) {
+  checkPasswordCorrect({ address, encKey }) {
     try {
       const account = getAccountFromEncKey(encKey, this.state.password);
       return extractAddress(account.pubKey) === address;
@@ -55,12 +63,38 @@ class Login extends React.Component {
     }
   }
 
+  getNetwork() {
+    const network = Object.assign({}, getNetwork(this.state.networkCode));
+    if (this.state.networkCode === networks.customNode.code) {
+      network.url = this.state.url;
+    }
+    return network;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  getReferrerRoute() {
+    return `${routes.dashboard.path}`;
+  }
+
   handleAccountChange(address) {
     this.setState({ selectedAddress: address });
   }
 
   handlePasswordChange(value) {
     this.setState({ password: value });
+  }
+
+  onLoginSubmission({ address, encKey }) {
+    const network = this.getNetwork();
+    this.props.activePeerSet({
+      address,
+      encKey,
+      network,
+    });
+  }
+
+  redirectToReferrer() {
+    this.props.history.replace(this.getReferrerRoute());
   }
 
   render() {
@@ -73,6 +107,8 @@ class Login extends React.Component {
       )));
     }
 
+    // return (this.props.account.loading ?
+    //   <span /> :
     return (
       <Box className={`${styles.wrapper}`}>
         <img src="../../assets/images/MEDIBLOC.png" />
@@ -101,9 +137,11 @@ class Login extends React.Component {
               label={t('Next')}
               className={`${styles.nextButton}`}
               onClick={() => {
+                const address = this.state.selectedAddress;
                 const encKey = accounts.find(a => a.address === this.state.selectedAddress).encKey;
-                if (this.checkPasswordCorrect(encKey, this.state.selectedAddress)) {
-                  console.log('GO TO DASHBOARD');
+                if (this.checkPasswordCorrect({ address, encKey })) {
+                  this.onLoginSubmission({ address, encKey });
+                  this.props.history.push(`${routes.dashboard.path}`);
                 } else {
                   console.log('WRONG PASSWORD');
                 }

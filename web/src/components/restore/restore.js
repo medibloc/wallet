@@ -8,6 +8,7 @@ import networks from '../../../../common/src/constants/networks';
 import getNetwork from '../../../../common/src/utils/getNetwork';
 import Box from '../box';
 import styles from './restore.css';
+import routes from '../../constants/routes';
 
 class Restore extends React.Component {
   backToLogin() {
@@ -25,7 +26,7 @@ class Restore extends React.Component {
       passphrase,
     });
 
-    this.props.history.push('/login');
+    this.props.history.push(`${routes.login.path}`);
   }
 
   render() {

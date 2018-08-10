@@ -22,11 +22,12 @@ const savedAccounts = (state = { accounts: [] }, action) => {
           ...accounts[indexOfAccount],
           address: action.data.address,
           balance: action.data.balance,
-          encKey: action.data.encKey,
-          label: action.data.label,
-          passphrase: action.data.passphrase ?
-            action.data.passphrase :
-            accounts[indexOfAccount].passphrase,
+          encKey: action.data.encKey ?
+            action.data.encKey :
+            accounts[indexOfAccount].encKey,
+          label: action.data.label ?
+            action.data.label :
+            accounts[indexOfAccount].label,
           vesting: action.data.vesting,
         };
         accounts[indexOfAccount] = changedAccount;
@@ -60,18 +61,19 @@ const savedAccounts = (state = { accounts: [] }, action) => {
         ...state,
         accounts: state.accounts.filter(account =>
           !(account.address === action.data.address &&
-          account.network === action.data.network)),
+          account.networkCode === action.data.networkCode)),
       };
-    case actionTypes.removeSavedAccountPassphrase:
-      return {
-        ...state,
-        accounts: state.accounts.map((account) => {
-          if (!action.data || (`${action.data.network}${action.data.passphrase}` === `${account.network}${account.passphrase}`)) {
-            delete account.passphrase;
-          }
-          return account;
-        }),
-      };
+    // case actionTypes.removeSavedAccountPassphrase:
+    //   return {
+    //     ...state,
+    //     accounts: state.accounts.map((account) => {
+    //       if (!action.data || (`${action.data.networkCode}${action.data.passphrase}`
+    // === `${account.networkCode}${account.passphrase}`)) {
+    //         delete account.passphrase;
+    //       }
+    //       return account;
+    //     }),
+    //   };
     default:
       return state;
   }

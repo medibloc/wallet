@@ -1,4 +1,4 @@
-import { extractAddress } from '../../../common/src/utils/account';
+// import { extractAddress } from '../../../common/src/utils/account';
 import actionTypes from '../constants/actions';
 // import { loadingStarted, loadingFinished } from '../utils/loading';
 import { transactions } from '../utils/api/account';
@@ -49,6 +49,7 @@ export const transactionsFilterSet = ({ activePeer, address, limit, txTypeFilter
 
 export const loadTransactions = ({ activePeer, address }) =>
   (dispatch) => {
+    // eslint-disable-next-line no-unneeded-ternary
     const lastActiveAddress = address ? address : null;
     const isSameAccount = lastActiveAddress === address;
     // loadingStarted(actionTypes.transactionsLoad);

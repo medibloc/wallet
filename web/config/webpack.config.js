@@ -42,7 +42,12 @@ module.exports = {
         loader: 'file-loader',
       },
       {
-        test: /\.(png|svg)$/,
+        test: /\.svg$/,
+        exclude: [/fonts/],
+        loader: 'svg-inline-loader'
+      },
+      {
+        test: /\.png$/,
         exclude: [/fonts/],
         loader: 'url-loader',
       },

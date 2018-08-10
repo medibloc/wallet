@@ -14,9 +14,9 @@ const Account = ({ peers, t }) => {
     <FontIcon className='online' value='checkmark' /> :
     <FontIcon className='offline' value='error' />;
 
-  return (peers.data && peers.options.code !== networks.mainnet.code ?
+  return (peers.activePeer && peers.options.code !== networks.mainnet.code ?
     <section className={styles.peer}>
-      <div className={`${styles.title} inner primary peer-network`}>{t(peers.data.options)} <span id="accountStatus" className={`${styles.status} status`}>{status}</span>
+      <div className={`${styles.title} inner primary peer-network`}>{t(peers.activePeer.options)} <span id="accountStatus" className={`${styles.status} status`}>{status}</span>
       </div>
     </section> :
     null
@@ -25,8 +25,8 @@ const Account = ({ peers, t }) => {
 
 /*
   <span className={`${styles.current} inner secondary peer`}>
-    {peers.data.currentPeer}
-    <span>:{peers.data.port}</span>
+    {peers.activePeer.currentPeer}
+    <span>:{peers.activePeer.port}</span>
   </span>
  */
 export default Account;

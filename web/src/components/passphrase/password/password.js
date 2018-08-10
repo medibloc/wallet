@@ -94,7 +94,6 @@ class Password extends React.Component {
             address: extractAddress(account.pubKey),
             encKey: account.encryptedPrivKey,
             label,
-            passphrase,
           });
         }}/>
     </Box>);

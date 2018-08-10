@@ -9,6 +9,7 @@ const peersMiddleware = store => next => (action) => {
 
   const network = Object.assign({}, getNetwork(networks.default.code));
   const hasNoSavedAccounts = !localJSONStorage.get('accounts', []).length;
+
   switch (action.type) {
     case actionTypes.storeCreated:
       /* istanbul ignore else  */

@@ -8,7 +8,6 @@ const airDropAmount = 100;
 export default ({ activePeer, address }) =>
   new Promise((resolve, reject) => {
     getAccount(activePeer, delegateAddress).then((res) => {
-      console.log(`getAccount: ${JSON.parse(JSON.stringify(res))}`);
       send(activePeer, address, toRawMed(airDropAmount),
         parseInt(res.nonce, 10) + 1, privKey).then((res2) => {
         if (res2.hash) resolve();

@@ -1,0 +1,22 @@
+@import '../app/variables.css';
+
+.mainWrapper {
+  margin-left: var(--sidebar-width);
+  overflow: hidden;
+
+  & .mainBox {
+    margin: 0 auto;
+    max-width: var(--main-box-width);
+    max-height: var(--main-box-height);
+    min-width: var(--main-box-width);
+    min-height: var(--main-box-height);
+  }
+}
+
+.publicMainBox {
+  margin: 0 auto;
+  max-width: var(--pub-main-box-width);
+  max-height: var(--pub-main-box-height);
+  min-width: var(--pub-main-box-width);
+  min-height: var(--pub-main-box-height);
+}

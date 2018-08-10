@@ -47,6 +47,7 @@
     "flexboxgrid": "=6.3.1",
     "hard-source-webpack-plugin": "0.4.11",
     "history": "=4.7.2",
+    "i": "0.3.6",
     "i18next": "=10.0.3",
     "i18next-localstorage-cache": "=1.1.1",
     "i18next-xhr-backend": "=1.4.2",
@@ -55,7 +56,7 @@
     "lodash.throttle": "4.1.1",
     "lolex": "=2.3.2",
     "moment": "2.20.1",
-    "numeral": "git+https://github.com/LiskHQ/Numeral-js.git",
+    "numeral": "2.0.6",
     "parallax-js": "3.1.0",
     "popmotion": "7.8.2",
     "popmotion-react": "1.1.1",
@@ -84,6 +85,7 @@
     "redux-logger": "3.0.6",
     "redux-thunk": "=2.2.0",
     "socket.io-client": "=2.0.3",
+    "svg-inline-react": "3.1.0",
     "webpack-merge": "=4.1.0"
   },
   "devDependencies": {
@@ -173,6 +175,7 @@
     "stylelint": "=8.0.0",
     "stylelint-config-standard": "=17.0.0",
     "stylelint-webpack-plugin": "=0.9.0",
+    "svg-inline-loader": "0.8.0",
     "url-loader": "0.5.9",
     "url-polyfill": "1.0.10",
     "webpack": "3.11.0",

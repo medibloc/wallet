@@ -7,27 +7,24 @@ import Create from '../passphrase/create/create';
 import Password from '../passphrase/password/password';
 import Safekeeping from '../passphrase/safekeeping/safekeeping';
 import networks from '../../../../common/src/constants/networks';
-import getNetwork from '../../../../common/src/utils/getNetwork';
 import Box from '../box';
 import styles from './register.css';
+import routes from '../../constants/routes';
 
 class Register extends React.Component {
   backToLogin() {
     this.props.history.push('/');
   }
 
-  onRegister({ address, encKey, label, passphrase }) {
-    const network = Object.assign({}, getNetwork(networks.default.code));
-
+  onRegister({ address, encKey, label }) {
     this.props.accountSaved({
       address,
       encKey,
       label,
-      network,
-      passphrase,
+      networkCode: networks.default.code,
     });
 
-    this.props.history.push('/login');
+    this.props.history.push(`${routes.login.path}`);
   }
 
   render() {

@@ -1,4 +1,4 @@
-// import Dashboard from '../components/dashboard';
+import Dashboard from '../components/dashboard';
 // import Healthdata from '../components/healthdata';
 // import Setting from '../components/setting';
 import Login from '../components/login';
@@ -14,7 +14,7 @@ import StartPage from '../components/startPage/startPage';
 // import AccountTransactions from '../components/accountTransactions';
 // import Voting from '../components/voting';
 // import SingleTransaction from '../components/singleTransaction';
-import NotFound from '../components/notFound';
+// import NotFound from '../components/notFound';
 // import AccountVisualDemo from '../components/accountVisual/demo';
 
 export default {
@@ -23,16 +23,21 @@ export default {
   //   component: AccountVisualDemo,
   //   isPrivate: true,
   // },
-  // dashboard: {
-  //   path: '/dashboard',
-  //   component: Dashboard,
-  //   isPrivate: true,
-  // },
-  // wallet: {
-  //   path: '/wallet',
-  //   component: TransactionDashboard,
-  //   isPrivate: true,
-  // },
+  blockProducer: {
+    path: '/blockProducer',
+    component: Dashboard,
+    isPrivate: true,
+  },
+  dashboard: {
+    path: '/dashboard',
+    component: Dashboard,
+    isPrivate: true,
+  },
+  wallet: {
+    path: '/wallet',
+    component: Dashboard,
+    isPrivate: true,
+  },
   // delegates: {
   //   path: '/delegates',
   //   component: Voting,
@@ -43,11 +48,11 @@ export default {
   //   component: Healthdata,
   //   isPrivate: true,
   // },
-  // setting: {
-  //   path: '/setting',
-  //   component: Setting,
-  //   isPrivate: true,
-  // },
+  setting: {
+    path: '/setting',
+    component: Dashboard,
+    isPrivate: true,
+  },
   // secondPassphrase: {
   //   path: '/second-passphrase',
   //   component: SecondPassphrase,
@@ -95,11 +100,11 @@ export default {
     isPrivate: false,
     exact: true,
   },
-  notFound: {
-    path: '*',
-    component: NotFound,
-    isPrivate: false,
-  },
+  // notFound: {
+  //   path: '*',
+  //   component: NotFound,
+  //   isPrivate: false,
+  // },
   // search: {
   //   pathPrefix: '/explorer',
   //   path: '/search',
@@ -134,7 +139,7 @@ export default {
   //   component: NotFound,
   //   isPrivate: false,
   // },
-  // explorer: {
-  //   path: '/explorer',
-  // },
+  explorer: {
+    path: '/explorer',
+  },
 };

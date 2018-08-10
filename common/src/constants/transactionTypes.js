@@ -1,13 +1,4 @@
 export default {
-  // send: 0,
-  // addRecord: 1,
-  // vest: 2,
-  // withdrawVesting: 3,
-  // becomeCandidate: 4,
-  // quitCandidacy: 5,
-  // vote: 6,
-  // addCertification: 7,
-  // revokeCertification: 8,
   send: 'binary',
   addRecord: 'add_record',
   vest: 'vest',

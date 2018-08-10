@@ -12,7 +12,7 @@ const peers = (state = { status: {}, options: {} }, action) => {
   switch (action.type) {
     case actionTypes.activePeerSet:
       return Object.assign({}, state, {
-        data: action.data.activePeer ? action.data.activePeer : action.data,
+        activePeer: action.data.activePeer,
         options: action.data.options,
       });
     case actionTypes.activePeerUpdate:

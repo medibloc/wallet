@@ -1,0 +1,18 @@
+@import './../app/variables.css';
+
+.fixedAtTop {
+  position: fixed;
+  top: -9px;
+  left: var(--sidebar-width);
+  width: 100vw; /* stylelint-disable-line */
+  z-index: 201;
+}
+
+.linear {
+  background: transparent;
+  height: 8px;
+
+  & .value {
+    height: 8px;
+  }
+}

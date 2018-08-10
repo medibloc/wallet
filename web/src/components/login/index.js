@@ -9,8 +9,8 @@ import { activeAccountSaved } from '../../../../common/src/actions/savedAccounts
  * Using react-redux connect to pass state and dispatch to Login
  */
 const mapStateToProps = state => ({
-  // account: state.account,
-  // peers: state.peers,
+  account: state.account,
+  nodes: state.nodes,
   savedAccounts: state.savedAccounts,
 });
 

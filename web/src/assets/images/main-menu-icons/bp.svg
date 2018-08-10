@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72">
+    <g fill="none" fill-rule="evenodd">
+        <rect width="72" height="72" fill="#FFF" fill-rule="nonzero" rx="6"/>
+        <text fill="#757575" font-family="NotoSansCJKkr-DemiLight, Noto Sans CJK KR" font-size="28" font-weight="300">
+            <tspan x="18" y="48">BP</tspan>
+        </text>
+    </g>
+</svg>

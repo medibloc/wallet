@@ -1,31 +1,19 @@
 import { client } from 'medjs';
 import actionTypes from '../constants/actions';
-import networks from '../constants/networks';
 
 const peerSet = (data, config) => ({
   data: Object.assign({
     passphrase: data.passphrase,
     address: data.address,
     activePeer: client(config.nodes),
-    noSavedAccounts: data.noSavedAccounts,
     options: { code: config.code },
   }),
   type: actionTypes.activePeerSet,
 });
 
-const pickMainnetNode = () => {
-  const nodes = [
-    'http://localhost:9921',
-  ];
-  return nodes;
-};
-
-const pickTestnetNode = () => {
-  const nodes = [
-    'http://localhost:9921',
-  ];
-  return nodes;
-};
+const pickTestnetNode = () => ([
+  'http://localhost:9921',
+]);
 
 /**
  * Returns required action object to set
@@ -39,13 +27,7 @@ export const activePeerSet = data =>
   (dispatch) => {
     const config = data.network || {};
 
-    if (config.code === networks.mainnet.code) {
-      config.nodes = pickMainnetNode();
-    }
-
-    if (config.code === networks.mainnet.code) {
-      config.nodes = pickTestnetNode();
-    }
+    config.nodes = pickTestnetNode();
 
     if (config.custom) {
       config.nodes = ['http://localhost:9921'];
