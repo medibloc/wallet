@@ -9,7 +9,7 @@ import Restore from '../components/restore';
 // import SignMessage from '../components/signMessage';
 // import Search from '../components/search';
 // import SearchResult from '../components/search/searchResult';
-import StartPage from '../components/startPage/startPage';
+import StartPage from '../components/startPage';
 // import TransactionDashboard from '../components/transactionDashboard';
 // import AccountTransactions from '../components/accountTransactions';
 // import Voting from '../components/voting';

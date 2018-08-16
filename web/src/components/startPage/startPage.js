@@ -9,13 +9,6 @@ import routes from '../../constants/routes';
  * The container component containing start page
  */
 class StartPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    };
-  }
-
   render() {
     const { history, savedAccounts } = this.props;
 
