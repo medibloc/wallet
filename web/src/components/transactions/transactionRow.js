@@ -5,7 +5,7 @@ import TransactionType from './transactionType';
 import styles from './transactionRow.css';
 import Amount from './amount';
 import { DateFromTimestamp } from '../timestamp/index';
-import { FontIcon } from '../fontIcon';
+// import { FontIcon } from '../fontIcon';
 
 class TransactionRow extends React.Component {
   // eslint-disable-next-line class-methods-use-this
@@ -18,21 +18,23 @@ class TransactionRow extends React.Component {
     const onClick = !props.onClick ? (() => {}) : () => props.onClick(this.props);
     return (
       <div className={`${grid.row} ${styles.rows} ${styles.clickable} transactions-row`} onClick={onClick}>
-        <div className={`${styles.leftText} ${grid['col-xs-6']} ${grid['col-sm-6']} transactions-cell`}>
-          <div className={`${styles.address}`}>
-            <TransactionType {...props.value} address={props.address} />
-          </div>
+        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
+          <span> {props.value.hash} </span>
         </div>
-        <div className={`${styles.rightText} ${grid['col-sm-2']} transactions-cell`}>
-          <div className={`${styles.hiddenXs}`}>
-            <DateFromTimestamp time={props.value.timestamp} />
-          </div>
+        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
+          <DateFromTimestamp time={props.value.timestamp} />
         </div>
-        <div className={`${styles.rightText} ${grid['col-xs-5']} ${grid['col-sm-3']} transactions-cell`}>
+        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
+          <span> {props.value.from} </span>
+        </div>
+        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
+          <span> {props.value.to} </span>
+        </div>
+        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
+          <span> {props.value.data ? <TransactionType {...props.value.data} /> : null} </span>
+        </div>
+        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
           <Amount {...props} />
-        </div>
-        <div className={`${styles.rightText} ${grid['col-xs-1']} ${grid['col-sm-1']} transactions-cell`}>
-          <FontIcon value='arrow-right'/>
         </div>
       </div>
     );

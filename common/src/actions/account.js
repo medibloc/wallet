@@ -2,6 +2,7 @@ import i18next from 'i18next';
 import actionTypes from '../constants/actions';
 import transactionTypes from '../constants/transactionTypes';
 import { getAccount, send, vest, withdrawVesting } from '../utils/api/account';
+import airdrop from '../utils/api/airdrop';
 // import { registerDelegate, getDelegate, getVotes, getVoters } from '../utils/api/delegate';
 // import { loadTransactionsFinish } from './transactions';
 // import { delegateRegisteredFailure } from './delegate';
@@ -146,16 +147,38 @@ export const passphraseUsed = data => ({
 /**
  *
  */
+export const airDropped = ({ activePeer, address }) =>
+  (dispatch) => {
+    airdrop({
+      activePeer, address,
+    }).then((res) => {
+      dispatch({
+        data: {
+          transactionId: res.transactionId,
+        },
+        type: actionTypes.airdropped,
+      });
+    })
+      .catch((error) => {
+        const errorMessage = error && error.message ? `${error.message}.` :
+          i18next.t('An error occurred while creating the transaction.');
+        dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+      });
+  };
+
+/**
+ *
+ */
 export const sent = ({ activePeer, account, to,
   amount, passphrase }) =>
   (dispatch) => {
     send(
       activePeer, to, toRawMed(amount), parseInt(account.nonce, 10) + 1,
       extractPrivKey(passphrase),
-    ).then((data) => {
+    ).then((res) => {
       dispatch({
         data: {
-          id: data.transactionId,
+          id: res.transactionId,
           senderAddress: account.address,
           senderId: account.address,
           to,

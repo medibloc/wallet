@@ -42,7 +42,7 @@ or "warn/action" ineastd of "red/green"
   --font-size-h1: 65px;
   --font-size-h2: 44px;
   --font-size-h3: 28px;
-  --font-size-h4: 26px;
+  --font-size-h4: 22px;
   --font-size-h5: 18px;
   --font-size-h6: 16px;
   --font-size-small: 14px;
@@ -123,6 +123,7 @@ or "warn/action" ineastd of "red/green"
   --color-form-bg: #f6f8fb;
   --color-aquamarine: #0bcec0;
   --color-bright-blue: #005cee;
+  --color-lucid-blue: #f7fafe;
   --color-dodger-blue: #4f8df3;
   --color-dodger-blue-16: rgba(79, 141, 243, 0.16);
   --color-dodger-blue-8: rgba(79, 141, 243, 0.08);

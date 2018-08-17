@@ -27,14 +27,58 @@
     width: 846px;
 
     & .assets {
-      background: white;
       border-radius: 1px;
       height: 100%;
       width: 412px;
+
+      & .assetsHeader {
+        height: 33px;
+        margin-top: 16px;
+        text-align: center;
+        width: 364px;
+      }
+
+      & .balanceWrapper {
+        flex-direction: column;
+        height: 118px;
+        margin-top: 65px;
+        text-align: center;
+        width: 364px;
+
+        & .balanceHeader {
+          color: var(--color-black-54);
+          width: 364px;
+        }
+
+        & .balance {
+          border-bottom: 1px solid var(--color-black-38);
+          color: var(--color-dodger-blue);
+          font-size: 60px;
+          margin-top: 3px;
+          width: 364px;
+        }
+      }
+
+      & .vestingWrapper {
+        display: flex;
+        height: 27px;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 32px;
+        width: 364px;
+
+        & .vestingHeader {
+          color: var(--color-black-54);
+        }
+
+        & .vesting {
+          color: var(--color-black-87);
+          margin: 0 8px 0 16px;
+        }
+      }
     }
 
     & .graph {
-      background: white;
       border-radius: 1px;
       height: 100%;
       margin: 0 0 0 22px;
@@ -42,17 +86,31 @@
     }
   }
 
-  & .latestActivity {
-    background: white;
+  & .txList {
     border-radius: 1px;
     height: 305px;
     margin: 22px 0 0;
     width: 846px;
+
+    & .txListHeader {
+      flex-direction: row;
+      justify-content: space-between;
+      height: 65px;
+      padding: 0 24px;
+      width: 100%;
+
+      & .txListHeaderTitle {
+        justify-content: flex-start;
+      }
+
+      & .txListHeaderMore {
+        justify-content: flex-end;
+      }
+    }
   }
 }
 
 .sendWrapper {
-  background: white;
   border-radius: 1px;
   height: 100%;
   margin: 0 0 0 22px;

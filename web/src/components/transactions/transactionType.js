@@ -6,6 +6,7 @@ import styles from './transactions.css';
 const TransactionType = (props) => {
   const { t } = props;
   let type;
+  console.log(props.type);
   switch (props.type) {
     case txTypes.send:
       type = t('Send');
@@ -38,11 +39,7 @@ const TransactionType = (props) => {
       type = false;
       break;
   }
-  const address = props.address !== props.from ? props.from : props.to;
-  const template = type || props.showTransaction ?
-    <span className={styles.smallButton}>{type || t('Transaction')}</span> :
-    <span className={styles.ordinaryText}>{address}</span>;
-  return template;
+  return type ? <span className={styles.smallButton}>{type}</span> : null;
 };
 
 export default translate()(TransactionType);

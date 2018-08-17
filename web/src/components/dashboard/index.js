@@ -4,23 +4,23 @@ import { translate } from 'react-i18next';
 import React from 'react';
 // import { FontIcon } from '../fontIcon';
 import Box from '../box';
+import WBox from '../wbox';
 import { loadTransactions } from '../../../../common/src/actions/transactions';
-// import TransactionList from './../transactions/transactionList';
+import TransactionList from './../transactions/transactionList';
 // import Send from '../send';
 // import routes from '../../constants/routes';
+import { fromRawMed } from '../../../../common/src/utils/med';
 import styles from './dashboard.css';
-import airDrop from '../../../../common/src/utils/api/airdrop';
+import { airDropped } from '../../../../common/src/actions/account';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
     // For Testing
     console.log(`Dashboard init: ${this.props.account.balance}`);
-    console.log(this.props.account.balance === '0');
     if (this.props.account.balance === '0') {
       console.log('Airdrop starts...');
-      this.props.airDrop({
+      this.props.airDropped({
         activePeer: this.props.peers.activePeer,
         address: this.props.account.address,
       });
@@ -34,29 +34,54 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    // const { transactions, t, account, loading, history } = this.props;
-    const { t } = this.props;
-    return <div className={`${styles.wrapper}`}>
-      <div className={`${styles.mainWrapper}`}>
+    const { transactions, t, account, loading, history } = this.props;
+    // const { transactions, t, account } = this.props;
+    console.log(`Transactions: ${transactions ? JSON.stringify(transactions) : null}`);
+
+    return <Box className={`${styles.wrapper}`}>
+      <Box className={`${styles.mainWrapper}`}>
         <Box className={`${styles.finance}`}>
-          <Box className={`${styles.assets}`}>
-          </Box>
-          <Box className={`${styles.graph}`}>
-          </Box>
+          <WBox className={`${styles.assets}`}>
+            <WBox className={`${styles.assetsHeader}`}>
+              <h5>My Assets</h5>
+            </WBox>
+            <WBox className={`${styles.balanceWrapper}`}>
+              <h6 className={`${styles.balanceHeader}`}>Balance</h6>
+              <h2 className={`${styles.balance}`}>{fromRawMed(account.balance)}</h2>
+            </WBox>
+            <WBox className={`${styles.vestingWrapper}`}>
+              <div className={`${styles.vestingHeader}`}>
+                <h6>Vesting</h6>
+              </div>
+              <div className={`${styles.vesting}`}>
+                <h6>{fromRawMed(account.vesting)}</h6>
+              </div>
+            </WBox>
+          </WBox>
+          <WBox className={`${styles.graph}`}>
+          </WBox>
         </Box>
-        <Box className={`${styles.latestActivity}`}>
-          <header>
-            <h2 className={styles.title}>
-              { t('') }
-              { /*
-                <Link to={`${routes.dashboard.path}`} className={`${styles.seeAllLink} seeAllLink`}>
-                  {t('See all transactions')}
-                  <FontIcon value='arrow-right'/>
-                </Link> */
-              }
-            </h2>
-          </header>
-          { /* <TransactionList {...{
+        <WBox className={`${styles.txList}`}>
+          <WBox className={`${styles.txListHeader}`}>
+            <div className={styles.txListHeaderTitle}>
+              <h4>
+                { t('Last Activity') }
+                { /*
+                  <Link to={`${routes.dashboard.path}`}
+                  className={`${styles.seeAllLink} seeAllLink`}>
+                    {t('See all transactions')}
+                    <FontIcon value='arrow-right'/>
+                  </Link> */
+                }
+              </h4>
+            </div>
+            <div className={styles.txListHeaderMore}>
+              <h6>
+                { t('See all transactions') }
+              </h6>
+            </div>
+          </WBox>
+          { <TransactionList {...{
             transactions,
             t,
             address: account.address,
@@ -64,33 +89,28 @@ class Dashboard extends React.Component {
             loading,
             history,
             // onClick: props => history.push(`${routes.wallet.path}?id=${props.value.id}`),
-          }} /> */ }
-        </Box>
-      </div>
-      <div className={`${styles.sendWrapper}`}>
+          }} /> }
+        </WBox>
+      </Box>
+      <WBox className={`${styles.sendWrapper}`}>
         {
           // <Send {...this.props} />
         }
-      </div>
-    </div>;
+      </WBox>
+    </Box>;
   }
 }
 
 const mapStateToProps = state => ({
   account: state.account,
-  // account: {
-  //   address: '037b18a6ec51135cf29eed0339d5d13324600a63f8e4c79373b5caa42a6119f48c',
-  //   balance: 1000,
-  //   publicKey: '',
-  // },
-  loading: true, // state.loading.length > 0,
+  loading: state.loading.length > 0,
   peers: state.peers,
   transactions: [...state.transactions.pending, ...state.transactions.confirmed].slice(0, 5),
   pendingTransactions: state.transactions.pending,
 });
 
 const mapDispatchToProps = dispatch => ({
-  airDrop: data => dispatch(airDrop(data)),
+  airDropped: data => dispatch(airDropped(data)),
   loadTransactions: data => dispatch(loadTransactions(data)),
 });
 

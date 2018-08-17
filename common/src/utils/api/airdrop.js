@@ -10,7 +10,7 @@ export default ({ activePeer, address }) =>
     getAccount(activePeer, delegateAddress).then((res) => {
       send(activePeer, address, toRawMed(airDropAmount),
         parseInt(res.nonce, 10) + 1, privKey).then((res2) => {
-        if (res2.hash) resolve();
+        if (res2.transactionId) resolve(res2);
         else reject(res2);
       });
     });

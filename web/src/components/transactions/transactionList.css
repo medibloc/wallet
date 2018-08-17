@@ -2,13 +2,14 @@
 
 .empty {
   text-align: center;
-  font-weight: var(--font-weight-semi-bold);
+  font-weight: var(--font-weight-normal);
   padding-top: 25px;
   color: var(--color-grayscale-dark);
 }
 
 .results {
   overflow-y: initial;
+  width: 100%;
 
   & .turnArrow {
     transform: rotate(180deg);

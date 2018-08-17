@@ -1,5 +1,5 @@
 export default {
-  send: 'binary',
+  send: 'transfer',
   addRecord: 'add_record',
   vest: 'vest',
   withdrawVesting: 'withdraw_vesting',

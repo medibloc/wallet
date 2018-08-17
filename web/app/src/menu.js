@@ -33,18 +33,18 @@ const addAboutMenuForNonMac = ({ template, electron }) => {
   });
 };
 
-const addCheckForUpdates = ({ template, checkForUpdates }) => {
-  template[template.length - 1].submenu.push({
-    label: i18n.t('Check for updates...'),
-    click: checkForUpdates,
-  });
-};
+// const addCheckForUpdates = ({ template, checkForUpdates }) => {
+//   template[template.length - 1].submenu.push({
+//     label: i18n.t('Check for updates...'),
+//     click: checkForUpdates,
+//   });
+// };
 
 const menu = {
-  build: (electron, checkForUpdates) => {
+  build: (electron) => {
     const template = menu.buildTemplate(electron);
     if (process.platform !== 'linux') {
-      addCheckForUpdates({ template, checkForUpdates });
+      // addCheckForUpdates({ template, checkForUpdates });
     }
     if (process.platform === 'darwin') {
       addAboutMenuForMac({ template, name: electron.app.getName() });
@@ -127,8 +127,8 @@ const menu = {
             type: 'separator',
           },
           {
-            label: i18n.t('What\'s New...'),
-            click: menu.onClickLink.bind(null, electron, 'https://github.com/medibloc/wallet/releases'),
+            // label: i18n.t('What\'s New...'),
+            // click: menu.onClickLink.bind(null, electron, 'https://github.com/medibloc/wallet/releases'),
           },
         ],
       },
