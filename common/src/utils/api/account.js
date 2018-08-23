@@ -20,25 +20,26 @@ export const getAccount = (activePeer, address) =>
     }).catch(error => reject(error));
   });
 
-export const send = (activePeer, to, value, nonce, privKey) =>
+export const send = ({ activePeer, nonce, privKey, to, value }) =>
   new Promise((resolve, reject) => {
     const password = randomBytes(32).toString('hex');
     const account = getAccountFromPrivKey(privKey, password);
-    const extractAddress1 = extractAddress(account.pubKey);
+    const from = extractAddress(account.pubKey);
 
     const tx = valueTransferTx({
-      from: extractAddress1,
+      from,
       to,
       value,
       nonce,
     });
-    console.log(JSON.parse(JSON.stringify(tx)));
+    console.log(`send tx: ${JSON.stringify(tx)}`);
 
     account.signTx(tx, password);
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);
       if (res.hash) {
         resolve({
+          timestamp: tx.timestamp,
           transactionId: res.hash,
         });
       } else {

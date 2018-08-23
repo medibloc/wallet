@@ -1,0 +1,22 @@
+@import '../app/variables.css';
+
+.wrapper {
+  height: 632px;
+  padding: 16px 24px 24px;
+}
+
+.headerWrapper {
+  height: 33px;
+  margin: 0;
+  text-align: center;
+
+  & h4 {
+    height: 33px;
+  }
+}
+
+.bodyWrapper {
+  height: 543px;
+  margin: 16px 0 0;
+  width: 100%;
+}

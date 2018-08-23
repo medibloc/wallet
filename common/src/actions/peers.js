@@ -3,16 +3,16 @@ import actionTypes from '../constants/actions';
 
 const peerSet = (data, config) => ({
   data: Object.assign({
-    passphrase: data.passphrase,
     address: data.address,
     activePeer: client(config.nodes),
+    encKey: data.encKey,
     options: { code: config.code },
   }),
   type: actionTypes.activePeerSet,
 });
 
 const pickTestnetNode = () => ([
-  'http://localhost:9921',
+  'http://13.124.201.175:9921', 'http://localhost:9921',
 ]);
 
 /**

@@ -1,0 +1,45 @@
+@import '../app/variables.css';
+
+.requestWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.bodyWrapper {
+  align-items: center;
+  border-bottom: 1px solid var(--color-dodger-blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 360px;
+  width: 100%;
+}
+
+.qrCode {
+  height: 224px;
+  width: 224px;
+
+  &.magnified {
+    & canvas {
+      max-width: 260px;
+      width: 100% !important;
+      height: auto !important;
+    }
+  }
+}
+
+.requestFooter {
+  padding: 0 0 24px !important;
+}
+
+.address {
+  text-align: center;
+  margin: 32px 0 0;
+}
+
+.copyButton {
+  margin: 29px 0 0;
+  width: 100%;
+}

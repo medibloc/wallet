@@ -1,0 +1,39 @@
+@import '../app/variables.css';
+
+.resultBox {
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.bodyWrapper {
+  align-items: center;
+  display: flex;
+  height: 455px;
+  flex-direction: column;
+  width: 100%;
+
+  & .title {
+    margin: 56px 0 0;
+  }
+
+  & .iconWrapper {
+    height: 164px;
+    margin: 40px 0 0;
+    width: 164px;
+  }
+
+  & .icon {
+    height: 164px;
+    margin: 0;
+    width: 164px;
+  }
+}
+
+.resultBoxFooter {
+  padding: 0 !important;
+
+  & .doneButton {
+    margin: 0;
+  }
+}

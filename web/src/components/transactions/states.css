@@ -1,10 +1,12 @@
 .leftText {
   text-align: left;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
 
 .rightText {
   text-align: right;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
 

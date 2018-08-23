@@ -7,7 +7,7 @@ import Box from '../box';
 import WBox from '../wbox';
 import { loadTransactions } from '../../../../common/src/actions/transactions';
 import TransactionList from './../transactions/transactionList';
-// import Send from '../send';
+import Transfer from '../transfer';
 // import routes from '../../constants/routes';
 import { fromRawMed } from '../../../../common/src/utils/med';
 import styles from './dashboard.css';
@@ -36,14 +36,13 @@ class Dashboard extends React.Component {
   render() {
     const { transactions, t, account, loading, history } = this.props;
     // const { transactions, t, account } = this.props;
-    console.log(`Transactions: ${transactions ? JSON.stringify(transactions) : null}`);
 
     return <Box className={`${styles.wrapper}`}>
       <Box className={`${styles.mainWrapper}`}>
         <Box className={`${styles.finance}`}>
           <WBox className={`${styles.assets}`}>
             <WBox className={`${styles.assetsHeader}`}>
-              <h5>My Assets</h5>
+              <h4>My Assets</h4>
             </WBox>
             <WBox className={`${styles.balanceWrapper}`}>
               <h6 className={`${styles.balanceHeader}`}>Balance</h6>
@@ -92,10 +91,8 @@ class Dashboard extends React.Component {
           }} /> }
         </WBox>
       </Box>
-      <WBox className={`${styles.sendWrapper}`}>
-        {
-          // <Send {...this.props} />
-        }
+      <WBox className={`${styles.transferWrapper}`}>
+        <Transfer {...this.props} />
       </WBox>
     </Box>;
   }

@@ -90,11 +90,13 @@ class MainMenu extends React.Component {
         <aside className={styles.aside}>
           <div className={styles.sideBarWrapper}>
             <img src={logo} className={styles.logo} />
-            <ToolboxTabs index={getIndex(history, tabs)}
-              theme={styles}
-              className={`${styles.tabs} main-tabs`}>
+            <ToolboxTabs
+              className={`${styles.tabs} main-tabs`}
               disableAnimatedBottomBorder={true}
+              index={getIndex(history, tabs)}
               onChange={(...args) => this.navigate(history, tabs, ...args)}
+              theme={styles}
+            >
               {tabs.map(({ id, image, label }, index) =>
                 <Tab
                   activeClassName={styles.activeTab}

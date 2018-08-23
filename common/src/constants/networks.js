@@ -8,7 +8,7 @@ const networks = {
     name: 'Testnet',
     testnet: true,
     code: 1,
-    nodes: ['http://localhost:9921'],
+    nodes: ['http://13.124.201.175:9921', 'http://localhost:9921'],
   },
   customNode: { // network name translation t('Custom Node');
     name: 'Custom Node',

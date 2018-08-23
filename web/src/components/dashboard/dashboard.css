@@ -4,6 +4,7 @@
   display: flex;
   height: 632px;
   flex-direction: row;
+  margin: 0;
   width: 1280px;
 }
 
@@ -19,6 +20,7 @@
 .mainWrapper {
   height: 100%;
   flex-direction: column;
+  margin: 0;
   width: 846px;
 
   & .finance {
@@ -110,7 +112,7 @@
   }
 }
 
-.sendWrapper {
+.transferWrapper {
   border-radius: 1px;
   height: 100%;
   margin: 0 0 0 22px;

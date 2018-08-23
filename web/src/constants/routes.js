@@ -141,5 +141,7 @@ export default {
   // },
   explorer: {
     path: '/explorer',
+    component: Dashboard,
+    isPrivate: true,
   },
 };

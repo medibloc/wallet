@@ -8,8 +8,13 @@ const airDropAmount = 100;
 export default ({ activePeer, address }) =>
   new Promise((resolve, reject) => {
     getAccount(activePeer, delegateAddress).then((res) => {
-      send(activePeer, address, toRawMed(airDropAmount),
-        parseInt(res.nonce, 10) + 1, privKey).then((res2) => {
+      send({
+        activePeer,
+        nonce: parseInt(res.nonce, 10) + 1,
+        privKey,
+        to: address,
+        value: toRawMed(airDropAmount),
+      }).then((res2) => {
         if (res2.transactionId) resolve(res2);
         else reject(res2);
       });

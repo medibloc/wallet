@@ -52,6 +52,21 @@
   }
 }
 
+@define-mixin buttonSecondary {
+  color: var(--color-dodger-blue) !important;
+  background: var(--color-white) !important;
+  border: 1px solid var(--color-dodger-blue) !important;
+
+  &:hover {
+    border: 1px solid var(--color-mid-blue) !important;
+  }
+
+  &:disabled {
+    background: var(--color-cool-gray) !important;
+    border: 1px solid var(--color-cool-gray) !important;
+  }
+}
+
 @define-mixin buttonSecondary--light {
   background: none !important;
   color: var(--color-black-87) !important;

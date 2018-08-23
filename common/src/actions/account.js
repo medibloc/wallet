@@ -170,19 +170,22 @@ export const airDropped = ({ activePeer, address }) =>
  *
  */
 export const sent = ({ activePeer, account, to,
-  amount, passphrase }) =>
+  amount, passphrase, privKey }) =>
   (dispatch) => {
-    send(
-      activePeer, to, toRawMed(amount), parseInt(account.nonce, 10) + 1,
-      extractPrivKey(passphrase),
-    ).then((res) => {
+    send({
+      activePeer,
+      nonce: parseInt(account.nonce, 10) + 1,
+      privKey: privKey || extractPrivKey(passphrase),
+      to,
+      value: toRawMed(amount),
+    }).then((res) => {
       dispatch({
         data: {
-          id: res.transactionId,
-          senderAddress: account.address,
-          senderId: account.address,
+          from: account.address,
+          hash: res.transactionId,
+          timestamp: res.timestamp,
           to,
-          amount: toRawMed(amount),
+          value: toRawMed(amount),
           type: transactionTypes.send,
         },
         type: actionTypes.transactionAdded,

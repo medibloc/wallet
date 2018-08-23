@@ -8,6 +8,9 @@ export const extractPrivKey = passphrase =>
 export const extractPublicKey = passphrase =>
   cryptography.getKeyPairFromPassphrase(passphrase).pubKey;
 
+export const getPubKey = privKey =>
+  cryptography.getPubKey(privKey);
+
 /**
 * @param {String} data - passphrase or public key
 */
@@ -32,3 +35,5 @@ export const getAccountFromPrivKey = (privKey, password) => {
 };
 
 export const getAccountFromEncKey = (encKey, password) => new Account(password, encKey);
+
+export const getPrivKeyFromEncKey = (encKey, password) => cryptography.decryptKey(password, encKey);

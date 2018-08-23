@@ -79,7 +79,7 @@ or "warn/action" ineastd of "red/green"
   --sidebar-width: 136px;
   --sidebar-image-height: 72px;
   --sidebar-image-width: 72px;
-  --main-box-width: 1260px;
+  --main-box-width: 1280px;
   --main-box-height: 720px;
   --pub-main-box-width: 1080px;
   --pub-main-box-height: 720px;
@@ -130,6 +130,7 @@ or "warn/action" ineastd of "red/green"
   --color-dusk-blue: #2f599f;
   --color-mid-blue: #2462c8;
   --color-mid-blue-60: rgba(36, 98, 200, 0.6);
+  --color-cool-gray: #b4b8be;
   --color-pale-gray: #f7f8f9;
   --color-black-4: rgba(0, 0, 0, 0.04);
   --color-black-16: rgba(0, 0, 0, 0.16);

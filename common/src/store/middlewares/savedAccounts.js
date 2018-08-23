@@ -25,6 +25,7 @@ const savedAccountsMiddleware = (store) => {
 
       store.dispatch(activePeerSet({
         address: account.address,
+        encKey: account.encKey,
         network,
       }));
     }

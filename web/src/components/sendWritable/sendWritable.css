@@ -1,0 +1,65 @@
+@import '../app/variables.css';
+
+:root {
+  --tab-inactive-color: var(--color-grayscale-dark);
+  --grid-padding-left: 30px;
+  --header-line-height: 36px;
+  --header-subtitle-font-size: var(--subtitle-font-size);
+  --font-weight-bold: 500;
+}
+
+.form {
+  position: relative;
+  margin: 24px 0 0;
+
+  & input {
+    border-radius: 0;
+  }
+}
+
+input:read-only {
+  border-bottom: solid 1px var(--color-white) !important;
+}
+
+.sendWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.amount {
+  margin: 0;
+}
+
+.description {
+  margin: 16px 0 0;
+
+  & input {
+    height: 96px;
+  }
+}
+
+.recipient {
+  margin: 16px 0 0;
+}
+
+.faucetButton {
+  display: flex;
+}
+
+.nextButton {
+  margin: 8px 0 0;
+}
+
+.sendFooter {
+  padding: 0 !important;
+}
