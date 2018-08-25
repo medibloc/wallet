@@ -1,31 +1,45 @@
 @import '../app/variables.css';
 
 .startPageWrapper {
-  height: 440px;
-  margin: 227px 0 0;
+  height: 500px;
+  margin: 99px 0 0;
   width: 100%;
 
-  & > .startPage {
+  & > .titleWrapper {
+    color: var(--color-dodger-blue);
+    font-size: 90px;
+    font-weight: var(--font-weight-bold);
+    height: 300px;
+    line-height: 96px;
     margin: 0;
+    width: 100%;
+  }
 
-    & > .button {
-      border-bottom: 1px solid var(--color-black-60);
+  & > .buttonWrapper {
+    margin: 40px 0 0;
+
+    & > .restoreButton {
       border-radius: 0;
-      color: var(--color-black-87);
-      font-size: 44px;
-      height: 96px;
+      height: 72px;
       margin: 0;
-      width: 680px;
+      width: 464px;
+    }
+
+    & > .registerButton {
+      border-radius: 0;
+      height: 72px;
+      margin: 0;
+      width: 427px;
     }
 
     & > .hasMarginTop {
-      margin-top: 48px;
+      margin-top: 16px;
     }
   }
 }
 
 .wrapper {
-  width: 680px;
+  width: 826px;
 
   & > img {
     display: block;

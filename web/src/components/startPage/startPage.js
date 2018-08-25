@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import styles from './startPage.css';
 import Box from '../box';
-import { SecondaryLightButton } from '../toolbox/buttons/button';
+import { ArrowBlackButton, ArrowBlueButton } from '../toolbox/buttons/button';
 import routes from '../../constants/routes';
 
 /**
@@ -10,7 +10,7 @@ import routes from '../../constants/routes';
  */
 class StartPage extends React.Component {
   render() {
-    const { history, savedAccounts } = this.props;
+    const { history, savedAccounts, t } = this.props;
 
     return (
       (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) ?
@@ -18,14 +18,17 @@ class StartPage extends React.Component {
         <Box className={`${styles.wrapper}`}>
           <img src="../../assets/images/MEDIBLOC.png" />
           <div className={`${styles.startPageWrapper}`}>
-            <section className={`${styles.startPage}`}>
-              <SecondaryLightButton
-                className={`${styles.button}`}
-                label={'Sign in'}
+            <div className={`${styles.titleWrapper}`}>
+              {t('WELCOME TO MEDIBLOC TESTNET WALLET')}
+            </div>
+            <section className={`${styles.buttonWrapper}`}>
+              <ArrowBlueButton
+                className={`${styles.restoreButton}`}
+                label={'Restore an account'}
                 onClick={() => history.push(`${routes.restore.path}`)}/>
-              <SecondaryLightButton
+              <ArrowBlackButton
                 label={'Create wallet ID'}
-                className={`${styles.button} ${styles.hasMarginTop}`}
+                className={`${styles.registerButton} ${styles.hasMarginTop}`}
                 onClick={() => history.push(`${routes.register.path}`)}/>
             </section>
           </div>
