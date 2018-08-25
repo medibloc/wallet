@@ -65,11 +65,11 @@ class MainMenu extends React.Component {
         id: 'transactions',
         image: menuLogos.wallet,
       }, {
-        label: t('Block Producer'),
-        route: `${routes.blockProducer.path}`,
-        id: 'bp',
-        image: menuLogos.bp,
-      }, {
+      //   label: t('Block Producer'),
+      //   route: `${routes.blockProducer.path}`,
+      //   id: 'bp',
+      //   image: menuLogos.bp,
+      // }, {
         label: t('Explorer'),
         route: `${routes.explorer.path}`,
         id: 'explorer',
