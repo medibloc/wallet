@@ -7,19 +7,8 @@ import { Input } from '../../toolbox/inputs/input';
 import { extractAddress,
   extractPrivKey,
   getAccountFromPrivKey } from '../../../../../common/src/utils/account';
+import regex from '../../../../../common/src/utils/regex';
 import styles from './password.css';
-
-const validateLabel = (value) => {
-  const data = { label: value };
-  data.labelValidity = '';
-  return data;
-};
-
-const validatePassword = (value) => {
-  const data = { password: value };
-  data.passwordValidity = value.length < 8 ? 'must be at least 8 characters' : '';
-  return data;
-};
 
 class Password extends React.Component {
   constructor() {
@@ -31,13 +20,36 @@ class Password extends React.Component {
     };
 
     this.validators = {
-      label: validateLabel,
-      password: validatePassword,
+      label: this.validateLabel.bind(this),
+      password: this.validatePassword.bind(this),
       confirmPassword: this.validateConfirmPassword.bind(this),
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  validateLabel(value) {
+    const data = { label: value };
+    if (!value) {
+      data.labelValidity = this.props.t('Required');
+    } else {
+      data.labelValidity = value.match(regex.label) ? '' : this.props.t('Only letters, numbers, and periods are allowed.');
+    }
+    return data;
+  }
+
+  validatePassword(value) {
+    const data = { password: value };
+    if (!value) {
+      data.passwordValidity = this.props.t('Required');
+    } else if (value.length < 8) {
+      data.passwordValidity = this.props.t('Must be at least 8 characters');
+    } else if (!value.match(regex.password)) {
+      data.passwordValidity = this.props.t('Try a mix of lowercase letters, uppercase letters, and numbers');
+    } else {
+      data.passwordValidity = '';
+    }
+    return data;
+  }
+
   validateConfirmPassword(value) {
     const data = { confirmPassword: value };
     data.confirmPasswordValidity = this.state.password === value ? '' :
@@ -87,6 +99,12 @@ class Password extends React.Component {
         onChange={(...args) => this.changeHandler('confirmPassword', ...args)}/>
       <PrimaryButton label={t('Next')}
         className={`${styles.nextButton}`}
+        disabled={(!!this.state.labelValidity ||
+          !this.state.label ||
+          !!this.state.passwordValidity ||
+          !this.state.password ||
+          !!this.state.confirmPasswordValidity ||
+          !this.state.confirmPassword)}
         onClick={() => {
           const label = this.state.label;
           const account = getAccountFromPrivKey(extractPrivKey(passphrase), this.state.password);

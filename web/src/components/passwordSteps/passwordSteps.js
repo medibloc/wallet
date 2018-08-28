@@ -6,7 +6,7 @@ import { PrimaryButton } from '../toolbox/buttons/button';
 import styles from './passwordSteps.css';
 import TransferTabs from '../transferTabs';
 import WBox from '../wbox';
-import regex from './../../../../common/src/utils/regex';
+import regex from '../../../../common/src/utils/regex';
 import { extractAddress, getPrivKeyFromEncKey, getPubKey } from '../../../../common/src/utils/account';
 
 class PasswordSteps extends React.Component {
