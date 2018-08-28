@@ -8,8 +8,8 @@ const win = {
     const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
     const { BrowserWindow } = electron;
     win.browser = new BrowserWindow({
-      width: width > 1680 ? 1680 : width,
-      height: height > 1050 ? 1050 : height,
+      width: width > 1920 ? 1920 : width,
+      height: height > 1080 ? 1080 : height,
       center: true,
       webPreferences: {
         // Avoid app throttling when Electron is in background

@@ -1,20 +1,21 @@
 import electron from 'electron'; // eslint-disable-line import/no-extraneous-dependencies
 import electronLocalshortcut from 'electron-localshortcut'; // eslint-disable-line import/no-extraneous-dependencies
-import { autoUpdater } from 'electron-updater'; // eslint-disable-line import/no-extraneous-dependencies
+// import { autoUpdater } from 'electron-updater';
+// eslint-disable-line import/no-extraneous-dependencies
 import path from 'path';
 import storage from 'electron-json-storage'; // eslint-disable-line import/no-extraneous-dependencies
 import win from './modules/win';
 import './styles.dialog.css';
 // import localeHandler from './modules/localeHandler';
-import updateChecker from './modules/autoUpdater';
+// import updateChecker from './modules/autoUpdater';
 
-const checkForUpdates = updateChecker({
-  autoUpdater,
-  dialog: electron.dialog,
-  win,
-  process,
-  electron,
-});
+// const checkForUpdates = updateChecker({
+//   autoUpdater,
+//   dialog: electron.dialog,
+//   win,
+//   process,
+//   electron,
+// });
 
 const { app, ipcMain } = electron;
 
@@ -23,7 +24,7 @@ let appIsReady = false;
 
 app.on('ready', () => {
   appIsReady = true;
-  win.create({ electron, path, electronLocalshortcut, storage, checkForUpdates });
+  win.create({ electron, path, electronLocalshortcut, storage });
 });
 
 app.on('window-all-closed', () => {
@@ -42,12 +43,12 @@ app.on('activate', () => {
   // sometimes, the event is triggered before app.on('ready', ...)
   // then creating new windows will fail
   if (win.browser === null && appIsReady) {
-    win.create({ electron, path, electronLocalshortcut, storage, checkForUpdates });
+    win.create({ electron, path, electronLocalshortcut, storage });
   }
 });
 
 // Set app protocol
-app.setAsDefaultProtocolClient('lisk');
+app.setAsDefaultProtocolClient('medibloc-wallet');
 
 // Force single instance application
 const isSecondInstance = app.makeSingleInstance((argv) => {

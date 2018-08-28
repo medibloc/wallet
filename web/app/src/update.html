@@ -6,19 +6,19 @@
       <link href="dialog.css" rel="stylesheet">
       <style>
         @font-face {
-          font-family: 'gilroy';
+          font-family: 'notocjkkr';
           src:
-            url('./assets/fonts/gilroy/gilroy-bold.woff2') format('woff2'),
-            url('./assets/fonts/gilroy/gilroy-bold.woff') format('woff'),
-            url('./assets/fonts/gilroy/gilroy-bold.ttf')  format('truetype');
+            url('./assets/fonts/notocjkkr/NotoSansCJKkr-Light.otf') format('opentype'),
+            url('./assets/fonts/notocjkkr/NotoSansCJKkr-Regular.otf') format('opentype'),
+            url('./assets/fonts/notocjkkr/NotoSansCJKkr-Bold.otf')  format('opentype');
           font-weight: bold;
           font-style: normal;
         }
       </style>
     </head>
     <body>
-      <h1 class="header" id="header"></h1>
-      <p class="description" id="description"></p>
+      <h1 class="header" id="header" />
+      <p class="description" id="description" />
       <div class="app" id="app"></div>
       <div class="actionBar">
         <button class="button isClose" id="close">Close</button>
@@ -47,7 +47,7 @@
           ipc.send('update', { text: 'update' });
           window.close();
         }
-        updateElm.addEventListener("mouseup", updateApp, false);
-        closeElm.addEventListener("mouseup", closeWindow, false);
+        updateElm.addEventListener('mouseup', updateApp, false);
+        closeElm.addEventListener('mouseup', closeWindow, false);
     </script>
 </html>
