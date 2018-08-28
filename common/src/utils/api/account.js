@@ -9,7 +9,7 @@ export const getAccount = (activePeer, address) =>
     if (!isAddress(address)) {
       reject('not a valid address');
     }
-    activePeer.getAccountState(address, blockTypes.tail).then((data) => {
+    activePeer.getAccount(address, null, blockTypes.tail).then((data) => {
       if (data) {
         resolve({
           ...data,
@@ -50,7 +50,7 @@ export const send = ({ activePeer, nonce, privKey, to, value }) =>
 
 export const transactions = ({ activePeer, address, txTypeFilter }) =>
   new Promise((resolve, reject) => {
-    activePeer.getCurrentAccountTxs(address).then((data) => {
+    activePeer.getAccountTransactions(address).then((data) => {
       if (data && data.transactions) {
         if (txTypeFilter) {
           const filteredTxs = data.transactions.filter((tx) => {
