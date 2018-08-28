@@ -1,0 +1,74 @@
+@import '../app/variables.css';
+
+.wrapper {
+  align-items: center;
+  background: var(--color-black-54);
+  bottom: 0;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.popupWrapper {
+  height: 555px;
+  width: 714px;
+}
+
+.closeWrapper {
+  display: flex;
+  height: 40px;
+  justify-content: flex-end;
+  width: 100%;
+
+  & .closeButtonWrapper {
+    height: 19px;
+    padding: 13px 0;
+    width: 19px;
+  }
+}
+
+.settingsWrapper {
+  border-radius: 6px;
+  height: 515px;
+  flex-direction: row;
+  width: 100%;
+
+  & .settingsMenuWrapper {
+    align-items: flex-start;
+    border-right: 1px solid var(--color-black-16);
+    height: 100%;
+    flex-direction: column;
+    width: 234px;
+
+    & .menuHeader {
+      height: 89px;
+
+      & h4 {
+        padding: 32px 0 24px 21px;
+      }
+    }
+
+    & .menuBody {
+      height: 360px;
+    }
+
+    & .menuFooter {
+      margin: 0 47px 41px 42px;
+      padding: 0 !important;
+
+      & h6:hover {
+        font-weight: var(--font-weight-bold);
+      }
+    }
+  }
+
+  & .settingsContentWrapper {
+    height: 100%;
+    width: 480px;
+  }
+}

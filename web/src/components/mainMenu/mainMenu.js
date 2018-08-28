@@ -96,11 +96,11 @@ class MainMenu extends React.Component {
               index={getIndex(history, tabs)}
               onChange={(...args) => this.navigate(history, tabs, ...args)}
               theme={styles}
-            >
+            >p
               {tabs.map(({ id, image, label }, index) =>
                 <Tab
                   activeClassName={styles.activeTab}
-                  className={styles.tab}
+                  className={`${styles.tab} ${id === 'settings' ? styles.settingsTab : null}`}
                   disabled={itemShouldBeDisabled(index)}
                   id={id}
                   key={index}

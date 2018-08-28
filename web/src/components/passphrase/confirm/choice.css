@@ -2,7 +2,7 @@
 
 .choice {
   flex-direction: row !important;
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: 42px;
   margin: 41px 0 0;
   width: 480px;

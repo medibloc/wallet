@@ -9,6 +9,7 @@ import Restore from '../components/restore';
 // import SignMessage from '../components/signMessage';
 // import Search from '../components/search';
 // import SearchResult from '../components/search/searchResult';
+import Settings from '../components/settings';
 import StartPage from '../components/startPage';
 // import TransactionDashboard from '../components/transactionDashboard';
 // import AccountTransactions from '../components/accountTransactions';
@@ -50,7 +51,7 @@ export default {
   // },
   setting: {
     path: '/setting',
-    component: Dashboard,
+    component: Settings,
     isPrivate: true,
   },
   // secondPassphrase: {

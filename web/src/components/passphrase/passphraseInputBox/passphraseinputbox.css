@@ -9,10 +9,10 @@
 .passphraseInputBox {
   background: var(--color-white);
   height: 262px;
-  justify-content: space-evenly;
+  justify-content: space-around;
 
   & > .row {
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-direction: row !important;
 
     & > span {

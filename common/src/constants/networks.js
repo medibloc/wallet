@@ -18,5 +18,5 @@ const networks = {
   },
 };
 
-networks.default = networks[window.localStorage && window.localStorage.getItem('defaultNetwork')] || networks.customNode;
+networks.default = networks[window.localStorage && window.localStorage.getItem('defaultNetwork')] || networks.testnet;
 module.exports = networks;

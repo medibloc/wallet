@@ -3,12 +3,12 @@
 .passphraseBox {
   background: white;
   height: 262px;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-top: 26px;
   width: 480px;
 
   & > .row {
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-direction: row !important;
 
     & > .boxFocus {
