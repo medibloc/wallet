@@ -60,6 +60,8 @@ class Enter extends React.Component {
       <PrimaryButton
         label={t('Sign in')}
         className={`${styles.nextButton}`}
+        disabled={(!!this.state.passphraseValidity ||
+          !this.state.passphrase)}
         onClick={() => nextStep({
           passphrase: this.state.passphrase,
         })}/>
