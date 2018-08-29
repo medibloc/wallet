@@ -40,19 +40,19 @@
         width: 364px;
       }
 
-      & .balanceWrapper {
+      & .totalWrapper {
         flex-direction: column;
         height: 118px;
         margin-top: 65px;
         text-align: center;
         width: 364px;
 
-        & .balanceHeader {
+        & .totalHeader {
           color: var(--color-black-54);
           width: 364px;
         }
 
-        & .balance {
+        & .total {
           border-bottom: 1px solid var(--color-black-38);
           color: var(--color-dodger-blue);
           font-size: 60px;

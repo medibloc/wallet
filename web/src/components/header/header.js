@@ -23,8 +23,8 @@ class Header extends React.Component {
               <PrivateWrapper>
                 <div className={`account ${styles.account}`}>
                   <div className={styles.information} align="right">
-                    <div className={styles.balance}>
-                      <MedAmount val={this.props.account.balance}/>
+                    <div className={styles.total}>
+                      <MedAmount val={this.props.account.balance + this.props.account.vesting}/>
                       <small>MED</small>
                     </div>
                     <CopyToClipboard

@@ -43,9 +43,9 @@ class Dashboard extends React.Component {
             <WBox className={`${styles.assetsHeader}`}>
               <h4>My Assets</h4>
             </WBox>
-            <WBox className={`${styles.balanceWrapper}`}>
-              <h6 className={`${styles.balanceHeader}`}>Balance</h6>
-              <h2 className={`${styles.balance}`}>{fromRawMed(account.balance)}</h2>
+            <WBox className={`${styles.totalWrapper}`}>
+              <h6 className={`${styles.totalHeader}`}>Total</h6>
+              <h2 className={`${styles.total}`}>{fromRawMed(account.balance + account.vesting)}</h2>
             </WBox>
             <WBox className={`${styles.vestingWrapper}`}>
               <div className={`${styles.vestingHeader}`}>

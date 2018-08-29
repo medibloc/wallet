@@ -117,7 +117,7 @@
     padding-right: 20px;
     vertical-align: middle;
 
-    & .balance {
+    & .total {
       color: var(--color-black-87);
       font-size: 22px;
       font-family: var(--heading-font);
