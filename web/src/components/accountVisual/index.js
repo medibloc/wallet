@@ -82,7 +82,7 @@ const computePentagon = props => (
 
 const getShape = (chunk, size, gradient, sizeScale = 1) => {
   const shapeNames = [
-    'circle', 'triangle', 'square',
+    'square', 'square', 'square',
   ];
 
   const sizes = [
