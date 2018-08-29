@@ -17,7 +17,7 @@ const peerSet = (data, config) => ({
  * the given network code
  * This should be called once in login page
  *
- * @param {Object} data - network code and the passphrase of account
+ * @param {Object} data - network code
  * @returns {Object} Action object
  */
 export const activePeerSet = data =>

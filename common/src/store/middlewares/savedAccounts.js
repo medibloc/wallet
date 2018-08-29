@@ -5,7 +5,6 @@ import { activePeerSet } from '../../actions/peers';
 import { getAccount } from '../../utils/api/account';
 import { extractAddress } from '../../utils/account';
 import { getLastActiveAccount } from '../../utils/savedAccounts';
-import getNetwork from '../../utils/getNetwork';
 
 const savedAccountsMiddleware = (store) => {
   setImmediate(() => {
@@ -15,7 +14,7 @@ const savedAccountsMiddleware = (store) => {
 
     if (savedAccounts && savedAccounts.lastActive) {
       const account = savedAccounts.lastActive;
-      const networkCode = Object.assign({}, getNetwork(account.networkCode));
+      const networkCode = account.networkCode;
 
       // /* istanbul ignore if  */
       // if (account.networkCode === networks.customNode.code) {
