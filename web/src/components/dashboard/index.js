@@ -6,7 +6,7 @@ import React from 'react';
 import Box from '../box';
 import WBox from '../wbox';
 import { loadTransactions } from '../../../../common/src/actions/transactions';
-import TransactionList from './../transactions/transactionList';
+import TransactionListView from '../transactionDashboard/transactionListView';
 import Transfer from '../transfer';
 // import routes from '../../constants/routes';
 import { fromRawMed } from '../../../../common/src/utils/med';
@@ -33,8 +33,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { transactions, t, account, loading, history } = this.props;
-    // const { transactions, t, account } = this.props;
+    // const { transactions, t, account, loading, history } = this.props;
+    const { account } = this.props;
 
     return <Box className={`${styles.wrapper}`}>
       <Box className={`${styles.mainWrapper}`}>
@@ -59,35 +59,8 @@ class Dashboard extends React.Component {
           <WBox className={`${styles.graph}`}>
           </WBox>
         </Box>
-        <WBox className={`${styles.txList}`}>
-          <WBox className={`${styles.txListHeader}`}>
-            <div className={styles.txListHeaderTitle}>
-              <h4>
-                { t('Last Activity') }
-                { /*
-                  <Link to={`${routes.dashboard.path}`}
-                  className={`${styles.seeAllLink} seeAllLink`}>
-                    {t('See all transactions')}
-                    <FontIcon value='arrow-right'/>
-                  </Link> */
-                }
-              </h4>
-            </div>
-            <div className={styles.txListHeaderMore}>
-              <h6>
-                { t('See all transactions') }
-              </h6>
-            </div>
-          </WBox>
-          { <TransactionList {...{
-            transactions,
-            t,
-            address: account.address,
-            dashboard: true,
-            loading,
-            history,
-            // onClick: props => history.push(`${routes.wallet.path}?id=${props.value.id}`),
-          }} /> }
+        <WBox className={styles.txListView}>
+          <TransactionListView {...this.props}/>
         </WBox>
       </Box>
       <WBox className={`${styles.transferWrapper}`}>

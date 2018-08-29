@@ -1,0 +1,20 @@
+@import '../app/variables.css';
+
+.wrapper {
+  display: flex;
+  height: 632px;
+  flex-direction: row;
+  margin: 0;
+  width: 1280px;
+}
+
+.transfer {
+  height: 100%;
+  width: 412px;
+}
+
+.txListView {
+  height: 100%;
+  margin-left: 21px;
+  width: 846px;
+}

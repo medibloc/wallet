@@ -1,0 +1,17 @@
+@import '../app/variables.css';
+
+.txListHeader {
+  flex-direction: row;
+  justify-content: space-between;
+  height: 65px;
+  padding: 0 24px;
+  width: 100%;
+
+  & .txListHeaderTitle {
+    justify-content: flex-start;
+  }
+
+  & .txListHeaderMore {
+    justify-content: flex-end;
+  }
+}

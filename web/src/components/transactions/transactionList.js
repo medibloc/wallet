@@ -7,36 +7,14 @@ import TransactionsHeader from './transactionsHeader';
 // import txFilters from './../../../../common/src/constants/transactionFilters';
 // import txTypes from './../../../../common/src/constants/transactionTypes';
 import styles from './transactionList.css';
-// import { parseSearchParams } from './../../utils/searchParams';
-// import DelegateStatistics from './delegateStatistics';
+
+const isLargeScreen = () => window.innerWidth > 768;
 
 class TransactionsList extends React.Component {
-  // componentWillReceiveProps(nextProps) {
-  //   // istanbul ignore else
-  //   if (nextProps.transactions && this.props.nextStep) this.showDetails(nextProps.transactions);
-  // }
-  //
-  // showDetails(transactions) {
-  //   const paramsId = parseSearchParams(this.props.history.location.search).id;
-  //
-  //   // istanbul ignore else
-  //   if (paramsId) {
-  //     const value = transactions.filter(transaction => transaction.id === paramsId)[0];
-  //     // istanbul ignore else
-  //     if (value) this.props.nextStep({ value, t: this.props.t });
-  //   }
-  // }
-
-  // eslint-disable-next-line class-methods-use-this
-  isLargeScreen() {
-    return window.innerWidth > 768;
-  }
-
   render() {
     const {
       transactions,
       loading,
-      dashboard,
       address,
       onClick,
       loadMore,
@@ -56,11 +34,10 @@ class TransactionsList extends React.Component {
     // istanbul ignore else
     if (transactions.length === 0) {
       // istanbul ignore else
-      if (dashboard) {
-        return <p className={`${styles.empty} hasPaddingRow empty-message`}>
-          {t('There are no transactions.')}
-        </p>;
-      }
+      return <p className={`${styles.empty} hasPaddingRow empty-message`}>
+        {t('There are no transactions.')}
+      </p>;
+
 
       // if (dashboard || (filter && filter.value !== txFilters.all)) {
       //   return <p className={`${styles.empty} hasPaddingRow empty-message`}>
@@ -69,17 +46,9 @@ class TransactionsList extends React.Component {
       //     })}
       //   </p>;
       // }
-      return null;
+      // return null;
     }
 
-    // const isDelegateStatistics = filter && (filter.value === txFilters.statistics);
-    //
-    // if (isDelegateStatistics) {
-    //   return <DelegateStatistics
-    //     delegate={this.props.delegate}
-    //     votes={this.props.votes}
-    //     voters={this.props.voters} />;
-    // }
     return <div className={`${styles.results} transaction-results`}>
       <TransactionsHeader tableStyle={tableStyle} />
       {transactions
@@ -95,13 +64,11 @@ class TransactionsList extends React.Component {
         // the transaction list should be scrollable on a large screen
         // otherwise (XS) the whole transaction box will be scrollable
         // (see transactionOverview.js)
-        this.isLargeScreen()
+        isLargeScreen()
           ? <Waypoint bottomOffset='-80%'
             key={transactions.length}
             onEnter={() => {
-              if (!dashboard) {
-                loadMore();
-              }
+              loadMore();
             }} />
           : null
       }
