@@ -50,19 +50,24 @@ class Password extends React.Component {
     return data;
   }
 
-  validateConfirmPassword(value) {
+  validateConfirmPassword(value, password = this.state.password) {
     const data = { confirmPassword: value };
-    data.confirmPasswordValidity = this.state.password === value ? '' :
+    data.confirmPasswordValidity = password === value ? '' :
       'not matched with password';
     return data;
   }
 
-  changeHandler(name, value, error) {
+  changeHandler(name, value) {
     const validator = this.validators[name] || (() => ({}));
     this.setState({
       [name]: value,
-      ...validator(value, error),
+      ...validator(value),
     });
+    if (name === 'password' && !!this.state.confirmPassword) {
+      this.setState({
+        ...this.validators.confirmPassword(this.state.confirmPassword, value),
+      });
+    }
   }
 
   render() {
