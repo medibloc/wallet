@@ -11,7 +11,7 @@ import * as menuLogos from '../../assets/images/main-menu-icons/*.svg'; //eslint
 import routes from '../../constants/routes';
 
 const getIndex = (history, tabs) => {
-  if (history.location.pathname.includes('explorer')) return 3;
+  // if (history.location.pathname.includes('explorer')) return 2;
 
   let index = -1;
   tabs.map(t => new RegExp(`${t.route}(\\/?)`)).forEach((item, i) => {
