@@ -89,7 +89,7 @@ class Login extends React.Component {
 
   render() {
     const { history, t, savedAccounts } = this.props;
-    let accounts;
+    let accounts = [];
     if (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) {
       accounts = savedAccounts.accounts.map(a => (Object.assign({},
         { ...a },
@@ -107,7 +107,7 @@ class Login extends React.Component {
             <header>
               <h2>{t('Sign in page for wallet')}</h2>
             </header>
-            { accounts ?
+            {(accounts && accounts.length > 0) ?
               <DropDown
                 label={t('Account label')}
                 parentclassname={`${styles.accountLabel}`}
@@ -115,17 +115,25 @@ class Login extends React.Component {
                 template={customItem}
                 value={this.state.selectedAddress}
                 onChange={(...args) => this.handleAccountChange(...args)}
-              /> : null}
+              /> :
+              <Input
+                title={t('Account label')}
+                parentclassname={`${styles.noAccountLabel}`}
+                theme={styles}
+                name={'label'}
+                disabled={true}/>}
             <Input type='password'
               title={t('Password')}
               parentclassname={`${styles.password}`}
               theme={styles}
               name={'password'}
               value={this.state.password}
+              disabled={accounts.length === 0}
               onChange={(...args) => this.handlePasswordChange(...args)}/>
             <PrimaryButton
               label={t('Next')}
               className={`${styles.nextButton}`}
+              disabled={!this.state.password}
               onClick={() => {
                 const address = this.state.selectedAddress;
                 const encKey = accounts.find(a => a.address === this.state.selectedAddress).encKey;

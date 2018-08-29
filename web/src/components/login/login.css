@@ -16,8 +16,20 @@
       margin-top: 48px;
     }
 
+    & > .noAccountLabel {
+      margin: 48px 0 18px;
+
+      & input {
+        height: var(--input-height);
+      }
+    }
+
     & > .password {
       margin-top: 4px;
+
+      & input {
+        height: var(--input-height);
+      }
     }
 
     & > .nextButton {
