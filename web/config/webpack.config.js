@@ -44,7 +44,7 @@ module.exports = {
       {
         test: /\.svg$/,
         exclude: [/fonts/],
-        loader: 'svg-inline-loader'
+        loader: 'svg-inline-loader',
       },
       {
         test: /\.png$/,
