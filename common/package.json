@@ -42,8 +42,8 @@
     "eslint-plugin-react": "7.4.0",
     "jsdom": "11.11.0",
     "jsdom-global": "3.0.2",
-    "mocha": "3.5.3",
-    "sinon": "3.3.0",
+    "mocha": "4.0.1",
+    "sinon": "4.5.0",
     "sinon-chai": "2.13.0",
     "sinon-stub-promise": "=4.0.0"
   }
