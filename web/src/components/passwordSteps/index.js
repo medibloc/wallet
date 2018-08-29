@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PasswordSteps from './passwordSteps';
-import { sent } from '../../../../common/src/actions/account';
+import { sent, vested } from '../../../../common/src/actions/account';
 
 const mapStateToProps = state => ({
   account: state.account,
@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   sent: data => dispatch(sent(data)),
+  vested: data => dispatch(vested(data)),
 });
 
 export default connect(

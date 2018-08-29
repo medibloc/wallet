@@ -148,6 +148,32 @@ export const vest = ({ activePeer, nonce, privKey, value }) =>
     }).catch(error => reject(error));
   });
 
+export const vestAndSend = ({ activePeer, nonce, privKey, value }) =>
+  new Promise((resolve, reject) => {
+    const password = randomBytes(32).toString('hex');
+    const account = getAccountFromPrivKey(privKey, password);
+    const address = extractAddress(account.pubKey);
+
+    const tx = vestTx({
+      from: address,
+      nonce,
+      value,
+    });
+    console.log(JSON.parse(JSON.stringify(tx)));
+
+    account.signTx(tx, password);
+    activePeer.sendTransaction(tx).then((res) => {
+      console.log(res);
+      if (res.hash) {
+        resolve({
+          transactionId: res.hash,
+        });
+      } else {
+        reject(res);
+      }
+    }).catch(error => reject(error));
+  });
+
 export const withdrawVesting = ({ activePeer, nonce, privKey, value }) =>
   new Promise((resolve, reject) => {
     const password = randomBytes(32).toString('hex');

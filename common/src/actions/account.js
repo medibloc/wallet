@@ -169,20 +169,20 @@ export const airDropped = ({ activePeer, address }) =>
 /**
  *
  */
-export const sent = ({ activePeer, account, amount,
-  description, passphrase, privKey, to }) =>
+export const sent = ({ activePeer, address, amount,
+  description, nonce, passphrase, privKey, to }) =>
   (dispatch) => {
     send({
       activePeer,
       description,
-      nonce: parseInt(account.nonce, 10) + 1,
+      nonce,
       privKey: privKey || extractPrivKey(passphrase),
       to,
       value: toRawMed(amount),
     }).then((res) => {
       dispatch({
         data: {
-          from: account.address,
+          from: address,
           hash: res.transactionId,
           timestamp: res.timestamp,
           to,
@@ -258,19 +258,20 @@ export const loadAccount = ({
 /**
  *
  */
-export const vested = ({ activePeer, account, amount, passphrase }) =>
+export const vested = ({ activePeer, address, amount,
+  nonce, privKey, passphrase }) =>
   (dispatch) => {
     vest({
       activePeer,
-      nonce: parseInt(account.nonce, 10) + 1,
-      privKey: extractPrivKey(passphrase),
+      nonce,
+      privKey: privKey || extractPrivKey(passphrase),
       value: toRawMed(amount),
     }).then((data) => {
       dispatch({
         data: {
           id: data.transactionId,
-          senderAddress: account.address,
-          senderId: account.address,
+          senderAddress: address,
+          senderId: address,
           amount: toRawMed(amount),
           type: transactionTypes.vest,
         },
@@ -288,19 +289,20 @@ export const vested = ({ activePeer, account, amount, passphrase }) =>
 /**
  *
  */
-export const withdrewVesting = ({ activePeer, account, amount, passphrase }) =>
+export const withdrewVesting = ({ activePeer, address, amount,
+  nonce, privKey, passphrase }) =>
   (dispatch) => {
     withdrawVesting({
       activePeer,
-      nonce: parseInt(account.nonce, 10) + 1,
-      privKey: extractPrivKey(passphrase),
+      nonce,
+      privKey: privKey || extractPrivKey(passphrase),
       value: toRawMed(amount),
     }).then((data) => {
       dispatch({
         data: {
           id: data.transactionId,
-          senderAddress: account.address,
-          senderId: account.address,
+          senderAddress: address,
+          senderId: address,
           amount: toRawMed(amount),
           type: transactionTypes.withdrawVesting,
         },
