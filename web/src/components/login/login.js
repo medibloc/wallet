@@ -47,9 +47,9 @@ class Login extends React.Component {
 
   componentWillReceiveProps(props) {
     const { savedAccounts } = props;
-    if (!this.state.selectedAddress && savedAccounts &&
-      savedAccounts.accounts && savedAccounts.accounts.length > 0) {
-      this.handleAccountChange(savedAccounts.accounts[0].address);
+    if (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) {
+      this.handleAccountChange(savedAccounts.lastActive ?
+        savedAccounts.lastActive.address : savedAccounts.accounts[0].address);
     }
   }
 
@@ -91,7 +91,7 @@ class Login extends React.Component {
     const { history, t, savedAccounts } = this.props;
     let accounts = [];
     if (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) {
-      accounts = savedAccounts.accounts.map(a => (Object.assign({},
+      accounts = savedAccounts.accounts.slice(0).reverse().map(a => (Object.assign({},
         { ...a },
         { value: a.address },
       )));
