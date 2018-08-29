@@ -8,7 +8,6 @@ import { Input } from '../toolbox/inputs/input';
 import Footer from '../register/footer/footer';
 import { PrimaryButton } from '../toolbox/buttons/button';
 import { extractAddress, getAccountFromEncKey } from '../../../../common/src/utils/account';
-import getNetwork from '../../../../common/src/utils/getNetwork';
 import routes from '../../constants/routes';
 
 const customItem = item => (
@@ -63,14 +62,6 @@ class Login extends React.Component {
     }
   }
 
-  getNetwork() {
-    const network = Object.assign({}, getNetwork(this.state.networkCode));
-    if (this.state.networkCode === networks.customNode.code) {
-      network.url = this.state.url;
-    }
-    return network;
-  }
-
   // eslint-disable-next-line class-methods-use-this
   getReferrerRoute() {
     return `${routes.dashboard.path}`;
@@ -85,11 +76,10 @@ class Login extends React.Component {
   }
 
   onLoginSubmission({ address, encKey }) {
-    const network = this.getNetwork();
     this.props.activePeerSet({
       address,
       encKey,
-      network,
+      networkCode: this.state.networkCode,
     });
   }
 

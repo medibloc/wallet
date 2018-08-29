@@ -6,7 +6,6 @@ import { getAccount } from '../../utils/api/account';
 import { extractAddress } from '../../utils/account';
 import { getLastActiveAccount } from '../../utils/savedAccounts';
 import getNetwork from '../../utils/getNetwork';
-import networks from '../../constants/networks';
 
 const savedAccountsMiddleware = (store) => {
   setImmediate(() => {
@@ -16,17 +15,17 @@ const savedAccountsMiddleware = (store) => {
 
     if (savedAccounts && savedAccounts.lastActive) {
       const account = savedAccounts.lastActive;
-      const network = Object.assign({}, getNetwork(account.network));
+      const networkCode = Object.assign({}, getNetwork(account.networkCode));
 
-      /* istanbul ignore if  */
-      if (account.network === networks.customNode.code) {
-        network.address = account.address;
-      }
+      // /* istanbul ignore if  */
+      // if (account.networkCode === networks.customNode.code) {
+      //   network.address = account.address;
+      // }
 
       store.dispatch(activePeerSet({
         address: account.address,
         encKey: account.encKey,
-        network,
+        networkCode,
       }));
     }
   });
@@ -82,26 +81,24 @@ const savedAccountsMiddleware = (store) => {
         store.dispatch(activePeerSet({
           address: action.data.address,
           encKey: action.data.encKey,
-          network: {
-            ...getNetwork(action.data.network),
-          },
+          networkCode: action.data.networkCode,
         }));
         break;
       case actionTypes.activeAccountSaved:
         store.dispatch(accountSaved({
-          balance: account.balance,
           address: account.address,
+          balance: account.balance,
           encKey: account.encKey,
-          network: peers.options.code,
+          networkCode: peers.options.code,
         }));
         break;
       case actionTypes.accountLoggedIn:
         updateSavedAccounts(peers, savedAccounts.accounts);
         store.dispatch(accountSaved({
-          balance: action.data.balance,
           address: action.data.address,
+          balance: action.data.balance,
           encKey: action.data.encKey,
-          network: peers.options.code,
+          networkCode: peers.options.code,
         }));
         break;
       case actionTypes.accountRemoved:

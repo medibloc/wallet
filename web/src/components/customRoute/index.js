@@ -1,5 +1,4 @@
-// import React, { Fragment } from 'react';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withRouter, Route } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -14,7 +13,7 @@ export const CustomRouteRender = ({ path, component, isPrivate, exact,
   const fullPath = pathPrefix + path + pathSuffix;
   console.log(fullPath);
   return ((isPrivate && isAuthenticated) || !isPrivate ?
-    <div>
+    <Fragment>
       {isPrivate ? <MainMenu /> : null}
       <main className={isPrivate ? `${offlineStyle.disableWhenOffline} ${styles.mainWrapper}` : null}>
         <ErrorBoundary errorMessage={t('An error occoured while rendering this page')}>
@@ -31,7 +30,7 @@ export const CustomRouteRender = ({ path, component, isPrivate, exact,
           }
         </ErrorBoundary>
       </main>
-    </div>
+    </Fragment>
     : null
   );
 };

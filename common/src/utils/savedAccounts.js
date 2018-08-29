@@ -8,9 +8,9 @@ export const getSavedAccounts = () => {
 
 export const setSavedAccounts = (accounts) => {
   accounts = accounts.map(({
-    address, balance, encKey, networkCode,
+    address, balance, encKey, label, networkCode,
   }) => ({
-    address, balance, encKey, networkCode,
+    address, balance, encKey, label, networkCode,
   }));
   localStorage.setItem('accounts', JSON.stringify(accounts));
 };
