@@ -1,8 +1,8 @@
 import { randomBytes } from 'crypto';
 import blockTypes from '../../constants/blockTypes';
 import txTypes from '../../constants/transactionTypes';
-import { valueTransferTx, vestTx, withdrawVestingTx } from '../transaction';
 import { extractAddress, isAddress, getAccountFromPrivKey } from '../account';
+import { createDefaultPayload, valueTransferTx, vestTx, withdrawVestingTx } from '../transaction';
 
 export const getAccount = (activePeer, address) =>
   new Promise((resolve, reject) => {
@@ -20,7 +20,7 @@ export const getAccount = (activePeer, address) =>
     }).catch(error => reject(error));
   });
 
-export const send = ({ activePeer, nonce, privKey, to, value }) =>
+export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
   new Promise((resolve, reject) => {
     const password = randomBytes(32).toString('hex');
     const account = getAccountFromPrivKey(privKey, password);
@@ -31,6 +31,7 @@ export const send = ({ activePeer, nonce, privKey, to, value }) =>
       to,
       value,
       nonce,
+      payload: createDefaultPayload(description),
     });
     console.log(`send tx: ${JSON.stringify(tx)}`);
 
@@ -121,16 +122,16 @@ export const transactions = ({ activePeer, address, txTypeFilter }) =>
 //     orderBy,
 //   });
 
-export const vest = (activePeer, value, nonce, privKey) =>
+export const vest = ({ activePeer, nonce, privKey, value }) =>
   new Promise((resolve, reject) => {
     const password = randomBytes(32).toString('hex');
     const account = getAccountFromPrivKey(privKey, password);
-    const extractAddress1 = extractAddress(account.pubKey);
+    const address = extractAddress(account.pubKey);
 
     const tx = vestTx({
-      from: extractAddress1,
-      value,
+      from: address,
       nonce,
+      value,
     });
     console.log(JSON.parse(JSON.stringify(tx)));
 
@@ -147,16 +148,16 @@ export const vest = (activePeer, value, nonce, privKey) =>
     }).catch(error => reject(error));
   });
 
-export const withdrawVesting = (activePeer, value, nonce, privKey) =>
+export const withdrawVesting = ({ activePeer, nonce, privKey, value }) =>
   new Promise((resolve, reject) => {
     const password = randomBytes(32).toString('hex');
     const account = getAccountFromPrivKey(privKey, password);
-    const extractAddress1 = extractAddress(account.pubKey);
+    const address = extractAddress(account.pubKey);
 
     const tx = withdrawVestingTx({
-      from: extractAddress1,
-      value,
+      from: address,
       nonce,
+      value,
     });
     console.log(JSON.parse(JSON.stringify(tx)));
 

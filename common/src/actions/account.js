@@ -169,11 +169,12 @@ export const airDropped = ({ activePeer, address }) =>
 /**
  *
  */
-export const sent = ({ activePeer, account, to,
-  amount, passphrase, privKey }) =>
+export const sent = ({ activePeer, account, amount,
+  description, passphrase, privKey, to }) =>
   (dispatch) => {
     send({
       activePeer,
+      description,
       nonce: parseInt(account.nonce, 10) + 1,
       privKey: privKey || extractPrivKey(passphrase),
       to,
@@ -259,10 +260,12 @@ export const loadAccount = ({
  */
 export const vested = ({ activePeer, account, amount, passphrase }) =>
   (dispatch) => {
-    vest(
-      activePeer, toRawMed(amount), parseInt(account.nonce, 10) + 1,
-      extractPrivKey(passphrase),
-    ).then((data) => {
+    vest({
+      activePeer,
+      nonce: parseInt(account.nonce, 10) + 1,
+      privKey: extractPrivKey(passphrase),
+      value: toRawMed(amount),
+    }).then((data) => {
       dispatch({
         data: {
           id: data.transactionId,
@@ -287,10 +290,12 @@ export const vested = ({ activePeer, account, amount, passphrase }) =>
  */
 export const withdrewVesting = ({ activePeer, account, amount, passphrase }) =>
   (dispatch) => {
-    withdrawVesting(
-      activePeer, toRawMed(amount), parseInt(account.nonce, 10) + 1,
-      extractPrivKey(passphrase),
-    ).then((data) => {
+    withdrawVesting({
+      activePeer,
+      nonce: parseInt(account.nonce, 10) + 1,
+      privKey: extractPrivKey(passphrase),
+      value: toRawMed(amount),
+    }).then((data) => {
       dispatch({
         data: {
           id: data.transactionId,

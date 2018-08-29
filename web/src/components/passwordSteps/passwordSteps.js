@@ -107,6 +107,7 @@ class PasswordSteps extends React.Component {
                   account: this.props.account,
                   activePeer: this.props.peers.activePeer,
                   amount: this.props.amount,
+                  description: this.props.description,
                   to: this.props.recipient,
                   privKey,
                 });

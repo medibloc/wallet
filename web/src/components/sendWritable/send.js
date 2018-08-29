@@ -20,7 +20,7 @@ class SendWritable extends React.Component {
         value: this.props.amount || '',
       },
       description: {
-        value: this.props.description || '',
+        value: this.props.description || null,
       },
     };
     this.inputValidationRegexps = {
