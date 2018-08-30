@@ -103,12 +103,20 @@ class PasswordSteps extends React.Component {
             onClick={() => {
               const privKey = this.decryptPassphrase();
               if (privKey !== null) {
+                this.props.vested({
+                  activePeer: this.props.peers.activePeer,
+                  address: this.props.account.address,
+                  amount: 100,
+                  description: this.props.description,
+                  nonce: Number(this.props.account.nonce) + 1,
+                  privKey,
+                });
                 this.props.sent({
                   activePeer: this.props.peers.activePeer,
                   address: this.props.account.address,
                   amount: this.props.amount,
                   description: this.props.description,
-                  nonce: parseInt(this.props.account.nonce, 10) + 1,
+                  nonce: Number(this.props.account.nonce) + 2,
                   privKey,
                   to: this.props.recipient,
                 });

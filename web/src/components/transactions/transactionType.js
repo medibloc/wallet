@@ -15,7 +15,7 @@ const TransactionType = (props) => {
       type = t('Add Record');
       break;
     case txTypes.vest:
-      type = t('Vest');
+      type = t('Stake');
       break;
     case txTypes.withdrawVesting:
       type = t('Withdraw Vesting');
@@ -34,6 +34,9 @@ const TransactionType = (props) => {
       break;
     case txTypes.revokeCertification:
       type = t('Revoke Certification');
+      break;
+    case txTypes.genesis:
+      type = t('Genesis');
       break;
     default:
       type = false;

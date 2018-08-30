@@ -1,5 +1,5 @@
 import React from 'react';
-import Waypoint from 'react-waypoint';
+// import Waypoint from 'react-waypoint';
 import tableStyle from 'react-toolbox/lib/table/theme.css';
 import TransactionRow from './transactionRow';
 import TransactionsHeader from './transactionsHeader';
@@ -8,17 +8,17 @@ import TransactionsHeader from './transactionsHeader';
 // import txTypes from './../../../../common/src/constants/transactionTypes';
 import styles from './transactionList.css';
 
-const isLargeScreen = () => window.innerWidth > 768;
+// const isLargeScreen = () => window.innerWidth > 768;
 
 class TransactionsList extends React.Component {
   render() {
     const {
-      transactions,
+      account,
       loading,
-      address,
       onClick,
-      loadMore,
       t,
+      transactions,
+      // loadMore,
     } = this.props;
 
     // const fixIncomingFilter = (transaction) => {
@@ -53,8 +53,9 @@ class TransactionsList extends React.Component {
       <TransactionsHeader tableStyle={tableStyle} />
       {transactions
         // .filter(fixIncomingFilter)
+        .sort((a, b) => a.timestamp < b.timestamp)
         .map((transaction, i) => (
-          <TransactionRow address={address}
+          <TransactionRow address={account.address}
             key={i}
             t={t}
             value={transaction}
@@ -64,13 +65,13 @@ class TransactionsList extends React.Component {
         // the transaction list should be scrollable on a large screen
         // otherwise (XS) the whole transaction box will be scrollable
         // (see transactionOverview.js)
-        isLargeScreen()
-          ? <Waypoint bottomOffset='-80%'
-            key={transactions.length}
-            onEnter={() => {
-              loadMore();
-            }} />
-          : null
+        // isLargeScreen()
+        //   ? <Waypoint bottomOffset='-80%'
+        //     key={transactions.length}
+        //     onEnter={() => {
+        //       loadMore();
+        //     }} />
+        //   : null
       }
     </div>;
   }
