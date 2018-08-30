@@ -97,7 +97,7 @@ class SendWritable extends React.Component {
               parentclassname={`${styles.amount}`}
               t={t}
               theme={styles}
-              title={t('Asset')}
+              title={t('MED')}
               value={this.state.amount.value}
             />
             <Input

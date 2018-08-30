@@ -1,5 +1,5 @@
 import React from 'react';
-import { fromRawMed } from '../../utils/med';
+import { fromRawMed } from '../../../../common/src/utils/med';
 import FormattedNumber from '../formattedNumber';
 
 const roundTo = (value, places) => {
