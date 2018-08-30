@@ -57,7 +57,7 @@ class SendWritable extends React.Component {
 
   validateInput(name, value) {
     if (name === 'description') {
-      if (value.length > 10) {
+      if (value.length > 50) {
         return this.props.t('Max length exceeded');
       }
       return undefined;
