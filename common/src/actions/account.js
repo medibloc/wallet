@@ -228,8 +228,10 @@ export const loadAccount = ({
         console.log(isSameAccount);
         dispatch({
           data: {
-            balance: response.balance,
             address,
+            balance: response.balance,
+            unstaking: response.unstaking,
+            vesting: response.vesting,
           },
           type: actionTypes.updateDelegate,
         });

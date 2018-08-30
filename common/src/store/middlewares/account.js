@@ -46,7 +46,9 @@ const updateAccountData = (store, action) => {
   const { peers, account, transactions } = store.getState();
 
   getAccount(peers.activePeer, account.address).then((result) => {
-    if (result.balance !== account.balance) {
+    if (result.balance !== account.balance ||
+      result.vesting !== account.vesting ||
+      result.unstaking !== account.unstaking) {
       if (!action.data.windowIsFocused || !hasRecentTransactions(transactions)) {
         updateTransactions(store, peers, account);
       }
@@ -54,7 +56,7 @@ const updateAccountData = (store, action) => {
     store.dispatch(accountUpdated(result));
     store.dispatch(activePeerUpdate({ online: true }));
   }).catch((res) => {
-    store.dispatch(activePeerUpdate({ online: false, code: res.error.code }));
+    store.dispatch(activePeerUpdate({ online: false, code: res.code }));
   });
 };
 

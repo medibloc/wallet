@@ -6,10 +6,10 @@ import React from 'react';
 import Box from '../box';
 import WBox from '../wbox';
 import { loadTransactions } from '../../../../common/src/actions/transactions';
+import MedAmount from '../medAmount';
 import TransactionListView from '../transactionDashboard/transactionListView';
 import Transfer from '../transfer';
 // import routes from '../../constants/routes';
-import { fromRawMed } from '../../../../common/src/utils/med';
 import styles from './dashboard.css';
 import { airDropped } from '../../../../common/src/actions/account';
 
@@ -45,14 +45,18 @@ class Dashboard extends React.Component {
             </WBox>
             <WBox className={`${styles.totalWrapper}`}>
               <h6 className={`${styles.totalHeader}`}>Total</h6>
-              <h2 className={`${styles.total}`}>{fromRawMed(account.balance + account.vesting)}</h2>
+              <h2 className={`${styles.total}`}>
+                <MedAmount val={parseInt(account.balance, 10) +
+                  parseInt(account.vesting, 10) +
+                  parseInt(account.unstaking, 10)} />
+              </h2>
             </WBox>
             <WBox className={`${styles.vestingWrapper}`}>
               <div className={`${styles.vestingHeader}`}>
                 <h6>Vesting</h6>
               </div>
               <div className={`${styles.vesting}`}>
-                <h6>{fromRawMed(account.vesting)}</h6>
+                <h6> <MedAmount val={account.vesting} /> </h6>
               </div>
             </WBox>
           </WBox>

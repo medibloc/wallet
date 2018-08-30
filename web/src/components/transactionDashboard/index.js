@@ -1,12 +1,18 @@
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
+import { loadTransactions } from '../../../../common/src/actions/transactions';
 import TransactionsDashboard from './transactionDashboard';
 
 const mapStateToProps = state => ({
-  address: state.account.address,
-  balance: state.account.balance,
-  vesting: state.account.vesting,
   account: state.account,
+  loading: state.loading.length > 0,
+  peers: state.peers,
+  transactions: [...state.transactions.pending, ...state.transactions.confirmed].slice(0, 5),
   pendingTransactions: state.transactions.pending,
 });
 
-export default connect(mapStateToProps)(TransactionsDashboard);
+const mapDispatchToProps = dispatch => ({
+  loadTransactions: data => dispatch(loadTransactions(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(translate()(TransactionsDashboard));

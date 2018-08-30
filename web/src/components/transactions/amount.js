@@ -13,6 +13,12 @@ const Amount = (props) => {
   } else if (props.value.from !== props.address) {
     params.className = 'greenLabel';
     params.pre = '+';
+  } else if (props.value.tx_type === transactionTypes.vest) {
+    params.className = 'greyLabel';
+    params.pre = '-';
+  } else if (props.value.tx_type === transactionTypes.withdrawVesting) {
+    params.className = 'greyLabel';
+    params.pre = '+';
   } else if ((props.value.tx_type !== transactionTypes.send ||
       props.value.to !== props.address) && props.value.amount !== 0) {
     params.pre = '-';

@@ -24,7 +24,9 @@ class Header extends React.Component {
                 <div className={`account ${styles.account}`}>
                   <div className={styles.information} align="right">
                     <div className={styles.total}>
-                      <MedAmount val={this.props.account.balance + this.props.account.vesting}/>
+                      <MedAmount val={parseInt(this.props.account.balance, 10) +
+                        parseInt(this.props.account.vesting, 10) +
+                        parseInt(this.props.account.unstaking, 10)}/>
                       <small>MED</small>
                     </div>
                     <CopyToClipboard

@@ -15,10 +15,10 @@ const TransactionType = (props) => {
       type = t('Add Record');
       break;
     case txTypes.vest:
-      type = t('Stake');
+      type = t('Staking');
       break;
     case txTypes.withdrawVesting:
-      type = t('Withdraw Vesting');
+      type = t('Unstaking');
       break;
     case txTypes.becomeCandidate:
       type = t('Become Candidate');

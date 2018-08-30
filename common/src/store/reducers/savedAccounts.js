@@ -28,6 +28,7 @@ const savedAccounts = (state = { accounts: [] }, action) => {
           label: action.data.label ?
             action.data.label :
             accounts[indexOfAccount].label,
+          unstaking: action.data.unstaking,
           vesting: action.data.vesting,
         };
         accounts[indexOfAccount] = changedAccount;
