@@ -23,62 +23,10 @@
   margin: 0;
   width: 846px;
 
-  & .finance {
+  & .financeWrapper {
     height: 305px;
     flex-direction: row;
     width: 846px;
-
-    & .assets {
-      border-radius: 1px;
-      height: 100%;
-      width: 412px;
-
-      & .assetsHeader {
-        height: 33px;
-        margin-top: 16px;
-        text-align: center;
-        width: 364px;
-      }
-
-      & .totalWrapper {
-        flex-direction: column;
-        height: 118px;
-        margin-top: 65px;
-        text-align: center;
-        width: 364px;
-
-        & .totalHeader {
-          color: var(--color-black-54);
-          width: 364px;
-        }
-
-        & .total {
-          border-bottom: 1px solid var(--color-black-38);
-          color: var(--color-dodger-blue);
-          font-size: 60px;
-          margin-top: 3px;
-          width: 364px;
-        }
-      }
-
-      & .vestingWrapper {
-        display: flex;
-        height: 27px;
-        flex-direction: row;
-        justify-content: flex-end;
-        margin-top: 32px;
-        width: 364px;
-
-        & .vestingHeader {
-          color: var(--color-black-54);
-        }
-
-        & .vesting {
-          color: var(--color-black-87);
-          margin: 0 8px 0 16px;
-        }
-      }
-    }
 
     & .graph {
       border-radius: 1px;
@@ -87,27 +35,127 @@
       width: 412px;
     }
   }
+}
 
-  & .txListView {
-    border-radius: 1px;
-    height: 305px;
-    margin: 22px 0 0;
-    width: 846px;
+.finance {
+  border-radius: 1px;
+  height: 100%;
+  width: 846px;
 
-    & .txListHeader {
-      flex-direction: row;
-      justify-content: space-between;
-      height: 65px;
-      padding: 0 24px;
+  & .totalWrapper {
+    flex-direction: column;
+    height: 118px;
+    margin-top: 24px;
+    padding: 0 30px;
+    text-align: center;
+    width: 100%;
+
+    & .totalHeader {
+      color: var(--color-black-54);
       width: 100%;
+    }
 
-      & .txListHeaderTitle {
-        justify-content: flex-start;
+    & .total {
+      border-bottom: 1px solid var(--color-dodger-blue);
+      color: var(--color-dodger-blue);
+      font-size: 60px;
+      margin-top: 3px;
+      width: 100%;
+    }
+  }
+
+  & .assetsWrapper {
+    height: 72px;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    margin: 16px 0 0;
+
+    & .text {
+      align-items: center;
+      color: var(--color-black-87);
+      display: flex;
+      height: 44px;
+      justify-content: center;
+      text-align: center;
+    }
+
+    & .balanceWrapper {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+
+      & .balanceHeader {
+        color: var(--color-black-60);
       }
 
-      & .txListHeaderMore {
-        justify-content: flex-end;
+      & .balance {
+        border-right: 1px solid var(--color-black-38);
       }
+    }
+
+    & .vestingWrapper {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+
+      & .vestingHeader {
+        color: var(--color-black-60);
+      }
+
+      & .vesting {
+        border-right: 1px solid var(--color-black-38);
+      }
+    }
+
+    & .unstakingWrapper {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+
+      & .unstakingHeader {
+        color: var(--color-black-60);
+      }
+
+      & .unstaking {
+        display: flex;
+      }
+    }
+  }
+
+  & .vestingSettingsWrapper {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+
+    & .vestingSettings {
+      border-radius: 50px;
+      margin: 0 20px 0 0;
+      min-width: 250px;
+      width: 250px;
+    }
+  }
+}
+
+.txListView {
+  border-radius: 1px;
+  height: 305px;
+  margin: 22px 0 0;
+  width: 846px;
+
+  & .txListHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 65px;
+    padding: 0 24px;
+    width: 100%;
+
+    & .txListHeaderTitle {
+      justify-content: flex-start;
+    }
+
+    & .txListHeaderMore {
+      justify-content: flex-end;
     }
   }
 }

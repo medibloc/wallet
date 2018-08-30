@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import React from 'react';
+import grid from 'flexboxgrid/dist/flexboxgrid.css';
 // import { FontIcon } from '../fontIcon';
 import Box from '../box';
+import { SecondaryButton } from '../toolbox/buttons/button';
 import WBox from '../wbox';
 import { loadTransactions } from '../../../../common/src/actions/transactions';
 import MedAmount from '../medAmount';
@@ -34,15 +36,12 @@ class Dashboard extends React.Component {
 
   render() {
     // const { transactions, t, account, loading, history } = this.props;
-    const { account } = this.props;
+    const { account, t } = this.props;
 
     return <Box className={`${styles.wrapper}`}>
       <Box className={`${styles.mainWrapper}`}>
-        <Box className={`${styles.finance}`}>
-          <WBox className={`${styles.assets}`}>
-            <WBox className={`${styles.assetsHeader}`}>
-              <h4>My Assets</h4>
-            </WBox>
+        <Box className={`${styles.financeWrapper}`}>
+          <WBox className={`${styles.finance}`}>
             <WBox className={`${styles.totalWrapper}`}>
               <h6 className={`${styles.totalHeader}`}>Total</h6>
               <h2 className={`${styles.total}`}>
@@ -51,17 +50,41 @@ class Dashboard extends React.Component {
                   parseInt(account.unstaking, 10)} />
               </h2>
             </WBox>
-            <WBox className={`${styles.vestingWrapper}`}>
-              <div className={`${styles.vestingHeader}`}>
-                <h6>Vesting</h6>
+            <WBox className={styles.assetsWrapper}>
+              <div className={`${styles.balanceWrapper} ${grid['col-sm-4']}`}>
+                <div className={styles.balanceHeader}>
+                  <h6>{t('Balance')}</h6>
+                </div>
+                <div className={`${styles.balance} ${styles.text}`}>
+                  <MedAmount val={account.balance} />
+                </div>
               </div>
-              <div className={`${styles.vesting}`}>
-                <h6> <MedAmount val={account.vesting} /> </h6>
+              <div className={`${styles.vestingWrapper} ${grid['col-sm-4']}`}>
+                <div className={styles.vestingHeader}>
+                  <h6>{t('Staking')}</h6>
+                </div>
+                <div className={`${styles.vesting} ${styles.text}`}>
+                  <MedAmount val={account.vesting} />
+                </div>
+              </div>
+              <div className={`${styles.unstakingWrapper} ${grid['col-sm-4']}`}>
+                <div className={styles.unstakingHeader}>
+                  <h6>{t('Pending')}</h6>
+                </div>
+                <div className={`${styles.unstaking} ${styles.text}`}>
+                  <MedAmount val={account.unstaking} />
+                </div>
               </div>
             </WBox>
+            <WBox className={styles.vestingSettingsWrapper}>
+              <SecondaryButton
+                className={`${styles.vestingSettings}`}
+                label={t('Staking Settings')}
+                onClick={() => console.log('Pop up vesting setting')} />
+            </WBox>
           </WBox>
-          <WBox className={`${styles.graph}`}>
-          </WBox>
+          { /*  <WBox className={`${styles.graph}`}>
+          </WBox> */ }
         </Box>
         <WBox className={styles.txListView}>
           <TransactionListView {...this.props}/>

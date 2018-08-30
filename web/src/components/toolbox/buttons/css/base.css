@@ -3,7 +3,7 @@
 @define-mixin buttonBasics {
   width: 100%;
   max-width: 100%;
-  border-radius: 6px;
+  border-radius: 3px;
   text-transform: none;
   font-size: var(--font-size-h5);
   font-weight: var(--font-weight-normal);
