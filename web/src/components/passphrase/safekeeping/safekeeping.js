@@ -29,7 +29,7 @@ class Safekeeping extends React.Component {
       </div>
       <div className={`${styles.comment2}`}>
         <h6>{t('Please carefully write down these 12 words or')}{' '}</h6>
-        <a className={`${styles.copyLink}`} onClick={this.copyPassphrase.bind(this)}>{t('copy them')}</a>
+        <a className={`${styles.copyLink}`}onClick={this.copyPassphrase.bind(this)}>{t('copy them')}</a>
       </div>
       <PassphraseBox
         className={`${styles.passphrase}`}

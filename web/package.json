@@ -14,6 +14,7 @@
     "build-prod": "webpack --config ./config/webpack.config.prod --env.prod",
     "build-electron": "webpack --config ./config/webpack.config.electron",
     "test": "karma start",
+    "testnet": "webpack-dev-server --config ./config/webpack.config.dev --env.dev",
     "bundlesize": "bundlesize",
     "analyze-bundles": "webpack  --config ./config/webpack.config.analyze",
     "test-live": "npm test -- --auto-watch --no-single-run",
