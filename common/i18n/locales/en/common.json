@@ -1,5 +1,4 @@
 {
-  "": "",
   "About": "About",
   "Account address": "Account address",
   "Account label": "Account label",
@@ -22,6 +21,7 @@
   "Check for updates...": "Check for updates...",
   "Complete": "Complete",
   "Confirm": "Confirm",
+  "Confirm new password": "Confirm new password",
   "Confirm password": "Confirm password",
   "Continue": "Continue",
   "Copied!": "Copied!",
@@ -29,6 +29,7 @@
   "Copy address": "Copy address",
   "Create New Account": "Create New Account",
   "Create new wallet ID": "Create new wallet ID",
+  "Current password": "Current password",
   "Current version is up-to-date.": "Current version is up-to-date.",
   "Custom Node": "Custom Node",
   "Cut": "Cut",
@@ -61,6 +62,7 @@
   "Medibloc Explorer": "Medibloc Explorer",
   "Minimize": "Minimize",
   "Must be at least 8 characters": "Must be at least 8 characters",
+  "New password": "New password",
   "New version available": "New version available",
   "Next": "Next",
   "No Updates": "No Updates",
@@ -75,6 +77,7 @@
   "Pending": "Pending",
   "Please carefully write down these 12 words or": "Please carefully write down these 12 words or",
   "Please check the highlighted words": "Please check the highlighted words",
+  "Please try to restart the wallet.": "Please try to restart the wallet.",
   "Protect Your Account": "Protect Your Account",
   "Quit": "Quit",
   "Quit Candidacy": "Quit Candidacy",
@@ -119,7 +122,6 @@
   "Toggle full screen": "Toggle full screen",
   "Transfer": "Transfer",
   "Try a mix of lowercase letters, uppercase letters, and numbers": "Try a mix of lowercase letters, uppercase letters, and numbers",
-  "Try using menu for navigation.": "Try using menu for navigation.",
   "TxHash": "TxHash",
   "URL is invalid": "URL is invalid",
   "Unable to connect to the node": "Unable to connect to the node",
@@ -144,6 +146,7 @@
   "Zero not allowed": "Zero not allowed",
   "copy them": "copy them",
   "if the problem persists": "if the problem persists",
+  "not matched with password": "not matched with password",
   "or": "or",
   "password": "password"
 }

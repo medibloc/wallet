@@ -1,5 +1,5 @@
 import actionTypes from '../../constants/actions';
-import { accountLoading, accountLoggedOut } from '../../actions/account';
+import { accountLoading, accountLoggedOut, accountPasswordUpdated } from '../../actions/account';
 import { accountsRetrieved, accountSaved } from '../../actions/savedAccounts';
 import { activePeerSet } from '../../actions/peers';
 import { getAccount } from '../../utils/api/account';
@@ -95,6 +95,12 @@ const savedAccountsMiddleware = (store) => {
           networkCode: peers.options.code,
           unstaking: account.unstaking,
           vesting: account.vesting,
+        }));
+        break;
+      case actionTypes.activeAccountPasswordUpdated:
+        store.dispatch(accountPasswordUpdated({
+          address: account.address,
+          encKey: account.encKey,
         }));
         break;
       case actionTypes.accountLoggedIn:

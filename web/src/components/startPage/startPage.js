@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import styles from './startPage.css';
 import Box from '../box';
+import logo from '../../assets/images/MEDIBLOC.png';
 import { ArrowBlackButton, ArrowBlueButton } from '../toolbox/buttons/button';
 import routes from '../../constants/routes';
 
@@ -16,7 +17,7 @@ class StartPage extends React.Component {
       (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) ?
         <Redirect to={'/login'} /> :
         <Box className={`${styles.wrapper}`}>
-          <img src="../../assets/images/MEDIBLOC.png" />
+          <img src={logo} />
           <div className={`${styles.startPageWrapper}`}>
             <div className={`${styles.titleWrapper}`}>
               {t('WELCOME TO MEDIBLOC TESTNET WALLET')}

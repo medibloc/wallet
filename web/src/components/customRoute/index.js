@@ -14,7 +14,6 @@ export const CustomRouteRender = ({ path, component, isPrivate, exact,
   console.log(fullPath);
   return ((isPrivate && isAuthenticated) || !isPrivate ?
     <Fragment>
-      {isPrivate ? <MainMenu /> : null}
       <main className={isPrivate ? `${offlineStyle.disableWhenOffline} ${styles.mainWrapper}` : null}>
         <ErrorBoundary errorMessage={t('An error occoured while rendering this page')}>
           {isPrivate ?
@@ -30,6 +29,7 @@ export const CustomRouteRender = ({ path, component, isPrivate, exact,
           }
         </ErrorBoundary>
       </main>
+      {isPrivate ? <MainMenu /> : null}
     </Fragment>
     : null
   );

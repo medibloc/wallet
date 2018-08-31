@@ -1,18 +1,13 @@
 import React, { Fragment } from 'react';
-// import { Link } from 'react-router-dom';
 import InlineSVG from 'svg-inline-react';
 import { Tab, Tabs as ToolboxTabs } from 'react-toolbox/lib/tabs';
-// import Drawer from 'react-toolbox/lib/drawer';
-// import MenuBar from '../menuBar';
+import Settings from '../settings';
 import styles from './mainMenu.css';
 import logo from '../../assets/images/main-menu-icons/homeCopy.png';
 import * as menuLogos from '../../assets/images/main-menu-icons/*.svg'; //eslint-disable-line
-// import { FontIcon } from '../fontIcon';
 import routes from '../../constants/routes';
 
 const getIndex = (history, tabs) => {
-  // if (history.location.pathname.includes('explorer')) return 2;
-
   let index = -1;
   tabs.map(t => new RegExp(`${t.route}(\\/?)`)).forEach((item, i) => {
     if (history.location.pathname.match(item)) {
@@ -23,7 +18,7 @@ const getIndex = (history, tabs) => {
 };
 
 const isCurrent = (history, index, tabs) =>
-  history.location.pathname.indexOf(tabs[index].route) === 6; // after: /main/
+  history.location.pathname.indexOf(tabs[index].route) === 0;
 
 const TabTemplate = ({ img, label }) => (
   <div>
@@ -32,13 +27,12 @@ const TabTemplate = ({ img, label }) => (
   </div>
 );
 
-
 class MainMenu extends React.Component {
   constructor() {
     super();
     this.state = {
       active: false,
-      setting: false,
+      showSetting: false,
       index: 0,
     };
   }
@@ -50,8 +44,14 @@ class MainMenu extends React.Component {
     }
   }
 
+  toggleSetting() {
+    this.setState({
+      showSetting: !this.state.showSetting,
+    });
+  }
+
   render() {
-    const { history, t, account } = this.props;
+    const { history, t } = this.props;
     const tabs = [
       {
         label: t('Dashboard'),
@@ -74,16 +74,16 @@ class MainMenu extends React.Component {
         route: `${routes.explorer.path}`,
         id: 'explorer',
         image: menuLogos.explorer,
-      }, {
-        label: t('Settings'),
-        route: `${routes.setting.path}`,
-        id: 'settings',
-        image: menuLogos.settings,
       },
     ];
 
-    const itemShouldBeDisabled = index =>
-      (isCurrent(history, index, tabs) || !account.address) && index !== 3;
+    const settingTab = {
+      label: t('Settings'),
+      id: 'settings',
+      image: menuLogos.settings,
+    };
+
+    // const itemShouldBeDisabled = () => false
 
     return (
       <Fragment>
@@ -101,14 +101,31 @@ class MainMenu extends React.Component {
                 <Tab
                   activeClassName={styles.activeTab}
                   className={`${styles.tab} ${id === 'settings' ? styles.settingsTab : null}`}
-                  disabled={itemShouldBeDisabled(index)}
+                  // disabled={itemShouldBeDisabled(index)}
                   id={id}
                   key={index}
                   label={<TabTemplate img={image} label={label} />}
                 />)}
             </ToolboxTabs>
+            <div className={styles.bottomTabs}>
+              <div
+                className={styles.settingsTabWrapper}
+                onClick={() => this.toggleSetting()}>
+                <div className={`${styles.tab}`}>
+                  <TabTemplate
+                    img={settingTab.image}
+                    label={settingTab.label}/>
+                </div>
+              </div>
+            </div>
           </div>
         </aside>
+        {
+          this.state.showSetting ?
+            <Settings
+              {...this.props}
+              closePopUp={() => this.toggleSetting()}/> : null
+        }
       </Fragment>
     );
   }

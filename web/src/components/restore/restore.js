@@ -6,6 +6,7 @@ import MultiStep from '../multiStep';
 import Password from '../passphrase/password/password';
 import networks from '../../../../common/src/constants/networks';
 import Box from '../box';
+import logo from '../../assets/images/MEDIBLOC.png';
 import styles from './restore.css';
 import routes from '../../constants/routes';
 
@@ -28,7 +29,7 @@ class Restore extends React.Component {
   render() {
     const { t } = this.props;
     return (<Box className={`${styles.wrapper}`}>
-      <img src="../../assets/images/MEDIBLOC.png" />
+      <img src={logo} />
       <MultiStep className={`${styles.restore}`}
         prevPage={() => this.backToLogin()}
         finalCallback={(...args) => this.onRegister(...args)}>

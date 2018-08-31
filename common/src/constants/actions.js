@@ -1,5 +1,6 @@
 const actionTypes = {
   accountUpdated: 'ACCOUNT_UPDATED',
+  accountPasswordUpdated: 'ACCOUNT_PASSWORD_UPDATED',
   accountLoggedOut: 'ACCOUNT_LOGGED_OUT',
   accountLoggedIn: 'ACCOUNT_LOGGED_IN',
   accountLoading: 'ACCOUNT_LOADING',
@@ -59,6 +60,7 @@ const actionTypes = {
   accountsRetrieved: 'ACCOUNTS_RETRIEVED',
   accountSaved: 'ACCOUNT_SAVED',
   activeAccountSaved: 'ACTIVE_ACCOUNT_SAVED',
+  activeAccountPasswordUpdated: 'ACTIVE_ACCOUNT_PASSWORD_UPDATED',
   accountRemoved: 'ACCOUNT_REMOVED',
   accountSwitched: 'ACCOUNT_SWITCHED',
   removePassphrase: 'REMOVE_PASSPHRASE',

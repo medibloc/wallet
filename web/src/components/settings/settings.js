@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-// import { Route, Switch } from 'react-router-dom';
 import { translate } from 'react-i18next';
-// import InlineSVG from 'svg-inline-react';
+import InlineSVG from 'svg-inline-react';
 import styles from './settings.css';
-// import CloseButton from '../../assets/images/icons/buttonX.svg';
-// // import ResetPassword from '../resetPassword';
+import CloseButton from '../../assets/images/icons/buttonX.svg';
+import ResetPassword from '../resetPassword';
 import SettingsMenu from '../settingsMenu';
 import WBox from '../wbox';
+import routes from '../../constants/routes';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -15,6 +15,10 @@ class Settings extends React.Component {
     this.state = {
       active: 'resetPassword',
     };
+  }
+
+  logOut() {
+    this.props.history.push(`${routes.login.path}`);
   }
 
   setActiveSetting(active) {
@@ -28,10 +32,10 @@ class Settings extends React.Component {
         id: 'resetPassword',
         label: t('Reset password'),
       },
-      {
-        id: 'backupWallet',
-        label: t('Backup wallet'),
-      },
+      // {
+      //   id: 'backupWallet',
+      //   label: t('Backup wallet'),
+      // },
     ];
 
     return (
@@ -40,7 +44,9 @@ class Settings extends React.Component {
           <div className={styles.popupWrapper}>
             <header className={styles.closeWrapper}>
               <div className={styles.closeButtonWrapper}>
-                {/* <InlineSVG src={CloseButton} /> */}
+                <InlineSVG
+                  onClick={() => this.props.closePopUp()}
+                  src={CloseButton} />
               </div>
             </header>
             <WBox className={styles.settingsWrapper}>
@@ -55,16 +61,16 @@ class Settings extends React.Component {
                     settings={settings} />
                 </div>
                 <div className={styles.menuFooter}>
-                  <h6>{ t('Log out') }</h6>
+                  <div onClick={() => this.logOut()}>
+                    <h6>{ t('Log out') }</h6>
+                  </div>
                 </div>
               </div>
               <div className={styles.settingsContentWrapper}>
-                { /* <Switch>
-                  {
-                    (this.state.active === 'resetPassword') ?
-                      <Route path='*' component={ResetPassword} /> : null
-                  }
-                </Switch> */ }
+                {
+                  (this.state.active === settings[0].id) ?
+                    <ResetPassword {...this.props} /> : null
+                }
               </div>
             </WBox>
           </div>

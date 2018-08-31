@@ -5,6 +5,7 @@ import AccountVisual from '../accountVisual';
 import Box from '../box';
 import DropDown from '../toolbox/dropdown/dropdown';
 import { Input } from '../toolbox/inputs/input';
+import logo from '../../assets/images/MEDIBLOC.png';
 import Footer from '../register/footer/footer';
 import { PrimaryButton } from '../toolbox/buttons/button';
 import { extractAddress, getAccountFromEncKey } from '../../../../common/src/utils/account';
@@ -36,6 +37,7 @@ class Login extends React.Component {
       selectedAddress: this.props.account.address || '',
       networkCode: networks.default.code,
       password: '',
+      passwordValidity: '',
     };
   }
 
@@ -58,6 +60,9 @@ class Login extends React.Component {
       const account = getAccountFromEncKey(encKey, this.state.password);
       return extractAddress(account.pubKey) === address;
     } catch (e) {
+      this.setState({
+        passwordValidity: this.props.t('Wrong Password'),
+      });
       return false;
     }
   }
@@ -72,7 +77,10 @@ class Login extends React.Component {
   }
 
   handlePasswordChange(value) {
-    this.setState({ password: value });
+    this.setState({
+      password: value,
+      passwordValidity: '',
+    });
   }
 
   onLoginSubmission({ address, encKey }) {
@@ -101,7 +109,7 @@ class Login extends React.Component {
     //   <span /> :
     return (
       <Box className={`${styles.wrapper}`}>
-        <img src="../../assets/images/MEDIBLOC.png" />
+        <img src={logo} />
         <div className={`${styles.loginWrapper}`}>
           <section className={`${styles.login}`}>
             <header>
@@ -127,6 +135,7 @@ class Login extends React.Component {
               parentclassname={`${styles.password}`}
               theme={styles}
               name={'password'}
+              error={this.state.passwordValidity}
               value={this.state.password}
               disabled={accounts.length === 0}
               onChange={(...args) => this.handlePasswordChange(...args)}/>
@@ -140,8 +149,6 @@ class Login extends React.Component {
                 if (this.checkPasswordCorrect({ address, encKey })) {
                   this.onLoginSubmission({ address, encKey });
                   this.props.history.push(`${routes.dashboard.path}`);
-                } else {
-                  console.log('WRONG PASSWORD');
                 }
               }}/>
             <Footer

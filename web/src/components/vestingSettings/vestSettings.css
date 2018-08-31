@@ -35,7 +35,7 @@
 .settingsWrapper {
   border-radius: 3px;
   height: 515px;
-  flex-direction: row;
+  flex-direction: row !important;
   width: 100%;
 
   & .settingsMenuWrapper {

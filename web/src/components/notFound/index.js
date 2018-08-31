@@ -9,7 +9,7 @@ const NotFound = ({ t }) => (<section>
     <div className={styles.emptyTransactions}>
       {window.location.pathname.includes('index.html') && <Redirect to="/" />}
       <h2 className='empty-message'>{t('Page not found.')}</h2>
-      <p>{t('Try using menu for navigation.')}</p>
+      <p>{t('Please try to restart the wallet.')}</p>
     </div>
   </Box>
 </section>);

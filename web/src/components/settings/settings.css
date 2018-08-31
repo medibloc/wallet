@@ -35,7 +35,7 @@
 .settingsWrapper {
   border-radius: 3px;
   height: 515px;
-  flex-direction: row;
+  flex-direction: row !important;
   width: 100%;
 
   & .settingsMenuWrapper {
@@ -60,10 +60,6 @@
     & .menuFooter {
       margin: 0 47px 41px 42px;
       padding: 0 !important;
-
-      & h6:hover {
-        font-weight: var(--font-weight-bold);
-      }
     }
   }
 

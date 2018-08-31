@@ -51,6 +51,17 @@ export const activeAccountSaved = () => ({
   type: actionTypes.activeAccountSaved,
 });
 
+
+/**
+ * An action to dispatch activeAccountPasswordUpdated
+ * @param {Object} data - account data
+ * @returns {Object} - Action object
+ */
+export const activeAccountPasswordUpdated = data => ({
+  data,
+  type: actionTypes.activeAccountPasswordUpdated,
+});
+
 /**
  * An action to dispatch removeSavedAccountPassphrase
  * @param {Object} data - account data

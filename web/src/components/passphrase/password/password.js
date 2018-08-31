@@ -52,8 +52,8 @@ class Password extends React.Component {
 
   validateConfirmPassword(value, password = this.state.password) {
     const data = { confirmPassword: value };
-    data.confirmPasswordValidity = password === value ? '' :
-      'not matched with password';
+    data.confirmPasswordValidity = password === value ? null :
+      this.props.t('not matched with password');
     return data;
   }
 

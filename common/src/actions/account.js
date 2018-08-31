@@ -34,6 +34,11 @@ export const accountUpdated = data => ({
   type: actionTypes.accountUpdated,
 });
 
+export const accountPasswordUpdated = data => ({
+  data,
+  type: actionTypes.accountPasswordUpdated,
+});
+
 /**
  * Trigger this action to log out of the account
  * while already logged in
