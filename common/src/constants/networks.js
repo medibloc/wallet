@@ -8,8 +8,7 @@ const networks = {
     name: 'Testnet',
     testnet: true,
     code: 1,
-    nodes: ['http://13.124.201.175:9921'],
-    // nodes: ['http://localhost:9921'],
+    nodes: ['https://node.medibloc.org/'],
   },
   customNode: { // network name translation t('Custom Node');
     name: 'Custom Node',
