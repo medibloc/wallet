@@ -31,11 +31,9 @@ export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
       to,
       value,
       nonce,
-      payload: createDefaultPayload(description),
+      payload: description ? createDefaultPayload(description) : null,
     });
     console.log(`send tx: ${JSON.stringify(tx)}`);
-
-    account.signTx(tx, password);
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);
       if (res.hash) {
@@ -46,12 +44,15 @@ export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
       } else {
         reject(res);
       }
-    }).catch(error => reject(error));
+    }).catch((error) => {
+      console.log(error);
+      reject(error);
+    });
   });
 
 export const transactions = ({ activePeer, address, txTypeFilter }) =>
   new Promise((resolve, reject) => {
-    activePeer.getAccountTransactions(address).then((data) => {
+    activePeer.getAccountTransactions(address, false).then((data) => {
       if (data && data.transactions) {
         if (txTypeFilter) {
           const filteredTxs = data.transactions.filter((tx) => {

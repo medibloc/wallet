@@ -11,6 +11,7 @@ import { loadTransactions } from '../../../../common/src/actions/transactions';
 import MedAmount from '../medAmount';
 import TransactionListView from '../transactionDashboard/transactionListView';
 import Transfer from '../transfer';
+import VestingSettings from '../vestingSettings';
 // import routes from '../../constants/routes';
 import styles from './dashboard.css';
 import { airDropped } from '../../../../common/src/actions/account';
@@ -28,9 +29,19 @@ class Dashboard extends React.Component {
     //   });
     // }
 
+    this.state = {
+      showVestingSetting: false,
+    };
+
     this.props.loadTransactions({
       activePeer: this.props.peers.activePeer,
       address: this.props.account.address,
+    });
+  }
+
+  toggleVestingSetting() {
+    this.setState({
+      showVestingSetting: !this.state.showVestingSetting,
     });
   }
 
@@ -80,7 +91,7 @@ class Dashboard extends React.Component {
               <SecondaryButton
                 className={`${styles.vestingSettings}`}
                 label={t('Staking Settings')}
-                onClick={() => console.log('Pop up vesting setting')} />
+                onClick={() => this.toggleVestingSetting()} />
             </WBox>
           </WBox>
           { /*  <WBox className={`${styles.graph}`}>
@@ -93,6 +104,12 @@ class Dashboard extends React.Component {
       <WBox className={`${styles.transferWrapper}`}>
         <Transfer {...this.props} />
       </WBox>
+      {
+        this.state.showVestingSetting ?
+          <VestingSettings
+            {...this.props}
+            closePopUp={() => this.toggleVestingSetting()}/> : null
+      }
     </Box>;
   }
 }

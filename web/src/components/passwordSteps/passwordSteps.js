@@ -34,7 +34,6 @@ class PasswordSteps extends React.Component {
   }
 
   decryptPassphrase() {
-    console.log('decryptPassphrase called');
     try {
       const privKey = getPrivKeyFromEncKey(this.props.account.encKey, this.state.password.value);
       if (extractAddress(getPubKey(privKey)) === this.props.account.address) {
@@ -42,7 +41,12 @@ class PasswordSteps extends React.Component {
       }
       return null;
     } catch (e) {
-      console.log(e);
+      this.setState({
+        password: {
+          ...this.state.password,
+          error: this.props.t('Wrong Password'),
+        },
+      });
       return null;
     }
   }

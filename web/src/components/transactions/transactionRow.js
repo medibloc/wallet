@@ -12,11 +12,12 @@ import { DateFromTimestamp } from '../timestamp/index';
 class TransactionRow extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   shouldComponentUpdate(nextProps) {
-    return nextProps.value.id !== this.props.value.id || nextProps.value.confirmations <= 1000;
+    return nextProps.value.id !== this.props.value.id || nextProps.value.executed;
   }
 
   render() {
     const { props } = this;
+    console.log(props.value);
     const onClick = !props.onClick ? (() => {}) : () => props.onClick(this.props);
     return (
       <div className={`${grid.row} ${styles.rows} ${styles.clickable} transactions-row`} onClick={onClick}>

@@ -268,13 +268,13 @@ export const vested = ({ activePeer, address, amount,
       nonce,
       privKey: privKey || extractPrivKey(passphrase),
       value: toRawMed(amount),
-    }).then((data) => {
+    }).then((res) => {
       dispatch({
         data: {
-          id: data.transactionId,
-          senderAddress: address,
-          senderId: address,
-          amount: toRawMed(amount),
+          from: address,
+          hash: res.transactionId,
+          timestamp: res.timestamp,
+          value: toRawMed(amount),
           type: transactionTypes.vest,
         },
         type: actionTypes.transactionAdded,
@@ -299,13 +299,13 @@ export const withdrewVesting = ({ activePeer, address, amount,
       nonce,
       privKey: privKey || extractPrivKey(passphrase),
       value: toRawMed(amount),
-    }).then((data) => {
+    }).then((res) => {
       dispatch({
         data: {
-          id: data.transactionId,
-          senderAddress: address,
-          senderId: address,
-          amount: toRawMed(amount),
+          from: address,
+          hash: res.transactionId,
+          timestamp: res.timestamp,
+          value: toRawMed(amount),
           type: transactionTypes.withdrawVesting,
         },
         type: actionTypes.transactionAdded,
