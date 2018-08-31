@@ -33,7 +33,10 @@ export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
       nonce,
       payload: description ? createDefaultPayload(description) : null,
     });
+
+    account.signTx(tx, password);
     console.log(`send tx: ${JSON.stringify(tx)}`);
+
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);
       if (res.hash) {
@@ -57,9 +60,9 @@ export const transactions = ({ activePeer, address, txTypeFilter }) =>
         if (txTypeFilter) {
           const filteredTxs = data.transactions.filter((tx) => {
             let flag = false;
-            if (tx && tx.data && tx.data.type) {
+            if (tx && tx.data && tx.data.tx_type) {
               txTypes.forEach((v) => {
-                if (tx.data.type === v) {
+                if (tx.data.tx_type === v) {
                   flag = true;
                 }
               });
@@ -134,13 +137,15 @@ export const vest = ({ activePeer, nonce, privKey, value }) =>
       nonce,
       value,
     });
-    console.log(JSON.parse(JSON.stringify(tx)));
 
     account.signTx(tx, password);
+    console.log(JSON.parse(JSON.stringify(tx)));
+
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);
       if (res.hash) {
         resolve({
+          timestamp: tx.timestamp,
           transactionId: res.hash,
         });
       } else {
@@ -160,13 +165,15 @@ export const vestAndSend = ({ activePeer, nonce, privKey, value }) =>
       nonce,
       value,
     });
-    console.log(JSON.parse(JSON.stringify(tx)));
 
     account.signTx(tx, password);
+    console.log(JSON.parse(JSON.stringify(tx)));
+
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);
       if (res.hash) {
         resolve({
+          timestamp: tx.timestamp,
           transactionId: res.hash,
         });
       } else {
@@ -193,6 +200,7 @@ export const withdrawVesting = ({ activePeer, nonce, privKey, value }) =>
       console.log(res);
       if (res.hash) {
         resolve({
+          timestamp: tx.timestamp,
           transactionId: res.hash,
         });
       } else {

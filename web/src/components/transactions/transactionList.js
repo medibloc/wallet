@@ -48,7 +48,7 @@ class TransactionsList extends React.Component {
       // }
       // return null;
     }
-
+    console.log(transactions);
     return <div className={`${styles.results} transaction-results`}>
       <TransactionsHeader tableStyle={tableStyle} />
       {transactions

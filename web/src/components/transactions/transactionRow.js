@@ -12,7 +12,7 @@ import { DateFromTimestamp } from '../timestamp/index';
 class TransactionRow extends React.Component {
   // eslint-disable-next-line class-methods-use-this
   shouldComponentUpdate(nextProps) {
-    return nextProps.value.id !== this.props.value.id || nextProps.value.executed;
+    return nextProps.value.id !== this.props.value.id;
   }
 
   render() {

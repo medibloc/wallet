@@ -7,7 +7,8 @@ const mapStateToProps = state => ({
   account: state.account,
   loading: state.loading.length > 0,
   peers: state.peers,
-  transactions: [...state.transactions.pending, ...state.transactions.confirmed].slice(0, 5),
+  transactions: [...state.transactions.pending,
+    ...state.transactions.confirmed].reverse().slice(0, 12),
   pendingTransactions: state.transactions.pending,
 });
 

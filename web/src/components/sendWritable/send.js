@@ -125,7 +125,7 @@ class SendWritable extends React.Component {
             <SecondaryButton
               className={`send-next-button ${styles.faucetButton}`}
               label={t('Get test MED')}
-              onClick={() => { window.open('https://goo.gl/forms/UjbYcGzA9YvjiEiI3'); }} />
+              onClick={() => { if (window) window.open('https://goo.gl/forms/UjbYcGzA9YvjiEiI3'); }} />
             <PrimaryButton
               className={`send-next-button ${styles.nextButton}`}
               disabled={(!!this.state.recipient.error ||
