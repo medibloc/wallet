@@ -6,7 +6,6 @@ import styles from './transactions.css';
 const TransactionType = (props) => {
   const { t } = props;
   let type;
-  console.log(props.type);
   switch (props.type) {
     case txTypes.send:
       type = t('Send');

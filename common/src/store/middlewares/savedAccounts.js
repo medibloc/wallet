@@ -29,7 +29,7 @@ const savedAccountsMiddleware = (store) => {
     }
   });
 
-  const isSameNetwork = (account, peers) => peers.options.code === account.network;
+  const isSameNetwork = (account, peers) => peers.options.code === account.networkCode;
 
   const updateSavedAccounts = (peers, accounts) => {
     accounts.forEach((account, i) => {
@@ -100,7 +100,8 @@ const savedAccountsMiddleware = (store) => {
       case actionTypes.activeAccountPasswordUpdated:
         store.dispatch(accountPasswordUpdated({
           address: account.address,
-          encKey: account.encKey,
+          encKey: action.data.encKey,
+          networkCode: account.networkCode,
         }));
         break;
       case actionTypes.accountLoggedIn:

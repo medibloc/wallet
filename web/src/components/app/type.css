@@ -24,21 +24,21 @@ avaialble application-wide
 
 @font-face {
   font-family: 'Noto Sans CJK KR';
-  src: url('../../assets/fonts/notocjkkr/NotoSansCJKKr-Light.otf') format('opentype');
+  src: url('../../assets/fonts/notocjkkr/NotoSansCJKkr-Light.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Noto Sans CJK KR';
-  src: url('../../assets/fonts/notocjkkr/NotoSansCJKKr-Regular.otf') format('opentype');
+  src: url('../../assets/fonts/notocjkkr/NotoSansCJKkr-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Noto Sans CJK KR';
-  src: url('../../assets/fonts/notocjkkr/NotoSansCJKKr-Bold.otf') format('opentype');
+  src: url('../../assets/fonts/notocjkkr/NotoSansCJKkr-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }

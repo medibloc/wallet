@@ -180,6 +180,7 @@ class ResetPassword extends React.Component {
                     this.props.activeAccountPasswordUpdated({
                       address,
                       encKey: account.encryptedPrivKey,
+                      networkCode: this.props.account.networkCode,
                     });
                     this.props.closePopUp();
                   }

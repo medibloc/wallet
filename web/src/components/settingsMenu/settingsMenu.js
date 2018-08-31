@@ -4,9 +4,7 @@ import styles from './settingsMenu.css';
 
 class SettingsMenu extends React.Component {
   render() {
-    const { active, setActiveSetting, settings } = this.props;
-    console.log(active);
-    console.log(settings);
+    const { active, setActiveSetting } = this.props;
     return (
       <Fragment>
         {this.props.settings.map(({ id, label }, index) =>
