@@ -22,6 +22,7 @@
     & .register,
     & .restore {
       color: var(--color-link);
+      cursor: pointer;
       height: 24px;
       font-size: var(--font-size-h6);
       margin: 0 16px;

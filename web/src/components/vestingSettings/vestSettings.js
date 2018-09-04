@@ -42,6 +42,7 @@ class VestSettings extends React.Component {
             <div className={styles.closeWrapper}>
               <div className={styles.closeButtonWrapper}>
                 <InlineSVG
+                  className={styles.closeButton}
                   onClick={() => closePopUp()}
                   src={CloseButton} />
               </div>

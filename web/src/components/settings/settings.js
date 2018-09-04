@@ -45,6 +45,7 @@ class Settings extends React.Component {
             <header className={styles.closeWrapper}>
               <div className={styles.closeButtonWrapper}>
                 <InlineSVG
+                  className={styles.closeButton}
                   onClick={() => this.props.closePopUp()}
                   src={CloseButton} />
               </div>
@@ -61,9 +62,8 @@ class Settings extends React.Component {
                     settings={settings} />
                 </div>
                 <div className={styles.menuFooter}>
-                  <div onClick={() => this.logOut()}>
-                    <h6>{ t('Log out') }</h6>
-                  </div>
+                  <h6 className={styles.logOutWrapper}
+                    onClick={() => this.logOut()}>{ t('Log out') }</h6>
                 </div>
               </div>
               <div className={styles.settingsContentWrapper}>

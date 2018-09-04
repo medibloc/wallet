@@ -59,6 +59,7 @@
   background: var(--menu-background-color);
   border: none !important;
   box-shadow: none;
+  cursor: pointer;
   height: 94px;
   margin: 48px 0 0;
   padding: 0 !important;

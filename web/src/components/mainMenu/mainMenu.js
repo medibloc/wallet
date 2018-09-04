@@ -114,10 +114,9 @@ class MainMenu extends React.Component {
                 />)}
             </ToolboxTabs>
             <div className={styles.bottomTabs}>
-              <div
-                className={styles.settingsTabWrapper}
-                onClick={() => this.toggleSetting()}>
-                <div className={`${styles.tab}`}>
+              <div className={styles.settingsTabWrapper}>
+                <div className={`${styles.tab}`}
+                  onClick={() => this.toggleSetting()}>
                   <TabTemplate
                     img={settingTab.image}
                     label={settingTab.label}/>

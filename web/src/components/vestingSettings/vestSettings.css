@@ -30,6 +30,10 @@
     padding: 13px 0;
     width: 19px;
   }
+
+  & .closeButton {
+    cursor: pointer;
+  }
 }
 
 .settingsWrapper {

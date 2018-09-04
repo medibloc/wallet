@@ -30,6 +30,10 @@
     padding: 13px 0;
     width: 19px;
   }
+
+  & .closeButton {
+    cursor: pointer;
+  }
 }
 
 .settingsWrapper {
@@ -60,6 +64,11 @@
     & .menuFooter {
       margin: 0 47px 41px 42px;
       padding: 0 !important;
+
+      & .logOutWrapper {
+        cursor: pointer;
+        width: fit-content;
+      }
     }
   }
 
