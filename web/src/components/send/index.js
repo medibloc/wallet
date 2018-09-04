@@ -40,6 +40,7 @@ class Send extends React.Component {
               <SendWritable
                 address={''}
                 amount={0}
+                autoFocus={this.props.autoFocus}
                 setTabSend={(...args) => this.setActiveTabSend(...args)}/>
               <PasswordSteps
                 setTabSend={(...args) => this.setActiveTabSend(...args)}/>

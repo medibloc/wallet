@@ -61,6 +61,7 @@ class Converter extends React.Component {
       .slice(0, -1);
     return (
       <Input
+        autoFocus={this.props.autoFocus}
         parentclassname={this.props.parentclassname}
         error={this.props.error}
         placeholder={this.props.placeholder}

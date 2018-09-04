@@ -96,6 +96,7 @@ class WithdrawVesting extends React.Component {
           </div>
           <form className={styles.form}>
             <Converter
+              autoFocus={true}
               error={this.state.amount.error}
               placeholder={t('Amount for unstaking')}
               onChange={(...args) => this.handleChange('amount', ...args)}

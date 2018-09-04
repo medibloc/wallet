@@ -9,7 +9,9 @@ class TransactionsDashboard extends React.Component {
   render() {
     return <div className={styles.wrapper}>
       <WBox className={styles.transfer}>
-        <Transfer {...this.props}/>
+        <Transfer
+          autoFocus={true}
+          {...this.props}/>
       </WBox>
       <WBox className={styles.txListView}>
         <TransactionListView {...this.props}/>

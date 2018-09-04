@@ -129,6 +129,7 @@ class ResetPassword extends React.Component {
           <form className={styles.form}>
             <div className={styles.passwordInputWrapper}>
               <Input
+                autoFocus={true}
                 className={`${styles.passwordInput}`}
                 error={this.state.password.error}
                 onChange={(...args) => this.handleChange('password', ...args)}

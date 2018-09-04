@@ -91,6 +91,7 @@ class SendWritable extends React.Component {
         <div className={`${styles.bodyWrapper}`}>
           <form className={styles.form}>
             <Converter
+              autoFocus={this.props.autoFocus}
               error={this.state.amount.error}
               placeholder={t('Amount to send')}
               onChange={(...args) => this.handleChange('amount', ...args)}
@@ -101,7 +102,6 @@ class SendWritable extends React.Component {
               value={this.state.amount.value}
             />
             <Input
-              autoFocus={this.props.autoFocus}
               error={this.state.recipient.error}
               placeholder={t('Paste or enter an address')}
               onChange={(...args) => this.handleChange('recipient', ...args)}
@@ -111,7 +111,6 @@ class SendWritable extends React.Component {
               value={this.state.recipient.value}
             />
             <Input
-              autoFocus={this.props.autoFocus}
               error={this.state.description.error}
               placeholder={t('Write an optional messages')}
               onChange={(...args) => this.handleChange('description', ...args)}

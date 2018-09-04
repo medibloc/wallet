@@ -76,7 +76,9 @@ class Password extends React.Component {
       <header>
         <h2>{t('Protect Your Account')}</h2>
       </header>
-      <Input type='text'
+      <Input
+        autoFocus={true}
+        type='text'
         title={t('Account label')}
         name={'label'}
         parentclassname={`${styles.accountLabel}`}
