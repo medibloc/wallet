@@ -11,9 +11,10 @@ import { generatePassphrase } from './../../../../../common/src/utils/passphrase
 import { extractAddress } from '../../../../../common/src/utils/account';
 
 class Create extends React.Component {
-  constructor() {
-    super();
-    const passphrase = generatePassphrase();
+  constructor(props) {
+    super(props);
+    const passphrase = props.passphrase ?
+      props.passphrase : generatePassphrase();
     this.state = {
       passphrase,
       address: extractAddress(passphrase),

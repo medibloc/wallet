@@ -38,6 +38,11 @@ class MultiStep extends React.Component {
   }
 
   next(data, jump = 1) {
+    if (this.state.step.current === 0) {
+      const initState = Object.assign({}, this.state);
+      initState.step.data[0] = data;
+      this.setState(initState);
+    }
     const newState = Object.assign({}, this.state);
     newState.step.current += jump;
     newState.step.data[newState.step.current] = data;
@@ -63,7 +68,7 @@ class MultiStep extends React.Component {
     };
     const newState = Object.assign({}, this.state);
     newState.step.current = getTarget(this.state.step.current);
-    newState.step.data = (config && config.reset && !config.amount) ? [{}] : newState.step.data;
+    newState.step.data = (config && config.reset) ? [{}] : newState.step.data;
     this.setState(newState);
   }
 
@@ -93,10 +98,11 @@ class MultiStep extends React.Component {
         React.cloneElement(children[step.current], extraProps)
       }
       <MultiStepNav
-        steps={children}
-        showBackButton={step.current > 0}
+        current={step.current}
         prevPage={prevPage}
-        current={step.current} prevStep={step.prevStep} />
+        prevStep={step.prevStep}
+        showBackButton={step.current > 0}
+        steps={children} />
     </div>);
   }
 }
