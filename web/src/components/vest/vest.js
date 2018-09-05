@@ -110,7 +110,7 @@ class Vest extends React.Component {
               parentclassname={`${styles.amount}`}
               t={t}
               theme={styles}
-              title={t('Vesting')}
+              title={t('Staking')}
               value={this.state.amount.value}
             />
             <div className={styles.passwordInputWrapper}>

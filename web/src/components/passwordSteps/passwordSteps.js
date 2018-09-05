@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
+import grid from 'flexboxgrid/dist/flexboxgrid.css';
 import { Input } from '../toolbox/inputs/input';
 import { PrimaryButton } from '../toolbox/buttons/button';
 import styles from './passwordSteps.css';
@@ -76,61 +77,62 @@ class PasswordSteps extends React.Component {
         <TransferTabs setTabSend={setTabSend} isActiveTabSend={true} />
         <div className={`${styles.bodyWrapper}`}>
           <div className={`${styles.transferInfo}`}>
-            <div className={`${styles.transferInfoRow} ${styles.assetInfo}`}>
-              <small className={`${styles.transferFields}`} key={'Asset-key'}>{t('Asset')}</small>
-              <h6 className={`${styles.transferBody}`} key={'Asset-body'}>{this.props.amount} MED</h6>
+            <div className={`${grid.row} ${styles.assetInfo}`}>
+              <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Asset')}</small>
+              <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.amount} MED</h6>
             </div>
-            <div className={`${styles.transferInfoRow} ${styles.recipientInfo}`}>
-              <small className={`${styles.transferFields}`} key={'Recipient-key'}>{t('Recipient')}</small>
-              <h6 className={`${styles.transferBody}`} key={'Recipient-body'}>{this.props.recipient}</h6>
+            <div className={`${grid.row} ${styles.recipientInfo}`}>
+              <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Recipient')}</small>
+              <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.recipient}</h6>
             </div>
-            <div className={`${styles.transferInfoRow} ${styles.descriptionInfo}`}>
-              <small className={`${styles.transferFields}`} key={'Description-key'}>{t('Description')}</small>
-              <h6 className={`${styles.transferBody}`} key={'Description-body'}>{this.props.description}</h6>
+            <div className={`${grid.row} ${styles.descriptionInfo}`}>
+              <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Description')}</small>
+              <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.description}</h6>
             </div>
           </div>
+          <footer className={`${styles.passwordStepsFooter}`}>
+            <div className={`${styles.guideText}`}>
+              <h6>{t('To confirm, please enter your password')}</h6>
+            </div>
+            <div className={`${styles.nextStepWrapper}`}>
+              <Input
+                onChange={(...args) => this.handleChange('password', ...args)}
+                placeholder={`${t('password')}`}
+                theme={styles}
+                type={'password'}
+                value={this.state.password.value}
+              />
+              <PrimaryButton
+                label={t('Next')}
+                onClick={() => {
+                  const privKey = this.decryptPassphrase();
+                  if (privKey !== null) {
+                    const nonce = Number(this.props.account.nonce) + 1;
+                    // this.props.vested({
+                    //   activePeer: this.props.peers.activePeer,
+                    //   address: this.props.account.address,
+                    //   amount: 100,
+                    //   description: this.props.description,
+                    //   nonce: Number(this.props.account.nonce) + 1,
+                    //   privKey,
+                    // });
+                    this.props.sent({
+                      activePeer: this.props.peers.activePeer,
+                      address: this.props.account.address,
+                      amount: this.props.amount,
+                      description: this.props.description,
+                      nonce,
+                      privKey,
+                      to: this.props.recipient,
+                    });
+                    this.props.nextStep();
+                  } else {
+                    console.log('WRONG PASSWORD');
+                  }
+                }} />
+            </div>
+          </footer>
         </div>
-        <footer className={`${styles.passwordStepsFooter}`}>
-          <div className={`${styles.guideText}`}>
-            <h6>{t('To confirm, please enter your password')}</h6>
-          </div>
-          <Input
-            className={`${styles.passwordInput}`}
-            onChange={(...args) => this.handleChange('password', ...args)}
-            placeholder={`${t('password')}`}
-            theme={styles}
-            type={'password'}
-            value={this.state.password.value}
-          />
-          <PrimaryButton
-            label={t('Next')}
-            onClick={() => {
-              const privKey = this.decryptPassphrase();
-              if (privKey !== null) {
-                const nonce = Number(this.props.account.nonce) + 1;
-                // this.props.vested({
-                //   activePeer: this.props.peers.activePeer,
-                //   address: this.props.account.address,
-                //   amount: 100,
-                //   description: this.props.description,
-                //   nonce: Number(this.props.account.nonce) + 1,
-                //   privKey,
-                // });
-                this.props.sent({
-                  activePeer: this.props.peers.activePeer,
-                  address: this.props.account.address,
-                  amount: this.props.amount,
-                  description: this.props.description,
-                  nonce,
-                  privKey,
-                  to: this.props.recipient,
-                });
-                this.props.nextStep();
-              } else {
-                console.log('WRONG PASSWORD');
-              }
-            }} />
-        </footer>
       </WBox>
     );
   }

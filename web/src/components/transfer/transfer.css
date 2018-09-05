@@ -1,12 +1,14 @@
 @import '../app/variables.css';
 
 .wrapper {
-  height: 632px;
-  padding: 16px 24px 24px;
+  height: 100%;
+  padding: 3px 16px 20px;
 }
 
 .headerWrapper {
-  height: 33px;
+  align-items: center;
+  display: flex;
+  height: 61px;
   margin: 0;
   text-align: center;
 
@@ -16,7 +18,7 @@
 }
 
 .bodyWrapper {
-  height: 543px;
-  margin: 16px 0 0;
+  height: 492px;
+  margin: 0;
   width: 100%;
 }

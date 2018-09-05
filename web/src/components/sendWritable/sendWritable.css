@@ -32,28 +32,40 @@ input:read-only {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: calc(100% - 40px);
   width: 100%;
 }
 
 .amount {
   margin: 0;
+
+  & input {
+    height: 40px;
+  }
 }
 
 .description {
   margin: 16px 0 0;
 
   & input {
-    height: 96px;
+    height: 80px;
   }
 }
 
 .recipient {
   margin: 16px 0 0;
+
+  & input {
+    height: 40px;
+  }
 }
 
 .faucetButton {
   display: flex;
+
+  & input {
+    height: 40px;
+  }
 }
 
 .nextButton {

@@ -1,5 +1,10 @@
 @import '../app/variables.css';
 
+.txListViewWrapper {
+  height: 100%;
+  width: 100%;
+}
+
 .txListHeader {
   flex-direction: row;
   justify-content: space-between;

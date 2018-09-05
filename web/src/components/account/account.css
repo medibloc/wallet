@@ -90,9 +90,3 @@
   display: inline-block;
   text-align: left;
 }
-
-@media (--medium-viewport) {
-  .peer {
-    display: none;
-  }
-}

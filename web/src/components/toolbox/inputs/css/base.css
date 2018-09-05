@@ -29,7 +29,7 @@
 
   .input input::placeholder {
     color: var(--placeholder-color);
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .input span::before,
@@ -38,6 +38,7 @@
   }
 
   .inputElement {
+    font-size: var(--font-size-h6);
     padding: 12px 16px;
   }
 

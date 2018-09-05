@@ -50,7 +50,7 @@ class VestSettings extends React.Component {
             <WBox className={styles.settingsWrapper}>
               <div className={styles.settingsMenuWrapper}>
                 <div className={styles.menuHeader}>
-                  <h4>{ t('Settings') }</h4>
+                  <h4>{ t('Staking Settings') }</h4>
                 </div>
                 <div className={styles.menuBody}>
                   <SettingsMenu

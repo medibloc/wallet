@@ -13,25 +13,29 @@ class ResultBox extends React.Component {
       <WBox className={`${styles.resultBox}`}>
         <TransferTabs setTabSend={setTabSend} isActiveTabSend={true} />
         <div className={styles.bodyWrapper}>
-          <h5 className={styles.title}>
-            {t('Your transfer was successfully completed!')}
-          </h5>
-          <div className={styles.iconWrapper}>
-            <InlineSVG className={styles.icon} src={done} />
+          <div className={styles.resultBody}>
+            <h5 className={styles.title}>
+              {t('Your transfer was successfully completed!')}
+            </h5>
+            <div className={styles.iconOuterWrapper}>
+              <div className={styles.iconWrapper}>
+                <InlineSVG src={done} />
+              </div>
+            </div>
           </div>
+          <footer className={styles.resultBoxFooter}>
+            <PrimaryButton
+              className={`okay-button ${styles.doneButton}`}
+              label={t('Done')}
+              onClick={() => {
+                // istanbul ignore else
+                if (typeof finalCallback === 'function') {
+                  finalCallback();
+                }
+                reset();
+              }} />
+          </footer>
         </div>
-        <footer className={styles.resultBoxFooter}>
-          <PrimaryButton
-            className={`okay-button ${styles.doneButton}`}
-            label={t('Done')}
-            onClick={() => {
-              // istanbul ignore else
-              if (typeof finalCallback === 'function') {
-                finalCallback();
-              }
-              reset();
-            }} />
-        </footer>
       </WBox>
     );
   }

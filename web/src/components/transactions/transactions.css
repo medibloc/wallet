@@ -21,7 +21,7 @@
   & .activity {
     display: flex;
     flex-direction: column;
-    height: var(--main-box-height);
+    height: var(--content-box-height);
 
     & header {
       line-height: var(--header-line-height);

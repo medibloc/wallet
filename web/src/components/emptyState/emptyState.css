@@ -34,14 +34,3 @@
     color: var(--color-grayscale-dark);
   }
 }
-
-@media (--small-viewport) {
-  .emptyState {
-    margin: 50px auto;
-
-    & p {
-      font-size: 14px;
-    }
-  }
-}
-

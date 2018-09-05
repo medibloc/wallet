@@ -42,10 +42,10 @@ or "warn/action" ineastd of "red/green"
   --font-size-h1: 65px;
   --font-size-h2: 44px;
   --font-size-h3: 26px;
-  --font-size-h4: 22px;
-  --font-size-h5: 18px;
-  --font-size-h6: 16px;
-  --font-size-small: 14px;
+  --font-size-h4: 20px;
+  --font-size-h5: 16px;
+  --font-size-h6: 14px;
+  --font-size-small: 12px;
   --heading-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
   --content-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
   --font-weight-light: 300;
@@ -76,23 +76,19 @@ or "warn/action" ineastd of "red/green"
   /*************************
         Sizes
   *************************/
-  --sidebar-width: 136px;
-  --sidebar-image-height: 72px;
-  --sidebar-image-width: 72px;
-  --main-box-width: 1280px;
-  --main-box-height: 720px;
+  --sidebar-width: 88px;
+  --sidebar-image-height: 56px;
+  --sidebar-image-width: 56px;
+  --main-box-width: 1024px;
+  --main-box-height: 656px;
+  --content-box-width: 1024px;
+  --content-box-height: 576px;
   --pub-main-box-width: 1080px;
   --pub-main-box-height: 720px;
   --border-radius-normal: 3px;
   --header-height-m: 100px;
   --header-height-s: 67px;
-  --input-height: 56px;
-  --m-menu-bar-height: 72px;
-  --s-menu-bar-height: 62px;
-  --m-top-bar-height: 90px;
-  --s-top-bar-height: 57px;
-  --footer-height-m: 72px;
-  --footer-height-s: 62px;
+  --input-height: 48px;
 
   /*************************
         Colors
@@ -179,10 +175,4 @@ or "warn/action" ineastd of "red/green"
   /*************************
         Media Queries
   *************************/
-  @custom-media --xLarge-viewport (min-width: 1400px);
-  @custom-media --large-viewport (max-width: 1400px);
-  @custom-media --medium-viewport (max-width: 1024px);
-  @custom-media --small-viewport (max-width: 768px);
-  @custom-media --xSmall-viewport (max-width: 414px);
-  @custom-media --xxSmall-viewport (max-width: 320px);
 }

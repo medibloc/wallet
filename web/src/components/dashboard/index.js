@@ -49,40 +49,40 @@ class Dashboard extends React.Component {
     // const { transactions, t, account, loading, history } = this.props;
     const { account, t } = this.props;
 
-    return <Box className={`${styles.wrapper}`}>
-      <Box className={`${styles.mainWrapper}`}>
+    return <Box className={`${styles.wrapper} ${grid.row}`}>
+      <Box className={`${styles.mainWrapper} ${grid['col-sm-8']}`}>
         <Box className={`${styles.financeWrapper}`}>
           <WBox className={`${styles.finance}`}>
             <WBox className={`${styles.totalWrapper}`}>
-              <h6 className={`${styles.totalHeader}`}>Total</h6>
+              <h5 className={`${styles.totalHeader}`}>Total</h5>
               <h2 className={`${styles.total}`}>
                 <MedAmount val={parseInt(account.balance, 10) +
                   parseInt(account.vesting, 10) +
                   parseInt(account.unstaking, 10)} />
               </h2>
             </WBox>
-            <WBox className={styles.assetsWrapper}>
-              <div className={`${styles.balanceWrapper} ${grid['col-sm-4']}`}>
-                <div className={styles.balanceHeader}>
+            <WBox className={`${styles.assetsWrapper} ${grid.row}`}>
+              <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
+                <h6 className={styles.assetsHeader}>
                   <h6>{t('Balance')}</h6>
-                </div>
-                <div className={`${styles.balance} ${styles.text}`}>
+                </h6>
+                <div className={`${styles.text} ${styles.hasBorderRight}`}>
                   <MedAmount val={account.balance} />
                 </div>
               </div>
-              <div className={`${styles.vestingWrapper} ${grid['col-sm-4']}`}>
-                <div className={styles.vestingHeader}>
+              <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
+                <div className={styles.assetsHeader}>
                   <h6>{t('Staking')}</h6>
                 </div>
-                <div className={`${styles.vesting} ${styles.text}`}>
+                <div className={`${styles.text} ${styles.hasBorderRight}`}>
                   <MedAmount val={account.vesting} />
                 </div>
               </div>
-              <div className={`${styles.unstakingWrapper} ${grid['col-sm-4']}`}>
-                <div className={styles.unstakingHeader}>
+              <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
+                <div className={styles.assetsHeader}>
                   <h6>{t('Pending')}</h6>
                 </div>
-                <div className={`${styles.unstaking} ${styles.text}`}>
+                <div className={`${styles.text}`}>
                   <MedAmount val={account.unstaking} />
                 </div>
               </div>
@@ -97,13 +97,13 @@ class Dashboard extends React.Component {
           { /*  <WBox className={`${styles.graph}`}>
           </WBox> */ }
         </Box>
-        <WBox className={styles.txListView}>
+        <Box className={`${styles.txListViewWrapper}`}>
           <TransactionListView {...this.props}/>
-        </WBox>
+        </Box>
       </Box>
-      <WBox className={`${styles.transferWrapper}`}>
+      <Box className={`${styles.transferWrapper} ${grid['col-sm-4']} `}>
         <Transfer {...this.props} />
-      </WBox>
+      </Box>
       {
         this.state.showVestingSetting ?
           <VestingSettings

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import TransactionList from '../transactions/transactionList';
 import WBox from '../wbox';
 import styles from './transactionListView.css';
@@ -7,7 +7,7 @@ class TransactionListView extends React.Component {
   render() {
     const { t } = this.props;
 
-    return <Fragment>
+    return <WBox className={styles.txListViewWrapper}>
       <WBox className={`${styles.txListHeader}`}>
         <div className={styles.txListHeaderTitle}>
           <h4>
@@ -22,7 +22,7 @@ class TransactionListView extends React.Component {
       </WBox>
       <TransactionList
         {...this.props} />
-    </Fragment>;
+    </WBox>;
   }
 }
 

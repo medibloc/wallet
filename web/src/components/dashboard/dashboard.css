@@ -2,10 +2,11 @@
 
 .wrapper {
   display: flex;
-  height: 632px;
+  height: var(--content-box-height);
   flex-direction: row;
+  justify-content: space-around;
   margin: 0;
-  width: 1280px;
+  width: var(--content-box-width);
 }
 
 .seeAllLink {
@@ -21,31 +22,28 @@
   height: 100%;
   flex-direction: column;
   margin: 0;
-  width: 846px;
+  padding: 0 10px 0 0;
 
   & .financeWrapper {
-    height: 305px;
     flex-direction: row;
-    width: 846px;
+    height: 50%;
+    padding: 0 0 10px;
+  }
 
-    & .graph {
-      border-radius: 1px;
-      height: 100%;
-      margin: 0 0 0 22px;
-      width: 412px;
-    }
+  & .txListViewWrapper {
+    flex-direction: row;
+    height: 50%;
+    padding: 10px 0 0;
   }
 }
 
 .finance {
-  border-radius: 1px;
   height: 100%;
-  width: 846px;
 
   & .totalWrapper {
     flex-direction: column;
-    height: 118px;
-    margin-top: 24px;
+    height: 50%;
+    justify-content: center;
     padding: 0 30px;
     text-align: center;
     width: 100%;
@@ -58,18 +56,17 @@
     & .total {
       border-bottom: 1px solid var(--color-dodger-blue);
       color: var(--color-dodger-blue);
-      font-size: 60px;
-      margin-top: 3px;
+      font-size: 50px;
       width: 100%;
     }
   }
 
   & .assetsWrapper {
-    height: 72px;
+    height: 30%;
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
-    margin: 16px 0 0;
+    padding: 0 30px;
 
     & .text {
       align-items: center;
@@ -80,69 +77,47 @@
       text-align: center;
     }
 
-    & .balanceWrapper {
-      display: flex;
-      height: 100%;
-      flex-direction: column;
-
-      & .balanceHeader {
-        color: var(--color-black-60);
-      }
-
-      & .balance {
-        border-right: 1px solid var(--color-black-38);
-      }
+    & .hasBorderRight {
+      border-right: 1px solid var(--color-black-38);
     }
 
-    & .vestingWrapper {
+    & > .assetsRow {
       display: flex;
       height: 100%;
       flex-direction: column;
+      justify-content: center;
 
-      & .vestingHeader {
+      & > .assetsHeader {
         color: var(--color-black-60);
-      }
-
-      & .vesting {
-        border-right: 1px solid var(--color-black-38);
-      }
-    }
-
-    & .unstakingWrapper {
-      display: flex;
-      height: 100%;
-      flex-direction: column;
-
-      & .unstakingHeader {
-        color: var(--color-black-60);
-      }
-
-      & .unstaking {
-        display: flex;
       }
     }
   }
 
   & .vestingSettingsWrapper {
     display: flex;
+    height: 20%;
     justify-content: flex-end;
     flex-direction: row;
+    padding: 12px 30px;
 
     & .vestingSettings {
       border-radius: 50px;
-      margin: 0 20px 0 0;
-      min-width: 250px;
-      width: 250px;
+      height: 32px;
+      font-size: var(--font-size-h6);
+      line-height: 32px;
+      min-width: 200px;
+      width: 200px;
     }
   }
 }
 
-.txListView {
-  border-radius: 1px;
-  height: 305px;
-  margin: 22px 0 0;
-  width: 846px;
+.transferWrapper {
+  height: 100%;
+  padding: 0 0 0 10px;
+}
 
+/*
+.txListView {
   & .txListHeader {
     flex-direction: row;
     justify-content: space-between;
@@ -159,10 +134,4 @@
     }
   }
 }
-
-.transferWrapper {
-  border-radius: 1px;
-  height: 100%;
-  margin: 0 0 0 22px;
-  width: 412px;
-}
+*/

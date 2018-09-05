@@ -2,10 +2,10 @@
 
 .wrapper {
   display: flex;
-  height: 632px;
+  height: var(--main-box-height);
   flex-direction: row;
   margin: 0;
-  width: 1280px;
+  width: var(--main-box-width);
 }
 
 .transfer {

@@ -79,47 +79,6 @@
   }
 }
 
-@media (--small-viewport) {
-  .navigation {
-    counter-reset: section;
-    padding: 0 18px;
-
-    & .backButtonShadow {
-      display: none;
-    }
-
-    & section {
-      width: 100px;
-    }
-  }
-
-  .navEl:not(.dash) {
-    & .icon,
-    & .label {
-      display: none;
-    }
-
-    &::after {
-      counter-increment: section;
-      content: counter(section);
-    }
-
-    &.current {
-      opacity: 1;
-
-      &::after {
-        font-weight: var(--font-weight-bold);
-      }
-    }
-  }
-
-  .navEl.dash {
-    & b {
-      width: 20px !important;
-    }
-  }
-}
-
 .hidden {
   display: none;
 }

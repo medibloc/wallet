@@ -5,7 +5,6 @@ import Box from '../box';
 import CountDownTemplate from './countDownTemplate';
 import CopyToClipboard from '../copyToClipboard';
 import MedAmount from '../medAmount';
-import logo from '../../assets/images/main-menu-icons/homeCopy.png';
 import PrivateWrapper from '../privateWrapper';
 import styles from './header.css';
 import CustomCountDown from './customCountDown';
@@ -16,9 +15,6 @@ class Header extends React.Component {
       <header className={`${styles.wrapper} mainHeader`}>
         <div className={`${styles.loginInfo}`}>
           <div>
-            <div style={{ display: 'inline-block', float: 'left' }}>
-              <img src={logo} className={`${styles.logo}`}/>
-            </div>
             <div style={{ display: 'inline-block' }}>
               <PrivateWrapper>
                 <div className={`account ${styles.account}`}>
@@ -27,7 +23,7 @@ class Header extends React.Component {
                       <MedAmount val={parseInt(this.props.account.balance, 10) +
                         parseInt(this.props.account.vesting, 10) +
                         parseInt(this.props.account.unstaking, 10)}/>
-                      <small>MED</small>
+                      <h5>MED</h5>
                     </div>
                     <CopyToClipboard
                       value={this.props.account.address}

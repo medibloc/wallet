@@ -9,31 +9,40 @@
 .bodyWrapper {
   align-items: center;
   display: flex;
-  height: 455px;
+  height: calc(100% - 40px);
   flex-direction: column;
   width: 100%;
 
-  & .title {
-    margin: 56px 0 0;
+  & .resultBody {
+    display: flex;
+    height: 80%;
+    justify-content: space-around;
+    flex-direction: column;
+
+    & .iconOuterWrapper {
+      display: flex;
+      height: 150px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    & .iconWrapper {
+      height: 150px;
+      width: 150px;
+    }
   }
 
-  & .iconWrapper {
-    height: 164px;
-    margin: 40px 0 0;
-    width: 164px;
-  }
+  & .resultBoxFooter {
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    justify-content: flex-end;
+    padding: 0 !important;
+    width: 100%;
 
-  & .icon {
-    height: 164px;
-    margin: 0;
-    width: 164px;
-  }
-}
-
-.resultBoxFooter {
-  padding: 0 !important;
-
-  & .doneButton {
-    margin: 0;
+    & .doneButton {
+      margin: 0;
+      width: 100%;
+    }
   }
 }
