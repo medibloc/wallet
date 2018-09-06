@@ -6,6 +6,7 @@ import CustomRoute from '../customRoute';
 import LoadingBar from '../loadingBar';
 import NotFound from '../notFound';
 import OfflineWrapper from '../offlineWrapper';
+import Toaster from '../toaster';
 
 import routes from '../../constants/routes';
 // eslint-disable-next-line import/no-named-as-default
@@ -67,6 +68,7 @@ class App extends React.Component {
               }
               <Route path='*' component={NotFound} />
             </Switch>
+            <Toaster />
           </main>
         </BrowserRouter>
         <LoadingBar markAsLoaded={() => this.markAsLoaded()} />

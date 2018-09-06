@@ -23,6 +23,7 @@
         height: 20px;
 
         & > small {
+          color: var(--color-black-38);
           justify-content: flex-start;
         }
       }

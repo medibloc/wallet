@@ -101,6 +101,7 @@ or "warn/action" ineastd of "red/green"
   --color-primary-light: #008bff;
   --color-primary-very-light: #e8f0fa;
   --color-black: #000;
+  --color-gunmetal: #626363;
   --color-grayscale-dark: #3c5068;
   --color-grayscale-medium: #74869b;
   --color-grayscale-light: #ccd9e4;
@@ -126,7 +127,7 @@ or "warn/action" ineastd of "red/green"
   --color-dodger-blue-8: rgba(79, 141, 243, 0.08);
   --color-dusk-blue: #2f599f;
   --color-mid-blue: #2462c8;
-  --color-mid-blue-60: rgba(36, 98, 200, 0.6);
+  --color-mid-blue-30: rgba(36, 98, 200, 0.3);
   --color-cool-gray: #b4b8be;
   --color-pale-gray: #f7f8f9;
   --color-black-4: rgba(0, 0, 0, 0.04);

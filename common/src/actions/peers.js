@@ -7,6 +7,7 @@ const peerSet = (data, config) => ({
     address: data.address,
     activePeer: client(config.nodes),
     encKey: data.encKey,
+    noSavedAccounts: data.noSavedAccounts,
     options: { code: config.code },
   }),
   type: actionTypes.activePeerSet,

@@ -28,6 +28,12 @@ class Register extends React.Component {
     this.props.history.push(`${routes.login.path}`);
   }
 
+  showCopySuccessToast() {
+    this.props.successToastDisplayed({
+      label: this.props.t('Backup phrase copied.'),
+    });
+  }
+
   render() {
     const { t } = this.props;
     return (<Box className={`${styles.wrapper}`}>
@@ -36,7 +42,8 @@ class Register extends React.Component {
         prevPage={() => this.backToLogin()}
         finalCallback={(...args) => this.onRegister(...args)}>
         <Create title={'Create'} t={t} />
-        <Safekeeping title={'Safekeeping'} t={t} />
+        <Safekeeping showCopySuccessToast={() => this.showCopySuccessToast()}
+          title={'Safekeeping'} t={t} />
         <Confirm title={'Confirm'} t={t} />
         <Password title={'Password'} t={t} />
       </MultiStep>

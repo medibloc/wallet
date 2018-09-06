@@ -19,11 +19,13 @@
       color: var(--color-black-87);
     }
 
-    & > .copyLink {
-      border-bottom: 1px solid var(--color-dusk-blue);
-      color: var(--color-dusk-blue);
-      cursor: pointer;
-      margin-left: 4px;
+    & > .copyButtonWrapper {
+      height: 32px;
+      font-size: var(--font-size-small);
+      line-height: 20px;
+      margin: 0 0 0 16px;
+      padding: 6px 12px;
+      width: 96px;
     }
   }
 
