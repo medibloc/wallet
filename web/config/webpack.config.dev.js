@@ -13,6 +13,7 @@ module.exports = merge(baseConfig, reactConfig, {
   },
   devServer: {
     contentBase: 'src',
+    disableHostCheck: true,
     inline: true,
     port: 8080,
     historyApiFallback: true,
