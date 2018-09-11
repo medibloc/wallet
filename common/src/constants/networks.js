@@ -8,6 +8,7 @@ const networks = {
     name: 'Testnet',
     testnet: true,
     code: 1,
+    mServerURL: 'https://explorer.medibloc.org',
     nodes: ['https://node.medibloc.org/'],
   },
   customNode: { // network name translation t('Custom Node');

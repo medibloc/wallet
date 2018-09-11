@@ -1,4 +1,5 @@
 import { client } from 'medjs';
+import mServer from '../../../common/src/utils/mServer';
 import getNetwork from '../../../common/src/utils/getNetwork';
 import actionTypes from '../constants/actions';
 
@@ -7,8 +8,9 @@ const peerSet = (data, config) => ({
     address: data.address,
     activePeer: client(config.nodes),
     encKey: data.encKey,
+    mServer: mServer(config.mServerURL),
+    networkCode: config.code,
     noSavedAccounts: data.noSavedAccounts,
-    options: { code: config.code },
   }),
   type: actionTypes.activePeerSet,
 });

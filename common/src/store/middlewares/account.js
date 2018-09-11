@@ -1,4 +1,5 @@
-import { getAccount, transactions as getTransactions } from '../../utils/api/account';
+import { getAccount } from '../../utils/api/account';
+import { transactions as getTransactions } from '../../utils/api/transaction';
 import { accountUpdated } from '../../actions/account';
 // import { transactionsUpdateUnconfirmed } from '../../actions/transactions';
 import { activePeerUpdate } from '../../actions/peers';
@@ -18,7 +19,7 @@ const updateTransactions = (store, peers) => {
     : state.account.address;
 
   getTransactions({
-    activePeer: peers.activePeer, address, limit: 25, filter,
+    address, limit: 25, mServer: peers.mServer, filter,
   }).then((response) => {
     store.dispatch({
       data: {

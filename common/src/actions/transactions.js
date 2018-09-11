@@ -1,20 +1,18 @@
 // import { extractAddress } from '../../../common/src/utils/account';
 import actionTypes from '../constants/actions';
 // import { loadingStarted, loadingFinished } from '../utils/loading';
-import { transactions } from '../utils/api/account';
-import { transaction } from '../utils/api/transaction';
-// import { transactions, transaction, unconfirmedTransactions } from '../utils/api/account';
+import { transaction, transactions } from '../utils/api/transaction';
 // import { getDelegate } from '../utils/api/delegate';
 import { loadAccount } from './account';
 // import txTypes from '../constants/transactionTypes';
 
 
-export const transactionsFilterSet = ({ activePeer, address, limit, txTypeFilter }) =>
+export const transactionsFilterSet = ({ address, limit, mServer, txTypeFilter }) =>
   (dispatch) => {
     transactions({
-      activePeer,
       address,
       limit,
+      mServer,
       txTypeFilter,
     }).then(response => dispatch({
       data: {
@@ -47,14 +45,14 @@ export const transactionsFilterSet = ({ activePeer, address, limit, txTypeFilter
 //     });
 //   };
 
-export const loadTransactions = ({ activePeer, address }) =>
+export const loadTransactions = ({ activePeer, address, mServer }) =>
   (dispatch) => {
     // eslint-disable-next-line no-unneeded-ternary
     const lastActiveAddress = address ? address : null;
     const isSameAccount = lastActiveAddress === address;
     // loadingStarted(actionTypes.transactionsLoad);
     // TODO: get transaction details
-    transactions({ activePeer, address })
+    transactions({ address, mServer })
       .then((transactionsResponse) => {
         dispatch(loadAccount({
           activePeer,

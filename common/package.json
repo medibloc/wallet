@@ -10,6 +10,7 @@
     "test": "mocha -r babel-core/register -r jsdom-global/register src/**/*.test.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bignumber.js": "4.0.4",
     "bip39": "^2.5.0",
     "i18next": "^11.3.3",

@@ -1,6 +1,5 @@
 import { randomBytes } from 'crypto';
 import blockTypes from '../../constants/blockTypes';
-import txTypes from '../../constants/transactionTypes';
 import { extractAddress, isAddress, getAccountFromPrivKey } from '../account';
 import { createDefaultPayload, valueTransferTx, vestTx, withdrawVestingTx } from '../transaction';
 
@@ -51,54 +50,6 @@ export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
       console.log(error);
       reject(error);
     });
-  });
-
-export const transactions = ({ activePeer, address, txTypeFilter }) =>
-  new Promise((resolve, reject) => {
-    activePeer.getAccountTransactions(address, false).then((data) => {
-      if (data && data.transactions) {
-        if (txTypeFilter) {
-          const filteredTxs = data.transactions.filter((tx) => {
-            let flag = false;
-            if (tx && tx.data && tx.data.tx_type) {
-              txTypes.forEach((v) => {
-                if (tx.data.tx_type === v) {
-                  flag = true;
-                }
-              });
-            }
-            return flag;
-          });
-          resolve({
-            count: filteredTxs.length,
-            transactions: filteredTxs,
-          });
-        } else {
-          resolve({
-            count: data.transactions.length,
-            transactions: data.transactions,
-          });
-        }
-      }
-      reject(data);
-    }).catch(error => reject(error));
-
-    // activePeer.getAccountState(address, blockTypes.tail).then((data) => {
-    //   if (data) {
-    //     let txs = [];
-    //     if ((filter === txFilters.outgoing || filter === txFilters.all)
-    //       && data.txs_send && data.txs_send.length) {
-    //       txs = txs.concat(data.txs_send);
-    //     }
-    //     if ((filter === txFilters.incoming || filter === txFilters.all)
-    //       && data.txs_get && data.txs_get.length) {
-    //       txs = txs.concat(data.txs_get);
-    //     }
-    //     resolve({ transactions: txs, count: txs.length });
-    //   } else {
-    //     reject(data);
-    //   }
-    // }).catch(error => reject(error));
   });
 
 // export const transactions = ({ activePeer, address, limit = 20, offset = 0,

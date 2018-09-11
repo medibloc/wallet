@@ -11,8 +11,6 @@ import styles from './customRoute.css';
 export const CustomRouteRender = ({ path, component, isPrivate, exact,
   isAuthenticated, pathSuffix = '', pathPrefix = '', t }) => {
   const fullPath = pathPrefix + path + pathSuffix;
-  console.log(window.location);
-  console.log(fullPath);
   return ((isPrivate && isAuthenticated) || !isPrivate ?
     <Fragment>
       <main className={isPrivate ? `${offlineStyle.disableWhenOffline} ${styles.mainWrapper}` : null}>

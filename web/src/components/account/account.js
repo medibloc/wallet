@@ -14,7 +14,7 @@ const Account = ({ peers, t }) => {
     <FontIcon className='online' value='checkmark' /> :
     <FontIcon className='offline' value='error' />;
 
-  return (peers.activePeer && peers.options.code !== networks.mainnet.code ?
+  return (peers.activePeer && peers.networkCode !== networks.mainnet.code ?
     <section className={styles.peer}>
       <div className={`${styles.title} inner primary peer-network`}>{t(peers.activePeer.options)} <span id="accountStatus" className={`${styles.status} status`}>{status}</span>
       </div>

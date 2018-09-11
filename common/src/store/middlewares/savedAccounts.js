@@ -29,7 +29,7 @@ const savedAccountsMiddleware = (store) => {
     }
   });
 
-  const isSameNetwork = (account, peers) => peers.options.code === account.networkCode;
+  const isSameNetwork = (account, peers) => peers.networkCode === account.networkCode;
 
   const updateSavedAccounts = (peers, accounts) => {
     accounts.forEach((account, i) => {
@@ -92,7 +92,7 @@ const savedAccountsMiddleware = (store) => {
           address: account.address,
           balance: account.balance,
           encKey: account.encKey,
-          networkCode: peers.options.code,
+          networkCode: peers.networkCode,
           unstaking: account.unstaking,
           vesting: account.vesting,
         }));
@@ -110,7 +110,7 @@ const savedAccountsMiddleware = (store) => {
           address: action.data.address,
           balance: action.data.balance,
           encKey: action.data.encKey,
-          networkCode: peers.options.code,
+          networkCode: peers.networkCode,
           unstaking: account.unstaking,
           vesting: account.vesting,
         }));

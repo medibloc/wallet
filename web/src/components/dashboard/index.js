@@ -36,6 +36,7 @@ class Dashboard extends React.Component {
     this.props.loadTransactions({
       activePeer: this.props.peers.activePeer,
       address: this.props.account.address,
+      mServer: this.props.peers.mServer,
     });
   }
 
