@@ -48,7 +48,7 @@ input:read-only {
 .description {
   margin: 16px 0 0;
 
-  & textarea {
+  & input {
     height: 80px;
     padding: 12px;
   }
