@@ -58,8 +58,8 @@ class Dashboard extends React.Component {
             <WBox className={`${styles.totalWrapper}`}>
               <h5 className={`${styles.totalHeader}`}>Total</h5>
               <h2 className={`${styles.total}`}>
-                <MedAmount val={parseInt(
-                  addMed(addMed(account.balance, account.vesting), account.unstaking), 10)} />
+                <MedAmount roundTo={2}
+                  val={addMed(addMed(account.balance, account.vesting), account.unstaking)} />
               </h2>
             </WBox>
             <WBox className={`${styles.assetsWrapper} ${grid.row}`}>
@@ -68,7 +68,8 @@ class Dashboard extends React.Component {
                   <h6>{t('Balance')}</h6>
                 </h6>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
-                  <MedAmount val={account.balance} />
+                  <MedAmount roundTo={2}
+                    val={account.balance} />
                 </div>
               </div>
               <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
@@ -76,7 +77,8 @@ class Dashboard extends React.Component {
                   <h6>{t('Staking')}</h6>
                 </div>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
-                  <MedAmount val={account.vesting} />
+                  <MedAmount roundTo={2}
+                    val={account.vesting} />
                 </div>
               </div>
               <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
@@ -84,7 +86,8 @@ class Dashboard extends React.Component {
                   <h6>{t('Pending')}</h6>
                 </div>
                 <div className={`${styles.text}`}>
-                  <MedAmount val={account.unstaking} />
+                  <MedAmount roundTo={2}
+                    val={account.unstaking} />
                 </div>
               </div>
             </WBox>
