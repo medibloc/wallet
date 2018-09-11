@@ -91,6 +91,10 @@
     flex-direction: column;
     overflow: hidden;
     width: 380px;
+
+    & h6 {
+      color: var(--color-black-60);
+    }
   }
 }
 

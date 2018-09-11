@@ -21,7 +21,7 @@
 
     & > .copyButtonWrapper {
       height: 32px;
-      font-size: var(--font-size-small);
+      font-size: var(--font-size-h6);
       line-height: 20px;
       margin: 0 0 0 16px;
       padding: 6px 12px;

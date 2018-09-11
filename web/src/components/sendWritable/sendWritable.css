@@ -41,14 +41,16 @@ input:read-only {
 
   & input {
     height: 40px;
+    padding: 12px;
   }
 }
 
 .description {
   margin: 16px 0 0;
 
-  & input {
+  & textarea {
     height: 80px;
+    padding: 12px;
   }
 }
 
@@ -57,6 +59,7 @@ input:read-only {
 
   & input {
     height: 40px;
+    padding: 12px;
   }
 }
 

@@ -96,6 +96,10 @@
   & > div > .tabImg rect {
     fill: var(--color-dodger-blue-16) !important;
   }
+
+  & > div > .tabLabel {
+    color: var(--color-black-87);
+  }
 }
 
 .navigationContainer {
