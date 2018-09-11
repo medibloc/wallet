@@ -43,6 +43,18 @@ avaialble application-wide
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Nexa-Bold';
+  src: url('../../assets/fonts/nexa/Nexa-Bold.otf') format('opentype');
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nexa-Heavy';
+  src: url('../../assets/fonts/nexa/Nexa-Heavy.otf') format('opentype');
+  font-style: normal;
+}
+
 body {
   font-family: var(--content-font);
   font-weight: var(--font-weight-normal);

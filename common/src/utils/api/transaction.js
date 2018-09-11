@@ -25,7 +25,7 @@ export const transactions = ({ address, mServer, txTypeFilter }) =>
         } else {
           resolve({
             count: txs.length,
-            txs,
+            transactions: txs,
           });
         }
       }

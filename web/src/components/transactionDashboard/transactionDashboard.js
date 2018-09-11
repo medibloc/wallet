@@ -6,6 +6,15 @@ import WBox from '../wbox';
 import styles from './transactionDashboard.css';
 
 class TransactionsDashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props.loadTransactions({
+      activePeer: this.props.peers.activePeer,
+      address: this.props.account.address,
+      mServer: this.props.peers.mServer,
+    });
+  }
+
   render() {
     return <div className={styles.wrapper}>
       <WBox className={styles.transfer}>

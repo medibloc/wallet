@@ -52,7 +52,7 @@ class TransactionsList extends React.Component {
       <TransactionsHeader tableStyle={tableStyle} />
       {transactions
         // .filter(fixIncomingFilter)
-        .sort((a, b) => a.timestamp < b.timestamp)
+        .sort((a, b) => b.timestamp - a.timestamp)
         .map((transaction, i) => (
           <TransactionRow address={account.address}
             key={i}

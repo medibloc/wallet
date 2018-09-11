@@ -51,6 +51,11 @@ export const Time = translate()((props) => {
 export const DateFromTimestamp = translate()((props) => {
   moment.locale(i18n.language);
   const day = moment(new Date(parseInt(props.time, 10)));
+  const now = moment(new Date());
+  const diff = Math.floor((now - day) / 60000);
+  if (diff < 0) return (<span/>);
+  else if (diff < 60) return (<span>{`${diff} Min ago`}</span>);
+  else if (diff < 1440) return (<span>{`${Math.floor(diff / 60)} Hr ago`}</span>);
   return (<span>{day.format('ll')}</span>);
 });
 

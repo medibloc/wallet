@@ -120,7 +120,9 @@ const mapStateToProps = state => ({
   loading: state.loading.length > 0,
   peers: state.peers,
   transactions: [...state.transactions.pending,
-    ...state.transactions.confirmed].reverse().slice(0, 5),
+    ...state.transactions.confirmed]
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .slice(0, 5),
   pendingTransactions: state.transactions.pending,
 });
 
