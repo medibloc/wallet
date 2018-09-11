@@ -8,9 +8,11 @@ import MedAmount from '../medAmount';
 import PrivateWrapper from '../privateWrapper';
 import styles from './header.css';
 import CustomCountDown from './customCountDown';
+import { addMed } from '../../../../common/src/utils/med';
 
 class Header extends React.Component {
   render() {
+    const { account } = this.props;
     return (
       <header className={`${styles.wrapper} mainHeader`}>
         <div className={`${styles.loginInfo}`}>
@@ -20,24 +22,23 @@ class Header extends React.Component {
                 <div className={`account ${styles.account}`}>
                   <div className={styles.information} align="right">
                     <div className={styles.total}>
-                      <MedAmount val={parseInt(this.props.account.balance, 10) +
-                        parseInt(this.props.account.vesting, 10) +
-                        parseInt(this.props.account.unstaking, 10)}/>
+                      <MedAmount val={parseInt(
+                        addMed(addMed(account.balance, account.vesting), account.unstaking), 10)} />
                       <h5>MED</h5>
                     </div>
                     <CopyToClipboard
-                      value={this.props.account.address}
+                      value={account.address}
                       className={`${styles.address} account-information-address`}
                       copyClassName={styles.copy}/>
-                    {!this.props.autoLog && this.props.account.passphrase ?
+                    {!this.props.autoLog && account.passphrase ?
                       <div className={styles.unlocked}>{this.props.t('Unlocked')}</div> : <div/>}
                     {this.props.autoLog ? <div className={styles.timer}>
-                      {((this.props.account.expireTime &&
-                          this.props.account.expireTime !== 0) &&
-                          this.props.account.passphrase) ?
+                      {((account.expireTime &&
+                          account.expireTime !== 0) &&
+                          account.passphrase) ?
                         <div>
                           <Countdown
-                            date={this.props.account.expireTime}
+                            date={account.expireTime}
                             renderer={CountDownTemplate}
                             onComplete={() => {
                               this.props.removeSavedAccountPassphrase();
@@ -56,7 +57,7 @@ class Header extends React.Component {
                   </div>
                   <Box className={styles.avatar}>
                     <AccountVisual
-                      address={this.props.account.address}
+                      address={account.address}
                       size={72}
                     />
                   </Box>

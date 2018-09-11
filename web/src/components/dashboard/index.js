@@ -15,6 +15,7 @@ import VestingSettings from '../vestingSettings';
 // import routes from '../../constants/routes';
 import styles from './dashboard.css';
 import { airDropped } from '../../../../common/src/actions/account';
+import { addMed } from '../../../../common/src/utils/med';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -57,9 +58,8 @@ class Dashboard extends React.Component {
             <WBox className={`${styles.totalWrapper}`}>
               <h5 className={`${styles.totalHeader}`}>Total</h5>
               <h2 className={`${styles.total}`}>
-                <MedAmount val={parseInt(account.balance, 10) +
-                  parseInt(account.vesting, 10) +
-                  parseInt(account.unstaking, 10)} />
+                <MedAmount val={parseInt(
+                  addMed(addMed(account.balance, account.vesting), account.unstaking), 10)} />
               </h2>
             </WBox>
             <WBox className={`${styles.assetsWrapper} ${grid.row}`}>
