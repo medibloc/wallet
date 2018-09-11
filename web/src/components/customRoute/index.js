@@ -22,9 +22,11 @@ export const CustomRouteRender = ({ path, component, isPrivate, exact,
                 <Route path={fullPath} component={component} exact={exact}/>
               </div>
             </section> :
-            <div className={`${styles.publicMainBox}`}>
-              <Route path={fullPath} component={component} exact={exact}/>
-            </div>
+            <section>
+              <div className={`${styles.publicMainBox}`}>
+                <Route path={fullPath} component={component} exact={exact}/>
+              </div>
+            </section>
           }
         </ErrorBoundary>
       </main>

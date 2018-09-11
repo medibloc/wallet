@@ -41,13 +41,15 @@ or "warn/action" ineastd of "red/green"
   *************************/
   --font-size-h1: 65px;
   --font-size-h2: 44px;
-  --font-size-h3: 26px;
+  --font-size-h3: 22px;
   --font-size-h4: 20px;
   --font-size-h5: 16px;
   --font-size-h6: 14px;
   --font-size-small: 12px;
   --heading-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
   --content-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+  --startpage-heading-font: 'Nexa-Heavy', sans-serif;
+  --startpage-content-font: 'Nexa-Bold', sans-serif;
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-bold: 700;
