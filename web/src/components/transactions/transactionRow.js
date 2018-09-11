@@ -35,10 +35,12 @@ class TransactionRow extends React.Component {
             props.value.tx_type === txTypes.genesis) ?
             props.value.to : null} </span>
         </div>
-        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <TransactionType type={props.value.tx_type} />
+        <div className={`${styles.middleText} ${grid['col-sm-2']} transactions-cell`}>
+          <TransactionType
+            isReceived={props.value.to && props.address && (props.value.to === props.address)}
+            type={props.value.tx_type} />
         </div>
-        <div className={`${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
+        <div className={`${styles.rightText} ${grid['col-sm-2']} transactions-cell`}>
           <Amount {...props} />
         </div>
       </div>

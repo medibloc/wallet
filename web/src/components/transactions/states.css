@@ -4,6 +4,12 @@
   overflow: hidden;
 }
 
+.middleText {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .rightText {
   text-align: right;
   text-overflow: ellipsis;

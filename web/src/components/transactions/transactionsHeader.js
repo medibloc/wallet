@@ -9,8 +9,8 @@ const TransactionsHeader = ({ t }) => (
     <div className={`${styles.leftText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>{t('Timestamp')}</div>
     <div className={`${styles.leftText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>{t('From')}</div>
     <div className={`${styles.leftText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>{t('To')}</div>
-    <div className={`${styles.leftText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>{t('Action')}</div>
-    <div className={`${styles.leftText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>{t('Amount')}</div>
+    <div className={`${styles.middleText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>{t('Action')}</div>
+    <div className={`${styles.middleText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>{t('Amount')}</div>
   </div>);
 
 export default translate()(TransactionsHeader);

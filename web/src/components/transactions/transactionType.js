@@ -8,7 +8,7 @@ const TransactionType = (props) => {
   let type;
   switch (props.type) {
     case txTypes.send:
-      type = t('Send');
+      type = props.isReceived ? t('Received') : t('Send');
       break;
     case txTypes.addRecord:
       type = t('Add Record');
@@ -35,7 +35,10 @@ const TransactionType = (props) => {
       type = t('Revoke Certification');
       break;
     case txTypes.genesis:
-      type = t('Genesis');
+      type = props.isReceived ? t('Received') : t('Send');
+      break;
+    case txTypes.genesisVest:
+      type = t('Staking');
       break;
     default:
       type = false;
