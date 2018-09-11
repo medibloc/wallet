@@ -73,7 +73,7 @@ class Vest extends React.Component {
     } else if (name === 'amount' && value > parseFloat(this.getMaxAmount())) {
       return this.props.t('Not enough MED');
     } else if (name === 'amount' && value < this.getMinVesting()) {
-      return this.props.t('At least 100 MED is required to staking');
+      return this.props.t('At least 1 MED is required to staking');
     }
     return undefined;
   }
@@ -84,7 +84,7 @@ class Vest extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   getMinVesting() {
-    return 100;
+    return 1;
   }
 
   render() {
