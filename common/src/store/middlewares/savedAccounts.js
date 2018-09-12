@@ -110,7 +110,7 @@ const savedAccountsMiddleware = (store) => {
           address: action.data.address,
           balance: action.data.balance,
           encKey: action.data.encKey,
-          networkCode: peers.networkCode,
+          networkCode: action.data.networkCode,
           unstaking: account.unstaking,
           vesting: account.vesting,
         }));
