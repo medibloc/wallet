@@ -18,9 +18,9 @@ const customItem = item => (
         address={item.address}
         size={33} sizeS={33}/>
     </div>
-    <div className={`${styles.address}`}>
-      <h6>{item.label}</h6>
-      <h6>{item.address}</h6>
+    <div className={`${styles.account}`}>
+      <h6 className={`${styles.label}`}>{item.label}</h6>
+      <h6 className={`${styles.address}`}>{item.address}</h6>
     </div>
   </div>
 );

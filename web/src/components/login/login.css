@@ -86,14 +86,18 @@
     background-color: var(--color-white);
   }
 
-  & > .address {
+  & > .account {
     display: flex;
     flex-direction: column;
     overflow: hidden;
     width: 380px;
 
-    & h6 {
+    & .label {
       color: var(--color-black-60);
+    }
+
+    & .address {
+      color: var(--color-black-87);
     }
   }
 }
