@@ -16,7 +16,7 @@ const customItem = item => (
     <div className={`${styles.accountVisual}`}>
       <AccountVisual
         address={item.address}
-        size={40} sizeS={40}/>
+        size={33} sizeS={33}/>
     </div>
     <div className={`${styles.address}`}>
       <h6>{item.label}</h6>
