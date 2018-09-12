@@ -51,4 +51,8 @@
       }
     }
   }
+
+  & [data-pseude-content]::before {
+    content: attr(data-pseude-content);
+  }
 }

@@ -15,7 +15,7 @@ const PassphraseBox = ({ className, missing, passphrase, words }) => (
                 <span className={(i === missing[0]) ?
                   `${styles.boxFocus}` : null} key={`${word}-${i2}`}>
                   <div className={`${styles.number}`}>
-                    <small>{i + 1}</small>
+                    <small data-pseude-content={i + 1} />
                   </div>
                   <div className={(i === missing[0]) ?
                     `${styles.wordFocus}` : `${styles.word}`}>
@@ -24,10 +24,10 @@ const PassphraseBox = ({ className, missing, passphrase, words }) => (
                 </span> :
                 <span key={`${word}-${i2}`}>
                   <div className={`${styles.number}`}>
-                    <small>{i + 1}</small>
+                    <small data-pseude-content={i + 1} />
                   </div>
                   <div className={`${styles.word}`}>
-                    <h6>{word}</h6>
+                    <h6>{word}{' '}</h6>
                   </div>
                 </span>
             );
