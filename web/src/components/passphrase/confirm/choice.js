@@ -14,12 +14,6 @@ const Choice = ({ step, totalStep, wordOptions, onSubmitAnswer }) => (
             value={word}
             onClick={onSubmitAnswer} />)
       }
-    </div> : null
-);
+    </div> : <div className={`${styles.choice}`} />);
 
 export default Choice;
-
-
-// {/*<div className={`${styles.word}`} key={`${word}-${step}`}>*/}
-//   {/*<h6>{word}</h6>*/}
-// {/*</div>)*/}
