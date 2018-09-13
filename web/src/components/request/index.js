@@ -15,24 +15,26 @@ class Request extends React.Component {
       <WBox className={`${styles.requestWrapper}`}>
         <TransferTabs setTabSend={setTabSend} isActiveTabSend={false} />
         <div className={`${styles.bodyWrapper}`}>
-          <div>
-            <h6>{t('Scan code to receive from others')}</h6>
+          <div className={`${styles.contentWrapper}`}>
+            <div className={`${styles.headerWrapper}`}>
+              <h6>{t('Scan code to receive from others')}</h6>
+            </div>
+            <div className={`${styles.qrCode} ${styles.magnified} request-qr-code`}>
+              <QRCode value={account.address} />
+            </div>
           </div>
-          <div className={`${styles.qrCode} ${styles.magnified} request-qr-code`}>
-            <QRCode value={account.address} />
-          </div>
+          <footer className={styles.requestFooter}>
+            <div className={styles.address}>
+              <h6>{account.address}</h6>
+            </div>
+            <CopyToClipboard
+              className={styles.copyButton}
+              text={account.address}>
+              <PrimaryButton
+                label={t('Copy address')} />
+            </CopyToClipboard>
+          </footer>
         </div>
-        <footer className={styles.requestFooter}>
-          <div className={styles.address}>
-            <h6>{account.address}</h6>
-          </div>
-          <CopyToClipboard
-            className={styles.copyButton}
-            text={account.address}>
-            <PrimaryButton
-              label={t('Copy address')} />
-          </CopyToClipboard>
-        </footer>
       </WBox>
     );
   }
