@@ -64,9 +64,9 @@ class Dashboard extends React.Component {
             </WBox>
             <WBox className={`${styles.assetsWrapper} ${grid.row}`}>
               <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
-                <h6 className={styles.assetsHeader}>
+                <div className={styles.assetsHeader}>
                   <h6>{t('Balance')}</h6>
-                </h6>
+                </div>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
                   <MedAmount roundTo={2}
                     val={account.balance} />

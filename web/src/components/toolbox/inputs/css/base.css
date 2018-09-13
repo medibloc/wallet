@@ -55,6 +55,7 @@
 
   .error {
     color: var(--color-error);
+    font-family: var(--content-font) !important;
     font-size: var(--label-font-size);
     line-height: 20px;
 

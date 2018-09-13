@@ -1,6 +1,6 @@
 import React from 'react';
 import { fromRawMed } from '../../../../common/src/utils/med';
-import { PrimaryButton, SecondaryButton } from './../toolbox/buttons/button';
+import { PrimaryButton } from './../toolbox/buttons/button';
 // import AccountVisual from '../accountVisual';
 import Converter from '../converter';
 import TransferTabs from '../transferTabs';
@@ -121,10 +121,6 @@ class SendWritable extends React.Component {
             />
           </form>
           <footer className={`${styles.sendFooter}`}>
-            <SecondaryButton
-              className={`send-next-button ${styles.faucetButton}`}
-              label={t('Get test MED')}
-              onClick={() => { if (window) window.open('https://goo.gl/forms/UjbYcGzA9YvjiEiI3'); }} />
             <PrimaryButton
               className={`send-next-button ${styles.nextButton}`}
               disabled={(!!this.state.recipient.error ||

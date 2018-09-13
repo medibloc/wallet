@@ -27,6 +27,11 @@ module.exports = merge(baseConfig, reactConfig, {
       '/api': {
         target: 'https://explorer.medibloc.org',
         secure: false,
+      },
+      '/faucetRequest': {
+        target: 'https://event.medibloc.org',
+        pathRewrite: {'^/faucetRequest' : '/api/faucetRequest'},
+        secure: false,
       }
     },
   },

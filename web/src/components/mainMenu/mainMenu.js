@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import InlineSVG from 'svg-inline-react';
 import { Tab, Tabs as ToolboxTabs } from 'react-toolbox/lib/tabs';
+import RequestFaucet from '../requestFaucet';
 import Settings from '../settings';
 import styles from './mainMenu.css';
-import logo from '../../assets/images/main-menu-icons/homeCopy.png';
+import logo from '../../assets/images/main-menu-icons/home.png';
 import * as menuLogos from '../../assets/images/main-menu-icons/*.svg'; //eslint-disable-line
 import routes from '../../constants/routes';
 
@@ -32,6 +33,7 @@ class MainMenu extends React.Component {
     super();
     this.state = {
       active: false,
+      showFaucetRequest: false,
       showSetting: false,
       index: 0,
     };
@@ -48,6 +50,12 @@ class MainMenu extends React.Component {
         history.replace(tabs[index].route);
       }
     }
+  }
+
+  toggleFaucetRequest() {
+    this.setState({
+      showFaucetRequest: !this.state.showFaucetRequest,
+    });
   }
 
   toggleSetting() {
@@ -95,7 +103,11 @@ class MainMenu extends React.Component {
       <Fragment>
         <aside className={styles.aside}>
           <div className={styles.sideBarWrapper}>
-            <img src={logo} className={styles.logo} />
+            <div className={styles.logoWrapper}
+              onClick={() => this.toggleFaucetRequest()}>
+              <img src={logo} className={styles.logo} />
+              <small>{t('Test MED')}</small>
+            </div>
             <ToolboxTabs
               className={`${styles.tabs} main-tabs`}
               disableAnimatedBottomBorder={true}
@@ -130,6 +142,13 @@ class MainMenu extends React.Component {
             <Settings
               {...this.props}
               closePopUp={() => this.toggleSetting()}/> : null
+        }
+        {
+          this.state.showFaucetRequest ?
+            <RequestFaucet
+              {...this.props}
+              closePopUp={() => this.toggleFaucetRequest()}
+            /> : null
         }
       </Fragment>
     );

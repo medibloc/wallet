@@ -20,6 +20,22 @@
   width: var(--sidebar-width);
 }
 
+.logoWrapper {
+  cursor: pointer;
+  margin: 32px 0 0;
+  text-align: center;
+  width: var(--sidebar-image-width);
+
+  & .logo {
+    height: var(--sidebar-image-height);
+    width: var(--sidebar-image-width);
+  }
+
+  & small:hover {
+    color: var(--color-black-87);
+  }
+}
+
 .aside {
   transform: translateX(-100%);
   opacity: 0.5;
@@ -30,12 +46,6 @@
 :global(.appLoaded) .aside {
   opacity: 1;
   transform: translateX(0);
-}
-
-.logo {
-  margin: 32px 0 0;
-  height: var(--sidebar-image-height);
-  width: var(--sidebar-image-width);
 }
 
 .navigationContainer .navigation {
