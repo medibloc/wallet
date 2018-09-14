@@ -7,7 +7,8 @@ const FormattedNumber = ({ val }) => {
   // set numeral language
   numeral.locale(i18n.language);
   const formatedNumber = numeral(val).format('0,0.[0000000000000]');
-  return <span>{formatedNumber}</span>;
+  // need upgrade numeral.js to resolve the bug.
+  return (formatedNumber !== 'NaN') ? <span>{formatedNumber}</span> : 0;
 };
 
 export default translate()(FormattedNumber);
