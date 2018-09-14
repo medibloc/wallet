@@ -6,6 +6,8 @@
 }
 
 .title {
+  height: 24px;
+  overflow: hidden;
   text-align: left;
 }
 
