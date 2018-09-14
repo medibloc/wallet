@@ -13,11 +13,11 @@ class FaucetSuccess extends React.Component {
           <WBox className={styles.faucetNoticeWrapper}>
             <div className={styles.headerWrapper}>
               <div className={styles.notice}>
-                <h1>{t('Good!')}</h1>
+                <h1>{t('Great!')}</h1>
               </div>
             </div>
             <div className={styles.bodyWrapper}>
-              <h5>{t('We have sent an email to your email address. In order to get test MED, please click the confirmation button.')}</h5>
+              <h5>{t('Please check your inbox and confirm your email address. You will receive test MED shortly upon confirmation.')}</h5>
             </div>
             <footer className={styles.sendFooter}>
               <div className={styles.buttonWrapper}>

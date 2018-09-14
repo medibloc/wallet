@@ -97,7 +97,7 @@ class RequestFaucet extends React.Component {
             <WBox className={styles.requestFaucetWrapper}>
               <div className={styles.headerWrapper}>
                 <div className={styles.notice}>
-                  <h5>{t('To get the testnet MED, you should confirm your email.')}</h5>
+                  <h5>{t('Please confirm your email to receive MED for testnet.')}</h5>
                 </div>
               </div>
               <div className={styles.bodyWrapper}>
@@ -137,7 +137,7 @@ class RequestFaucet extends React.Component {
                       !!this.state.email.error ||
                       !this.state.email.value ||
                       !this.state.hasAgreed)}
-                    label={t('Send')}
+                    label={t('Confirm')}
                     onClick={() => {
                       this.sendFaucetRequest();
                     }}/>
