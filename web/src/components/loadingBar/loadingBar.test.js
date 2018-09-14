@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import LoadingBar from './loadingBar';
 
 
-describe('LoadingBar Container', () => {
+describe('BandwidthBar Container', () => {
   let clock;
   const props = {
     loading: [],

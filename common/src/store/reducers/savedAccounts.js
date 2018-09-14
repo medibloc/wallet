@@ -21,6 +21,7 @@ const savedAccounts = (state = { accounts: [] }, action) => {
         changedAccount = {
           ...accounts[indexOfAccount],
           address: action.data.address,
+          bandwidth: action.data.bandwidth,
           balance: action.data.balance,
           encKey: action.data.encKey ?
             action.data.encKey :

@@ -108,6 +108,7 @@ const savedAccountsMiddleware = (store) => {
         updateSavedAccounts(peers, savedAccounts.accounts);
         store.dispatch(accountSaved({
           address: action.data.address,
+          bandwidth: action.data.bandwidth,
           balance: action.data.balance,
           encKey: action.data.encKey,
           networkCode: action.data.networkCode,

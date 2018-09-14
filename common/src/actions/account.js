@@ -234,6 +234,7 @@ export const loadAccount = ({
         dispatch({
           data: {
             address,
+            bandwidth: response.bandwidth,
             balance: response.balance,
             unstaking: response.unstaking,
             vesting: response.vesting,

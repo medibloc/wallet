@@ -14,6 +14,6 @@ describe('LoadingBarHOC', () => {
   });
 
   it('should render Send', () => {
-    expect(wrapper.find('LoadingBar')).to.have.lengthOf(1);
+    expect(wrapper.find('BandwidthBar')).to.have.lengthOf(1);
   });
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { fromRawMed } from '../../../../common/src/utils/med';
 import { PrimaryButton } from './../toolbox/buttons/button';
 // import AccountVisual from '../accountVisual';
+import BandwidthBar from '../bandwidthBar';
 import Converter from '../converter';
 import TransferTabs from '../transferTabs';
 import { Input } from '../toolbox/inputs/input';
@@ -121,6 +122,7 @@ class SendWritable extends React.Component {
             />
           </form>
           <footer className={`${styles.sendFooter}`}>
+            <BandwidthBar t={t}/>
             <PrimaryButton
               className={`send-next-button ${styles.nextButton}`}
               disabled={(!!this.state.recipient.error ||
