@@ -19,7 +19,7 @@ class BandwidthBar extends React.Component {
     return <div className={styles.bandwidthBarWrapper}>
       <div className={styles.title}>
         { isZero(need) ?
-          <small>{t('You have a sufficient bandwidth to send a transaction')}</small> :
+          <small>{t('You have enough bandwidth to send')}</small> :
           <small>{t('Need {{need}} MED staking more to send', { need })}</small>
         }
       </div>
