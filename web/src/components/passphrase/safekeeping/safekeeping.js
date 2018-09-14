@@ -16,7 +16,8 @@ class Safekeeping extends React.Component {
         <h2>{t('Save backup phrase')}</h2>
       </header>
       <div className={`${styles.comment1}`}>
-        <h6>{t('Since only you control your money, you’ll need to save your backup phrase in case this app is deleted')}</h6>
+        <h6>{t('Please write down your backup phrase and store it in a secure place.') + t(' ') +
+          t('The backup phrase will be used in case this app is accidentally deleted.')}</h6>
       </div>
       <div className={`${styles.comment2}`}>
         <h6>{t('Please carefully write down these 12 words')}</h6>

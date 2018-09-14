@@ -113,7 +113,7 @@ class SendWritable extends React.Component {
             />
             <Input
               error={this.state.description.error}
-              placeholder={t('Write an optional messages')}
+              placeholder={t('Write message (optional)')}
               onChange={(...args) => this.handleChange('description', ...args)}
               parentclassname={`${styles.description}`}
               theme={styles}

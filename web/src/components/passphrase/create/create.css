@@ -10,7 +10,7 @@
   & > .accountVisual {
     flex-direction: row;
     justify-content: center;
-    margin: 32px 0 0;
+    margin: 32px 0 16px;
     position: relative;
 
     & > .refreshButton {
@@ -21,10 +21,6 @@
       top: 44px;
       width: 24px;
     }
-  }
-
-  & > small {
-    margin: 16px 0 0;
   }
 
   & > .accountAddress {

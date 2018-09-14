@@ -11,7 +11,7 @@ class TransactionListView extends React.Component {
       <WBox className={`${styles.txListHeader}`}>
         <div className={styles.txListHeaderTitle}>
           <h4>
-            { t('Last Activity') }
+            { t('Recent activities') }
           </h4>
         </div>
         { /* <div className={styles.txListHeaderMore}>

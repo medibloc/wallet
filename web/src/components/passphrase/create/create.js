@@ -46,7 +46,8 @@ class Create extends React.Component {
             onClick={() => this.refreshAddress()}
           />
         </div>
-        <small> {t('This avatar is unique. You cannot change it later.')} </small>
+        <small>{t('Your avatar is automatically generated from your account address.')}</small>
+        <small>{t('Click the refresh button if you wish to use a different one.')}</small>
         <Input type='text'
           parentclassname={`${styles.accountAddress}`}
           title={t('Account address')}
