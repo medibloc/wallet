@@ -16,7 +16,6 @@ class BandwidthBar extends React.Component {
     const need = lte(1, bandwidth) ? 0 : subMed(1, bandwidth);
     const isLow = lte(minBandwidth * 0.6, need);
     const isMid = !isLow && lt(0, need);
-    console.log(isLow, isMid);
     return <div className={styles.bandwidthBarWrapper}>
       <div className={styles.title}>
         { isZero(need) ?
