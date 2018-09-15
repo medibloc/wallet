@@ -8,3 +8,7 @@
 .check {
   border-color: var(--color-black-38);
 }
+
+.ripple {
+  display: none;
+}
