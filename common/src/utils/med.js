@@ -10,12 +10,12 @@ export const isZero = value => (
   new BigNumber(value).isZero()
 );
 
-// isLessThan
+// isLessThan: true if v1 < v2
 export const lt = (v1, v2) => (
   new BigNumber(v1 || 0).lt(new BigNumber(v2 || 0))
 );
 
-// isLessThanOrEqualTo
+// isLessThanOrEqualTo: true if v1 <= v2
 export const lte = (v1, v2) => (
   new BigNumber(v1 || 0).lte(new BigNumber(v2 || 0))
 );

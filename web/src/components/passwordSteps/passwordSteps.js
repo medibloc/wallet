@@ -61,6 +61,12 @@ class PasswordSteps extends React.Component {
     });
   }
 
+  showWrongPasswordToast() {
+    this.props.errorToastDisplayed({
+      label: this.props.t('Wrong password.'),
+    });
+  }
+
   validateInput(name, value) {
     if (!value) {
       return this.props.t('Required');
@@ -103,19 +109,23 @@ class PasswordSteps extends React.Component {
                 value={this.state.password.value}
               />
               <PrimaryButton
+                disabled={!this.state.password.value}
                 label={t('Next')}
                 onClick={() => {
                   const privKey = this.decryptPassphrase();
                   if (privKey !== null) {
-                    const nonce = Number(this.props.account.nonce) + 1;
-                    // this.props.vested({
-                    //   activePeer: this.props.peers.activePeer,
-                    //   address: this.props.account.address,
-                    //   amount: 100,
-                    //   description: this.props.description,
-                    //   nonce: Number(this.props.account.nonce) + 1,
-                    //   privKey,
-                    // });
+                    let nonce = Number(this.props.account.nonce) + 1;
+                    if (this.props.autoVesting && this.props.vestingAmount) {
+                      this.props.vested({
+                        activePeer: this.props.peers.activePeer,
+                        address: this.props.account.address,
+                        amount: this.props.vestingAmount,
+                        nonce,
+                        privKey,
+                      });
+                      // increase nonce
+                      nonce += 1;
+                    }
                     this.props.sent({
                       activePeer: this.props.peers.activePeer,
                       address: this.props.account.address,
@@ -127,7 +137,7 @@ class PasswordSteps extends React.Component {
                     });
                     this.props.nextStep();
                   } else {
-                    console.log('WRONG PASSWORD');
+                    this.showWrongPasswordToast();
                   }
                 }} />
             </div>
