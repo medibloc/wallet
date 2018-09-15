@@ -24,6 +24,13 @@ avaialble application-wide
 
 @font-face {
   font-family: 'Noto Sans CJK KR';
+  src: url('../../assets/fonts/notocjkkr/NotoSansCJKkr-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans CJK KR';
   src: url('../../assets/fonts/notocjkkr/NotoSansCJKkr-Light.otf') format('opentype');
   font-weight: 300;
   font-style: normal;

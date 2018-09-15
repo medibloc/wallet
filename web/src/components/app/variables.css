@@ -50,6 +50,7 @@ or "warn/action" ineastd of "red/green"
   --content-font: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
   --startpage-heading-font: 'Nexa-Heavy', sans-serif;
   --startpage-content-font: 'Nexa-Bold', sans-serif;
+  --font-weight-thin: 100;
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-bold: 700;

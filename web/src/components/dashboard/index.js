@@ -55,17 +55,27 @@ class Dashboard extends React.Component {
       <Box className={`${styles.mainWrapper} ${grid['col-sm-8']}`}>
         <Box className={`${styles.financeWrapper}`}>
           <WBox className={`${styles.finance}`}>
+            <WBox className={styles.vestingSettingsWrapper}>
+              <SecondaryButton
+                className={`${styles.vestingSettings}`}
+                label={t('Staking Settings')}
+                onClick={() => this.toggleVestingSetting()} />
+            </WBox>
             <WBox className={`${styles.totalWrapper}`}>
-              <h5 className={`${styles.totalHeader}`}>Total</h5>
-              <h2 className={`${styles.total}`}>
-                <MedAmount roundTo={2}
-                  val={addMed(addMed(account.balance, account.vesting), account.unstaking)} />
-              </h2>
+              <div className={`${styles.totalHeader}`}>
+                <h5>Total</h5>
+              </div>
+              <div className={`${styles.total}`}>
+                <h2>
+                  <MedAmount roundTo={2}
+                    val={addMed(addMed(account.balance, account.vesting), account.unstaking)} />
+                </h2>
+              </div>
             </WBox>
             <WBox className={`${styles.assetsWrapper} ${grid.row}`}>
               <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
-                <div className={styles.assetsHeader}>
-                  <h6>{t('Balance')}</h6>
+                <div className={`${styles.assetsHeader} ${styles.hasBorderRight}`}>
+                  <small>{t('Balance')}</small>
                 </div>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
                   <MedAmount roundTo={2}
@@ -73,8 +83,8 @@ class Dashboard extends React.Component {
                 </div>
               </div>
               <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
-                <div className={styles.assetsHeader}>
-                  <h6>{t('Staking')}</h6>
+                <div className={`${styles.assetsHeader} ${styles.hasBorderRight}`}>
+                  <small>{t('Staking')}</small>
                 </div>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
                   <MedAmount roundTo={2}
@@ -83,19 +93,13 @@ class Dashboard extends React.Component {
               </div>
               <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
                 <div className={styles.assetsHeader}>
-                  <h6>{t('Pending')}</h6>
+                  <small>{t('Pending')}</small>
                 </div>
                 <div className={`${styles.text}`}>
                   <MedAmount roundTo={2}
                     val={account.unstaking} />
                 </div>
               </div>
-            </WBox>
-            <WBox className={styles.vestingSettingsWrapper}>
-              <SecondaryButton
-                className={`${styles.vestingSettings}`}
-                label={t('Staking Settings')}
-                onClick={() => this.toggleVestingSetting()} />
             </WBox>
           </WBox>
           { /*  <WBox className={`${styles.graph}`}>
