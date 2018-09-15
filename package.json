@@ -11,6 +11,7 @@
     "test:common": "cd common && npm run test",
     "test:web": "cd web && npm run test",
     "test": "npm run test:common && npm run test:web",
+    "testnet": "cd web && npm run testnet",
     "start:web:dev": "cd web && npm run dev"
   },
   "author": "MediBloc <dev@medibloc.org>",
