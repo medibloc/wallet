@@ -1,24 +1,22 @@
 .leftText {
   text-align: left;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .middleText {
   text-align: center;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .rightText {
   text-align: right;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
-.ordinaryText {
-  text-decoration: none;
-  color: inherit;
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  & a {
+    color: var(--color-dusk-blue);
+  }
 }
 
 .clickable {

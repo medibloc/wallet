@@ -8,7 +8,6 @@
   --row-background-color: var(--color-white);
   --result-address-font-weight: var(--font-weight-semi-bold);
   --grid-header-line-height: 32px;
-  --main-row-line-height: 40px;
 }
 
 .headerWrapper {
@@ -28,10 +27,11 @@
 }
 
 .rows {
+  align-items: center;
   border-bottom: 0;
   border-top: 0;
   color: var(--amount-negative-color);
-  line-height: var(--main-row-line-height);
+  height: 39px;
   margin-right: 0;
   margin-left: 0;
   white-space: nowrap;
@@ -55,6 +55,6 @@
   }
 
   & span {
-    font-size: 14px;
+    font-size: var(--font-size-small);
   }
 }
