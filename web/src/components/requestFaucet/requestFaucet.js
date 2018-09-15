@@ -51,21 +51,23 @@ class RequestFaucet extends React.Component {
       axios.post('/faucetRequest', {
         address: this.state.address,
         mail: this.state.email.value,
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       }).then((res) => {
-        if (res.status === 200) {
-          this.setState({
-            sentRequest: true,
-            isSuccess: true,
-          });
-        } else {
-          this.setState({
-            sentRequest: true,
-            isSuccess: false,
-          });
-        }
+        // success when the response code is 20X
+        console.log(res);
+        this.setState({
+          sentRequest: true,
+          isSuccess: true,
+        });
       }).catch((err) => {
         console.log(err);
-        this.props.closePopUp();
+        this.setState({
+          sentRequest: true,
+          isSuccess: false,
+        });
       });
     }
   }
