@@ -9,6 +9,7 @@ import { Input } from '../toolbox/inputs/input';
 import { PrimaryButton } from '../toolbox/buttons/button';
 import FaucetFail from './faucetFail';
 import FaucetSuccess from './faucetSuccess';
+import PrivacyConsent from './privacyConsent';
 import WBox from '../wbox/index';
 import regex from '../../../../common/src/utils/regex';
 
@@ -17,13 +18,14 @@ class RequestFaucet extends React.Component {
     super(props);
 
     this.state = {
-      hasAgreed: false,
       address: this.props.account.address,
       email: {
         value: this.props.email || '',
       },
+      hasAgreed: false,
       isSuccess: false,
       sentRequest: false,
+      showPrivacyConsent: false,
     };
 
     this.inputValidationRegexps = {
@@ -72,6 +74,12 @@ class RequestFaucet extends React.Component {
     }
   }
 
+  showConsentPage() {
+    this.setState({
+      showPrivacyConsent: true,
+    });
+  }
+
   validateInput(name, value) {
     if (!value) {
       return this.props.t('Required');
@@ -85,70 +93,75 @@ class RequestFaucet extends React.Component {
     const { closePopUp, t } = this.props;
     // eslint-disable-next-line no-nested-ternary
     return (!this.state.sentRequest ?
-      <Fragment>
-        <div className={styles.wrapper}>
-          <div className={styles.popupWrapper}>
-            <div className={styles.closeWrapper}>
-              <div className={styles.closeButtonWrapper}>
-                <InlineSVG
-                  className={styles.closeButton}
-                  onClick={() => closePopUp()}
-                  src={CloseButton} />
-              </div>
-            </div>
-            <WBox className={styles.requestFaucetWrapper}>
-              <div className={styles.headerWrapper}>
-                <div className={styles.notice}>
-                  <h5>{t('Please confirm your email to receive MED for testnet.')}</h5>
+      (!this.state.showPrivacyConsent ?
+        <Fragment>
+          <div className={styles.wrapper}>
+            <div className={styles.popupWrapper}>
+              <div className={styles.closeWrapper}>
+                <div className={styles.closeButtonWrapper}>
+                  <InlineSVG
+                    className={styles.closeButton}
+                    onClick={() => closePopUp()}
+                    src={CloseButton} />
                 </div>
               </div>
-              <div className={styles.bodyWrapper}>
-                <form>
-                  <Input
-                    disabled={true}
-                    placeholder={t('Paste or enter an address')}
-                    onChange={(...args) => this.handleChange('address', ...args)}
-                    parentclassname={`${styles.address}`}
-                    theme={styles}
-                    title={t('My account')}
-                    value={this.state.address}
-                  />
-                  <div className={`${styles.emailWrapper}`}>
-                    <Input
-                      error={this.state.email.error}
-                      placeholder={t('Enter your email.')}
-                      onChange={(...args) => this.handleChange('email', ...args)}
-                      parentclassname={`${styles.email}`}
-                      theme={styles}
-                      value={this.state.email.value}
-                    />
+              <WBox className={styles.requestFaucetWrapper}>
+                <div className={styles.headerWrapper}>
+                  <div className={styles.notice}>
+                    <h5>{t('Please confirm your email to receive MED for testnet.')}</h5>
                   </div>
-                  <CheckBox
-                    checked={this.state.hasAgreed}
-                    className={`${styles.consentBox}`}
-                    label={t('I agree to MediBloc\'s terms and conditions and privacy policy.')}
-                    onChange={(...args) => this.handleChange('hasAgreed', ...args)}
-                  />
-                </form>
-              </div>
-              <footer className={styles.sendFooter}>
-                <div className={styles.buttonWrapper}>
-                  <PrimaryButton
-                    className={'send-next-button'}
-                    disabled={(!this.state.address ||
-                      !!this.state.email.error ||
-                      !this.state.email.value ||
-                      !this.state.hasAgreed)}
-                    label={t('Confirm')}
-                    onClick={() => {
-                      this.sendFaucetRequest();
-                    }}/>
                 </div>
-              </footer>
-            </WBox>
+                <div className={styles.bodyWrapper}>
+                  <form>
+                    <Input
+                      disabled={true}
+                      placeholder={t('Paste or enter an address')}
+                      onChange={(...args) => this.handleChange('address', ...args)}
+                      parentclassname={`${styles.address}`}
+                      theme={styles}
+                      title={t('My account')}
+                      value={this.state.address}
+                    />
+                    <div className={`${styles.emailWrapper}`}>
+                      <Input
+                        error={this.state.email.error}
+                        placeholder={t('Enter your email.')}
+                        onChange={(...args) => this.handleChange('email', ...args)}
+                        parentclassname={`${styles.email}`}
+                        theme={styles}
+                        value={this.state.email.value}
+                      />
+                    </div>
+                    <CheckBox
+                      checked={this.state.hasAgreed}
+                      className={`${styles.consentBox}`}
+                      label={t('I agree to MediBloc\'s terms and conditions and privacy policy.')}
+                      onChange={(...args) => this.handleChange('hasAgreed', ...args)}
+                    />
+                  </form>
+                </div>
+                <footer className={styles.sendFooter}>
+                  <div className={styles.buttonWrapper}>
+                    <PrimaryButton
+                      className={'send-next-button'}
+                      disabled={(!this.state.address ||
+                        !!this.state.email.error ||
+                        !this.state.email.value ||
+                        !this.state.hasAgreed)}
+                      label={t('Next')}
+                      onClick={() => {
+                        this.showConsentPage();
+                      }}/>
+                  </div>
+                </footer>
+              </WBox>
+            </div>
           </div>
-        </div>
-      </Fragment> :
+        </Fragment> :
+        <PrivacyConsent
+          closePopUp={this.props.closePopUp}
+          sendFaucetRequest={() => this.sendFaucetRequest()}/>
+      ) :
       (this.state.isSuccess ?
         <FaucetSuccess closePopUp={this.props.closePopUp}/> :
         <FaucetFail closePopUp={this.props.closePopUp}/>)
