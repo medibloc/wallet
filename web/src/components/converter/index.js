@@ -70,13 +70,15 @@ class Converter extends React.Component {
         theme={styles}
         value={this.props.value}
         onChange={this.props.onChange} >
-        <div className={styles.convertorWrapper}>
+        <div className={styles.converterWrapper}>
           {this.props.value !== '' && this.state.MED[currencies[0]] ?
-            <div className={this.props.error ? `${styles.convertorErr} convertorErr` : `${styles.convertor} convertor`}>
+            <div
+              className={this.props.error ? `${styles.converterErr} converterErr`
+                : `${styles.converter} converter`}>
               <div className={`${styles.convertElem} converted-price`}>~ {price}</div>
               {intersperse}
             </div>
-            : <div />
+            : <div/>
           }
         </div>
       </Input>

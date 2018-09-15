@@ -15,20 +15,20 @@
 }
 
 .popupWrapper {
-  height: 555px;
-  width: 714px;
+  height: 460px;
+  width: 580px;
 }
 
 .closeWrapper {
   display: flex;
-  height: 40px;
+  height: 30px;
   justify-content: flex-end;
   width: 100%;
 
   & .closeButtonWrapper {
-    height: 19px;
-    padding: 13px 0;
-    width: 19px;
+    height: 15px;
+    padding: 8px 0;
+    width: 15px;
   }
 
   & .closeButton {
@@ -38,7 +38,7 @@
 
 .settingsWrapper {
   border-radius: 3px;
-  height: 515px;
+  height: 430px;
   flex-direction: row !important;
   width: 100%;
 
@@ -47,18 +47,20 @@
     border-right: 1px solid var(--color-black-16);
     height: 100%;
     flex-direction: column;
-    width: 234px;
+    width: 30%;
 
     & .menuHeader {
-      height: 89px;
+      align-items: center;
+      display: flex;
+      height: 20%;
 
       & h4 {
-        padding: 32px 0 24px 21px;
+        padding: 0 0 0 15px;
       }
     }
 
     & .menuBody {
-      height: 360px;
+      height: 80%;
     }
 
     & .menuFooter {
@@ -74,6 +76,6 @@
 
   & .settingsContentWrapper {
     height: 100%;
-    width: 480px;
+    width: 70%;
   }
 }

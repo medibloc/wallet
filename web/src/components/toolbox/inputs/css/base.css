@@ -16,7 +16,10 @@
     flex-direction: column;
     font-size: var(--input-font-size);
     font-weight: var(--font-weight-normal);
-    padding: 6px 0;
+  }
+
+  .input input {
+    height: 40px;
   }
 
   .input input:focus {
