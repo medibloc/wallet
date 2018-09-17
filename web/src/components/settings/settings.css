@@ -60,10 +60,11 @@
     }
 
     & .menuBody {
-      height: 80%;
+      height: 70%;
     }
 
     & .menuFooter {
+      height: 10%;
       margin: 0 47px 41px 42px;
       padding: 0 !important;
 
