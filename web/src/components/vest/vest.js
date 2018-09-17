@@ -138,8 +138,8 @@ class Vest extends React.Component {
                 if (privKey !== null) {
                   const nonce = Number(this.props.account.nonce) + 1;
                   this.props.vested({
+                    account: this.props.account,
                     activePeer: this.props.peers.activePeer,
-                    address: this.props.account.address,
                     amount: this.state.amount.value,
                     nonce,
                     privKey,

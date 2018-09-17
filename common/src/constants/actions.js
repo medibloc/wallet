@@ -4,6 +4,7 @@ const actionTypes = {
   accountLoggedOut: 'ACCOUNT_LOGGED_OUT',
   accountLoggedIn: 'ACCOUNT_LOGGED_IN',
   accountLoading: 'ACCOUNT_LOADING',
+  accountReload: 'ACCOUNT_RELOAD',
   accountAddVotes: 'ACCOUNT_ADD_VOTES',
   accountAddVoters: 'ACCOUNT_ADD_VOTERS',
   activePeerSet: 'ACTIVE_PEER_SET',

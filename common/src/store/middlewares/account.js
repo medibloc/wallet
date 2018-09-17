@@ -49,7 +49,8 @@ const updateAccountData = (store, action) => {
   getAccount(peers.activePeer, account.address).then((result) => {
     if (result.balance !== account.balance ||
       result.vesting !== account.vesting ||
-      result.unstaking !== account.unstaking) {
+      result.unstaking !== account.unstaking ||
+      result.nonce !== account.nonce) {
       if (!action.data.windowIsFocused || !hasRecentTransactions(transactions)) {
         updateTransactions(store, peers, account);
       }
@@ -137,6 +138,9 @@ const accountMiddleware = store => next => (action) => {
     // depends on a rerendering of the page
     // TODO: fix the 'save account' path problem, so we can remove this
     case actionTypes.accountLoggedIn:
+      updateAccountData(store, action);
+      break;
+    case actionTypes.accountReload:
       updateAccountData(store, action);
       break;
     // case actionTypes.newBlockCreated:

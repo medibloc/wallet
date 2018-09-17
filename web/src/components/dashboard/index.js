@@ -7,6 +7,7 @@ import grid from 'flexboxgrid/dist/flexboxgrid.css';
 import Box from '../box';
 import { SecondaryButton } from '../toolbox/buttons/button';
 import WBox from '../wbox';
+import { accountReload } from '../../../../common/src/actions/account';
 import { loadTransactions } from '../../../../common/src/actions/transactions';
 import MedAmount from '../medAmount';
 import TransactionListView from '../transactionDashboard/transactionListView';
@@ -14,7 +15,6 @@ import Transfer from '../transfer';
 import VestingSettings from '../vestingSettings';
 // import routes from '../../constants/routes';
 import styles from './dashboard.css';
-import { airDropped } from '../../../../common/src/actions/account';
 import { addMed } from '../../../../common/src/utils/med';
 
 class Dashboard extends React.Component {
@@ -34,6 +34,10 @@ class Dashboard extends React.Component {
       showVestingSetting: false,
     };
 
+    this.loadTransactions();
+  }
+
+  loadTransactions() {
     this.props.loadTransactions({
       activePeer: this.props.peers.activePeer,
       address: this.props.account.address,
@@ -131,10 +135,11 @@ const mapStateToProps = state => ({
     .sort((a, b) => b.timestamp - a.timestamp)
     .slice(0, 5),
   pendingTransactions: state.transactions.pending,
+  confirmedTransactions: state.transactions.confirmed,
 });
 
 const mapDispatchToProps = dispatch => ({
-  airDropped: data => dispatch(airDropped(data)),
+  accountReload: () => dispatch(accountReload()),
   loadTransactions: data => dispatch(loadTransactions(data)),
 });
 

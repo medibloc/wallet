@@ -117,8 +117,8 @@ class PasswordSteps extends React.Component {
                     let nonce = Number(this.props.account.nonce) + 1;
                     if (this.props.autoVesting && this.props.vestingAmount) {
                       this.props.vested({
+                        account: this.props.account,
                         activePeer: this.props.peers.activePeer,
-                        address: this.props.account.address,
                         amount: this.props.vestingAmount,
                         nonce,
                         privKey,
@@ -127,8 +127,8 @@ class PasswordSteps extends React.Component {
                       nonce += 1;
                     }
                     this.props.sent({
+                      account: this.props.account,
                       activePeer: this.props.peers.activePeer,
-                      address: this.props.account.address,
                       amount: this.props.amount,
                       description: this.props.description,
                       nonce,

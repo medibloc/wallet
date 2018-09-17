@@ -9,7 +9,7 @@ import airdrop from '../utils/api/airdrop';
 // import { errorAlertDialogDisplayed } from './dialog';
 // import Fees from '../constants/fees';
 import { extractPrivKey } from '../utils/account';
-import { toRawMed } from '../utils/med';
+import { addMed, subMed, toRawMed } from '../utils/med';
 
 /**
  * Trigger this action to remove passphrase from account object
@@ -63,6 +63,10 @@ export const accountLoggedIn = data => ({
 
 export const accountLoading = () => ({
   type: actionTypes.accountLoading,
+});
+
+export const accountReload = () => ({
+  type: actionTypes.accountReload,
 });
 
 export const passphraseUsed = data => ({
@@ -174,7 +178,7 @@ export const airDropped = ({ activePeer, address }) =>
 /**
  *
  */
-export const sent = ({ activePeer, address, amount,
+export const sent = ({ activePeer, account, amount,
   description, nonce, passphrase, privKey, to }) =>
   (dispatch) => {
     send({
@@ -187,7 +191,7 @@ export const sent = ({ activePeer, address, amount,
     }).then((res) => {
       dispatch({
         data: {
-          from: address,
+          from: account.address,
           hash: res.transactionId,
           timestamp: res.timestamp,
           to,
@@ -196,6 +200,15 @@ export const sent = ({ activePeer, address, amount,
         },
         type: actionTypes.transactionAdded,
       });
+      if (account.address !== to) {
+        dispatch({
+          data: {
+            balance: subMed(account.balance, toRawMed(amount)),
+            nonce: nonce.toString(),
+          },
+          type: actionTypes.accountUpdated,
+        });
+      }
     })
       .catch((error) => {
         const errorMessage = error && error.message ? `${error.message}.` :
@@ -266,7 +279,7 @@ export const loadAccount = ({
 /**
  *
  */
-export const vested = ({ activePeer, address, amount,
+export const vested = ({ activePeer, account, amount,
   nonce, privKey, passphrase }) =>
   (dispatch) => {
     vest({
@@ -277,13 +290,21 @@ export const vested = ({ activePeer, address, amount,
     }).then((res) => {
       dispatch({
         data: {
-          from: address,
+          from: account.address,
           hash: res.transactionId,
           timestamp: res.timestamp,
           value: toRawMed(amount),
           tx_type: transactionTypes.vest,
         },
         type: actionTypes.transactionAdded,
+      });
+      dispatch({
+        data: {
+          balance: subMed(account.balance, toRawMed(amount)),
+          nonce: nonce.toString(),
+          vesting: addMed(account.vesting, toRawMed(amount)),
+        },
+        type: actionTypes.accountUpdated,
       });
     })
       .catch((error) => {
@@ -297,7 +318,7 @@ export const vested = ({ activePeer, address, amount,
 /**
  *
  */
-export const withdrewVesting = ({ activePeer, address, amount,
+export const withdrewVesting = ({ account, activePeer, amount,
   nonce, privKey, passphrase }) =>
   (dispatch) => {
     withdrawVesting({
@@ -308,13 +329,21 @@ export const withdrewVesting = ({ activePeer, address, amount,
     }).then((res) => {
       dispatch({
         data: {
-          from: address,
+          from: account.address,
           hash: res.transactionId,
           timestamp: res.timestamp,
           value: toRawMed(amount),
           tx_type: transactionTypes.withdrawVesting,
         },
         type: actionTypes.transactionAdded,
+      });
+      dispatch({
+        data: {
+          nonce: nonce.toString(),
+          unstaking: addMed(account.unstaking, toRawMed(amount)),
+          vesting: subMed(account.vesting, toRawMed(amount)),
+        },
+        type: actionTypes.accountUpdated,
       });
     })
       .catch((error) => {

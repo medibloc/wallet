@@ -24,8 +24,11 @@ const transactions = (state = { pending: [], confirmed: [], count: null }, actio
       });
     case actionTypes.transactionsLoaded:
       return Object.assign({}, state, {
+        // Filter any newly confirmed transaction from pending
+        pending: state.pending.filter(
+          pendingTransaction => action.data.confirmed.filter(
+            transaction => transaction.id === pendingTransaction.id).length === 0),
         confirmed: [
-          // ...state.confirmed,
           ...action.data.confirmed,
         ],
         count: action.data.count,

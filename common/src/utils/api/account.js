@@ -40,7 +40,7 @@ export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
       console.log(res);
       if (res.hash) {
         resolve({
-          timestamp: tx.timestamp,
+          timestamp: tx.rawTx.timestamp,
           transactionId: res.hash,
         });
       } else {
@@ -96,7 +96,7 @@ export const vest = ({ activePeer, nonce, privKey, value }) =>
       console.log(res);
       if (res.hash) {
         resolve({
-          timestamp: tx.timestamp,
+          timestamp: tx.rawTx.timestamp,
           transactionId: res.hash,
         });
       } else {
@@ -151,7 +151,7 @@ export const withdrawVesting = ({ activePeer, nonce, privKey, value }) =>
       console.log(res);
       if (res.hash) {
         resolve({
-          timestamp: tx.timestamp,
+          timestamp: tx.rawTx.timestamp,
           transactionId: res.hash,
         });
       } else {

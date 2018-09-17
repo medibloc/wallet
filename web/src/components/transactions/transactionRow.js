@@ -11,9 +11,9 @@ import { DateFromTimestamp } from '../timestamp/index';
 
 class TransactionRow extends React.Component {
   // eslint-disable-next-line class-methods-use-this
-  shouldComponentUpdate(nextProps) {
-    return nextProps.value.id !== this.props.value.id;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return nextProps.value.id !== this.props.value.id;
+  // }
 
   render() {
     const { props } = this;

@@ -84,11 +84,16 @@ class Login extends React.Component {
   }
 
   onLoginSubmission({ address, encKey }) {
-    this.props.activePeerSet({
+    this.props.accountSwitched({
       address,
       encKey,
       networkCode: this.state.networkCode,
     });
+    // this.props.activePeerSet({
+    //   address,
+    //   encKey,
+    //   networkCode: this.state.networkCode,
+    // });
   }
 
   redirectToReferrer() {
