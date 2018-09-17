@@ -10,7 +10,6 @@ const actionTypes = {
   activePeerSet: 'ACTIVE_PEER_SET',
   activePeerUpdate: 'ACTIVE_PEER_UPDATE',
   activePeerReset: 'ACTIVE_PEER_RESET',
-  airdropped: 'AIR_DROPPED',
   dialogDisplayed: 'DIALOG_DISPLAYED',
   storeCreated: 'STORE_CREATED',
   newBlockCreated: 'NEW_BLOCK_CREATED',

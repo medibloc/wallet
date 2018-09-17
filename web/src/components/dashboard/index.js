@@ -20,15 +20,6 @@ import { addMed } from '../../../../common/src/utils/med';
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    // For Testing
-    // console.log(`Dashboard init: ${this.props.account.balance}`);
-    // if (this.props.account.balance === '0') {
-    //   console.log('Airdrop starts...');
-    //   this.props.airDropped({
-    //     activePeer: this.props.peers.activePeer,
-    //     address: this.props.account.address,
-    //   });
-    // }
 
     this.state = {
       showVestingSetting: false,
