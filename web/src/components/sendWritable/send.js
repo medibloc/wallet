@@ -69,7 +69,9 @@ class SendWritable extends React.Component {
   isEnoughAmount(value) {
     return lte(toRawMed(value), this.props.account.balance) &&
       lte(addMed(toRawMed(value), toRawMed(3)),
-        addMed(this.props.account.balance, this.props.account.bandwidth));
+        addMed(this.props.account.balance,
+          subMed(this.props.account.vesting, this.props.account.bandwidth),
+        ));
   }
 
   nextStepWithParam(autoVesting) {
