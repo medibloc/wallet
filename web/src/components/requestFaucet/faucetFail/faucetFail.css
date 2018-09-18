@@ -56,8 +56,13 @@
     width: 100%;
 
     & .buttonWrapper {
-      height: 48px;
+      height: 100%;
       width: 100%;
+
+      & .okButton {
+        height: var(--input-height);
+        width: 100%;
+      }
     }
   }
 }
