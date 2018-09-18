@@ -22,6 +22,10 @@
 }
 
 .faucetTooltipWrapper {
+  height: 67px;
+  margin: 24px 0 0;
+  width: 100%;
+
   & div {
     align-items: center;
     display: flex;
@@ -31,13 +35,17 @@
 
 .faucetWrapper {
   cursor: pointer;
-  margin: 32px 0 0;
   text-align: center;
+  height: 77px;
   width: var(--sidebar-image-width);
 
   & .coin {
     height: var(--sidebar-image-height);
     width: var(--sidebar-image-width);
+  }
+
+  & small {
+    margin: 3px 0 0;
   }
 
   & small:hover {
@@ -83,7 +91,7 @@
   border: none !important;
   box-shadow: none;
   cursor: pointer;
-  margin: 40px 0 0;
+  margin: 24px 0 0;
   padding: 0 !important;
   text-align: center;
   width: 100%;
@@ -100,8 +108,7 @@
   }
 
   & > div > .tabLabel {
-    height: 20px;
-    margin: 6px 0 0;
+    color: var(--color-black-60);
   }
 }
 
@@ -141,7 +148,12 @@
   text-transform: none;
 
   & > div {
+    height: 77px;
     width: 100%;
+
+    & small {
+      height: 18px;
+    }
   }
 
   & span {
