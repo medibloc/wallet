@@ -15,18 +15,27 @@
 .sideBarWrapper {
   align-items: center;
   display: flex;
-  height: 100%;
   flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
   width: var(--sidebar-width);
 }
 
-.logoWrapper {
+.faucetTooltipWrapper {
+  & div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.faucetWrapper {
   cursor: pointer;
   margin: 32px 0 0;
   text-align: center;
   width: var(--sidebar-image-width);
 
-  & .logo {
+  & .coin {
     height: var(--sidebar-image-height);
     width: var(--sidebar-image-width);
   }
@@ -54,6 +63,10 @@
   display: flex;
   flex-flow: column;
   padding-left: 0;
+}
+
+.topTabs {
+  height: auto;
 }
 
 .tabs {
@@ -114,7 +127,6 @@
 
 .navigationContainer {
   overflow: hidden;
-  height: 100%;
   flex: 0 1 auto;
   flex-flow: column;
 }

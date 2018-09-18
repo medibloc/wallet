@@ -5,7 +5,7 @@ import RequestFaucet from '../requestFaucet';
 import Settings from '../settings';
 import TooltippedDiv from '../toolbox/tooltippedDiv/tooltippedDiv';
 import styles from './mainMenu.css';
-import logo from '../../assets/images/main-menu-icons/home.png';
+import coin from '../../assets/images/main-menu-icons/coin.png';
 import * as menuLogos from '../../assets/images/main-menu-icons/*.svg'; //eslint-disable-line
 import routes from '../../constants/routes';
 
@@ -104,33 +104,37 @@ class MainMenu extends React.Component {
       <Fragment>
         <aside className={styles.aside}>
           <div className={styles.sideBarWrapper}>
-            <TooltippedDiv
-              tooltip={t('You should click this button and follow the steps to get the test MED.')}
-              tooltipDelay={100}
-              tooltipPosition={'right'}>
-              <div className={`${styles.logoWrapper}`}
-                onClick={() => this.toggleFaucetRequest()}>
-                <img src={logo} className={styles.logo} />
-                <small>{t('Test MED')}</small>
+            <div className={styles.topTabs}>
+              <ToolboxTabs
+                className={`${styles.tabs} main-tabs`}
+                disableAnimatedBottomBorder={true}
+                index={getIndex(history, tabs)}
+                onChange={(...args) => this.navigate(history, tabs, ...args)}
+                theme={styles}
+              >
+                {tabs.map(({ id, image, label }, index) =>
+                  <Tab
+                    activeClassName={styles.activeTab}
+                    className={`${styles.tab} ${id === 'settings' ? styles.settingsTab : null}`}
+                    // disabled={itemShouldBeDisabled(index)}
+                    id={id}
+                    key={index}
+                    label={<TabTemplate img={image} label={label} />}
+                  />)}
+              </ToolboxTabs>
+              <div className={styles.faucetTooltipWrapper}>
+                <TooltippedDiv
+                  tooltip={t('You should click this button and follow the steps to get the test MED.')}
+                  tooltipDelay={100}
+                  tooltipPosition={'right'}>
+                  <div className={`${styles.faucetWrapper}`}
+                    onClick={() => this.toggleFaucetRequest()}>
+                    <img src={coin} className={styles.coin} />
+                    <small>{t('Test MED')}</small>
+                  </div>
+                </TooltippedDiv>
               </div>
-            </TooltippedDiv>
-            <ToolboxTabs
-              className={`${styles.tabs} main-tabs`}
-              disableAnimatedBottomBorder={true}
-              index={getIndex(history, tabs)}
-              onChange={(...args) => this.navigate(history, tabs, ...args)}
-              theme={styles}
-            >p
-              {tabs.map(({ id, image, label }, index) =>
-                <Tab
-                  activeClassName={styles.activeTab}
-                  className={`${styles.tab} ${id === 'settings' ? styles.settingsTab : null}`}
-                  // disabled={itemShouldBeDisabled(index)}
-                  id={id}
-                  key={index}
-                  label={<TabTemplate img={image} label={label} />}
-                />)}
-            </ToolboxTabs>
+            </div>
             <div className={styles.bottomTabs}>
               <div className={styles.settingsTabWrapper}>
                 <div className={`${styles.tab}`}
