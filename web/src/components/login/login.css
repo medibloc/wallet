@@ -20,7 +20,6 @@
       margin: 48px 0 18px;
 
       & input {
-        border-radius: 6px !important;
         height: var(--input-height);
       }
     }
@@ -29,7 +28,6 @@
       margin-top: 4px;
 
       & input {
-        border-radius: 6px !important;
         height: var(--input-height);
       }
     }

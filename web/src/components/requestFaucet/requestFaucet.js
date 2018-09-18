@@ -3,7 +3,6 @@ import { translate } from 'react-i18next';
 import axios from 'axios';
 import InlineSVG from 'svg-inline-react';
 import styles from './requestFaucet.css';
-import CheckBox from '../toolbox/checkbox/checkbox';
 import CloseButton from '../../assets/images/icons/buttonX.svg';
 import { Input } from '../toolbox/inputs/input';
 import { PrimaryButton } from '../toolbox/buttons/button';
@@ -22,7 +21,7 @@ class RequestFaucet extends React.Component {
       email: {
         value: this.props.email || '',
       },
-      hasAgreed: false,
+      // hasAgreed: false,
       isSuccess: false,
       sentRequest: false,
       showPrivacyConsent: false,
@@ -124,6 +123,7 @@ class RequestFaucet extends React.Component {
                     />
                     <div className={`${styles.emailWrapper}`}>
                       <Input
+                        autoFocus={true}
                         error={this.state.email.error}
                         placeholder={t('Enter your email.')}
                         onChange={(...args) => this.handleChange('email', ...args)}
@@ -132,12 +132,6 @@ class RequestFaucet extends React.Component {
                         value={this.state.email.value}
                       />
                     </div>
-                    <CheckBox
-                      checked={this.state.hasAgreed}
-                      className={`${styles.consentBox}`}
-                      label={t('I agree to MediBloc\'s terms and conditions and privacy policy.')}
-                      onChange={(...args) => this.handleChange('hasAgreed', ...args)}
-                    />
                   </form>
                 </div>
                 <footer className={styles.sendFooter}>
@@ -146,8 +140,7 @@ class RequestFaucet extends React.Component {
                       className={'send-next-button'}
                       disabled={(!this.state.address ||
                         !!this.state.email.error ||
-                        !this.state.email.value ||
-                        !this.state.hasAgreed)}
+                        !this.state.email.value)}
                       label={t('Next')}
                       onClick={() => {
                         this.showConsentPage();

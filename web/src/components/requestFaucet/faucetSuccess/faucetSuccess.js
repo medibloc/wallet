@@ -23,7 +23,7 @@ class FaucetSuccess extends React.Component {
               <div className={styles.buttonWrapper}>
                 <SecondaryButton
                   className={'close-faucet-button'}
-                  label={t('Okay')}
+                  label={t('OK')}
                   onClick={() => closePopUp()}/>
               </div>
             </footer>

@@ -15,7 +15,7 @@
 }
 
 .popupWrapper {
-  height: 462px;
+  height: 428px;
   width: 480px;
 }
 
@@ -37,9 +37,9 @@
 }
 
 .requestFaucetWrapper {
-  height: 422px;
+  height: 388px;
   padding: 32px 56px;
-  width: 480px;
+  width: 100%;
 
   & .headerWrapper {
     display: flex;
@@ -63,9 +63,18 @@
     height: 50%;
     width: 100%;
 
+    & form {
+      width: 100%;
+    }
+
     & .address {
       & h6 {
         color: var(--color-black-60);
+        font-size: var(--font-size-h5);
+      }
+
+      & input {
+        height: var(--input-height);
       }
 
       & input:not(:focus) {
@@ -74,15 +83,15 @@
     }
 
     & .emailWrapper {
-      height: 65px;
-
       & input::placeholder {
         color: var(--color-black-38);
       }
     }
 
     & .email {
-      width: auto;
+      & input {
+        height: var(--input-height);
+      }
     }
 
     & .consentBox {

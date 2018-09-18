@@ -1,12 +1,28 @@
 import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
-import styles from './privacyConsent.css';
+import Checkbox from '../../toolbox/checkbox/checkbox';
 import { PrimaryButton, SecondaryButton } from '../../toolbox/buttons/button';
 import WBox from '../../wbox/index';
+import styles from './privacyConsent.css';
 
 class PrivacyConsent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasAgreed: false,
+    };
+  }
+
+  handleChange(name, value) {
+    this.setState({
+      [name]: value,
+    });
+  }
+
   render() {
     const { closePopUp, sendFaucetRequest, t } = this.props;
+    console.log(this.state.hasAgreed);
     return (
       <Fragment>
         <div className={styles.wrapper}>
@@ -28,11 +44,18 @@ class PrivacyConsent extends React.Component {
               <h5>{t('Until provision of tokens is completed\n')}</h5><br/>
               <h5>{t('You have the right not to consent to the necessary minimum use of personal information as described above.')}</h5>
               <h5>{t('However, if you choose not to consent, there may be restrictions in being chosen as a subject, as the provision of tokens cannot be made.')}</h5><br/>
-              <h5>
-                {t('I agree to the Collection and Use of Personal Information for the Provision of Free Tokens by MediBloc Testnet and') + t(' ')}
-                <a href='https://docs.medibloc.org/PrivacyPolicy_ENG.pdf' target={'_blank'}>{t('privacy policy')}</a>
-                {t('.')}
-              </h5>
+              <div className={`${styles.consentBoxWrapper}`}>
+                <Checkbox
+                  checked={this.state.hasAgreed}
+                  className={`${styles.consentBox}`}
+                  onChange={(...args) => this.handleChange('hasAgreed', ...args)}
+                />
+                <h5 className={styles.hasIndent}>
+                  {t('I agree to the Collection and Use of Personal Information for the Provision of Free Tokens by MediBloc Testnet and') + t(' ')}
+                  <a href='https://docs.medibloc.org/PrivacyPolicy_ENG.pdf' target={'_blank'}>{t('privacy policy')}</a>
+                  {t('.')}
+                </h5>
+              </div>
             </div>
             <footer className={styles.sendFooter}>
               <div className={styles.buttonWrapper}>
@@ -42,7 +65,8 @@ class PrivacyConsent extends React.Component {
                   onClick={() => closePopUp()}/>
                 <PrimaryButton
                   className={styles.okButton}
-                  label={t('I agree')}
+                  disabled={!this.state.hasAgreed}
+                  label={t('Agree')}
                   onClick={() => sendFaucetRequest()}/>
               </div>
             </footer>

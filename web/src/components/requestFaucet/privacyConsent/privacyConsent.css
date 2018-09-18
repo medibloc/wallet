@@ -56,6 +56,24 @@
       font-size: var(--font-size-h5);
       font-weight: bold;
     }
+
+    & .consentBoxWrapper {
+      position: relative;
+    }
+
+    & .consentBox {
+      font-family: var(--content-font);
+      position: absolute;
+      top: 4px;
+    }
+
+    & .hasIndent {
+      text-indent: 25px;
+
+      & a {
+        font-size: var(--font-size-h5);
+      }
+    }
   }
 
   & .sendFooter {
