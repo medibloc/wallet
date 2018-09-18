@@ -3,6 +3,7 @@ import InlineSVG from 'svg-inline-react';
 import { Tab, Tabs as ToolboxTabs } from 'react-toolbox/lib/tabs';
 import RequestFaucet from '../requestFaucet';
 import Settings from '../settings';
+import TooltippedDiv from '../toolbox/tooltippedDiv/tooltippedDiv';
 import styles from './mainMenu.css';
 import logo from '../../assets/images/main-menu-icons/home.png';
 import * as menuLogos from '../../assets/images/main-menu-icons/*.svg'; //eslint-disable-line
@@ -103,11 +104,16 @@ class MainMenu extends React.Component {
       <Fragment>
         <aside className={styles.aside}>
           <div className={styles.sideBarWrapper}>
-            <div className={styles.logoWrapper}
-              onClick={() => this.toggleFaucetRequest()}>
-              <img src={logo} className={styles.logo} />
-              <small>{t('Test MED')}</small>
-            </div>
+            <TooltippedDiv
+              tooltip={t('You should click this button and follow the steps to get the test MED.')}
+              tooltipDelay={100}
+              tooltipPosition={'right'}>
+              <div className={`${styles.logoWrapper}`}
+                onClick={() => this.toggleFaucetRequest()}>
+                <img src={logo} className={styles.logo} />
+                <small>{t('Test MED')}</small>
+              </div>
+            </TooltippedDiv>
             <ToolboxTabs
               className={`${styles.tabs} main-tabs`}
               disableAnimatedBottomBorder={true}
