@@ -153,6 +153,7 @@ class SendWritable extends React.Component {
                 placeholder={t('Paste or enter an address')}
                 onChange={(...args) => this.handleChange('recipient', ...args)}
                 parentclassname={`${styles.recipient}`}
+                t={t}
                 theme={styles}
                 title={t('Recipient')}
                 value={this.state.recipient.value}
