@@ -8,6 +8,7 @@ import actionTypes from '../../constants/actions';
 import accountConfig from '../../constants/account';
 // import { getDelegate } from '../../utils/api/delegate';
 // import transactionTypes from '../../constants/transactionTypes';
+import { isEqualTo } from '../../../../common/src/utils/med';
 
 const { lockDuration } = accountConfig;
 
@@ -38,22 +39,20 @@ const updateTransactions = (store, peers) => {
   });
 };
 
-const hasRecentTransactions = txs => (
-  txs.confirmed.filter(tx => tx.confirmations < 1000).length !== 0 ||
-  txs.pending.length !== 0
-);
+// const hasRecentTransactions = txs => (
+//   txs.confirmed.filter(tx => tx.confirmations < 1000).length !== 0 ||
+//   txs.pending.length !== 0
+// );
 
-const updateAccountData = (store, action) => {
-  const { peers, account, transactions } = store.getState();
+const updateAccountData = (store) => {
+  const { peers, account } = store.getState();
 
   getAccount(peers.activePeer, account.address).then((result) => {
-    if (result.balance !== account.balance ||
-      result.vesting !== account.vesting ||
-      result.unstaking !== account.unstaking ||
-      result.nonce !== account.nonce) {
-      if (!action.data.windowIsFocused || !hasRecentTransactions(transactions)) {
-        updateTransactions(store, peers, account);
-      }
+    if (!isEqualTo(result.balance, account.balance) ||
+      !isEqualTo(result.vesting, account.vesting) ||
+      !isEqualTo(result.unstaking, account.unstaking) ||
+      !isEqualTo(result.nonce, account.nonce)) {
+      updateTransactions(store, peers, account);
     }
     store.dispatch(accountUpdated(result));
     store.dispatch(activePeerUpdate({ online: true }));
@@ -138,10 +137,10 @@ const accountMiddleware = store => next => (action) => {
     // depends on a rerendering of the page
     // TODO: fix the 'save account' path problem, so we can remove this
     case actionTypes.accountLoggedIn:
-      updateAccountData(store, action);
+      updateAccountData(store);
       break;
     case actionTypes.accountReload:
-      updateAccountData(store, action);
+      updateAccountData(store);
       break;
     // case actionTypes.newBlockCreated:
     //   checkTransactionsAndUpdateAccount(store, action);

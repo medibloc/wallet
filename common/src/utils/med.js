@@ -6,6 +6,10 @@ export const addMed = (v1, v2) => (
   new BigNumber(v1 || 0).add(new BigNumber(v2 || 0)).toFixed()
 );
 
+export const isEqualTo = (v1, v2) => (
+  new BigNumber(v1).eq(new BigNumber(v2))
+);
+
 export const isZero = value => (
   new BigNumber(value).isZero()
 );

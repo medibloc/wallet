@@ -25,7 +25,12 @@ class Dashboard extends React.Component {
       showVestingSetting: false,
     };
 
+    this.loadAccount();
     this.loadTransactions();
+  }
+
+  loadAccount() {
+    this.props.accountReload();
   }
 
   loadTransactions() {
