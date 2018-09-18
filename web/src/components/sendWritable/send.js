@@ -4,6 +4,7 @@ import { PrimaryButton } from './../toolbox/buttons/button';
 import AutoVesting from '../autoVesting';
 import BandwidthBar from '../bandwidthBar';
 import Converter from '../converter';
+import EventRecipient from '../eventRecipient';
 import TransferTabs from '../transferTabs';
 import { Input } from '../toolbox/inputs/input';
 import styles from './sendWritable.css';
@@ -98,6 +99,15 @@ class SendWritable extends React.Component {
     });
   }
 
+  toggleEventAddress() {
+    const address = '0249a4b6e933581a50b90275017bab823835c925702b47a350deb60309087e132b';
+    this.setState({
+      recipient: {
+        value: (this.state.recipient.value === address) ? '' : address,
+      },
+    });
+  }
+
   validateInput(name, value) {
     if (name === 'description') {
       if (value.length > 50) {
@@ -137,8 +147,9 @@ class SendWritable extends React.Component {
                 title={t('MED')}
                 value={this.state.amount.value}
               />
-              <Input
+              <EventRecipient
                 error={this.state.recipient.error}
+                toggleEventAddress={() => this.toggleEventAddress()}
                 placeholder={t('Paste or enter an address')}
                 onChange={(...args) => this.handleChange('recipient', ...args)}
                 parentclassname={`${styles.recipient}`}
