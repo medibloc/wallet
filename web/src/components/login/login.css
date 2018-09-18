@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 480px;
+  width: 400px;
 
   & > .login {
     margin-top: var(--header-margin-top);
@@ -20,6 +20,7 @@
       margin: 48px 0 18px;
 
       & input {
+        border-radius: 6px !important;
         height: var(--input-height);
       }
     }
@@ -28,11 +29,13 @@
       margin-top: 4px;
 
       & input {
+        border-radius: 6px !important;
         height: var(--input-height);
       }
     }
 
     & > .nextButton {
+      height: 48px;
       margin-top: 72px;
     }
 
@@ -90,7 +93,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: 380px;
+    width: 308px;
 
     & .label {
       color: var(--color-black-60);

@@ -5,7 +5,7 @@
   justify-content: space-around;
   height: 42px;
   margin: 41px 0 0;
-  width: 480px;
+  width: 100%;
 
   & > .word {
     justify-content: center;

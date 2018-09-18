@@ -2,6 +2,7 @@
 
 .enter {
   margin-top: var(--header-margin-top);
+  width: 100%;
 
   & > .comment1 {
     margin-top: 8px;
@@ -13,9 +14,12 @@
 
   & > .passphrase {
     margin-top: 26px;
+    width: 100%;
   }
 
   & > .nextButton {
+    height: var(--input-height);
     margin-top: 40px;
+    width: 100%;
   }
 }

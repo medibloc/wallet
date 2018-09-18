@@ -5,7 +5,7 @@
   height: 262px;
   justify-content: space-around;
   margin-top: 26px;
-  width: 480px;
+  width: 100%;
 
   & > .row {
     justify-content: space-around;

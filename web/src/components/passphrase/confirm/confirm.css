@@ -2,12 +2,14 @@
 
 .confirm {
   margin-top: var(--header-margin-top);
+  width: 100%;
 
   & > .passphrase {
     margin-top: 34px;
   }
 
   & > .nextButton {
+    height: var(--input-height);
     margin-top: 40px;
   }
 

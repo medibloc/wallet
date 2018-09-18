@@ -2,6 +2,7 @@
 
 .safekeeping {
   margin-top: var(--header-margin-top);
+  width: 100%;
 
   & > .comment1 {
     margin-top: 8px;
@@ -34,6 +35,7 @@
   }
 
   & > .nextButton {
+    height: var(--input-height);
     margin-top: 40px;
   }
 

@@ -21,10 +21,10 @@
 
   & > div > div:nth-child(2) > div {
     border: 1px solid var(--input-border-color);
-    border-radius: 3px;
+    border-radius: 6px;
     height: var(--input-height);
     margin-top: 10px;
-    width: 480px;
+    width: 400px;
   }
 
   & > div > div:nth-child(2) > div:focus {

@@ -4,12 +4,24 @@
   --padding-top: 0px;
 }
 
+.wrapper {
+  padding-top: var(--padding-top);
+  width: 400px;
+
+  & > img {
+    display: block;
+    width: 180px;
+    height: 25px;
+    margin: 0 auto;
+  }
+}
+
 .restore {
-  width: 480px;
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  width: 100%;
 
   & div {
     display: flex;
@@ -32,16 +44,5 @@
   & small {
     display: flex;
     justify-content: center;
-  }
-}
-
-.wrapper {
-  padding-top: var(--padding-top);
-
-  & > img {
-    display: block;
-    width: 180px;
-    height: 25px;
-    margin: 0 auto;
   }
 }

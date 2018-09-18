@@ -3,7 +3,7 @@
 .passphraseInputBoxWrapper {
   height: 291px;
   margin-top: 26px;
-  width: 480px;
+  width: 100%;
 }
 
 .passphraseInputBox {
