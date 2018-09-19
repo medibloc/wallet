@@ -5,8 +5,10 @@ import CustomRoute from '../customRoute';
 // import SavedAccounts from '../savedAccounts';
 import LoadingBar from '../loadingBar';
 import NotFound from '../notFound';
+import NotSupportMobile from '../notSupportMobile';
 import OfflineWrapper from '../offlineWrapper';
 import Toaster from '../toaster';
+// import platforms from '../../../../common/src/constants/platforms';
 
 import routes from '../../constants/routes';
 // eslint-disable-next-line import/no-named-as-default
@@ -27,6 +29,12 @@ class App extends React.Component {
   }
 
   render() {
+    if (navigator.platform && platforms.indexOf(navigator.platform.toLowerCase()) < 0) {
+      return (
+        <NotSupportMobile />
+      );
+    }
+
     const allRoutes = Object.values(routes);
 
     const defaultRoutes = allRoutes.filter(routeObj =>
