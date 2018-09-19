@@ -8,7 +8,7 @@ import NotFound from '../notFound';
 import NotSupportMobile from '../notSupportMobile';
 import OfflineWrapper from '../offlineWrapper';
 import Toaster from '../toaster';
-// import platforms from '../../../../common/src/constants/platforms';
+import platforms from '../../../../common/src/constants/platforms';
 
 import routes from '../../constants/routes';
 // eslint-disable-next-line import/no-named-as-default
