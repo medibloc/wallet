@@ -37,39 +37,41 @@ class VestSettings extends React.Component {
 
     return (
       <Fragment>
-        <div className={styles.wrapper}>
-          <div className={styles.popupWrapper}>
-            <div className={styles.closeWrapper}>
-              <div className={styles.closeButtonWrapper}>
-                <InlineSVG
-                  className={styles.closeButton}
-                  onClick={() => closePopUp()}
-                  src={CloseButton} />
+        <div className={styles.relative}>
+          <div className={styles.wrapper}>
+            <div className={styles.popupWrapper}>
+              <div className={styles.closeWrapper}>
+                <div className={styles.closeButtonWrapper}>
+                  <InlineSVG
+                    className={styles.closeButton}
+                    onClick={() => closePopUp()}
+                    src={CloseButton} />
+                </div>
               </div>
+              <WBox className={styles.settingsWrapper}>
+                <div className={styles.settingsMenuWrapper}>
+                  <div className={styles.menuHeader}>
+                    <h4>{ t('Staking Settings') }</h4>
+                  </div>
+                  <div className={styles.menuBody}>
+                    <SettingsMenu
+                      active={this.state.active}
+                      setActiveSetting={(...args) => this.setActiveSetting(...args)}
+                      settings={settings} />
+                  </div>
+                </div>
+                <div className={styles.settingsContentWrapper}>
+                  {
+                    (this.state.active === settings[0].id) ?
+                      <Vest {...this.props} /> : null
+                  }
+                  {
+                    (this.state.active === settings[1].id) ?
+                      <WithdrawVesting {...this.props} /> : null
+                  }
+                </div>
+              </WBox>
             </div>
-            <WBox className={styles.settingsWrapper}>
-              <div className={styles.settingsMenuWrapper}>
-                <div className={styles.menuHeader}>
-                  <h4>{ t('Staking Settings') }</h4>
-                </div>
-                <div className={styles.menuBody}>
-                  <SettingsMenu
-                    active={this.state.active}
-                    setActiveSetting={(...args) => this.setActiveSetting(...args)}
-                    settings={settings} />
-                </div>
-              </div>
-              <div className={styles.settingsContentWrapper}>
-                {
-                  (this.state.active === settings[0].id) ?
-                    <Vest {...this.props} /> : null
-                }
-                {
-                  (this.state.active === settings[1].id) ?
-                    <WithdrawVesting {...this.props} /> : null
-                }
-              </div>
-            </WBox>
           </div>
         </div>
       </Fragment>

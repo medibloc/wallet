@@ -1,5 +1,10 @@
 @import '../app/variables.css';
 
+.relative {
+  position: relative;
+  z-index: var(--popup-index);
+}
+
 .wrapper {
   align-items: center;
   background: var(--color-black-54);
