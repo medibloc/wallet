@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   render() {
-    if (navigator.platform && platforms.indexOf(navigator.platform.toLowerCase()) < 0) {
+    if (navigator.platform && platforms.indexOf(navigator.platform.toLowerCase()) > 0) {
       return (
         <NotSupportMobile />
       );
