@@ -29,12 +29,6 @@ class App extends React.Component {
   }
 
   render() {
-    if (navigator.platform && platforms.indexOf(navigator.platform.toLowerCase()) < 0) {
-      return (
-        <NotSupportMobile />
-      );
-    }
-
     const allRoutes = Object.values(routes);
 
     const defaultRoutes = allRoutes.filter(routeObj =>
@@ -47,7 +41,8 @@ class App extends React.Component {
       'restore',
     ];
 
-    return (
+    return (navigator.platform && (platforms.indexOf(navigator.platform.toLowerCase()) < 0) ?
+      <NotSupportMobile /> :
       <OfflineWrapper>
         <BrowserRouter>
           <main className={`${styles.bodyWrapper}`} ref={(el) => { this.main = el; }}>

@@ -13,7 +13,7 @@
 .notSupportMobile {
   min-height: 400px;
   max-width: 260px;
-  margin: 64px auto;
+  margin: 150px auto;
   text-align: center;
 
   & h2 {
