@@ -71,7 +71,7 @@ class SendWritable extends React.Component {
   // need 2 bandwidth for tx + 1 bandwidth for buffer
   isEnoughAmount(value) {
     return lte(toRawMed(value), this.props.account.balance) &&
-      lte(addMed(toRawMed(value), toRawMed(3)),
+      lte(addMed(toRawMed(value), toRawMed(3 * MIN_BANDWIDTH_IN_MED)),
         addMed(this.props.account.balance,
           subMed(this.props.account.vesting, this.props.account.bandwidth),
         ));

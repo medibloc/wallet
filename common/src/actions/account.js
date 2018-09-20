@@ -295,6 +295,66 @@ export const vested = ({ activePeer, account, amount,
     dispatch(passphraseUsed(passphrase));
   };
 
+export const vestedAndSent = ({ activePeer, account, description,
+  nonce, privKey, passphrase, to, transferAmount, vestingAmount }) =>
+  (dispatch) => {
+    Promise.all([
+      vest({
+        activePeer,
+        nonce,
+        privKey: privKey || extractPrivKey(passphrase),
+        value: toRawMed(vestingAmount),
+      }),
+      send({
+        activePeer,
+        description,
+        nonce: Number(nonce) + 1,
+        privKey: privKey || extractPrivKey(passphrase),
+        to,
+        value: toRawMed(transferAmount),
+      }),
+    ]).then((values) => {
+      dispatch({
+        data: {
+          from: account.address,
+          hash: values[0].transactionId,
+          timestamp: values[0].timestamp,
+          value: toRawMed(vestingAmount),
+          tx_type: transactionTypes.vest,
+        },
+        type: actionTypes.transactionAdded,
+      });
+      dispatch({
+        data: {
+          from: account.address,
+          hash: values[1].transactionId,
+          timestamp: values[1].timestamp,
+          to,
+          value: toRawMed(transferAmount),
+          tx_type: transactionTypes.send,
+        },
+        type: actionTypes.transactionAdded,
+      });
+      dispatch({
+        data: {
+          balance: (account.address !== to) ?
+            subMed(subMed(account.balance, toRawMed(vestingAmount)), toRawMed(transferAmount)) :
+            subMed(account.balance, toRawMed(vestingAmount)),
+          bandwidth: addMed(account.bandwidth, 2 * BANDWIDTH_USED_TX),
+          nonce: (Number(nonce) + 1).toString(),
+          vesting: addMed(account.vesting, toRawMed(vestingAmount)),
+        },
+        type: actionTypes.accountUpdated,
+      });
+    })
+      .catch((error) => {
+        const errorMessage = error && error.message ? `${error.message}.` :
+          i18next.t('An error occurred while creating the transaction.');
+        dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+      });
+    dispatch(passphraseUsed(passphrase));
+  };
+
 /**
  *
  */

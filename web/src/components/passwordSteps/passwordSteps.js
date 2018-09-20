@@ -114,27 +114,29 @@ class PasswordSteps extends React.Component {
                 onClick={() => {
                   const privKey = this.decryptPassphrase();
                   if (privKey !== null) {
-                    let nonce = Number(this.props.account.nonce) + 1;
+                    const nonce = Number(this.props.account.nonce) + 1;
                     if (this.props.autoVesting && this.props.vestingAmount) {
-                      this.props.vested({
+                      this.props.vestedAndSent({
                         account: this.props.account,
                         activePeer: this.props.peers.activePeer,
-                        amount: this.props.vestingAmount,
+                        description: this.props.description,
                         nonce,
                         privKey,
+                        to: this.props.recipient,
+                        transferAmount: this.props.amount,
+                        vestingAmount: this.props.vestingAmount,
                       });
-                      // increase nonce
-                      nonce += 1;
+                    } else {
+                      this.props.sent({
+                        account: this.props.account,
+                        activePeer: this.props.peers.activePeer,
+                        amount: this.props.amount,
+                        description: this.props.description,
+                        nonce,
+                        privKey,
+                        to: this.props.recipient,
+                      });
                     }
-                    this.props.sent({
-                      account: this.props.account,
-                      activePeer: this.props.peers.activePeer,
-                      amount: this.props.amount,
-                      description: this.props.description,
-                      nonce,
-                      privKey,
-                      to: this.props.recipient,
-                    });
                     this.props.nextStep();
                   } else {
                     this.showWrongPasswordToast();
