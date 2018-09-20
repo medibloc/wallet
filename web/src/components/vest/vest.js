@@ -1,6 +1,8 @@
 import React from 'react';
 import { fromRawMed } from '../../../../common/src/utils/med';
 import { PrimaryButton } from './../toolbox/buttons/button';
+import BN from '../../../../common/src/utils/bn';
+import { MIN_BANDWIDTH_IN_MED } from '../../../../common/src/constants/bandwidth';
 import Converter from '../converter';
 import MedAmount from '../medAmount';
 import { Input } from '../toolbox/inputs/input';
@@ -79,12 +81,12 @@ class Vest extends React.Component {
   }
 
   getMaxAmount() {
-    return fromRawMed(Math.max(0, this.props.account.balance));
+    return fromRawMed(BN.max(0, this.props.account.balance));
   }
 
   // eslint-disable-next-line class-methods-use-this
   getMinVesting() {
-    return 1;
+    return MIN_BANDWIDTH_IN_MED;
   }
 
   render() {

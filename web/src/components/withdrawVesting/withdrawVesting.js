@@ -1,6 +1,8 @@
 import React from 'react';
-import { fromRawMed } from '../../../../common/src/utils/med';
+import { fromRawMed, subMed } from '../../../../common/src/utils/med';
 import { PrimaryButton } from './../toolbox/buttons/button';
+import BN from '../../../../common/src/utils/bn';
+import { BANDWIDTH_USED_TX } from '../../../../common/src/constants/bandwidth';
 import Converter from '../converter';
 import MedAmount from '../medAmount';
 import { Input } from '../toolbox/inputs/input';
@@ -71,13 +73,13 @@ class WithdrawVesting extends React.Component {
     } else if (!value.match(this.inputValidationRegexps[name])) {
       return name === 'amount' ? this.props.t('Invalid amount') : null;
     } else if (name === 'amount' && value > parseFloat(this.getMaxAmount())) {
-      return this.props.t('Not enough MED');
+      return this.props.t('Exceeded maximum unstaking amount');
     }
     return undefined;
   }
 
   getMaxAmount() {
-    return fromRawMed(Math.max(0, this.props.account.vesting));
+    return fromRawMed(BN.max(0, subMed(this.props.account.vesting, BANDWIDTH_USED_TX)));
   }
 
   render() {

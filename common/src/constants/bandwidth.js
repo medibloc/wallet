@@ -1,0 +1,7 @@
+const BANDWIDTH_USED_TX = 1000000000000;
+const MIN_BANDWIDTH_IN_MED = 1;
+
+module.exports = {
+  BANDWIDTH_USED_TX,
+  MIN_BANDWIDTH_IN_MED,
+};
