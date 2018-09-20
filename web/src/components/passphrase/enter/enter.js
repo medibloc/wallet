@@ -43,9 +43,9 @@ class Enter extends React.Component {
     const { history, t, nextStep } = this.props;
     return (<Box className={`${styles.enter}`}>
       <header>
-        <h2>{t('Enter your passphrase for sign in')}</h2>
+        <h2>{t('Save backup phrase')}</h2>
       </header>
-      <div className={`${styles.comment1}`}>
+      <div className={`${styles.comment}`}>
         <h6>{t('Since only you control your money, ' +
           'you’ll need to save your backup phrase in case this app is deleted')}</h6>
       </div>

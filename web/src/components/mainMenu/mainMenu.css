@@ -22,7 +22,7 @@
 }
 
 .faucetTooltipWrapper {
-  height: 67px;
+  height: 77px;
   margin: 24px 0 0;
   width: 100%;
 
@@ -65,6 +65,10 @@
   transform: translateX(0);
 }
 
+.navigationContainer {
+  height: 343px;
+}
+
 .navigationContainer .navigation {
   align-items: center;
   box-shadow: none;
@@ -74,16 +78,20 @@
 }
 
 .topTabs {
-  height: auto;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .tabs {
-  height: 100%;
+  height: auto;
 }
 
 .tabs nav {
   overflow: hidden;
-  margin: 28px 0 0;
+  margin: 40px 0 0;
 }
 
 .tab {
@@ -167,7 +175,9 @@
 }
 
 .bottomTabs {
+  align-items: flex-end;
   display: flex;
+  height: 30%;
   justify-content: center;
   width: 100%;
 

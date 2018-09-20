@@ -11,9 +11,14 @@
     margin-top: var(--header-margin-top);
     width: 100%;
 
+    & header {
+      width: 100%;
+    }
+
     & > .accountLabel {
       display: flex;
       margin-top: 48px;
+      width: 100%;
     }
 
     & > .noAccountLabel {
@@ -26,6 +31,7 @@
 
     & > .password {
       margin-top: 4px;
+      width: 100%;
 
       & input {
         height: var(--input-height);
@@ -35,6 +41,7 @@
     & > .nextButton {
       height: 48px;
       margin-top: 72px;
+      width: 100%;
     }
 
     & > div {

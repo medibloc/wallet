@@ -17,6 +17,7 @@
 .privacyConsentWrapper {
   height: 539px;
   padding: 32px;
+  margin: 0;
   width: 480px !important;
 
   & .headerWrapper {

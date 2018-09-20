@@ -6,6 +6,7 @@
 
   & > .comment1 {
     margin-top: 8px;
+    width: 100%;
 
     & > h6 {
       text-align: center;
@@ -15,6 +16,7 @@
   & > .comment2 {
     flex-direction: row;
     margin-top: 48px;
+    width: 100%;
 
     & > h6 {
       color: var(--color-black-87);
@@ -32,14 +34,12 @@
 
   & > .passphrase {
     margin-top: 26px;
+    width: 100%;
   }
 
   & > .nextButton {
     height: var(--input-height);
     margin-top: 40px;
-  }
-
-  & > .comment3 {
-    margin-top: 16px;
+    width: 100%;
   }
 }

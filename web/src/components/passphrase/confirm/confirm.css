@@ -4,13 +4,19 @@
   margin-top: var(--header-margin-top);
   width: 100%;
 
+  & header {
+    width: 100%;
+  }
+
   & > .passphrase {
     margin-top: 34px;
+    width: 100%;
   }
 
   & > .nextButton {
     height: var(--input-height);
     margin-top: 40px;
+    width: 100%;
   }
 
   h6 {
@@ -25,4 +31,5 @@
 
 .errorTitle {
   margin-top: 10px;
+  width: 100%;
 }

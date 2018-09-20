@@ -4,8 +4,13 @@
   margin-top: var(--header-margin-top);
   width: 100%;
 
-  & > .comment1 {
+  & header {
+    width: 100%;
+  }
+
+  & > .comment {
     margin-top: 8px;
+    width: 100%;
 
     & > h6 {
       text-align: center;

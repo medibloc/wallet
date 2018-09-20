@@ -151,9 +151,11 @@ class RequestFaucet extends React.Component {
             </div>
           </div>
         </Fragment> :
-        <PrivacyConsent
-          closePopUp={this.props.closePopUp}
-          sendFaucetRequest={() => this.sendFaucetRequest()}/>
+        <Fragment>
+          <PrivacyConsent
+            closePopUp={this.props.closePopUp}
+            sendFaucetRequest={() => this.sendFaucetRequest()}/>
+        </Fragment>
       ) :
       (this.state.isSuccess ?
         <FaucetSuccess closePopUp={this.props.closePopUp}/> :

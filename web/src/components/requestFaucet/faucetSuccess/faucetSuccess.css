@@ -17,6 +17,7 @@
 .faucetNoticeWrapper {
   height: 322px;
   padding: 32px 56px;
+  margin: 0;
   width: 480px !important;
 
   & .headerWrapper {
