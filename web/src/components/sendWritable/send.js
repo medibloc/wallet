@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import { MIN_BANDWIDTH_IN_MED } from '../../../../common/src/constants/bandwidth';
+import BN from '../../../../common/src/utils/bn';
 import { addMed, fromRawMed, lte, toRawMed, subMed } from '../../../../common/src/utils/med';
 import { PrimaryButton } from './../toolbox/buttons/button';
 import AutoVesting from '../autoVesting';
@@ -179,7 +181,8 @@ class SendWritable extends React.Component {
                         !!this.state.description.error)}
                 label={t('Next')}
                 onClick={() => {
-                  if (lte(1, fromRawMed(this.props.account.bandwidth))) {
+                  if (BN.lte(MIN_BANDWIDTH_IN_MED,
+                    fromRawMed(subMed(this.props.account.vesting, this.props.account.bandwidth)))) {
                     this.nextStepWithParam(false);
                   } else {
                     this.toggleAutoVesting();

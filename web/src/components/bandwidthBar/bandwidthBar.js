@@ -1,6 +1,8 @@
 import React from 'react';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
-import { fromRawMed, isZero, lt, lte, subMed } from '../../../../common/src/utils/med';
+import { MIN_BANDWIDTH_IN_MED } from '../../../../common/src/constants/bandwidth';
+import BN from '../../../../common/src/utils/bn';
+import { fromRawMed, subMed } from '../../../../common/src/utils/med';
 import styles from './bandwidthBar.css';
 
 class BandwidthBar extends React.Component {
@@ -11,21 +13,20 @@ class BandwidthBar extends React.Component {
 
   render() {
     const { account, t } = this.props;
-    const minBandwidth = 1;
-    const bandwidth = fromRawMed(subMed(account.vesting, account.bandwidth));
-    const need = lte(1, bandwidth) ? 0 : subMed(1, bandwidth);
-    const isLow = lte(minBandwidth * 0.6, need);
-    const isMid = !isLow && lt(0, need);
+    const bandwidth = fromRawMed(BN.max(0, subMed(account.vesting, account.bandwidth)));
+    const need = BN.max(0, subMed(MIN_BANDWIDTH_IN_MED, bandwidth));
+    const isLow = BN.lte(MIN_BANDWIDTH_IN_MED * 0.6, need);
+    const isMid = !isLow && BN.lt(0, need);
     return <div className={styles.bandwidthBarWrapper}>
       <div className={styles.title}>
-        { isZero(need) ?
+        { BN.isZero(need) ?
           <small>{t('You have enough bandwidth to send')}</small> :
           <small>{t('Need {{need}} MED staking more to send', { need })}</small>
         }
       </div>
       <ProgressBar
         className={`${isLow ? styles.progressBarLow : null} ${isMid ? styles.progressBarMid : null}`}
-        max={minBandwidth}
+        max={MIN_BANDWIDTH_IN_MED}
         mode="determinate"
         theme={styles}
         type="linear"

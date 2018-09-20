@@ -21,11 +21,11 @@ const lte = (v1, v2) => (
 );
 
 const max = (...args) => (
-  BigNumber.max(...args)
+  BigNumber.max(...args).toFixed()
 );
 
 const min = (...args) => (
-  BigNumber.min(...args)
+  BigNumber.min(...args).toFixed()
 );
 
 export default {

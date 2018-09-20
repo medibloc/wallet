@@ -1,5 +1,6 @@
 import i18next from 'i18next';
 import actionTypes from '../constants/actions';
+import { BANDWIDTH_USED_TX } from '../constants/bandwidth';
 import transactionTypes from '../constants/transactionTypes';
 import { getAccount, send, vest, withdrawVesting } from '../utils/api/account';
 // import { registerDelegate, getDelegate, getVotes, getVoters } from '../utils/api/delegate';
@@ -181,6 +182,7 @@ export const sent = ({ activePeer, account, amount,
         dispatch({
           data: {
             balance: subMed(account.balance, toRawMed(amount)),
+            bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
             nonce: nonce.toString(),
           },
           type: actionTypes.accountUpdated,
@@ -278,6 +280,7 @@ export const vested = ({ activePeer, account, amount,
       dispatch({
         data: {
           balance: subMed(account.balance, toRawMed(amount)),
+          bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
           nonce: nonce.toString(),
           vesting: addMed(account.vesting, toRawMed(amount)),
         },
@@ -316,6 +319,7 @@ export const withdrewVesting = ({ account, activePeer, amount,
       });
       dispatch({
         data: {
+          bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
           nonce: nonce.toString(),
           unstaking: addMed(account.unstaking, toRawMed(amount)),
           vesting: subMed(account.vesting, toRawMed(amount)),
