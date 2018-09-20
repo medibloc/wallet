@@ -79,8 +79,7 @@ class WithdrawVesting extends React.Component {
   }
 
   getMaxAmount() {
-    return fromRawMed(BN.max(0, subMed(subMed(this.props.account.vesting,
-      this.props.account.bandwidth), BANDWIDTH_USED_TX)));
+    return fromRawMed(BN.max(0, subMed(this.props.account.vesting, BANDWIDTH_USED_TX)));
   }
 
   render() {
