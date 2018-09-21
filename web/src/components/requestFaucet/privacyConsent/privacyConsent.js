@@ -33,17 +33,32 @@ class PrivacyConsent extends React.Component {
               </div>
             </div>
             <div className={styles.bodyWrapper}>
-              <h5>{t('For the protection of your personal information, please read carefully the contents below on the collection and use of personal information and choose whether to agree.')
-                + t('MediBloc processes personal information as follows.')}
-              </h5><br/>
-              <span>{t('Item')}</span>
-              <h5>{t('E-mail address, address of electronic wallet')}</h5><br/>
-              <span>{t('Purpose of Processing')}</span>
-              <h5>{t('Checking whether MediBloc Testnet tokens were applied for and provision of free tokens\n')}</h5><br/>
-              <span>{t('Term of Retention\n')}</span>
-              <h5>{t('Until provision of tokens is completed\n')}</h5><br/>
-              <h5>{t('You have the right not to consent to the necessary minimum use of personal information as described above.')}</h5>
-              <h5>{t('However, if you choose not to consent, there may be restrictions in being chosen as a subject, as the provision of tokens cannot be made.')}</h5><br/>
+              <div className={styles.comment1}>
+                <h5>{t('For the protection of your personal information, please read carefully the contents below on the collection and use of personal information and choose whether to agree.')
+                  + t('MediBloc processes personal information as follows.')}
+                </h5>
+                <br/>
+              </div>
+              <div className={styles.comment2}>
+                <span>{t('Item')}</span>
+                <h5>{t('E-mail address, address of electronic wallet')}</h5>
+                <br/>
+              </div>
+              <div className={styles.comment3}>
+                <span>{t('Purpose of Processing')}</span>
+                <h5>{t('Checking whether MediBloc Testnet tokens were applied for and provision of free tokens\n')}</h5>
+                <br/>
+              </div>
+              <div className={styles.comment4}>
+                <span>{t('Term of Retention\n')}</span>
+                <h5>{t('Until provision of tokens is completed\n')}</h5>
+                <br/>
+              </div>
+              <div className={styles.comment5}>
+                <h5>{t('You have the right not to consent to the necessary minimum use of personal information as described above.')}</h5>
+                <h5>{t('However, if you choose not to consent, there may be restrictions in being chosen as a subject, as the provision of tokens cannot be made.')}</h5>
+                <br/>
+              </div>
               <div className={`${styles.consentBoxWrapper}`}>
                 <Checkbox
                   checked={this.state.hasAgreed}
