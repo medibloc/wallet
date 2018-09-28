@@ -19,6 +19,7 @@
   }
 
   .input input {
+    caret-color: var(--color-dodger-blue);
     height: 40px;
   }
 
