@@ -13,7 +13,7 @@ class PassphraseInputBox extends React.Component {
     this.state = {
       inputType: 'text',
       partialPassphraseError: [],
-      focus: 0,
+      focus: -1,
     };
   }
 
@@ -90,11 +90,11 @@ class PassphraseInputBox extends React.Component {
                 const i = (i1 * 4) + i2;
                 return (
                   <span key={`${word}-${i2}`}>
-                    <div className={`${styles.number}`}>
+                    <div className={`${this.state.focus === i ? styles.focusNumber : styles.number}`}>
                       <small>{i + 1}</small>
                     </div>
                     <PassphraseInput
-                      shouldfocus={this.state.focus === i ? 1 : 0}
+                      autoFocus={this.state.focus === i}
                       className={`${this.props.className} ${styles.partial}
                         ${this.state.partialPassphraseError[i] ? styles.error : ''}`}
                       value={value[i] || ''}
