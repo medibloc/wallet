@@ -3,11 +3,15 @@ import { translate } from 'react-i18next';
 import Vest from './vest';
 import { vested } from '../../../../common/src/actions/account';
 
+const mapStateToProps = state => ({
+  loading: state.loading,
+});
+
 const mapDispatchToProps = dispatch => ({
   vested: data => dispatch(vested(data)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(translate()(Vest));

@@ -1,9 +1,9 @@
 // import { extractAddress } from '../../../common/src/utils/account';
 import actionTypes from '../constants/actions';
-// import { loadingStarted, loadingFinished } from '../utils/loading';
+import { loadingStarted, loadingFinished } from '../../../common/src/actions/loading';
 import { transaction, transactions } from '../utils/api/transaction';
 // import { getDelegate } from '../utils/api/delegate';
-import { loadAccount } from './account';
+// import { loadAccount } from './account';
 // import txTypes from '../constants/transactionTypes';
 
 
@@ -48,18 +48,18 @@ export const transactionsFilterSet = ({ address, limit, mServer, txTypeFilter })
 export const loadTransactions = ({ activePeer, address, mServer }) =>
   (dispatch) => {
     // eslint-disable-next-line no-unneeded-ternary
-    const lastActiveAddress = address ? address : null;
-    const isSameAccount = lastActiveAddress === address;
-    // loadingStarted(actionTypes.transactionsLoad);
+    // const lastActiveAddress = address ? address : null;
+    // const isSameAccount = lastActiveAddress === address;
+    dispatch(loadingStarted(actionTypes.transactionsLoad));
     // TODO: get transaction details
     transactions({ address, mServer })
       .then((transactionsResponse) => {
-        dispatch(loadAccount({
-          activePeer,
-          address,
-          transactionsResponse,
-          isSameAccount,
-        }));
+        // dispatch(loadAccount({
+        //   activePeer,
+        //   address,
+        //   transactionsResponse,
+        //   isSameAccount,
+        // }));
 
         if (transactionsResponse && transactionsResponse.transactions) {
           let txRequests = [];
@@ -75,8 +75,10 @@ export const loadTransactions = ({ activePeer, address, mServer }) =>
               type: actionTypes.transactionsLoaded,
             });
           }).catch((err) => {
+            dispatch(loadingFinished(actionTypes.transactionsLoad));
             console.log(err);
           });
+          dispatch(loadingFinished(actionTypes.transactionsLoad));
         } else {
           dispatch({
             data: {
@@ -85,6 +87,7 @@ export const loadTransactions = ({ activePeer, address, mServer }) =>
             },
             type: actionTypes.transactionsLoaded,
           });
+          dispatch(loadingFinished(actionTypes.transactionsLoad));
         }
       });
   };

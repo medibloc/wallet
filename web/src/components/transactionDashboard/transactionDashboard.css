@@ -2,7 +2,7 @@
 
 .wrapper {
   display: flex;
-  height: var(--main-box-height);
+  height: var(--content-box-height);
   flex-direction: row;
   margin: 0;
   width: var(--main-box-width);

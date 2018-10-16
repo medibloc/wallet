@@ -3,7 +3,7 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import i18n from '../../i18n';
+import i18n from '../../../i18n';
 import SendHOC from './index';
 
 describe('SendWritableHOC', () => {

@@ -18,6 +18,7 @@ const toaster = (state = [], action) => {
       return [
         {
           ...action.data,
+          index: 0,
         },
       ];
     case actionTypes.toastHidden:

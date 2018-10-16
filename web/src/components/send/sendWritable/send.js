@@ -1,22 +1,21 @@
 import React, { Fragment } from 'react';
-import { MIN_BANDWIDTH_IN_MED } from '../../../../common/src/constants/bandwidth';
-import BN from '../../../../common/src/utils/bn';
-import { addMed, fromRawMed, lte, toRawMed, subMed } from '../../../../common/src/utils/med';
-import { PrimaryButton } from './../toolbox/buttons/button';
-import AutoVesting from '../autoVesting';
-import BandwidthBar from '../bandwidthBar';
-import Converter from '../converter';
-import EventRecipient from '../eventRecipient';
-import TransferTabs from '../transferTabs';
-import { Input } from '../toolbox/inputs/input';
+import { MIN_BANDWIDTH_IN_MED } from '../../../../../common/src/constants/bandwidth';
+import BN from '../../../../../common/src/utils/bn';
+import { addMed, fromRawMed, lte, toRawMed, subMed } from '../../../../../common/src/utils/med';
+import { PrimaryButton } from '../../toolbox/buttons/button';
+import AutoVesting from '../../autoVesting/index';
+import BandwidthBar from '../../bandwidthBar/index';
+import Converter from '../../converter/index';
+import EventRecipient from '../../eventRecipient/index';
+import TransferTabs from '../../transferTabs/index';
+import { Input } from '../../toolbox/inputs/input';
 import styles from './sendWritable.css';
-import regex from './../../../../common/src/utils/regex';
+import regex from '../../../../../common/src/utils/regex';
 
 class SendWritable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      autoVesting: this.props.autoVesting || false,
       recipient: {
         value: this.props.address || '',
       },
@@ -39,23 +38,6 @@ class SendWritable extends React.Component {
     return Math.min(Math.max(1,
       fromRawMed(subMed(this.props.account.balance, toRawMed(value))),
     ), 10);
-  }
-
-  componentDidMount() {
-    if (this.props.prevState) {
-      const newState = {
-        recipient: {
-          value: this.props.prevState.recipient || this.state.recipient.value,
-        },
-        amount: {
-          value: this.props.prevState.amount || this.state.amount.value,
-        },
-        description: {
-          description: this.props.prevState.description || this.state.description.value,
-        },
-      };
-      this.setState(newState);
-    }
   }
 
   handleChange(name, value, error) {
@@ -115,7 +97,7 @@ class SendWritable extends React.Component {
       if (value.length > 50) {
         return this.props.t('Max length exceeded');
       }
-      return undefined;
+      return '';
     }
     if (!value) {
       return this.props.t('Required');
@@ -126,7 +108,7 @@ class SendWritable extends React.Component {
     } else if (name === 'amount' && value === '0') {
       return this.props.t('Zero not allowed');
     }
-    return undefined;
+    return '';
   }
 
   render() {

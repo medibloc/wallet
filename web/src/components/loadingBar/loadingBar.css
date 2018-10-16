@@ -5,7 +5,7 @@
   top: -9px;
   left: var(--sidebar-width);
   width: 100vw; /* stylelint-disable-line */
-  z-index: 201;
+  z-index: var(--loadingbar-index);
 }
 
 .linear {
@@ -13,6 +13,7 @@
   height: 8px;
 
   & .value {
+    background-color: var(--color-dodger-blue);
     height: 8px;
   }
 }

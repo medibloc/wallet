@@ -133,7 +133,8 @@ class Vest extends React.Component {
               className={`vest-complete-button ${styles.nextButton}`}
               disabled={(!!this.state.amount.error ||
                 !this.state.amount.value ||
-                !this.state.password)}
+                !this.state.password.value ||
+                (this.props.loading && this.props.loading.length > 0))}
               label={t('Complete')}
               onClick={() => {
                 const privKey = this.decryptPassphrase();
@@ -144,7 +145,7 @@ class Vest extends React.Component {
                     activePeer: this.props.peers.activePeer,
                     amount: this.state.amount.value,
                     nonce,
-                    privKey,
+                    password: this.state.password.value,
                   });
                   this.props.closePopUp();
                 }

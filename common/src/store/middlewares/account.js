@@ -100,13 +100,26 @@ const updateAccountData = (store) => {
 //   }
 // };
 
-const passphraseUsed = (store, action) => {
-  if (!store.getState().account.passphrase) {
-    store.dispatch(accountUpdated({ passphrase: action.data,
-      expireTime: Date.now() + lockDuration }));
-  } else {
-    store.dispatch(accountUpdated({ expireTime: Date.now() + lockDuration }));
-  }
+const passwordUsed = (store) => {
+  store.dispatch(accountUpdated({
+    expireTime: Date.now() + lockDuration,
+    passwordValidity: true,
+    passwordVerifying: false,
+  }));
+};
+
+const passwordVerifying = (store) => {
+  store.dispatch(accountUpdated({
+    passwordValidity: false,
+    passwordVerifying: true,
+  }));
+};
+
+const passwordFailed = (store) => {
+  store.dispatch(accountUpdated({
+    passwordValidity: false,
+    passwordVerifying: false,
+  }));
 };
 
 // const checkTransactionsAndUpdateAccount = (store, action) => {
@@ -149,8 +162,14 @@ const accountMiddleware = store => next => (action) => {
     //   delegateRegistration(store, action);
     //   votePlaced(store, action);
     //   break;
-    case actionTypes.passphraseUsed:
-      passphraseUsed(store, action);
+    case actionTypes.passwordUsed:
+      passwordUsed(store);
+      break;
+    case actionTypes.passwordVerifying:
+      passwordVerifying(store);
+      break;
+    case actionTypes.passwordFailed:
+      passwordFailed(store);
       break;
     default: break;
   }

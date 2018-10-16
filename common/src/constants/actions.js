@@ -35,6 +35,10 @@ const actionTypes = {
   clearDataOfCurrencyGraph: 'CLEAR_DATA_OF_CURRENCY_GRAPH',
   loadingStarted: 'LOADING_STARTED',
   loadingFinished: 'LOADING_FINISHED',
+  requestTransferTransaction: 'REQUEST_TRANSFER_TRANSACTION',
+  requestVestTransaction: 'REQUEST_VEST_TRANSACTION',
+  requestVestAndSendTransaction: 'REQUEST_VEST_AND_SEND_TRANSACTION',
+  requestWithdrawVestingTransaction: 'REQUEST_WITHDRAW_VESTING_TRANSACTION',
   searchTransactions: 'SEARCH_TRANSACTIONS',
   searchMoreTransactions: 'SEARCH_MORE_TRANSACTIONS',
   searchAccount: 'SEARCH_ACCOUNT',
@@ -42,6 +46,8 @@ const actionTypes = {
   searchVotes: 'SEARCH_VOTES',
   searchVoters: 'SEARCH_VOTERS',
   searchUpdateLast: 'SEARCH_UPDATE_LAST',
+  sendLoadingBarDisplayed: 'SEND_LOADING_BAR_DISPLAYED',
+  sendLoadingBarHidden: 'SEND_LOADING_BAR_HIDDEN',
   transactionsFailed: 'TRANSACTIONS_FAILED',
   transactionsUpdated: 'TRANSACTIONS_UPDATED',
   transactionsLoad: 'TRANSACTIONS_LOAD',
@@ -56,7 +62,7 @@ const actionTypes = {
   transactionLoadRequested: 'TRANSACTION_LOAD_REQUESTED',
   transactionLoaded: 'TRANSACTION_LOADED',
   transactionLoadFailed: 'TRANSACTION_LOAD_FAILED',
-  passphraseUsed: 'PASSPHRASE_USED',
+  passwordUsed: 'PASSWORD_USED',
   accountsRetrieved: 'ACCOUNTS_RETRIEVED',
   accountSaved: 'ACCOUNT_SAVED',
   activeAccountSaved: 'ACTIVE_ACCOUNT_SAVED',
@@ -67,6 +73,8 @@ const actionTypes = {
   settingsUpdated: 'SETTINGS_UPDATED',
   settingsReset: 'SETTINGS_RESET',
   removeSavedAccountPassphrase: 'REMOVE_SAVED_ACCOUNT_PASSPHRASE',
+  passwordFailed: 'PASSWORD_FAILED',
+  passwordVerifying: 'PASSWORD_VERIFYING',
 };
 
 export default actionTypes;

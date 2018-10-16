@@ -30,7 +30,7 @@ class BandwidthBar extends React.Component {
         mode="determinate"
         theme={styles}
         type="linear"
-        value={bandwidth} />
+        value={parseFloat(bandwidth)} />
     </div>;
   }
 }

@@ -37,12 +37,11 @@ const merge = (account, info) => {
   const updatedAccount = Object.assign({}, account, {});
 
   keys.forEach((key) => {
-    if (info[key]) {
+    if (info[key] !== undefined) {
       changes = setChangedItem(account, changes, key, info[key]);
       updatedAccount[key] = info[key];
     }
   });
-
   return updatedAccount;
 };
 

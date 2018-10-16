@@ -53,6 +53,7 @@ or "warn/action" ineastd of "red/green"
   --font-weight-thin: 100;
   --font-weight-light: 300;
   --font-weight-normal: 400;
+  --font-weight-semi-bold: 500;
   --font-weight-bold: 700;
   --subtitle-font-size: 16px;
   --main-menu-font-size: 14px;
@@ -79,6 +80,7 @@ or "warn/action" ineastd of "red/green"
   /*************************
         Sizes
   *************************/
+  --app-min-width: 1200px;
   --sidebar-width: 88px;
   --sidebar-image-height: 56px;
   --sidebar-image-width: 56px;
@@ -161,6 +163,7 @@ or "warn/action" ineastd of "red/green"
   --normal-index: 1;
   --menubar-index: 5;
   --popup-index: 10;
+  --loadingbar-index: 100;
 
   /*************************
         Margins

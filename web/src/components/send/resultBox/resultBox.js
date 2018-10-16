@@ -1,10 +1,10 @@
 import React from 'react';
 import InlineSVG from 'svg-inline-react';
-import { PrimaryButton } from '../toolbox/buttons/button';
-import TransferTabs from '../transferTabs';
-import WBox from '../wbox';
+import { PrimaryButton } from '../../toolbox/buttons/button';
+import TransferTabs from '../../transferTabs/index';
+import WBox from '../../wbox/index';
 import styles from './resultBox.css';
-import done from '../../assets/images/icons/done.svg';
+import done from '../../../assets/images/icons/done.svg';
 
 class ResultBox extends React.Component {
   render() {

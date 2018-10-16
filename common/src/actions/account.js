@@ -2,14 +2,15 @@ import i18next from 'i18next';
 import actionTypes from '../constants/actions';
 import { BANDWIDTH_USED_TX } from '../constants/bandwidth';
 import transactionTypes from '../constants/transactionTypes';
-import { getAccount, send, vest, withdrawVesting } from '../utils/api/account';
+import { send, vest, withdrawVesting } from '../utils/api/account';
 // import { registerDelegate, getDelegate, getVotes, getVoters } from '../utils/api/delegate';
 // import { loadTransactionsFinish } from './transactions';
 // import { delegateRegisteredFailure } from './delegate';
 // import { errorAlertDialogDisplayed } from './dialog';
 // import Fees from '../constants/fees';
-import { extractPrivKey } from '../utils/account';
+import { loadingStarted, loadingFinished } from './loading';
 import { addMed, subMed, toRawMed } from '../utils/med';
+import errorTypes from '../../../common/src/constants/errors';
 
 /**
  * Trigger this action to remove passphrase from account object
@@ -69,9 +70,17 @@ export const accountReload = () => ({
   type: actionTypes.accountReload,
 });
 
-export const passphraseUsed = data => ({
-  type: actionTypes.passphraseUsed,
+export const passwordUsed = data => ({
+  type: actionTypes.passwordUsed,
   data,
+});
+
+export const passwordVerifying = () => ({
+  type: actionTypes.passwordVerifying,
+});
+
+export const passwordFailed = () => ({
+  type: actionTypes.passwordFailed,
 });
 
 // /**
@@ -122,7 +131,7 @@ export const passphraseUsed = data => ({
 //          + 'Please try again.');
 //         dispatch(errorAlertDialogDisplayed({ text }));
 //       });
-//     dispatch(passphraseUsed(passphrase));
+//     dispatch(passwordUsed());
 //   };
 //
 // /**
@@ -150,20 +159,23 @@ export const passphraseUsed = data => ({
 //       .catch((error) => {
 //         dispatch(delegateRegisteredFailure(error));
 //       });
-//     dispatch(passphraseUsed(passphrase));
+//     dispatch(passwordUsed());
 //   };
 
 /**
  *
  */
-export const sent = ({ activePeer, account, amount,
-  description, nonce, passphrase, privKey, to }) =>
+export const sent = ({ account, activePeer, amount,
+  description, nonce, password, to }) =>
   (dispatch) => {
+    dispatch(loadingStarted(actionTypes.requestTransferTransaction));
+    dispatch(passwordVerifying());
     send({
+      account,
       activePeer,
       description,
       nonce,
-      privKey: privKey || extractPrivKey(passphrase),
+      password,
       to,
       value: toRawMed(amount),
     }).then((res) => {
@@ -188,13 +200,20 @@ export const sent = ({ activePeer, account, amount,
           type: actionTypes.accountUpdated,
         });
       }
+      dispatch(loadingFinished(actionTypes.requestTransferTransaction));
+      dispatch(passwordUsed());
     })
       .catch((error) => {
-        const errorMessage = error && error.message ? `${error.message}.` :
-          i18next.t('An error occurred while creating the transaction.');
-        dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+        dispatch(loadingFinished(actionTypes.requestTransferTransaction));
+        if (error === errorTypes.wrongPasswordError) {
+          dispatch(passwordFailed());
+        } else {
+          const errorMessage = error && error.message ? `${error.message}.` :
+            i18next.t('An error occurred while creating the transaction.');
+          dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+          dispatch(passwordUsed());
+        }
       });
-    dispatch(passphraseUsed(passphrase));
   };
 
 
@@ -212,59 +231,62 @@ export const sent = ({ activePeer, account, amount,
 //     });
 //   };
 
-export const loadAccount = ({
-  activePeer,
-  address,
-  transactionsResponse,
-  isSameAccount }) =>
-
-  (dispatch) => {
-    getAccount(activePeer, address)
-      .then((response) => {
-        console.log(transactionsResponse);
-        console.log(isSameAccount);
-        dispatch({
-          data: {
-            address,
-            bandwidth: response.bandwidth,
-            balance: response.balance,
-            unstaking: response.unstaking,
-            vesting: response.vesting,
-          },
-          type: actionTypes.updateDelegate,
-        });
-      //   let accountDataUpdated = {
-      //     confirmed: transactionsResponse.transactions,
-      //     count: parseInt(transactionsResponse.count, 10),
-      //     balance: response.balance,
-      //     address,
-      //   };
-      //
-      //   if (!isSameAccount && response.publicKey) {
-      //     dispatch(loadDelegate({
-      //       activePeer,
-      //       publicKey: response.publicKey,
-      //     }));
-      //   } else if (isSameAccount && response.isDelegate) {
-      //     accountDataUpdated = {
-      //       ...accountDataUpdated,
-      //       delegate: response.delegate,
-      //     };
-      //   }
-      //   dispatch(loadTransactionsFinish(accountDataUpdated));
-      });
-  };
+// export const loadAccount = ({
+//   activePeer,
+//   address,
+//   transactionsResponse,
+//   isSameAccount }) =>
+//
+//   (dispatch) => {
+//     getAccount(activePeer, address)
+//       .then((response) => {
+//         console.log(transactionsResponse);
+//         console.log(isSameAccount);
+//         dispatch({
+//           data: {
+//             address,
+//             bandwidth: response.bandwidth,
+//             balance: response.balance,
+//             unstaking: response.unstaking,
+//             vesting: response.vesting,
+//           },
+//           type: actionTypes.updateDelegate,
+//         });
+//       //   let accountDataUpdated = {
+//       //     confirmed: transactionsResponse.transactions,
+//       //     count: parseInt(transactionsResponse.count, 10),
+//       //     balance: response.balance,
+//       //     address,
+//       //   };
+//       //
+//       //   if (!isSameAccount && response.publicKey) {
+//       //     dispatch(loadDelegate({
+//       //       activePeer,
+//       //       publicKey: response.publicKey,
+//       //     }));
+//       //   } else if (isSameAccount && response.isDelegate) {
+//       //     accountDataUpdated = {
+//       //       ...accountDataUpdated,
+//       //       delegate: response.delegate,
+//       //     };
+//       //   }
+//       //   dispatch(loadTransactionsFinish(accountDataUpdated));
+//       });
+//   };
 
 /**
  *
  */
-export const vested = ({ activePeer, account, amount,
-  nonce, privKey, passphrase }) =>
+export const vested = ({ account, activePeer, amount,
+  nonce, password }) =>
   (dispatch) => {
+    dispatch(loadingStarted(actionTypes.requestVestTransaction));
+    dispatch(passwordVerifying());
     vest({
+      account,
       activePeer,
       nonce,
-      privKey: privKey || extractPrivKey(passphrase),
+      password,
       value: toRawMed(amount),
     }).then((res) => {
       dispatch({
@@ -286,30 +308,41 @@ export const vested = ({ activePeer, account, amount,
         },
         type: actionTypes.accountUpdated,
       });
+      dispatch(loadingFinished(actionTypes.requestVestTransaction));
+      dispatch(passwordUsed());
     })
       .catch((error) => {
-        const errorMessage = error && error.message ? `${error.message}.` :
-          i18next.t('An error occurred while creating the transaction.');
-        dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+        dispatch(loadingFinished(actionTypes.requestVestTransaction));
+        if (error === errorTypes.wrongPasswordError) {
+          dispatch(passwordFailed());
+        } else {
+          const errorMessage = error && error.message ? `${error.message}.` :
+            i18next.t('An error occurred while creating the transaction.');
+          dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+          dispatch(passwordUsed());
+        }
       });
-    dispatch(passphraseUsed(passphrase));
   };
 
-export const vestedAndSent = ({ activePeer, account, description,
-  nonce, privKey, passphrase, to, transferAmount, vestingAmount }) =>
+export const vestedAndSent = ({ account, activePeer, description,
+  nonce, password, to, transferAmount, vestingAmount }) =>
   (dispatch) => {
+    dispatch(loadingStarted(actionTypes.requestVestAndSendTransaction));
+    dispatch(passwordVerifying());
     Promise.all([
       vest({
+        account,
         activePeer,
         nonce,
-        privKey: privKey || extractPrivKey(passphrase),
+        password,
         value: toRawMed(vestingAmount),
       }),
       send({
+        account,
         activePeer,
         description,
         nonce: Number(nonce) + 1,
-        privKey: privKey || extractPrivKey(passphrase),
+        password,
         to,
         value: toRawMed(transferAmount),
       }),
@@ -346,25 +379,35 @@ export const vestedAndSent = ({ activePeer, account, description,
         },
         type: actionTypes.accountUpdated,
       });
+      dispatch(loadingFinished(actionTypes.requestVestAndSendTransaction));
+      dispatch(passwordUsed());
     })
       .catch((error) => {
-        const errorMessage = error && error.message ? `${error.message}.` :
-          i18next.t('An error occurred while creating the transaction.');
-        dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+        dispatch(loadingFinished(actionTypes.requestVestAndSendTransaction));
+        if (error === errorTypes.wrongPasswordError) {
+          dispatch(passwordFailed());
+        } else {
+          const errorMessage = error && error.message ? `${error.message}.` :
+            i18next.t('An error occurred while creating the transaction.');
+          dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+          dispatch(passwordUsed());
+        }
       });
-    dispatch(passphraseUsed(passphrase));
   };
 
 /**
  *
  */
 export const withdrewVesting = ({ account, activePeer, amount,
-  nonce, privKey, passphrase }) =>
+  nonce, password }) =>
   (dispatch) => {
+    dispatch(loadingStarted(actionTypes.requestWithdrawVestingTransaction));
+    dispatch(passwordVerifying());
     withdrawVesting({
+      account,
       activePeer,
       nonce,
-      privKey: privKey || extractPrivKey(passphrase),
+      password,
       value: toRawMed(amount),
     }).then((res) => {
       dispatch({
@@ -386,11 +429,18 @@ export const withdrewVesting = ({ account, activePeer, amount,
         },
         type: actionTypes.accountUpdated,
       });
+      dispatch(loadingFinished(actionTypes.requestWithdrawVestingTransaction));
+      dispatch(passwordUsed());
     })
       .catch((error) => {
-        const errorMessage = error && error.message ? `${error.message}.` :
-          i18next.t('An error occurred while creating the transaction.');
-        dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+        dispatch(loadingFinished(actionTypes.requestWithdrawVestingTransaction));
+        if (error === errorTypes.wrongPasswordError) {
+          dispatch(passwordFailed());
+        } else {
+          const errorMessage = error && error.message ? `${error.message}.` :
+            i18next.t('An error occurred while creating the transaction.');
+          dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+          dispatch(passwordUsed());
+        }
       });
-    dispatch(passphraseUsed(passphrase));
   };

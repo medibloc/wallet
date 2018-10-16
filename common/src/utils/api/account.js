@@ -1,7 +1,7 @@
-import { randomBytes } from 'crypto';
 import blockTypes from '../../constants/blockTypes';
-import { extractAddress, isAddress, getAccountFromPrivKey } from '../account';
+import { getAccountFromEncKey, isAddress } from '../account';
 import { createDefaultPayload, valueTransferTx, vestTx, withdrawVestingTx } from '../transaction';
+import errorTypes from '../../constants/errors';
 
 export const getAccount = (activePeer, address) =>
   new Promise((resolve, reject) => {
@@ -19,22 +19,24 @@ export const getAccount = (activePeer, address) =>
     }).catch(error => reject(error));
   });
 
-export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
+export const send = ({ account, activePeer, description, nonce, password, to, value }) =>
   new Promise((resolve, reject) => {
-    const password = randomBytes(32).toString('hex');
-    const account = getAccountFromPrivKey(privKey, password);
-    const from = extractAddress(account.pubKey);
-
+    let mAccount;
+    try {
+      mAccount = getAccountFromEncKey(account.encKey, password);
+    } catch (e) {
+      reject(errorTypes.wrongPasswordError);
+    }
     const tx = valueTransferTx({
-      from,
+      from: account.address,
       to,
       value,
       nonce,
       payload: description ? createDefaultPayload(description) : null,
     });
 
-    account.signTx(tx, password);
-    console.log(`send tx: ${JSON.stringify(tx)}`);
+    mAccount.signTx(tx, password);
+    console.log(JSON.parse(JSON.stringify(tx)));
 
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);
@@ -77,19 +79,17 @@ export const send = ({ activePeer, description, nonce, privKey, to, value }) =>
 //     orderBy,
 //   });
 
-export const vest = ({ activePeer, nonce, privKey, value }) =>
+export const vest = ({ account, activePeer, nonce, password, value }) =>
   new Promise((resolve, reject) => {
-    const password = randomBytes(32).toString('hex');
-    const account = getAccountFromPrivKey(privKey, password);
-    const address = extractAddress(account.pubKey);
+    const mAccount = getAccountFromEncKey(account.encKey, password);
 
     const tx = vestTx({
-      from: address,
+      from: account.address,
       nonce,
       value,
     });
 
-    account.signTx(tx, password);
+    mAccount.signTx(tx, password);
     console.log(JSON.parse(JSON.stringify(tx)));
 
     activePeer.sendTransaction(tx).then((res) => {
@@ -105,20 +105,18 @@ export const vest = ({ activePeer, nonce, privKey, value }) =>
     }).catch(error => reject(error));
   });
 
-export const withdrawVesting = ({ activePeer, nonce, privKey, value }) =>
+export const withdrawVesting = ({ account, activePeer, nonce, password, value }) =>
   new Promise((resolve, reject) => {
-    const password = randomBytes(32).toString('hex');
-    const account = getAccountFromPrivKey(privKey, password);
-    const address = extractAddress(account.pubKey);
+    const mAccount = getAccountFromEncKey(account.encKey, password);
 
     const tx = withdrawVestingTx({
-      from: address,
+      from: account.address,
       nonce,
       value,
     });
     console.log(JSON.parse(JSON.stringify(tx)));
 
-    account.signTx(tx, password);
+    mAccount.signTx(tx, password);
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);
       if (res.hash) {
