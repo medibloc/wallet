@@ -1,0 +1,48 @@
+@import '../../../app/variables.css';
+
+.createWrapper {
+  margin-top: var(--header-margin-top);
+  width: 100%;
+
+  & header h2 {
+    margin: 0;
+  }
+
+  & > .accountVisual {
+    flex-direction: row;
+    justify-content: center;
+    margin: 32px 0 16px;
+    position: relative;
+    width: 100%;
+
+    & > .refreshButton {
+      cursor: pointer;
+      height: 24px;
+      position: absolute;
+      right: 85px;
+      top: 50px;
+      width: 24px;
+    }
+  }
+
+  & > .accountAddress {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    width: 100%;
+
+    & > div {
+      padding-top: 8px;
+    }
+
+    & input {
+      height: var(--input-height);
+    }
+  }
+
+  & > .continueButton {
+    height: var(--input-height);
+    margin-top: 40px;
+    width: 100%;
+  }
+}

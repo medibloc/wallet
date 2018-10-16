@@ -1,0 +1,14 @@
+@import '../../../app/variables.css';
+
+.tooltip {
+  font-weight: normal;
+  font-family: var(--content-font);
+  font-size: var(--font-size-h6);
+  line-height: normal;
+  max-width: 300px;
+}
+
+.tooltipInner {
+  background: var(--color-pale-blue);
+  color: var(--color-black-87);
+}

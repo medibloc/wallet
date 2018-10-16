@@ -1,6 +1,6 @@
-@import './variables.css';
-@import './global.css';
-@import './type.css';
+@import 'variables.css';
+@import 'global.css';
+@import 'type.css';
 
 body {
   margin: 0;

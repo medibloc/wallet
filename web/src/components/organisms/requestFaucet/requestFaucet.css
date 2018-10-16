@@ -1,0 +1,119 @@
+@import '../../app/variables.css';
+
+.wrapper {
+  align-items: center;
+  background: var(--color-black-54);
+  bottom: 0;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.popupWrapper {
+  height: 428px;
+  width: 480px;
+}
+
+.closeWrapper {
+  display: flex;
+  height: 40px;
+  justify-content: flex-end;
+  width: 100%;
+
+  & .closeButtonWrapper {
+    height: 19px;
+    padding: 13px 0;
+    width: 19px;
+  }
+
+  & .closeButton {
+    cursor: pointer;
+  }
+}
+
+.requestFaucetWrapper {
+  height: 388px;
+  padding: 32px 56px;
+  width: 100%;
+
+  & .headerWrapper {
+    display: flex;
+    height: 28%;
+    width: 100%;
+
+    & .notice {
+      height: 54px;
+      text-align: center;
+      width: 100%;
+
+      & h5 {
+        color: var(--color-black-60);
+        font-size: 18px;
+      }
+    }
+  }
+
+  & .bodyWrapper {
+    display: flex;
+    height: 50%;
+    width: 100%;
+
+    & form {
+      width: 100%;
+    }
+
+    & .address {
+      & h6 {
+        color: var(--color-black-60);
+        font-size: var(--font-size-h5);
+      }
+
+      & input {
+        height: var(--input-height);
+      }
+
+      & input:not(:focus) {
+        color: var(--color-black-38);
+      }
+    }
+
+    & .emailWrapper {
+      & input::placeholder {
+        color: var(--color-black-38);
+      }
+    }
+
+    & .email {
+      & input {
+        height: var(--input-height);
+      }
+    }
+
+    & .consentBox {
+      margin: 13px 0 0;
+
+      & span {
+        color: var(--color-black-38);
+        font-size: var(--font-size-small);
+      }
+    }
+  }
+
+  & .sendFooter {
+    display: flex;
+    align-items: flex-end;
+    height: 22%;
+    padding: 0 !important;
+    width: 100%;
+
+    & .buttonWrapper {
+      height: 48px;
+      width: 100%;
+    }
+  }
+}

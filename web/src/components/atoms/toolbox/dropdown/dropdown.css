@@ -1,0 +1,49 @@
+@import '../../../app/variables.css';
+
+:root {
+  --input-focus-border-color: var(--color-bright-blue);
+  --input-border-color: var(--color-black-16);
+  --input-color: var(--color-black-87);
+}
+
+.inputWrapper {
+  overflow: visible !important;
+
+  & > div {
+    flex-direction: row !important;
+    overflow: visible !important;
+  }
+
+  & h6 {
+    color: var(--color-black-87);
+    justify-content: flex-start !important;
+  }
+
+  & > div > div:nth-child(2) > div {
+    border: 1px solid var(--input-border-color);
+    height: var(--input-height);
+    margin-top: 10px;
+    width: 400px;
+  }
+
+  & > div > div:nth-child(2) > div:focus {
+    background-color: var(--color-white);
+    border-color: 1px solid var(--input-focus-border-color);
+  }
+
+  & > div > div:nth-child(2) > label {
+    color: var(--color-black-87);
+    font-family: var(--content-font);
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-weight-normal);
+  }
+
+  & > div > ul {
+    margin: 86px 0 0;
+  }
+}
+
+.label {
+  color: var(--input-color);
+  font-size: var(--input-font-size);
+}

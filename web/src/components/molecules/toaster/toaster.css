@@ -1,0 +1,38 @@
+@import '../../app/variables.css';
+
+.toast {
+  bottom: 24px;
+  color: white;
+  height: 56px;
+  left: 24px;
+  right: initial;
+  width: 320px;
+
+  & span {
+    font-size: var(--font-size-h5);
+  }
+}
+/* stylelint-disable */
+@for $i from 0 to 0 {
+  @keyframes move-$i {
+    from {
+      bottom: -50px;
+    }
+    to {
+      bottom: calc($(i) * 50px + 24px);
+    }
+  }
+  .index-$i {
+    animation: move-$i 500ms ease-in;
+    bottom: calc($(i) * 50px + 24px);
+  }
+}
+/* stylelint-enable */
+
+.error {
+  background-color: #c62b28;
+}
+
+.success {
+  background-color: var(--color-gunmetal);
+}

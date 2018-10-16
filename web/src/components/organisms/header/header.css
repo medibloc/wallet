@@ -1,0 +1,183 @@
+@import '../../atoms/toolbox/buttons/css/base.css';
+@import '../../app/variables.css';
+
+:root {
+  --avatar-height: 72px;
+  --menu-icon-height: 39px;
+  --font-size-normal: 16px;
+  --font-size-small: 14px;
+}
+
+.wrapper {
+  text-align: right;
+
+  & .noPadding {
+    padding: 0;
+  }
+
+  & .searchBar {
+    display: inline-block;
+    float: left;
+  }
+}
+
+.unlocked {
+  color: var(--color-error);
+  font-family: 'Noto Sans', 'Noto Sans CJK KR', sans-serif;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-small);
+  line-height: 1.5em; /* stylelint-disable-line */
+}
+
+.logoWrapper {
+  width: 25%;
+}
+
+.logo {
+  display: none;
+}
+
+.logoutButton {
+  padding: 8px;
+  margin: 6px 8px;
+  height: auto;
+  float: right;
+}
+
+.lock {
+  font-size: 19px;
+  height: auto;
+  vertical-align: top;
+  line-height: 24px !important;
+  margin-left: 5px;
+}
+
+.primary {
+  line-height: 40px;
+
+  @mixin buttonBasics;
+  @mixin buttonPrimary;
+}
+
+.secondaryBlue {
+  line-height: 39px;
+
+  @mixin buttonBasics;
+  @mixin buttonSecondary--blue;
+}
+
+.material-icons {
+  font-size: 24px !important;
+}
+
+.login {
+  text-align: right;
+  text-decoration: none;
+
+  & .button {
+    display: block;
+  }
+
+  & .link {
+    display: none;
+    font-size: 15px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-standard);
+  }
+}
+
+.loginInfo {
+  display: inline-block;
+}
+
+.rightSide {
+  display: inline-block;
+  width: 32vw; /* stylelint-disable-line */
+}
+
+.account {
+  position: relative;
+  height: 72px;
+  padding: 0 0 8px;
+
+  & .avatar {
+    display: inline-block;
+    vertical-align: middle;
+    height: var(--avatar-height);
+    width: var(--avatar-height);
+    transition: transform ease-in-out 500ms;
+    overflow: hidden;
+  }
+
+  & .information {
+    display: inline-block;
+    font-family: var(--heading-font);
+    height: var(--avatar-height);
+    line-height: 25px;
+    padding-right: 20px;
+    vertical-align: middle;
+
+    & .total {
+      display: flex;
+      color: var(--color-black-87);
+      font-size: 20px;
+      font-family: var(--heading-font);
+      justify-content: flex-end;
+      padding-top: 8px;
+
+      & h5 {
+        padding-left: 5px;
+      }
+    }
+
+    & .address {
+      color: var(--color-black-60);
+      font-size: 14px;
+    }
+
+    & .copy {
+      font-size: 24px;
+      padding-right: 5px;
+    }
+
+    & .timer {
+      font-size: var(--font-size-small);
+      color: var(--color-grayscale-medium);
+      line-height: 1.5em; /* stylelint-disable-line */
+    }
+  }
+
+  & .menu {
+    cursor: pointer;
+
+    & .item {
+      padding: 0;
+    }
+
+    & .link {
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+      line-height: 39px;
+      color: rgba(0, 0, 0, 0.87);
+      padding: 0;
+      text-align: center;
+    }
+
+    & .iconCircle {
+      position: absolute;
+      bottom: -14px;
+      right: -24px;
+      background: var(--color-white);
+      border-radius: 100%;
+      height: var(--menu-icon-height);
+      width: var(--menu-icon-height);
+      box-shadow: 0 12px 12px 0 rgba(0, 0, 0, 0.62);
+      text-align: center;
+
+      & .button {
+        padding: 2px;
+      }
+    }
+  }
+}

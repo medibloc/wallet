@@ -1,0 +1,212 @@
+@import '../../app/variables.css';
+
+:root {
+  --menu-background-color: var(--color-white);
+  --menu-item-active-gradient: linear-gradient(-27deg, #004aff 4%, #57afff 61%, #93f4fe 100%);
+  --menu-item-active-border-width: 7px;
+  --more-menu-color: var(--color-grayscale-medium);
+  --offcanvas-menu-border-color: var(--color-grayscale-light);
+  --more-menu-border-color: var(--color-grayscale-medium);
+  --read-more-font-size: 17px;
+  --read-more-icon-font-size: 65px;
+  --close-icon-font-size: 35px;
+}
+
+.sideBarWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  width: var(--sidebar-width);
+}
+
+.faucetTooltipWrapper {
+  height: 77px;
+  margin: 24px 0 0;
+  width: 100%;
+
+  & div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.faucetWrapper {
+  cursor: pointer;
+  text-align: center;
+  height: 77px;
+  width: var(--sidebar-image-width);
+
+  & .coin {
+    height: var(--sidebar-image-height);
+    width: var(--sidebar-image-width);
+  }
+
+  & small {
+    margin: 3px 0 0;
+  }
+
+  & small:hover {
+    color: var(--color-black-87);
+  }
+}
+
+.aside {
+  transform: translateX(-100%);
+  opacity: 0.5;
+  transition: all ease 300ms;
+  transition-delay: 200ms;
+}
+
+:global(.appLoaded) .aside {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.navigationContainer {
+  height: 343px;
+}
+
+.navigationContainer .navigation {
+  align-items: center;
+  box-shadow: none;
+  display: flex;
+  flex-flow: column;
+  padding-left: 0;
+}
+
+.topTabs {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tabs {
+  height: auto;
+}
+
+.tabs nav {
+  overflow: hidden;
+  margin: 40px 0 0;
+}
+
+.tab {
+  background: var(--menu-background-color);
+  border: none !important;
+  box-shadow: none;
+  cursor: pointer;
+  margin: 24px 0 0;
+  padding: 0 !important;
+  text-align: center;
+  width: 100%;
+
+  & > div > .tabImg {
+    font-style: normal;
+    height: var(--sidebar-image-height);
+    width: var(--sidebar-image-width);
+  }
+
+  & > div > .tabImg svg {
+    height: var(--sidebar-image-height);
+    width: var(--sidebar-image-width);
+  }
+
+  & > div > .tabLabel {
+    color: var(--color-black-60);
+  }
+}
+
+.tab:hover {
+  & > div > .tabImg rect {
+    fill: var(--color-black-4);
+  }
+
+  & > div > .tabLabel {
+    color: var(--color-black-87);
+  }
+}
+
+.activeTab {
+  & > div > .tabImg rect {
+    fill: var(--color-dodger-blue-16) !important;
+  }
+
+  & > div > .tabLabel {
+    color: var(--color-black-87);
+  }
+}
+
+.navigationContainer {
+  overflow: hidden;
+  flex: 0 1 auto;
+  flex-flow: column;
+}
+
+.label {
+  background: #fff;
+  display: flex;
+  font-family: var(--heading-font);
+  font-size: var(--main-menu-font-size);
+  flex: 0 0 auto;
+  text-align: center;
+  text-transform: none;
+
+  & > div {
+    height: 77px;
+    width: 100%;
+
+    & small {
+      height: 18px;
+    }
+  }
+
+  & span {
+    display: block;
+    margin: 10px 0 0;
+  }
+
+  & > .rippleWrapper {
+    display: none;
+  }
+}
+
+.bottomTabs {
+  align-items: flex-end;
+  display: flex;
+  height: 30%;
+  justify-content: center;
+  width: 100%;
+
+  & .settingsTabWrapper {
+    margin-bottom: 90px;
+  }
+}
+
+.header {
+  align-items: center;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px 0 60px;
+  background: #fff;
+}
+
+.close {
+  font-size: var(--close-icon-font-size);
+  display: flex;
+  width: auto;
+  cursor: pointer;
+  color: var(--more-menu-color);
+}
+
+.pointer {
+  display: none;
+}
+
+.arrowContainer {
+  display: none;
+}

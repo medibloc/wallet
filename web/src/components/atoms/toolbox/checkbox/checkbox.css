@@ -1,0 +1,14 @@
+@import '../../../app/variables.css';
+
+.checked {
+  background-color: var(--color-dodger-blue) !important;
+  border-color: var(--color-dodger-blue) !important;
+}
+
+.check {
+  border-color: var(--color-black-38);
+}
+
+.ripple {
+  display: none;
+}

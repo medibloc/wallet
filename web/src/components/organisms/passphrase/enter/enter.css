@@ -1,0 +1,30 @@
+@import '../../../app/variables.css';
+
+.enter {
+  margin-top: var(--header-margin-top);
+  width: 100%;
+
+  & header {
+    width: 100%;
+  }
+
+  & > .comment {
+    margin-top: 8px;
+    width: 100%;
+
+    & > h6 {
+      text-align: center;
+    }
+  }
+
+  & > .passphrase {
+    margin-top: 26px;
+    width: 100%;
+  }
+
+  & > .nextButton {
+    height: var(--input-height);
+    margin-top: 40px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,59 @@
+@import '../../app/variables.css';
+
+.vestWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+  margin: 0 auto 30px;
+  width: 80%;
+}
+
+.balanceWrapper {
+  height: 25%;
+
+  & .balanceHeader {
+    margin: 0;
+  }
+
+  & .balance {
+    margin: 6px 0 0;
+  }
+}
+
+.form {
+  height: 45%;
+
+  & .amount {
+    margin: 0;
+  }
+
+  & .passwordInputWrapper {
+    margin: 10px 0 0;
+  }
+
+  & .passwordInput {
+    margin: 0;
+  }
+}
+
+.sendFooter {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: flex-end;
+  padding: 0 !important;
+  margin: 0;
+
+  & .nextButton {
+    margin: 8px 0 0;
+  }
+}

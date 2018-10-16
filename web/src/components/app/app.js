@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styles from './app.css';
-import CustomRoute from '../customRoute';
+import CustomRoute from './customRoute/index';
 // import SavedAccounts from '../savedAccounts';
-import LoadingBar from '../loadingBar';
-import NotFound from '../notFound';
-import NotSupportMobile from '../notSupportMobile';
-import OfflineWrapper from '../offlineWrapper';
-import Toaster from '../toaster';
+import LoadingBar from '../molecules/loadingBar/index';
+import NotFound from '../pages/notFound/index';
+import NotSupportMobile from '../pages/notSupportMobile/index';
+import OfflineWrapper from '../atoms/offlineWrapper/index';
+import Toaster from '../molecules/toaster/index';
 import platforms from '../../../../common/src/constants/platforms';
 
 import routes from '../../constants/routes';

@@ -1,0 +1,48 @@
+@import '../../../../app/variables.css';
+
+.resultBox {
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+.bodyWrapper {
+  align-items: center;
+  display: flex;
+  height: calc(100% - 40px);
+  flex-direction: column;
+  width: 100%;
+
+  & .resultBody {
+    display: flex;
+    height: 80%;
+    justify-content: space-around;
+    flex-direction: column;
+
+    & .iconOuterWrapper {
+      display: flex;
+      height: 150px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    & .iconWrapper {
+      height: 150px;
+      width: 150px;
+    }
+  }
+
+  & .resultBoxFooter {
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    justify-content: flex-end;
+    padding: 0 !important;
+    width: 100%;
+
+    & .doneButton {
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
