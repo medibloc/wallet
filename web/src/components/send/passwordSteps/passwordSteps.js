@@ -62,8 +62,8 @@ class PasswordSteps extends React.Component {
     if (this.state.sent && (!this.props.loading ||
         !(this.props.loading.includes(actionTypes.requestTransferTransaction) ||
         this.props.loading.includes(actionTypes.requestVestAndSendTransaction))) &&
-      (prevProps.loading && prevProps.loading.length > 0
-        && (prevProps.loading.includes(actionTypes.requestTransferTransaction) ||
+      (prevProps.loading && prevProps.loading.length > 0 &&
+        (prevProps.loading.includes(actionTypes.requestTransferTransaction) ||
         prevProps.loading.includes(actionTypes.requestVestAndSendTransaction)))) {
       this.setState({ requestSuccess: true });
     }
@@ -81,7 +81,6 @@ class PasswordSteps extends React.Component {
 
     if (this.state.passwordCorrected && this.state.requestSuccess) {
       this.props.nextStep();
-      this.initRequestState();
     }
   }
 

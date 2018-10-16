@@ -2,7 +2,7 @@
 
 .fixedAtTop {
   position: fixed;
-  top: -9px;
+  top: -5px;
   left: var(--sidebar-width);
   width: 100vw; /* stylelint-disable-line */
   z-index: var(--loadingbar-index);
@@ -10,10 +10,10 @@
 
 .linear {
   background: transparent;
-  height: 8px;
+  height: 4px;
 
   & .value {
     background-color: var(--color-dodger-blue);
-    height: 8px;
+    height: 4px;
   }
 }

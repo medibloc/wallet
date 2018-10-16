@@ -81,7 +81,12 @@ export const send = ({ account, activePeer, description, nonce, password, to, va
 
 export const vest = ({ account, activePeer, nonce, password, value }) =>
   new Promise((resolve, reject) => {
-    const mAccount = getAccountFromEncKey(account.encKey, password);
+    let mAccount;
+    try {
+      mAccount = getAccountFromEncKey(account.encKey, password);
+    } catch (e) {
+      reject(errorTypes.wrongPasswordError);
+    }
 
     const tx = vestTx({
       from: account.address,
@@ -107,7 +112,12 @@ export const vest = ({ account, activePeer, nonce, password, value }) =>
 
 export const withdrawVesting = ({ account, activePeer, nonce, password, value }) =>
   new Promise((resolve, reject) => {
-    const mAccount = getAccountFromEncKey(account.encKey, password);
+    let mAccount;
+    try {
+      mAccount = getAccountFromEncKey(account.encKey, password);
+    } catch (e) {
+      reject(errorTypes.wrongPasswordError);
+    }
 
     const tx = withdrawVestingTx({
       from: account.address,

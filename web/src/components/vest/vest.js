@@ -1,4 +1,5 @@
 import React from 'react';
+import actionTypes from '../../../../common/src/constants/actions';
 import { fromRawMed } from '../../../../common/src/utils/med';
 import { PrimaryButton } from './../toolbox/buttons/button';
 import BN from '../../../../common/src/utils/bn';
@@ -8,7 +9,6 @@ import MedAmount from '../medAmount';
 import { Input } from '../toolbox/inputs/input';
 import styles from './vest.css';
 import regex from './../../../../common/src/utils/regex';
-import { extractAddress, getPrivKeyFromEncKey, getPubKey } from '../../../../common/src/utils/account';
 
 class Vest extends React.Component {
   constructor(props) {
@@ -17,9 +17,14 @@ class Vest extends React.Component {
       amount: {
         value: this.props.amount || '',
       },
+      sent: false,
       password: {
         value: this.props.password || '',
       },
+      passwordCorrected: false,
+      passwordFailed: false,
+      requestSucceeded: false,
+      requestFailed: false,
     };
     this.inputValidationRegexps = {
       amount: regex.amount,
@@ -40,21 +45,36 @@ class Vest extends React.Component {
     }
   }
 
-  decryptPassphrase() {
-    try {
-      const privKey = getPrivKeyFromEncKey(this.props.account.encKey, this.state.password.value);
-      if (extractAddress(getPubKey(privKey)) === this.props.account.address) {
-        return privKey;
+  componentDidUpdate(prevProps) {
+    if (this.state.sent && !this.props.account.passwordVerifying &&
+      prevProps.account.passwordVerifying) {
+      if (this.props.account.passwordValidity) {
+        this.setState({ passwordCorrected: true });
+      } else {
+        this.setState({ passwordFailed: true });
       }
-      return null;
-    } catch (e) {
+    }
+
+    // TODO: check failed transaction
+    if (this.state.sent && (!this.props.loading ||
+      !(this.props.loading.includes(actionTypes.requestVestTransaction))) &&
+      (prevProps.loading && prevProps.loading.length > 0 &&
+        (prevProps.loading.includes(actionTypes.requestVestTransaction)))) {
+      this.setState({ requestSuccess: true });
+    }
+
+    if (this.state.passwordFailed) {
+      this.initRequestState();
       this.setState({
         password: {
           ...this.state.password,
           error: this.props.t('Wrong Password'),
         },
       });
-      return null;
+    }
+
+    if (this.state.passwordCorrected && this.state.requestSuccess) {
+      this.props.closePopUp();
     }
   }
 
@@ -64,6 +84,30 @@ class Vest extends React.Component {
         value,
         error: typeof error === 'string' ? error : this.validateInput(name, value),
       },
+    });
+  }
+
+  handleClick() {
+    const nonce = Number(this.props.account.nonce) + 1;
+    this.setState({ sent: true });
+    setTimeout(() => {
+      this.props.vested({
+        account: this.props.account,
+        activePeer: this.props.peers.activePeer,
+        amount: this.state.amount.value,
+        nonce,
+        password: this.state.password.value,
+      });
+    }, 500);
+  }
+
+  initRequestState() {
+    this.setState({
+      sent: false,
+      passwordVerified: false,
+      passwordFailed: false,
+      requestSuccess: false,
+      requestFailed: false,
     });
   }
 
@@ -134,22 +178,10 @@ class Vest extends React.Component {
               disabled={(!!this.state.amount.error ||
                 !this.state.amount.value ||
                 !this.state.password.value ||
-                (this.props.loading && this.props.loading.length > 0))}
+                (this.props.loading && this.props.loading.length > 0) ||
+                this.state.sent)}
               label={t('Complete')}
-              onClick={() => {
-                const privKey = this.decryptPassphrase();
-                if (privKey !== null) {
-                  const nonce = Number(this.props.account.nonce) + 1;
-                  this.props.vested({
-                    account: this.props.account,
-                    activePeer: this.props.peers.activePeer,
-                    amount: this.state.amount.value,
-                    nonce,
-                    password: this.state.password.value,
-                  });
-                  this.props.closePopUp();
-                }
-              }}/>
+              onClick={() => this.handleClick()}/>
           </footer>
         </div>
       </div>
