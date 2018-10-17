@@ -32,7 +32,7 @@ class AutoVesting extends React.Component {
                     t('Would you like to proceed with automatic staking?')}</h5>
                 </div>
                 <div className={styles.vestingAmount}>
-                  <h6>{t('Vesting Amount: {{vestingAmount}} MED',
+                  <h6>{t('Staking Amount: {{vestingAmount}} MED',
                     { vestingAmount: this.state.vestingAmount })}</h6>
                 </div>
               </div>
