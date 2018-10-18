@@ -1,0 +1,21 @@
+@import '../../../app/variables.css';
+
+.smallButton {
+  display: inline-block;
+}
+
+.received {
+  color: var(--color-shamrock-green);
+}
+
+.send {
+  color: var(--color-water-melon);
+}
+
+.staking {
+  color: var(--color-pumpkin);
+}
+
+.unstaking {
+  color: var(--color-klein-blue);
+}

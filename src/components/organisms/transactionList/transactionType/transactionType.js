@@ -1,7 +1,7 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import txTypes from '../../../constants/transactionTypes';
-import styles from './transactions.css';
+import txTypes from '../../../../constants/transactionTypes';
+import styles from './transactionType.css';
 
 const TransactionType = (props) => {
   const { t } = props;

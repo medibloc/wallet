@@ -7,7 +7,6 @@ import ResultBox from './resultBox/index';
 import SendWritable from './sendWritable/index';
 import Request from '../request/index';
 import PasswordSteps from './passwordSteps/index';
-import routes from '../../../../constants/routes';
 import styles from './send.css';
 
 class Send extends React.Component {
@@ -19,8 +18,8 @@ class Send extends React.Component {
     };
   }
 
-  refreshDashboard() {
-    this.props.history.push(`${routes.dashboard.path}`);
+  refreshPage() {
+    this.props.history.push(this.props.location.pathname);
   }
 
   setActiveTabSend(isActiveTabSend) {
@@ -36,7 +35,7 @@ class Send extends React.Component {
             <MultiStep
               key='send'
               className={styles.wrapper}
-              finalCallback={(...args) => this.refreshDashboard(...args)}>
+              finalCallback={(...args) => this.refreshPage(...args)}>
               <SendWritable
                 address={''}
                 amount={0}

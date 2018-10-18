@@ -6,7 +6,7 @@ import { Input } from '../../../atoms/toolbox/inputs/input';
 import styles from './create.css';
 import AccountVisual from '../../../atoms/accountVisual/index';
 import Footer from '../../../pages/register/footer/footer';
-import Refresh from '../../../../assets/images/icons/baselineRefresh24Px@2x.png';
+import Refresh from '../../../../assets/images/icons/baselineRefresh.png';
 import { generatePassphrase } from '../../../../utils/passphrase';
 import { extractAddress } from '../../../../utils/account';
 

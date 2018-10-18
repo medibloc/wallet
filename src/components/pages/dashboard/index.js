@@ -10,12 +10,13 @@ import WBox from '../../atoms/wbox/index';
 import { accountReload } from '../../../actions/account';
 import { loadTransactions } from '../../../actions/transactions';
 import MedAmount from '../../atoms/medAmount/index';
-import TransactionListView from '../../pages/transactionDashboard/transactionListView';
+import TransactionList from '../../organisms/transactionList/transactionList';
 import Transfer from '../../organisms/transfer/index';
 import VestingSettings from '../../organisms/settings/vestingSettings/index';
 // import routes from '../../constants/routes';
 import styles from './dashboard.css';
 import { addMed } from '../../../utils/med';
+import arrowRight from '../../../assets/images/icons/baselineArrowRight.png';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -106,7 +107,29 @@ class Dashboard extends React.Component {
           </WBox> */ }
         </Box>
         <Box className={`${styles.txListViewWrapper}`}>
-          <TransactionListView {...this.props}/>
+          <WBox className={`${styles.txListView}`}>
+            <WBox className={`${styles.txListHeader}`}>
+              <div className={styles.txListHeaderTitle}>
+                <h4>
+                  { t('Recent activities') }
+                </h4>
+              </div>
+              <div className={styles.txListHeaderMore}>
+                <h6>
+                  { t('See all transactions') }
+                </h6>
+                <div className={styles.arrowRightWrapper}>
+                  <img className={styles.arrowRight} src={arrowRight}/>
+                </div>
+              </div>
+            </WBox>
+            <TransactionList
+              account={this.props.account}
+              loading={this.props.loading}
+              onClick={this.props.onClick}
+              t={this.props.t}
+              transactions={this.props.transactions.slice(0, 5)} />
+          </WBox>
         </Box>
       </Box>
       <Box className={`${styles.transferWrapper} ${grid['col-sm-4']} `}>

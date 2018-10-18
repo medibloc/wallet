@@ -1,6 +1,6 @@
 import React from 'react';
 // import { FontIcon } from '../fontIcon';
-import backButton from '../../../assets/images/icons/backButton@2x.png';
+import backButton from '../../../assets/images/icons/backButton.png';
 import styles from './multiStep.css';
 
 const MultiStepNav = ({ steps, showBackButton,

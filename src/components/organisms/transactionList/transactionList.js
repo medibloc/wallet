@@ -1,8 +1,8 @@
 import React from 'react';
 // import Waypoint from 'react-waypoint';
 import tableStyle from 'react-toolbox/lib/table/theme.css';
-import TransactionRow from './transactionRow';
-import TransactionsHeader from './transactionsHeader';
+import TransactionRow from './transactionRow/transactionRow';
+import TransactionsHeader from './transactionsHeader/transactionsHeader';
 
 // import txFilters from '../../../constants/transactionFilters';
 // import txTypes from '../../../constants/transactionTypes';

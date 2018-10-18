@@ -1,8 +1,8 @@
 import React from 'react';
 import { translate } from 'react-i18next';
-import styles from './transactions.css';
-import MedAmount from '../../atoms/medAmount/index';
-import transactionTypes from '../../../constants/transactionTypes';
+import styles from './amount.css';
+import MedAmount from '../../../atoms/medAmount';
+import transactionTypes from '../../../../constants/transactionTypes';
 
 const Amount = (props) => {
   const params = {};
