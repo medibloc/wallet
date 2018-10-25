@@ -5,7 +5,7 @@ const transaction = (state = {}, action) => {
     case actionTypes.transactionCleared:
       return {};
     case actionTypes.transactionLoaded:
-      return { success: action.data.success, ...action.data.transaction };
+      return { success: true, ...action.data };
     case actionTypes.transactionLoadFailed:
       return action.data.error;
     // case actionTypes.transactionAddDelegateName: {

@@ -1,0 +1,33 @@
+@import '../../../app/variables.css';
+
+.row {
+  display: flex;
+  flex-direction: row;
+  height: 42px;
+  width: 100%;
+
+  & .label {
+    overflow: hidden;
+    padding: 0 24px;
+    width: 20%;
+
+    & h6 {
+      color: var(--color-black-59);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  & .value {
+    overflow: hidden;
+    padding: 0 24px;
+    text-overflow: ellipsis;
+    width: 80%;
+
+    & h6 {
+      color: var(--color-black-87);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

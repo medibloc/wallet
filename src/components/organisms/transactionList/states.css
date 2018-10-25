@@ -20,5 +20,6 @@
 }
 
 .clickable {
+  color: var(--color-dusk-blue);
   cursor: pointer;
 }

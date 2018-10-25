@@ -11,7 +11,7 @@ import Restore from '../components/pages/restore';
 // import SearchResult from '../components/search/searchResult';
 // import Settings from '../components/settings';
 import StartPage from '../components/pages/startPage';
-import TransactionDashboard from '../components/pages/transactionDashboard';
+import WalletDashboard from '../components/pages/walletDashboard';
 // import AccountTransactions from '../components/accountTransactions';
 // import Voting from '../components/voting';
 // import SingleTransaction from '../components/singleTransaction';
@@ -36,7 +36,7 @@ export default {
   },
   wallet: {
     path: '/wallet',
-    component: TransactionDashboard,
+    component: WalletDashboard,
     isPrivate: true,
   },
   // delegates: {

@@ -4,8 +4,7 @@
   --link-color: var(--color-primary-medium);
   --back-button-color: var(--color-grayscale-dark);
   --nav-line-height: 56px;
-  --back-button-width-l: 56px;
-  --back-button-width-s: 56px;
+  --back-button-width: 56px;
   --nav-size: 490px;
 }
 
@@ -36,7 +35,7 @@
   }
 
   & .backButton {
-    width: var(--back-button-width-l); /* to have equal width with its shadow */
+    width: var(--back-button-width); /* to have equal width with its shadow */
     cursor: pointer;
     color: var(--link-color);
     font-weight: var(--font-weight-bold);
@@ -48,7 +47,7 @@
   }
 
   & .backButtonShadow {
-    width: var(--back-button-width-l);
+    width: var(--back-button-width);
     display: inline-block;
   }
 

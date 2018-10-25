@@ -59,6 +59,18 @@ export const DateFromTimestamp = translate()((props) => {
   return (<span>{day.format('ll')}</span>);
 });
 
+export const TimeFromNow = translate()((props) => {
+  moment.locale(i18n.language);
+  const day = moment(new Date(parseInt(props.time, 10)));
+  return (<span>{moment(day).fromNow()}</span>);
+});
+
+export const DateAndTimeFromTimestamp = translate()((props) => {
+  moment.locale(i18n.language);
+  const day = moment(new Date(parseInt(props.time, 10)));
+  return (<span>{day.format('lll')}</span>);
+});
+
 export const TimeFromTimestamp = translate()((props) => {
   moment.locale(i18n.language);
   const day = moment(new Date(parseInt(props.time, 10)));

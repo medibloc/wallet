@@ -1,22 +1,18 @@
 @import '../../app/variables.css';
 
-.txListViewWrapper {
+.txOverviewWrapper {
   height: 100%;
   width: 100%;
 }
 
-.txListHeader {
+.txOverviewHeader {
   flex-direction: row;
   justify-content: space-between;
   height: 65px;
   padding: 0 24px;
   width: 100%;
 
-  & .txListHeaderTitle {
+  & .txOverviewHeaderTitle {
     justify-content: flex-start;
-  }
-
-  & .txListHeaderMore {
-    justify-content: flex-end;
   }
 }

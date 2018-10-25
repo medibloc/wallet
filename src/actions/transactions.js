@@ -112,39 +112,14 @@ export const loadTransactions = ({ activePeer, address, mServer }) =>
 //       });
 //   };
 
-export const loadTransaction = ({ activePeer, id }) =>
-  (dispatch) => {
+export const loadTransaction = ({ hash }) =>
+  (dispatch, getState) => {
+    const activePeer = getState().peers.activePeer;
     dispatch({ type: actionTypes.transactionCleared });
-
-    // TODO: load transaction
-    console.log(activePeer, id);
-    dispatch({ data: {}, type: actionTypes.transactionLoaded });
-    // transaction({ activePeer, id })
-    //   .then((response) => {
-    //     const added = (response.transaction.votes && response.transaction.votes.added) || [];
-    //     const deleted = (response.transaction.votes && response.transaction.votes.deleted) || [];
-    //
-    //     deleted.map(publicKey =>
-    //       getDelegate(activePeer, { publicKey })
-    //         .then((delegateData) => {
-    //           dispatch({
-    //             data: { delegate: delegateData.delegate, voteArrayName: 'deleted' },
-    //             type: actionTypes.transactionAddDelegateName,
-    //           });
-    //         }),
-    //     );
-    //
-    //     added.map(publicKey =>
-    //       getDelegate(activePeer, { publicKey })
-    //         .then((delegateData) => {
-    //           dispatch({
-    //             data: { delegate: delegateData.delegate, voteArrayName: 'added' },
-    //             type: actionTypes.transactionAddDelegateName,
-    //           });
-    //         }),
-    //     );
-    //     dispatch({ data: response, type: actionTypes.transactionLoaded });
-    //   }).catch((error) => {
-    //   dispatch({ data: error, type: actionTypes.transactionLoadFailed });
-    // });
+    transaction({ activePeer, hash })
+      .then((response) => {
+        dispatch({ data: response, type: actionTypes.transactionLoaded });
+      }).catch((error) => {
+        dispatch({ data: error, type: actionTypes.transactionLoadFailed });
+      });
   };

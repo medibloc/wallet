@@ -1,9 +1,9 @@
 import React from 'react';
 import TransactionList from '../transactionList/transactionList';
 import WBox from '../../atoms/wbox/index';
-import styles from './transactionListView.css';
+import styles from './transactionOverview.css';
 
-class TransactionListView extends React.Component {
+class TransactionOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,12 +11,12 @@ class TransactionListView extends React.Component {
     };
   }
 
-  shouldComponentUpdate(nextProps) {
-    return (this.props.loading && !nextProps.loading) ||
-      (nextProps.transactions.length !== 0 &&
-        (this.props.transactions.length !== nextProps.transactions.length ||
-          this.props.transactions[0].hash !== nextProps.transactions[0].hash));
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return (this.props.loading && !nextProps.loading) ||
+  //     (nextProps.transactions.length !== 0 &&
+  //       (this.props.transactions.length !== nextProps.transactions.length ||
+  //         this.props.transactions[0].hash !== nextProps.transactions[0].hash));
+  // }
 
   componentDidMount() {
     this.props.loadTransactions({
@@ -29,9 +29,9 @@ class TransactionListView extends React.Component {
   render() {
     const { t } = this.props;
 
-    return <WBox className={styles.txListViewWrapper}>
-      <WBox className={`${styles.txListHeader}`}>
-        <div className={styles.txListHeaderTitle}>
+    return <WBox className={styles.txOverviewWrapper}>
+      <WBox className={`${styles.txOverviewHeader}`}>
+        <div className={styles.txOverviewHeaderTitle}>
           <h4>
             { t('All activities') }
           </h4>
@@ -39,12 +39,15 @@ class TransactionListView extends React.Component {
       </WBox>
       <TransactionList
         account={this.props.account}
+        history={this.props.history}
         loading={this.props.loading}
-        onClick={this.props.onClick}
+        location={this.props.history.location}
+        nextStep={this.props.nextStep}
+        onClick={this.props.onTransactionRowClick}
         t={this.props.t}
         transactions={this.props.transactions.slice(0, this.state.number)} />
     </WBox>;
   }
 }
 
-export default TransactionListView;
+export default TransactionOverview;

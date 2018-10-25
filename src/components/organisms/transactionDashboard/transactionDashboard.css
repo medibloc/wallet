@@ -1,0 +1,73 @@
+@import '../../app/variables.css';
+
+.txDashboardWrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.txDashboardHeader {
+  flex-direction: row;
+  justify-content: space-between;
+  height: 65px;
+  padding: 0 24px;
+  width: 100%;
+
+  & .txDashboardHeaderTitle {
+    justify-content: flex-start;
+  }
+}
+
+.transactions {
+  height: 100%;
+  width: 100%;
+
+  & .activity {
+    display: flex;
+    flex-direction: column;
+    height: var(--main-box-height);
+
+    & header {
+      line-height: var(--header-line-height);
+
+      & .accountTitle {
+        color: var(--color-grayscale-medium);
+      }
+
+      & .copy {
+        color: var(--color-grayscale-medium);
+      }
+
+      & .title {
+        float: left;
+      }
+
+      & .account {
+        text-align: right;
+      }
+
+      & h2 {
+        margin-bottom: 0;
+        font-weight: var(--font-weight-semi-bold);
+      }
+
+      & h3 {
+        display: inline-block;
+        margin: 0;
+      }
+
+      & .address {
+        text-align: right;
+        cursor: pointer;
+        color: var(--color-grayscale-dark);
+      }
+
+      & .transfer {
+        color: var(--color-grayscale-dark);
+      }
+
+      & .balanceUnit {
+        font-weight: var(--font-weight-semi-bold);
+      }
+    }
+  }
+}

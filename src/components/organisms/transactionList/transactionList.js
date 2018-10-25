@@ -1,16 +1,32 @@
 import React from 'react';
-// import Waypoint from 'react-waypoint';
 import tableStyle from 'react-toolbox/lib/table/theme.css';
 import TransactionRow from './transactionRow/transactionRow';
 import TransactionsHeader from './transactionsHeader/transactionsHeader';
+import { parseSearchParams } from '../../../utils/searchParams';
 
-// import txFilters from '../../../constants/transactionFilters';
-// import txTypes from '../../../constants/transactionTypes';
 import styles from './transactionList.css';
 
-// const isLargeScreen = () => window.innerWidth > 768;
-
 class TransactionsList extends React.Component {
+  constructor(props) {
+    super(props);
+    if (props.transactions && props.nextStep) this.showDetails(props.transactions);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // istanbul ignore else
+    if (nextProps.transactions && this.props.nextStep) this.showDetails(nextProps.transactions);
+  }
+
+  showDetails(transactions) {
+    const paramsHash = parseSearchParams(this.props.history.location.search).hash;
+    // istanbul ignore else
+    if (paramsHash) {
+      const value = transactions.filter(transaction => transaction.hash === paramsHash)[0];
+      // istanbul ignore else
+      if (value) this.props.nextStep({ value, t: this.props.t });
+    }
+  }
+
   render() {
     const {
       account,

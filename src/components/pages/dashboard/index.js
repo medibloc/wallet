@@ -17,6 +17,7 @@ import VestingSettings from '../../organisms/settings/vestingSettings/index';
 import styles from './dashboard.css';
 import { addMed } from '../../../utils/med';
 import arrowRight from '../../../assets/images/icons/baselineArrowRight.png';
+import routes from '../../../constants/routes';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -40,6 +41,15 @@ class Dashboard extends React.Component {
       address: this.props.account.address,
       mServer: this.props.peers.mServer,
     });
+  }
+
+  moveToWalletDashboard() {
+    this.props.history.push(`${routes.wallet.path}`);
+  }
+
+  onTransactionRowClick(props) {
+    console.log(`${routes.wallet.path}?hash=${props.value.hash}`);
+    this.props.history.push(`${routes.wallet.path}?hash=${props.value.hash}`);
   }
 
   toggleVestingSetting() {
@@ -114,7 +124,8 @@ class Dashboard extends React.Component {
                   { t('Recent activities') }
                 </h4>
               </div>
-              <div className={styles.txListHeaderMore}>
+              <div className={styles.txListHeaderMore}
+                onClick={() => this.moveToWalletDashboard()}>
                 <h6>
                   { t('See all transactions') }
                 </h6>
@@ -125,8 +136,9 @@ class Dashboard extends React.Component {
             </WBox>
             <TransactionList
               account={this.props.account}
+              history={this.props.history}
               loading={this.props.loading}
-              onClick={this.props.onClick}
+              onClick={props => this.onTransactionRowClick(props)}
               t={this.props.t}
               transactions={this.props.transactions.slice(0, 5)} />
           </WBox>

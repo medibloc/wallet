@@ -1,9 +1,8 @@
 import React from 'react';
-// import { FontIcon } from '../fontIcon';
 import backButton from '../../../assets/images/icons/backButton.png';
 import styles from './multiStep.css';
 
-const MultiStepNav = ({ steps, showBackButton,
+const MultiStepNav = ({ hideBackButton, steps, showBackButton,
   current, prevStep, prevPage }) => {
   // Checks if all titles are defined and showNav is not false
   const validateTitles = () => {
@@ -24,7 +23,7 @@ const MultiStepNav = ({ steps, showBackButton,
   return (validateTitles() ?
     <div className={styles.navigation}>
       {
-        showBackButton ?
+        (!hideBackButton && showBackButton) ?
           <a onClick={backButtonFn} className={`${styles.backButton} multistep-back`}>
             <img className={styles.icon} src={backButton} />
           </a> : null

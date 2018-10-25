@@ -19,11 +19,11 @@ class TransactionRow extends React.Component {
     const { props } = this;
     const onClick = !props.onClick ? (() => {}) : () => props.onClick(this.props);
     return (
-      <div className={`${grid.row} ${styles.rows} transactions-row`} onClick={onClick}>
+      <div className={`${grid.row} ${styles.rows} transactions-row`}>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`https://explorer.medibloc.org/en/tx/${props.value.hash}`} target={'_blank'}>
+          <div className={`${styles.clickable}`} onClick={onClick}>
             <span> {props.value.hash} </span>
-          </a>
+          </div>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
           {props.value.executed ? <DateFromTimestamp time={props.value.timestamp * 1000} /> :
@@ -35,7 +35,7 @@ class TransactionRow extends React.Component {
           </a>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`https://explorer.medibloc.org/en/account/${props.value.to}`} target={'_blank'}>
+          <a href={`https://explorer.medibloc.org/en/account/${props.value.to}`} target={'_blank'} className={`${styles.clickable}`}>
             <span> {(props.value.tx_type === txTypes.send ||
               props.value.tx_type === txTypes.genesis) ?
               props.value.to : null} </span>

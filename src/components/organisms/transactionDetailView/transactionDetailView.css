@@ -1,0 +1,49 @@
+@import '../../app/variables.css';
+
+:root {
+  --link-color: var(--color-primary-medium);
+  --top-nav-line-height: 48px;
+  --top-back-button-width: 48px;
+  --top-nav-size: 490px;
+}
+
+.txDetailViewWrapper {
+  height: 100%;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.txDetailViewHeader {
+  background: var(--color-dodger-blue-6);
+  border-radius: 0;
+  box-shadow: inset 0 -1px 0 0 var(--color-dodger-blue);
+  flex-direction: row;
+  height: 56px;
+  justify-content: space-between;
+  padding: 0 24px;
+  width: 100%;
+
+  & .txDetailViewHeaderTitle {
+    justify-content: flex-start;
+  }
+}
+
+.backButtonWrapper {
+  height: var(--top-nav-line-height);
+  padding: 0 25px;
+  display: flex;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.backButton {
+  width: var(--top-back-button-width); /* to have equal width with its shadow */
+  cursor: pointer;
+  color: var(--link-color);
+  font-weight: var(--font-weight-bold);
+
+  & .icon {
+    height: var(--top-back-button-width);
+    width: var(--top-back-button-width);
+  }
+}
