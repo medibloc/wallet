@@ -1,7 +1,7 @@
 import React from 'react';
 import TransactionDetail from '../transactionDetail';
 import WBox from '../../atoms/wbox/index';
-import backButton from '../../../assets/images/icons/backButton.png';
+import backButton from '../../../assets/images/icons/baselineArrowBack.png';
 import styles from './transactionDetailView.css';
 
 class TransactionDetailView extends React.Component {
@@ -30,20 +30,22 @@ class TransactionDetailView extends React.Component {
     const { t, transaction } = this.props;
 
     return <WBox className={styles.txDetailViewWrapper}>
-      {
-        this.props.prevStep ?
-          <div className={`${styles.backButtonWrapper}`}>
-            <a className={`${styles.backButton} transaction-details-back-button`}
-              onClick={() => this.props.history.push(this.props.history.location.pathname)}>
-              <img className={styles.icon} src={backButton} />
-            </a>
-          </div> : null
-      }
       <WBox className={`${styles.txDetailViewHeader}`}>
-        <div className={styles.txDetailViewHeaderTitle}>
-          <h4>
-            { t('Transaction Information') }
-          </h4>
+        {
+          this.props.prevStep ?
+            <div className={`${styles.backButtonWrapper}`}>
+              <a className={`${styles.backButton} transaction-details-back-button`}
+                onClick={() => this.props.history.push(this.props.history.location.pathname)}>
+                <img className={styles.icon} src={backButton} />
+              </a>
+            </div> : null
+        }
+        <div className={styles.txDetailViewHeaderTitleWrapper}>
+          <div className={styles.txDetailViewHeaderTitle}>
+            <h4>
+              { t('Transaction Information') }
+            </h4>
+          </div>
         </div>
       </WBox>
       <TransactionDetail

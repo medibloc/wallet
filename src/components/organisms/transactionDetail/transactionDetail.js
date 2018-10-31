@@ -17,6 +17,11 @@ class TransactionDetail extends React.Component {
         value={transaction.hash}
       />
       <TransactionDetailRow
+        label={t('Type')}
+        shouldShow={true}
+        value={transaction.tx_type}
+      />
+      <TransactionDetailRow
         label={t('Timestamp')}
         shouldShow={true}
         value={

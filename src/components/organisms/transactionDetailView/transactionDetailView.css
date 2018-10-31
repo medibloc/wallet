@@ -2,8 +2,8 @@
 
 :root {
   --link-color: var(--color-primary-medium);
-  --top-nav-line-height: 48px;
-  --top-back-button-width: 48px;
+  --back-button-wrapper-width: 24px;
+  --back-button-width: 16px;
   --top-nav-size: 490px;
 }
 
@@ -14,36 +14,42 @@
 }
 
 .txDetailViewHeader {
-  background: var(--color-dodger-blue-6);
+  align-items: center;
   border-radius: 0;
-  box-shadow: inset 0 -1px 0 0 var(--color-dodger-blue);
   flex-direction: row;
-  height: 56px;
-  justify-content: space-between;
-  padding: 0 24px;
+  height: 64px;
+  justify-content: flex-start;
   width: 100%;
-
-  & .txDetailViewHeaderTitle {
-    justify-content: flex-start;
-  }
 }
 
 .backButtonWrapper {
-  height: var(--top-nav-line-height);
-  padding: 0 25px;
   display: flex;
-  margin: 10px 0;
-  width: 100%;
+  height: var(--back-button-wrapper-width);
+  width: var(--back-button-wrapper-width);
+
+  & .backButton {
+    width: var(--back-button-width); /* to have equal width with its shadow */
+    cursor: pointer;
+    color: var(--link-color);
+    font-weight: var(--font-weight-bold);
+
+    & .icon {
+      height: var(--back-button-width);
+      width: var(--back-button-width);
+    }
+  }
 }
 
-.backButton {
-  width: var(--top-back-button-width); /* to have equal width with its shadow */
-  cursor: pointer;
-  color: var(--link-color);
-  font-weight: var(--font-weight-bold);
+.txDetailViewHeaderTitleWrapper {
+  align-items: center;
+  display: flex;
+  height: 29px;
+  justify-content: center;
+  margin: 8px 0 0;
+  padding: 0 var(--back-button-wrapper-width) 0 0;
+  width: 100%;
 
-  & .icon {
-    height: var(--top-back-button-width);
-    width: var(--top-back-button-width);
+  & .txDetailViewHeaderTitle {
+    display: flex;
   }
 }

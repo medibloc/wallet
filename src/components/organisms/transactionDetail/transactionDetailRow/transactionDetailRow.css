@@ -1,14 +1,14 @@
 @import '../../../app/variables.css';
 
 .row {
+  box-shadow: inset 0 -1px 0 0 var(--color-black-16);
   display: flex;
   flex-direction: row;
-  height: 42px;
+  height: 48px;
   width: 100%;
 
   & .label {
     overflow: hidden;
-    padding: 0 24px;
     width: 20%;
 
     & h6 {
