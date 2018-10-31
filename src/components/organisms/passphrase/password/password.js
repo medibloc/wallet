@@ -5,8 +5,8 @@ import Box from '../../../atoms/box/index';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import { Input } from '../../../atoms/toolbox/inputs/input';
 import { extractAddress,
-  extractPrivKey,
-  getAccountFromPrivKey } from '../../../../utils/account';
+  extractKeyPair,
+  getAccountFromKeyPair } from '../../../../utils/account';
 import regex from '../../../../utils/regex';
 import styles from './password.css';
 
@@ -114,7 +114,7 @@ class Password extends React.Component {
           !this.state.confirmPassword)}
         onClick={() => {
           const label = this.state.label;
-          const account = getAccountFromPrivKey(extractPrivKey(passphrase), this.state.password);
+          const account = getAccountFromKeyPair(extractKeyPair(passphrase), this.state.password);
           this.props.finalCallback({
             address: extractAddress(account.pubKey),
             encKey: account.encryptedPrivKey,
