@@ -1,5 +1,5 @@
 import { translate } from 'react-i18next';
-import { chunk } from 'lodash';
+import chunk from 'lodash.chunk';
 import React from 'react';
 import styles from './passphrasebox.css';
 

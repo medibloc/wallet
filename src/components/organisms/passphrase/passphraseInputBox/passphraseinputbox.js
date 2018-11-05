@@ -1,4 +1,4 @@
-import { chunk } from 'lodash';
+import chunk from 'lodash.chunk';
 import { translate } from 'react-i18next';
 import React from 'react';
 import { PassphraseInput } from '../../../atoms/toolbox/inputs/input';

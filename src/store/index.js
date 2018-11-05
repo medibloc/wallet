@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
-import _ from 'lodash';
+import throttle from 'lodash.throttle';
 
 import actionTypes from '../constants/actions';
 import * as reducers from './reducers';
@@ -18,7 +18,7 @@ const logger = createLogger({
 const store = createStore(App, composeEnhancers(applyMiddleware(...middleWares.concat(logger))));
 
 store.dispatch({ type: actionTypes.storeCreated });
-store.subscribe(_.throttle(savedAccountsSubscriber.bind(null, store), 1000));
+store.subscribe(throttle(savedAccountsSubscriber.bind(null, store), 1000));
 
 // ignore this in coverage as it is hard to test and does not run in production
 /* istanbul ignore if */
