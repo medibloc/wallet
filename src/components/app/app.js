@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { isMobile, isIE, browserVersion } from 'react-device-detect';
 import styles from './app.css';
 import CustomRoute from './customRoute/index';
-// import SavedAccounts from '../savedAccounts';
 import LoadingBar from '../molecules/loadingBar/index';
 import NotFound from '../pages/notFound/index';
+import NotSupportBrowser from '../pages/notSupportBrowser/index';
 import NotSupportMobile from '../pages/notSupportMobile/index';
 import OfflineWrapper from '../atoms/offlineWrapper/index';
 import Toaster from '../molecules/toaster/index';
-import platforms from '../../constants/platforms';
 
 import routes from '../../constants/routes';
 // eslint-disable-next-line import/no-named-as-default
@@ -41,11 +41,15 @@ class App extends React.Component {
       'restore',
     ];
 
-    return (navigator.platform && (platforms.indexOf(navigator.platform.toLowerCase()) < 0) ?
-      <NotSupportMobile /> :
+    if (isMobile) return (<NotSupportMobile />);
+    // TODO: test in IE
+    else if (isIE && browserVersion < 10) return (<NotSupportBrowser />);
+    return (
       <OfflineWrapper>
         <BrowserRouter>
-          <main className={`${styles.bodyWrapper}`} ref={(el) => { this.main = el; }}>
+          <main className={`${styles.bodyWrapper}`} ref={(el) => {
+            this.main = el;
+          }}>
             <Switch>
               {
                 this.state.loaded ?
@@ -55,7 +59,7 @@ class App extends React.Component {
                       component={route.component}
                       isPrivate={route.isPrivate}
                       exact={route.exact}
-                      key={key} />
+                      key={key}/>
                   ))
                   : null
               }
@@ -66,17 +70,16 @@ class App extends React.Component {
                     component={routes[route].component}
                     isPrivate={false}
                     exact={true}
-                    key={key} />
+                    key={key}/>
                 ))
               }
-              <Route path='*' component={NotFound} />
+              <Route path='*' component={NotFound}/>
             </Switch>
-            <Toaster />
+            <Toaster/>
           </main>
         </BrowserRouter>
-        <LoadingBar markAsLoaded={() => this.markAsLoaded()} />
-      </OfflineWrapper>
-    );
+        <LoadingBar markAsLoaded={() => this.markAsLoaded()}/>
+      </OfflineWrapper>);
   }
 }
 

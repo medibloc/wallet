@@ -1,0 +1,87 @@
+@import '../../app/variables.css';
+
+.wrapper {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.notSupportBrowser {
+  min-height: var(--notice-box-height);
+  max-width: var(--notice-box-width);
+  margin: 160px 0 0;
+  text-align: center;
+
+  & .headerWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    & .emphasis {
+      color: var(--color-dodger-blue);
+      font-weight: var(--font-weight-bold);
+    }
+
+    & h2 {
+      color: var(--color-black-99);
+      font-size: 50px;
+    }
+  }
+
+  & .contentWrapper {
+    margin: 18px 0 0;
+    width: 100%;
+
+    & h5 {
+      font-size: 18px;
+      margin: 8px 0 0;
+    }
+  }
+
+  & .browserImageWrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 56px 0 0;
+    width: 100%;
+
+    & .browserImage {
+      height: 120px;
+      width: 50%;
+
+      & img {
+        cursor: pointer;
+      }
+    }
+
+    & .chromeBrowser {
+      height: 80px;
+      width: 80px;
+    }
+
+    & .firefoxBrowser {
+      height: 85px;
+      width: 82px;
+    }
+  }
+
+  & .browserTextWrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 0 0;
+    width: 100%;
+
+    & .browserText {
+      height: 24px;
+      width: 50%;
+    }
+  }
+
+  & .footerWrapper {
+    margin: 72px 0 0;
+    width: 100%;
+  }
+}
