@@ -1,0 +1,14 @@
+@import '../../app/variables.css';
+
+.wrapper {
+  display: flex;
+  height: var(--content-box-height);
+  flex-direction: row;
+  margin: 0;
+  width: var(--main-box-width);
+}
+
+.voteDashboard {
+  height: 100%;
+  width: 100%;
+}

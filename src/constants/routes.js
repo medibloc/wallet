@@ -1,3 +1,4 @@
+import BPDashboard from '../components/pages/bpDashboard';
 import Dashboard from '../components/pages/dashboard';
 // import Healthdata from '../components/healthdata';
 // import Setting from '../components/setting';
@@ -26,7 +27,7 @@ export default {
   // },
   blockProducer: {
     path: '/blockProducer',
-    component: Dashboard,
+    component: BPDashboard,
     isPrivate: true,
   },
   dashboard: {
