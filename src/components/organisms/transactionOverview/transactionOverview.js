@@ -37,15 +37,18 @@ class TransactionOverview extends React.Component {
           </h4>
         </div>
       </WBox>
-      <TransactionList
-        account={this.props.account}
-        history={this.props.history}
-        loading={this.props.loading}
-        location={this.props.history.location}
-        nextStep={this.props.nextStep}
-        onClick={this.props.onTransactionRowClick}
-        t={this.props.t}
-        transactions={this.props.transactions.slice(0, this.state.number)} />
+      <div className={styles.txListWrapper}>
+        <TransactionList
+          account={this.props.account}
+          isScrollable={this.props.transactions.length > this.state.number}
+          history={this.props.history}
+          loading={this.props.loading}
+          location={this.props.history.location}
+          nextStep={this.props.nextStep}
+          onClick={this.props.onTransactionRowClick}
+          t={this.props.t}
+          transactions={this.props.transactions} />
+      </div>
     </WBox>;
   }
 }

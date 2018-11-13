@@ -36,7 +36,7 @@ class TransactionDashboard extends React.Component {
 
   render() {
     return (
-      <WBox>
+      <WBox className={styles.wrapper}>
         <MultiStep className={styles.transactions}
           hideBackButton={true}>
           <TransactionOverview

@@ -6,11 +6,11 @@
 }
 
 .greyLabel {
-  font-weight: var(--font-weight-semi-bold);
+  font-weight: var(--font-weight-normal);
   color: var(--amount-negative-color);
 }
 
 .greenLabel {
-  font-weight: var(--font-weight-semi-bold);
+  font-weight: var(--font-weight-normal);
   color: var(--amount-positive-color) !important;
 }

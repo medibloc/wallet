@@ -20,16 +20,13 @@ const MultiStepNav = ({ hideBackButton, steps, showBackButton,
     }
   };
 
-  return (validateTitles() ?
+  return (validateTitles() && (!hideBackButton && showBackButton) ?
     <div className={styles.navigation}>
-      {
-        (!hideBackButton && showBackButton) ?
-          <a onClick={backButtonFn} className={`${styles.backButton} multistep-back`}>
-            <img className={styles.icon} src={backButton} />
-          </a> : null
-      }
-      <span className={styles.backButtonShadow}></span>
-    </div> : <div className={styles.hidden}></div>);
+      <a onClick={backButtonFn} className={`${styles.backButton} multistep-back`}>
+        <img className={styles.icon} src={backButton} />
+      </a>
+      <span className={styles.backButtonShadow} />
+    </div> : <div className={styles.hidden} />);
 };
 
 export default MultiStepNav;

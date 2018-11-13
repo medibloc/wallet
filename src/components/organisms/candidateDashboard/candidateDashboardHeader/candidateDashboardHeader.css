@@ -1,0 +1,20 @@
+@import '../../../app/variables.css';
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  height: 56px;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.title {
+  margin: 0 0 0 24px;
+}
+
+.candidateNumWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 0 16px;
+}

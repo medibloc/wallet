@@ -48,7 +48,6 @@ class Dashboard extends React.Component {
   }
 
   onTransactionRowClick(props) {
-    console.log(`${routes.wallet.path}?hash=${props.value.hash}`);
     this.props.history.push(`${routes.wallet.path}?hash=${props.value.hash}`);
   }
 
@@ -65,7 +64,7 @@ class Dashboard extends React.Component {
     return <Box className={`${styles.wrapper} ${grid.row}`}>
       <Box className={`${styles.mainWrapper} ${grid['col-sm-8']}`}>
         <Box className={`${styles.financeWrapper}`}>
-          <WBox className={`${styles.finance}`}>
+          <WBox className={`${styles.finance}`} hasBorder={true}>
             <WBox className={styles.vestingSettingsWrapper}>
               <SecondaryButton
                 className={`${styles.vestingSettings}`}
@@ -117,7 +116,7 @@ class Dashboard extends React.Component {
           </WBox> */ }
         </Box>
         <Box className={`${styles.txListViewWrapper}`}>
-          <WBox className={`${styles.txListView}`}>
+          <WBox className={`${styles.txListView}`} hasBorder={true}>
             <WBox className={`${styles.txListHeader}`}>
               <div className={styles.txListHeaderTitle}>
                 <h4>
@@ -134,13 +133,15 @@ class Dashboard extends React.Component {
                 </div>
               </div>
             </WBox>
-            <TransactionList
-              account={this.props.account}
-              history={this.props.history}
-              loading={this.props.loading}
-              onClick={props => this.onTransactionRowClick(props)}
-              t={this.props.t}
-              transactions={this.props.transactions.slice(0, 5)} />
+            <div className={styles.txListWrapper}>
+              <TransactionList
+                account={this.props.account}
+                history={this.props.history}
+                loading={this.props.loading}
+                onClick={props => this.onTransactionRowClick(props)}
+                t={this.props.t}
+                transactions={this.props.transactions.slice(0, 5)} />
+            </div>
           </WBox>
         </Box>
       </Box>

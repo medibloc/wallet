@@ -1,6 +1,25 @@
 @import '../../app/variables.css';
 
+.wrapper {
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 100%;
+}
+
 .startPageWrapper {
+  height: 542px;
+  width: 716px;
+
+  & > img {
+    display: block;
+    width: 180px;
+    height: 25px;
+    margin: 0 auto;
+  }
+}
+
+.contentWrapper {
   height: 424px;
   margin: 93px 0 0;
   width: 100%;
@@ -39,16 +58,5 @@
     & > .hasMarginTop {
       margin-top: 16px;
     }
-  }
-}
-
-.wrapper {
-  width: 716px;
-
-  & > img {
-    display: block;
-    width: 180px;
-    height: 25px;
-    margin: 0 auto;
   }
 }

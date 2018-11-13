@@ -1,24 +1,30 @@
-import { translate } from 'react-i18next';
 import React from 'react';
-import { PrimaryButton } from '../../atoms/toolbox/buttons/button';
+import CandidateDashboard from '../candidateDashboard';
+import VotingStatus from '../votingStatus';
 import WBox from '../../atoms/wbox/index';
 import styles from './voteDashboard.css';
 
 class VoteDashboard extends React.Component {
-  render() {
-    const { t } = this.props;
+  constructor(props) {
+    super(props);
+    this.loadAccount();
+    this.loadCandidates();
+  }
 
-    return <div className={styles.wrapper}>
-      <WBox className={styles.voteDashboard}>
-        <div className={styles.header}>
-          <h3>{t('Vote. Show your power.')}</h3>
-        </div>
-        <PrimaryButton
-          className={`${styles.nextButton}`}
-          label={t('Go to vote')}/>
-      </WBox>
-    </div>;
+  loadAccount() {
+    this.props.accountReload();
+  }
+
+  loadCandidates() {
+    this.props.loadCandidates();
+  }
+
+  render() {
+    return <WBox className={styles.wrapper}>
+      <VotingStatus {...this.props}/>
+      <CandidateDashboard {...this.props}/>
+    </WBox>;
   }
 }
 
-export default translate()(VoteDashboard);
+export default VoteDashboard;

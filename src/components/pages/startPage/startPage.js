@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import styles from './startPage.css';
 import Box from '../../atoms/box/index';
+import bg from '../../../assets/images/main_bg.png';
 import logo from '../../../assets/images/MEDIBLOC.png';
 import { ArrowBlackButton, ArrowBlueButton } from '../../atoms/toolbox/buttons/button';
 import routes from '../../../constants/routes';
@@ -17,22 +18,25 @@ class StartPage extends React.Component {
       (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) ?
         <Redirect to={'/login'} /> :
         <Fragment>
-          <Box className={`${styles.wrapper}`}>
-            <img src={logo} />
+          <Box className={`${styles.wrapper}`}
+            style={{ backgroundImage: `url(${bg})` }}>
             <div className={`${styles.startPageWrapper}`}>
-              <div className={`${styles.titleWrapper}`}>
-                {t('WELCOME TO MEDIBLOC TESTNET WALLET')}
+              <img src={logo} />
+              <div className={`${styles.contentWrapper}`}>
+                <div className={`${styles.titleWrapper}`}>
+                  {t('WELCOME TO MEDIBLOC TESTNET WALLET')}
+                </div>
+                <section className={`${styles.buttonWrapper}`}>
+                  <ArrowBlueButton
+                    className={`${styles.restoreButton}`}
+                    label={'Restore an account'}
+                    onClick={() => history.push(`${routes.restore.path}`)}/>
+                  <ArrowBlackButton
+                    label={'Create wallet ID'}
+                    className={`${styles.registerButton} ${styles.hasMarginTop}`}
+                    onClick={() => history.push(`${routes.register.path}`)}/>
+                </section>
               </div>
-              <section className={`${styles.buttonWrapper}`}>
-                <ArrowBlueButton
-                  className={`${styles.restoreButton}`}
-                  label={'Restore an account'}
-                  onClick={() => history.push(`${routes.restore.path}`)}/>
-                <ArrowBlackButton
-                  label={'Create wallet ID'}
-                  className={`${styles.registerButton} ${styles.hasMarginTop}`}
-                  onClick={() => history.push(`${routes.register.path}`)}/>
-              </section>
             </div>
           </Box>
         </Fragment>

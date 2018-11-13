@@ -30,6 +30,7 @@ class TransactionsList extends React.Component {
   render() {
     const {
       account,
+      isScrollable,
       loading,
       onClick,
       t,
@@ -66,28 +67,18 @@ class TransactionsList extends React.Component {
     }
     return <div className={`${styles.results} transaction-results`}>
       <TransactionsHeader tableStyle={tableStyle} />
-      {transactions
-        // .filter(fixIncomingFilter)
-        .sort((a, b) => b.timestamp - a.timestamp)
-        .map((transaction, i) => (
-          <TransactionRow address={account.address}
-            key={i}
-            t={t}
-            value={transaction}
-            onClick={onClick}
-          />))}
-      {
-        // the transaction list should be scrollable on a large screen
-        // otherwise (XS) the whole transaction box will be scrollable
-        // (see transactionOverview.js)
-        // isLargeScreen()
-        //   ? <Waypoint bottomOffset='-80%'
-        //     key={transactions.length}
-        //     onEnter={() => {
-        //       loadMore();
-        //     }} />
-        //   : null
-      }
+      <div className={`${styles.transactionRowWrapper} ${isScrollable ? styles.scrollable : null}`}>
+        {transactions
+          // .filter(fixIncomingFilter)
+          .sort((a, b) => b.timestamp - a.timestamp)
+          .map((transaction, i) => (
+            <TransactionRow address={account.address}
+              key={i}
+              t={t}
+              value={transaction}
+              onClick={onClick}
+            />))}
+      </div>
     </div>;
   }
 }

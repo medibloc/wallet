@@ -26,9 +26,9 @@ const configConverter = ({ method, path, payload }) => ({
   },
 });
 
+// eslint-disable-next-line no-unused-vars
 export default (baseURL) => {
   const sendRequest = (args) => {
-    console.log(baseURL);
     const config = {
       // baseURL,
       ...configConverter(args),

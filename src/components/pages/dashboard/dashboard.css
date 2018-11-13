@@ -37,12 +37,13 @@
 
     & .txListView {
       height: 100%;
+      overflow: hidden;
       width: 100%;
 
       & .txListHeader {
         flex-direction: row;
         justify-content: space-between;
-        height: 65px;
+        height: 50px;
         padding: 0 24px;
         width: 100%;
 
@@ -69,6 +70,11 @@
             }
           }
         }
+      }
+
+      & .txListWrapper {
+        height: 222px;
+        width: 100%;
       }
     }
   }

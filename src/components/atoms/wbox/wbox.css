@@ -40,3 +40,7 @@
     }
   }
 }
+
+.hasBorder {
+  border: solid 1px var(--color-black-8);
+}

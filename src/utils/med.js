@@ -6,6 +6,10 @@ export const addMed = (v1, v2) => (
   new BigNumber(v1 || 0).add(new BigNumber(v2 || 0)).toFixed()
 );
 
+export const divMed = (v1, v2) => (
+  new BigNumber(v1 || 0).dividedBy(new BigNumber(v2 || 0)).round(3).toFixed()
+);
+
 export const isEqualTo = (v1, v2) => (
   new BigNumber(v1).eq(new BigNumber(v2))
 );
@@ -22,6 +26,10 @@ export const lt = (v1, v2) => (
 // isLessThanOrEqualTo: true if v1 <= v2
 export const lte = (v1, v2) => (
   new BigNumber(v1 || 0).lte(new BigNumber(v2 || 0))
+);
+
+export const mulMed = (v1, v2) => (
+  new BigNumber(v1 || 0).mul(new BigNumber(v2 || 0)).toFixed()
 );
 
 export const subMed = (v1, v2) => (

@@ -1,0 +1,30 @@
+@import '../../app/variables.css';
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  height: 474px;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  width: 100%;
+}
+
+.empty {
+  text-align: center;
+  font-weight: var(--font-weight-normal);
+  padding-top: 25px;
+  color: var(--color-grayscale-dark);
+}
+
+.candidateRowWrapper {
+  height: 392px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.footer {
+  height: 40px;
+  width: 100%;
+}

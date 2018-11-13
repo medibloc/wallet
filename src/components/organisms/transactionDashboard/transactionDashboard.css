@@ -1,20 +1,9 @@
 @import '../../app/variables.css';
 
-.txDashboardWrapper {
+.wrapper {
   height: 100%;
+  overflow: hidden;
   width: 100%;
-}
-
-.txDashboardHeader {
-  flex-direction: row;
-  justify-content: space-between;
-  height: 65px;
-  padding: 0 24px;
-  width: 100%;
-
-  & .txDashboardHeaderTitle {
-    justify-content: flex-start;
-  }
 }
 
 .transactions {
@@ -47,7 +36,7 @@
 
       & h2 {
         margin-bottom: 0;
-        font-weight: var(--font-weight-semi-bold);
+        font-weight: var(--font-weight-normal);
       }
 
       & h3 {

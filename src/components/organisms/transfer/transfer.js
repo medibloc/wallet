@@ -18,7 +18,7 @@ class Transfer extends React.Component {
 
     return (
       <Fragment>
-        <WBox className={`${styles.wrapper}`}>
+        <WBox className={`${styles.wrapper}`} hasBorder={true}>
           <div className={`${styles.headerWrapper}`}>
             <h4>{t('Transfer')}</h4>
           </div>

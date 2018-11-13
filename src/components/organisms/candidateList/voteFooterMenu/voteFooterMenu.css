@@ -1,0 +1,40 @@
+@import '../../../app/variables.css';
+@import '../states.css';
+
+.headerWrapper {
+  align-items: center;
+  box-shadow: 0 -2px 4px 0 var(--color-black-8);
+  color: var(--color-black-60);
+  display: flex;
+  flex-direction: row;
+  font-weight: var(--font-weight-normal);
+  height: 64px;
+  justify-content: space-between;
+  margin: 0;
+  width: 100%;
+}
+
+.header {
+  color: var(--color-black-60);
+  font-size: var(--font-size-small);
+  line-height: 20px;
+  margin: 0 0 0 24px;
+  opacity: 1;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0 24px 0 0;
+
+  & .cancelButton {
+    height: 40px;
+    width: 93px;
+  }
+
+  & .saveButton {
+    height: 40px;
+    margin: 0 0 0 8px;
+    width: 152px;
+  }
+}

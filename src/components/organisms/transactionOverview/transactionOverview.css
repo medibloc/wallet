@@ -2,17 +2,23 @@
 
 .txOverviewWrapper {
   height: 100%;
+  overflow: hidden;
   width: 100%;
 }
 
 .txOverviewHeader {
   flex-direction: row;
   justify-content: space-between;
-  height: 65px;
+  height: 10%;
   padding: 0 24px;
   width: 100%;
 
   & .txOverviewHeaderTitle {
     justify-content: flex-start;
   }
+}
+
+& .txListWrapper {
+  height: 90%;
+  width: 100%;
 }

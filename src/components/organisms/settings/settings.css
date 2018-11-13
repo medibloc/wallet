@@ -50,7 +50,7 @@
 
   & .settingsMenuWrapper {
     align-items: flex-start;
-    border-right: 1px solid var(--color-black-16);
+    border-right: 1px solid var(--color-divide-border);
     height: 100%;
     flex-direction: column;
     width: 30%;

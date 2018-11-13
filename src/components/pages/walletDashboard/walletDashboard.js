@@ -13,7 +13,7 @@ class WalletDashboard extends React.Component {
           autoFocus={true}
           {...this.props}/>
       </WBox>
-      <WBox className={styles.txDashboard}>
+      <WBox className={styles.txDashboard} hasBorder={true}>
         <TransactionDashboard {...this.props}/>
       </WBox>
     </div>;

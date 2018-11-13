@@ -22,7 +22,6 @@ class PrivacyConsent extends React.Component {
 
   render() {
     const { closePopUp, sendFaucetRequest, t } = this.props;
-    console.log(this.state.hasAgreed);
     return (
       <Fragment>
         <div className={styles.wrapper}>

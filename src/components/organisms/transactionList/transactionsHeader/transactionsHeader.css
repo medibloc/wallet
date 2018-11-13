@@ -4,7 +4,7 @@
 .headerWrapper {
   background: var(--color-lucid-blue);
   color: var(--color-black-87);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-semi-bold);
   height: 32px;
   padding: 0 24px;
   margin: 0;

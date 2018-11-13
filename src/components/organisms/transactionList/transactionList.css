@@ -9,9 +9,16 @@
 
 .results {
   overflow-y: initial;
+  height: 100%;
   width: 100%;
+}
 
-  & .turnArrow {
-    transform: rotate(180deg);
-  }
+.transactionRowWrapper {
+  max-height: 480px;
+  width: 100%;
+}
+
+.scrollable {
+  overflow-x: hidden;
+  overflow-y: scroll;
 }

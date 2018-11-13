@@ -124,6 +124,7 @@ or "warn/action" ineastd of "red/green"
   --color-maize: #f0c848;
   --color-success-dark: #008722;
   --color-shamrock-green: #069668;
+  --color-green-teal: #0faf86;
   --color-action-light-2: #93f4fe;
   --color-action-medium-2: #004aff;
   --color-link: #0077bd;
@@ -153,6 +154,7 @@ or "warn/action" ineastd of "red/green"
   --color-black-74: rgba(0, 0, 0, 0.74);
   --color-black-87: rgba(0, 0, 0, 0.87);
   --color-black-99: rgba(0, 0, 0, 0.99);
+  --color-divide-border: var(--color-black-8);
   --gradient-theme: linear-gradient(27deg, var(--color-tertiary-medium) 0%, var(--color-grayscale-light) 100%);
   --gradient-action-orange: linear-gradient(-27deg, var(--color-action-dark) 0%, var(--color-action-light) 100%);
   --gradient-action-blue: linear-gradient(136deg, var(--color-tertiary-medium) 0%, var(--color-primary-medium) 100%);

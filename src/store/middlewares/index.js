@@ -1,15 +1,15 @@
 import thunk from 'redux-thunk';
-import peersMiddleware from './peers';
 import accountMiddleware from './account';
-import loginMiddleware from './login';
 import loadingBarMiddleware from './loadingBar';
+import loginMiddleware from './login';
+import peersMiddleware from './peers';
 import savedAccountsMiddleware from './savedAccounts';
 
 export default [
   thunk,
-  peersMiddleware,
-  loginMiddleware,
   accountMiddleware,
   loadingBarMiddleware,
+  loginMiddleware,
+  peersMiddleware,
   savedAccountsMiddleware,
 ];

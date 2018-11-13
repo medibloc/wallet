@@ -1,0 +1,44 @@
+.alignLeft {
+  display: flex;
+  justify-content: left;
+}
+
+.alignCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.alignRight {
+  display: flex;
+  justify-content: right;
+}
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  & a {
+    color: var(--color-dusk-blue);
+  }
+}
+
+.leftText {
+  text-align: left;
+}
+
+.middleText {
+  text-align: center;
+}
+
+.rightText {
+  text-align: right;
+}
+
+.clickable {
+  color: var(--color-dusk-blue);
+  cursor: pointer;
+}
+
+.active {
+  color: var(--color-green-teal);
+}

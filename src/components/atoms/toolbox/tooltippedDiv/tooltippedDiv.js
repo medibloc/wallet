@@ -1,6 +1,6 @@
 import React from 'react';
 import tooltip from 'react-toolbox/lib/tooltip';
-import omit from 'lodash/omit';
+import omit from 'lodash.omit';
 import { themr } from 'react-css-themr';
 import tooltippedDivTheme from './tooltippedDiv.css';
 

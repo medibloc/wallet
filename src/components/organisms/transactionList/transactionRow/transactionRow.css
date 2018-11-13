@@ -3,7 +3,7 @@
 
 .rows {
   align-items: center;
-  border-bottom: 0;
+  box-shadow: inset 0 -1px 0 0 var(--color-divide-border);
   border-top: 0;
   color: var(--color-grayscale-dark);
   height: 39px;
