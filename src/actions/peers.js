@@ -7,6 +7,7 @@ const peerSet = (data, config) => ({
   data: Object.assign({
     address: data.address,
     activePeer: client(config.nodes),
+    chainId: config.chainId,
     encKey: data.encKey,
     mServer: mServer(config.mServerURL),
     networkCode: config.code,

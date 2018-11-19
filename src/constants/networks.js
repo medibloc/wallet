@@ -7,6 +7,7 @@ const networks = {
   testnet: { // network name translation t('Testnet');
     name: 'Testnet',
     testnet: true,
+    chainId: 181112,
     code: 1,
     mServerURL: 'https://testnet-explorer.medibloc.org',
     nodes: ['https://testnet-node.medibloc.org/'],

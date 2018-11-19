@@ -95,6 +95,7 @@ class Vest extends React.Component {
         account: this.props.account,
         activePeer: this.props.peers.activePeer,
         amount: this.state.amount.value,
+        chainId: this.props.peers.chainId,
         nonce,
         password: this.state.password.value,
       });

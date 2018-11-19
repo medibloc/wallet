@@ -19,7 +19,7 @@ export const getAccount = (activePeer, address) =>
     }).catch(error => reject(error));
   });
 
-export const send = ({ account, activePeer, description, nonce, password, to, value }) =>
+export const send = ({ account, activePeer, chainId, description, nonce, password, to, value }) =>
   new Promise((resolve, reject) => {
     let mAccount;
     try {
@@ -28,6 +28,7 @@ export const send = ({ account, activePeer, description, nonce, password, to, va
       reject(errorTypes.wrongPasswordError);
     }
     const tx = valueTransferTx({
+      chain_id: chainId,
       from: account.address,
       to,
       value,
@@ -79,7 +80,7 @@ export const send = ({ account, activePeer, description, nonce, password, to, va
 //     orderBy,
 //   });
 
-export const vest = ({ account, activePeer, nonce, password, value }) =>
+export const vest = ({ account, activePeer, chainId, nonce, password, value }) =>
   new Promise((resolve, reject) => {
     let mAccount;
     try {
@@ -89,6 +90,7 @@ export const vest = ({ account, activePeer, nonce, password, value }) =>
     }
 
     const tx = vestTx({
+      chain_id: chainId,
       from: account.address,
       nonce,
       value,
@@ -110,7 +112,7 @@ export const vest = ({ account, activePeer, nonce, password, value }) =>
     }).catch(error => reject(error));
   });
 
-export const withdrawVesting = ({ account, activePeer, nonce, password, value }) =>
+export const withdrawVesting = ({ account, activePeer, chainId, nonce, password, value }) =>
   new Promise((resolve, reject) => {
     let mAccount;
     try {
@@ -120,6 +122,7 @@ export const withdrawVesting = ({ account, activePeer, nonce, password, value })
     }
 
     const tx = withdrawVestingTx({
+      chain_id: chainId,
       from: account.address,
       nonce,
       value,

@@ -101,6 +101,7 @@ class PasswordSteps extends React.Component {
         this.props.vestedAndSent({
           account: this.props.account,
           activePeer: this.props.peers.activePeer,
+          chainId: this.props.peers.chainId,
           description: this.props.description,
           nonce,
           password: this.state.password.value,
@@ -113,6 +114,7 @@ class PasswordSteps extends React.Component {
           account: this.props.account,
           activePeer: this.props.peers.activePeer,
           amount: this.props.amount,
+          chainId: this.props.peers.chainId,
           description: this.props.description,
           nonce,
           password: this.state.password.value,

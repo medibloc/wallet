@@ -165,7 +165,7 @@ export const passwordFailed = () => ({
 /**
  *
  */
-export const sent = ({ account, activePeer, amount,
+export const sent = ({ account, activePeer, amount, chainId,
   description, nonce, password, to }) =>
   (dispatch) => {
     dispatch(loadingStarted(actionTypes.requestTransferTransaction));
@@ -173,6 +173,7 @@ export const sent = ({ account, activePeer, amount,
     send({
       account,
       activePeer,
+      chainId,
       description,
       nonce,
       password,
@@ -277,7 +278,7 @@ export const sent = ({ account, activePeer, amount,
 /**
  *
  */
-export const vested = ({ account, activePeer, amount,
+export const vested = ({ account, activePeer, amount, chainId,
   nonce, password }) =>
   (dispatch) => {
     dispatch(loadingStarted(actionTypes.requestVestTransaction));
@@ -285,6 +286,7 @@ export const vested = ({ account, activePeer, amount,
     vest({
       account,
       activePeer,
+      chainId,
       nonce,
       password,
       value: toRawMed(amount),
@@ -324,7 +326,7 @@ export const vested = ({ account, activePeer, amount,
       });
   };
 
-export const vestedAndSent = ({ account, activePeer, description,
+export const vestedAndSent = ({ account, activePeer, chainId, description,
   nonce, password, to, transferAmount, vestingAmount }) =>
   (dispatch) => {
     dispatch(loadingStarted(actionTypes.requestVestAndSendTransaction));
@@ -333,6 +335,7 @@ export const vestedAndSent = ({ account, activePeer, description,
       vest({
         account,
         activePeer,
+        chainId,
         nonce,
         password,
         value: toRawMed(vestingAmount),
@@ -340,6 +343,7 @@ export const vestedAndSent = ({ account, activePeer, description,
       send({
         account,
         activePeer,
+        chainId,
         description,
         nonce: Number(nonce) + 1,
         password,
@@ -398,7 +402,7 @@ export const vestedAndSent = ({ account, activePeer, description,
 /**
  *
  */
-export const withdrewVesting = ({ account, activePeer, amount,
+export const withdrewVesting = ({ account, activePeer, amount, chainId,
   nonce, password }) =>
   (dispatch) => {
     dispatch(loadingStarted(actionTypes.requestWithdrawVestingTransaction));
@@ -406,6 +410,7 @@ export const withdrewVesting = ({ account, activePeer, amount,
     withdrawVesting({
       account,
       activePeer,
+      chainId,
       nonce,
       password,
       value: toRawMed(amount),
