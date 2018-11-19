@@ -1,10 +1,10 @@
 export const parseCandidates = candidates =>
-  candidates.map((c, i) => ({
+  candidates.map(c => ({
     address: c.address,
-    alias: `candidate${i + 1}`, // for test
-    candidateId: `candidateId${i + 1}`, // for test
-    collateral: '100000000000000000000', // for test
-    url: `https://medibloc${i + 1}.org`, // for test
+    alias: c.account.alias,
+    candidateId: c.candidate_id,
+    collateral: c.collateral,
+    url: c.url,
     votePower: c.votePower,
   }));
 

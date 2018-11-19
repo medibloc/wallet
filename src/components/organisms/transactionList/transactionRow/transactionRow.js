@@ -30,12 +30,12 @@ class TransactionRow extends React.Component {
             <Spinner />}
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`https://explorer.medibloc.org/en/account/${props.value.from}`} target={'_blank'}>
+          <a href={`https://testnet-explorer.medibloc.org/en/account/${props.value.from}`} target={'_blank'}>
             <span> {props.value.from} </span>
           </a>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`https://explorer.medibloc.org/en/account/${props.value.to}`} target={'_blank'} className={`${styles.clickable}`}>
+          <a href={`https://testnet-explorer.medibloc.org/en/account/${props.value.to}`} target={'_blank'} className={`${styles.clickable}`}>
             <span> {(props.value.tx_type === txTypes.send ||
               props.value.tx_type === txTypes.genesis) ?
               props.value.to : null} </span>

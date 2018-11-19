@@ -121,7 +121,7 @@ const menu = {
           },
           // {
           //   label: i18n.t('Medibloc Explorer'),
-          //   click: menu.onClickLink.bind(null, electron, 'https://explorer.medibloc.org'),
+          //   click: menu.onClickLink.bind(null, electron, 'https://testnet-explorer.medibloc.org'),
           // },
           {
             type: 'separator',

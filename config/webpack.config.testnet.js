@@ -25,7 +25,7 @@ module.exports = merge(baseConfig, reactConfig, {
     port: 8080,
     proxy: {
       '/api': {
-        target: 'https://explorer.medibloc.org',
+        target: 'https://testnet-explorer.medibloc.org',
         secure: false,
       },
       '/faucetRequest': {

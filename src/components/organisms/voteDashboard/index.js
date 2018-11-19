@@ -9,12 +9,7 @@ const mapStateToProps = state => ({
   candidates: state.candidates && state.candidates.allCandidates ?
     state.candidates.allCandidates.sort((a, b) => b.votePower - a.votePower) : [],
   totalVotes: state.candidates.totalVotes,
-  voted: [
-    'candidateId1',
-    'candidateId2',
-    'candidateId3',
-    'candidateId4',
-  ], // for test
+  voted: state.account.voted,
 });
 
 const mapDispatchToProps = dispatch => ({
