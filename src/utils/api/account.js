@@ -1,6 +1,13 @@
 import blockTypes from '../../constants/blockTypes';
 import { getAccountFromEncKey, isAddress } from '../account';
-import { createDefaultPayload, valueTransferTx, vestTx, withdrawVestingTx } from '../transaction';
+import {
+  createDefaultPayload,
+  createVotePayload,
+  valueTransferTx,
+  vestTx,
+  voteTx,
+  withdrawVestingTx,
+} from '../transaction';
 import errorTypes from '../../constants/errors';
 
 export const getAccount = (activePeer, address) =>
@@ -98,6 +105,37 @@ export const vest = ({ account, activePeer, chainId, nonce, password, value }) =
 
     mAccount.signTx(tx, password);
     console.log(JSON.parse(JSON.stringify(tx)));
+
+    activePeer.sendTransaction(tx).then((res) => {
+      console.log(res);
+      if (res.hash) {
+        resolve({
+          timestamp: tx.rawTx.timestamp,
+          transactionId: res.hash,
+        });
+      } else {
+        reject(res);
+      }
+    }).catch(error => reject(error));
+  });
+
+export const vote = ({ account, activePeer, candidates, chainId, nonce, password }) =>
+  new Promise((resolve, reject) => {
+    let mAccount;
+    try {
+      mAccount = getAccountFromEncKey(account.encKey, password);
+    } catch (e) {
+      reject(errorTypes.wrongPasswordError);
+    }
+
+    const tx = voteTx({
+      chain_id: chainId,
+      from: account.address,
+      payload: candidates ? createVotePayload(candidates) : null,
+      nonce,
+    });
+
+    mAccount.signTx(tx, password);
 
     activePeer.sendTransaction(tx).then((res) => {
       console.log(res);

@@ -1,8 +1,9 @@
 import i18next from 'i18next';
+import difference from 'lodash.difference';
 import actionTypes from '../constants/actions';
 import { BANDWIDTH_USED_TX } from '../constants/bandwidth';
 import transactionTypes from '../constants/transactionTypes';
-import { send, vest, withdrawVesting } from '../utils/api/account';
+import { send, vest, vote, withdrawVesting } from '../utils/api/account';
 // import { registerDelegate, getDelegate, getVotes, getVoters } from '../utils/api/delegate';
 // import { loadTransactionsFinish } from './transactions';
 // import { delegateRegisteredFailure } from './delegate';
@@ -388,6 +389,68 @@ export const vestedAndSent = ({ account, activePeer, chainId, description,
     })
       .catch((error) => {
         dispatch(loadingFinished(actionTypes.requestVestAndSendTransaction));
+        if (error === errorTypes.wrongPasswordError) {
+          dispatch(passwordFailed());
+        } else {
+          const errorMessage = error && error.message ? `${error.message}.` :
+            i18next.t('An error occurred while creating the transaction.');
+          dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+          dispatch(passwordUsed());
+        }
+      });
+  };
+
+/**
+ *
+ */
+export const voted = ({ account, activePeer, candidates, chainId,
+  nonce, password }) =>
+  (dispatch) => {
+    dispatch(loadingStarted(actionTypes.requestVoteTransaction));
+    dispatch(passwordVerifying());
+    vote({
+      account,
+      activePeer,
+      candidates,
+      chainId,
+      nonce,
+      password,
+    }).then((res) => {
+      dispatch({
+        data: {
+          from: account.address,
+          hash: res.transactionId,
+          timestamp: res.timestamp,
+          voted: candidates,
+          tx_type: transactionTypes.vote,
+        },
+        type: actionTypes.transactionAdded,
+      });
+      dispatch({
+        data: {
+          bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
+          nonce: nonce.toString(),
+          voted: candidates,
+        },
+        type: actionTypes.accountUpdated,
+      });
+      const voteAdded = difference(candidates, account.voted)
+        .map(c => ({ candidateId: c, isAdded: true }));
+      const voteSubstracted = difference(account.voted, candidates)
+        .map(c => ({ candidateId: c, isAdded: false }));
+      const voteDiff = voteAdded.concat(voteSubstracted);
+      dispatch({
+        data: {
+          voteDiff,
+          votePower: account.vesting,
+        },
+        type: actionTypes.candidatesUpdated,
+      });
+      dispatch(loadingFinished(actionTypes.requestVoteTransaction));
+      dispatch(passwordUsed());
+    })
+      .catch((error) => {
+        dispatch(loadingFinished(actionTypes.requestVoteTransaction));
         if (error === errorTypes.wrongPasswordError) {
           dispatch(passwordFailed());
         } else {

@@ -5,7 +5,7 @@ export const parseCandidates = candidates =>
     candidateId: c.candidate_id,
     collateral: c.collateral,
     url: c.url,
-    votePower: c.votePower,
+    votePower: c.vote_power,
   }));
 
 export const parseTransactions = transactions => transactions.map(tx => tx.data);

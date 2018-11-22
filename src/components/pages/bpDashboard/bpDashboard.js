@@ -10,8 +10,9 @@ class BPDashboard extends React.Component {
   render() {
     return <WBox className={styles.wrapper} hasBorder={true}>
       <MultiStep className={styles.bpDashboard}>
-        <VoteIntroPage/>
+        { /* <VoteIntroPage/> */ }
         <VoteDashboard {...this.props}/>
+        <VoteIntroPage/>
       </MultiStep>
     </WBox>;
   }

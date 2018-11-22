@@ -26,7 +26,7 @@ class TransactionRow extends React.Component {
           </div>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          {props.value.executed ? <DateFromTimestamp time={props.value.timestamp * 1000} /> :
+          {props.value.on_chain ? <DateFromTimestamp time={props.value.timestamp * 1000} /> :
             <Spinner />}
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>

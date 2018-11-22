@@ -6,11 +6,15 @@ const txFieldArr = transactionAttributes.TX_FIELDS_ARR;
 
 export const createDefaultPayload = data => transaction.createDefaultPayload(data);
 
+export const createVotePayload = data => transaction.createVotePayload(data);
+
 export const dataUploadTx = data => transaction.dataUploadTx(data);
 
 export const valueTransferTx = data => transaction.valueTransferTx(data);
 
 export const vestTx = data => transaction.vestTx(data);
+
+export const voteTx = data => transaction.voteTx(data);
 
 export const withdrawVestingTx = data => transaction.withdrawVestingTx(data);
 

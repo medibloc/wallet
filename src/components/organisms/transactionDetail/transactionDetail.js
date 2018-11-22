@@ -26,7 +26,7 @@ class TransactionDetail extends React.Component {
         label={t('Timestamp')}
         shouldShow={true}
         value={
-          transaction.executed ?
+          transaction.on_chain ?
             <Fragment>
               <TimeFromNow time={transaction.timestamp * 1000}/>
               {' '}

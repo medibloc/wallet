@@ -5,7 +5,7 @@ import styles from './candidateDashboardHeader.css';
 
 class CandidateDashboardHeader extends React.Component {
   render() {
-    const { candidateNum, t } = this.props;
+    const { candidateNum, setShowMyBP, showMyBP, t } = this.props;
     return <WBox className={styles.wrapper}>
       <div className={styles.title}>
         <h5>{t('BP Candidates list')}</h5>
@@ -16,6 +16,16 @@ class CandidateDashboardHeader extends React.Component {
             {t('Total: {{candidateNum}}', { candidateNum })}{t(' ')}
           </span>
         </h6>
+      </div>
+      <div className={styles.candidateFilterWrapper}>
+        <div className={`${styles.tab} ${!showMyBP ? styles.activeTab : styles.inactiveTab}`}
+          onClick={() => setShowMyBP(false)}>
+          <h6>{t('All')}</h6>
+        </div>
+        <div className={`${styles.tab} ${styles.hasLeftMargin} ${showMyBP ? styles.activeTab : styles.inactiveTab}`}
+          onClick={() => setShowMyBP(true)}>
+          <h6>{t('My BP')}</h6>
+        </div>
       </div>
     </WBox>;
   }

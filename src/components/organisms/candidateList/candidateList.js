@@ -1,4 +1,5 @@
 import React from 'react';
+import isEqual from 'lodash.isequal';
 import CandidatesHeader from './candidatesHeader';
 import CandidateRow from './candidateRow';
 import VoteFooterMenu from './voteFooterMenu';
@@ -10,19 +11,25 @@ class CandidateList extends React.Component {
     super(props);
 
     this.state = {
-      candidatesMap: [],
+      showFooterMenu: false,
       votingList: Array.from(props.voted) || [],
-      voted: Array.from(props.voted) || [],
     };
   }
 
-  isVotingChanged() {
-    if (this.state.votingList === this.state.voted) return false;
-    if (this.state.votingList.length !== this.state.voted.length) return true;
-    for (let i = 0; i < this.state.votingList.length; ++i) {
-      if (!this.state.voted.includes(this.state.votingList[i])) return true;
+  componentDidUpdate(prevProps) {
+    if (!isEqual([...prevProps.voted].sort(), [...this.props.voted].sort())) {
+      this.setState({
+        showFooterMenu: false,
+        votingList: Array.from(this.props.voted) || [],
+      });
     }
-    return false;
+  }
+
+  isVotingChanged(votingList) {
+    if (!votingList) return this.props.voted.length > 0;
+    if (votingList === this.props.voted) return false;
+    if (votingList.length !== this.props.voted.length) return true;
+    return !isEqual([...votingList].sort(), [...this.props.voted].sort());
   }
 
   toggleVoting(candidateId) {
@@ -33,19 +40,35 @@ class CandidateList extends React.Component {
       this.setState({
         votingList,
       });
+      this.setShowFooterMenu(this.isVotingChanged(votingList));
     } else {
       this.setState({
         votingList: [...votingList, candidateId],
+      });
+      this.setShowFooterMenu(this.isVotingChanged([...votingList, candidateId]));
+    }
+  }
+
+  setShowFooterMenu(show) {
+    if (show) {
+      this.setState({
+        showFooterMenu: true,
+      });
+    } else {
+      this.setState({
+        showFooterMenu: false,
       });
     }
   }
 
   render() {
-    const { candidates, loading, t, totalVotes } = this.props;
+    const { candidates, loading, openPasswordStep, showMyBP, t, totalVotes } = this.props;
+    const candidateList = showMyBP ?
+      candidates.filter(c => this.props.voted.includes(c.candidateId)) : candidates;
 
     if (loading) return null;
     // istanbul ignore else
-    if (!candidates || candidates.length === 0) {
+    if (!candidateList || candidateList.length === 0) {
       // istanbul ignore else
       return <p className={`${styles.empty} hasPaddingRow empty-message`}>
         {t('There are no candidates.')}
@@ -55,7 +78,7 @@ class CandidateList extends React.Component {
     return <WBox className={styles.wrapper}>
       <CandidatesHeader/>
       <div className={styles.candidateRowWrapper}>
-        {candidates
+        {candidateList
         // .filter(fixIncomingFilter)
           .map((candidate, i) => (
             <CandidateRow
@@ -68,8 +91,10 @@ class CandidateList extends React.Component {
               totalVotes={totalVotes}
             />))}
       </div>
-      {this.isVotingChanged() ?
-        <VoteFooterMenu/> :
+      {this.state.showFooterMenu ?
+        <VoteFooterMenu
+          onClosePopUp={() => this.setShowFooterMenu(false)}
+          openPasswordStep={() => openPasswordStep(this.state.votingList)}/> :
         <div className={styles.footer}/>
       }
     </WBox>;

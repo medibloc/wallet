@@ -18,3 +18,31 @@
   flex-direction: row;
   margin: 0 0 0 16px;
 }
+
+.candidateFilterWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 0 56px;
+
+  & .tab {
+    height: 32px;
+  }
+
+  & .activeTab {
+    box-shadow: inset 0 -2px 0 0 var(--color-dodger-blue);
+
+    & h6 {
+      color: var(--color-black-87);
+    }
+  }
+
+  & .inactiveTab {
+    & h6 {
+      color: var(--color-black-60);
+    }
+  }
+
+  & .hasLeftMargin {
+    margin: 0 0 0 24px;
+  }
+}
