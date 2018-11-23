@@ -6,7 +6,11 @@ import styles from './voteIntroPage.css';
 
 class VoteIntroPage extends React.Component {
   render() {
-    const { nextStep, t } = this.props;
+    const { hasVoted, nextStep, showVoteIntroPage, t } = this.props;
+
+    if (hasVoted || !showVoteIntroPage) {
+      if (nextStep) nextStep();
+    }
 
     return <div className={styles.wrapper}
       style={{ backgroundImage: `url(${voteIntro})` }}>
@@ -17,7 +21,12 @@ class VoteIntroPage extends React.Component {
         <PrimaryButton
           className={`${styles.nextButton}`}
           label={t('Go to vote')}
-          onClick={() => nextStep()}/>
+          onClick={() => {
+            this.props.settingsUpdated({
+              showVoteIntroPage: false,
+            });
+            if (nextStep) nextStep();
+          }}/>
       </WBox>
     </div>;
   }
