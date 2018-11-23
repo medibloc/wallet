@@ -28,11 +28,15 @@
   margin: 0 24px 0 0;
 
   & .cancelButton {
+    border: 1px solid var(--color-black-16) !important;
+    color: var(--color-black-60) !important;
+    font-size: 14px;
     height: 40px;
     width: 93px;
   }
 
   & .saveButton {
+    font-size: 14px;
     height: 40px;
     margin: 0 0 0 8px;
     width: 152px;
