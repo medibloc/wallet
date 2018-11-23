@@ -3,7 +3,7 @@
 .wrapper {
   align-items: center;
   display: flex;
-  height: 474px;
+  height: 464px;
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
@@ -18,13 +18,8 @@
 }
 
 .candidateRowWrapper {
-  height: 392px;
+  height: 432px;
   overflow-x: hidden;
   overflow-y: scroll;
-  width: 100%;
-}
-
-.footer {
-  height: 40px;
   width: 100%;
 }
