@@ -141,7 +141,7 @@ class VotePasswordStep extends React.Component {
               </div>
               <WBox className={styles.passwordStepWrapper}>
                 <div className={`${styles.guideText}`}>
-                  <h6>{t('To confirm, please enter your password')}</h6>
+                  <h5>{t('To confirm, please enter your password')}</h5>
                 </div>
                 <div className={`${styles.nextStepWrapper}`}>
                   <Input
@@ -152,6 +152,7 @@ class VotePasswordStep extends React.Component {
                     value={this.state.password.value}
                   />
                   <PrimaryButton
+                    className={styles.nextButton}
                     disabled={
                       !this.state.password.value ||
                       (this.props.loading && this.props.loading.length > 0) ||
