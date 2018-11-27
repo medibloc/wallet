@@ -5,7 +5,7 @@ import styles from './voteFooterMenu.css';
 const VoteFooterMenu = ({ onClosePopUp, openPasswordStep, t }) => (
   <div className={`${styles.headerWrapper}`} id="candidatesHeader">
     <div className={`${styles.header}`}>
-      <span>{t('Number of times left today: {{retryNum}}', { retryNum: 2 })}</span>
+      {/* <span>{t('Number of times left today: {{retryNum}}',{ retryNum: 2 })}</span> */}
     </div>
     <div className={`${styles.buttonWrapper}`}>
       <SecondaryButton

@@ -5,10 +5,10 @@ import styles from './transactionDetailRow.css';
 class TransactionDetailRow extends React.Component {
   render() {
     const {
-      label, shouldShow, value,
+      label, multiLine, shouldShow, value,
     } = this.props;
     return ((shouldShow === null || shouldShow === false) ? null :
-      <WBox className={`${styles.row}`}>
+      <WBox className={`${styles.row} ${multiLine ? styles.multiLine : null}`}>
         <div className={styles.label}>
           <h6>{label}</h6>
         </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import isEqual from 'lodash.isequal';
 import CandidatesHeader from './candidatesHeader';
 import CandidateRow from './candidateRow';
+import { MAX_VOTE_NUM } from '../../../constants/candidates';
 import VoteFooterMenu from './voteFooterMenu';
 import WBox from '../../atoms/wbox/index';
 import styles from './candidateList.css';
@@ -42,6 +43,10 @@ class CandidateList extends React.Component {
       });
       this.setShowFooterMenu(this.isVotingChanged(votingList));
     } else {
+      if (votingList.length >= MAX_VOTE_NUM) {
+        // TODO @lucasjyjung display message
+        return;
+      }
       this.setState({
         votingList: [...votingList, candidateId],
       });

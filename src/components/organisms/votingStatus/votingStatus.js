@@ -1,4 +1,5 @@
 import React from 'react';
+import { MAX_VOTE_NUM } from '../../../constants/candidates';
 import MedAmount from '../../atoms/medAmount';
 import WBox from '../../atoms/wbox/index';
 import styles from './votingStatus.css';
@@ -19,7 +20,7 @@ class VotingStatus extends React.Component {
             })}{t(' ')}
           </span>
           <span className={styles.remainedNum}>
-            {t('({{remainedNum}} left)', { remainedNum: 15 - voted.length })}
+            {t('({{remainedNum}} left)', { remainedNum: MAX_VOTE_NUM - voted.length })}
           </span>
         </h6>
       </div>

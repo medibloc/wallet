@@ -4,13 +4,12 @@ import MedAmount from '../../atoms/medAmount';
 import TransactionDetailRow from './transactionDetailRow';
 import WBox from '../../atoms/wbox/index';
 import { txTypeConverter } from '../../../utils/txFieldConverter';
-import { isTransactionField, recoverPayload } from '../../../utils/transaction';
+import { isTransactionField, recoverPayloadWithType } from '../../../utils/transaction';
 import styles from './transactionDetail.css';
 
 class TransactionDetail extends React.Component {
   render() {
     const { t, transaction } = this.props;
-    const payload = recoverPayload(transaction);
     return <WBox className={styles.txDetail}>
       <TransactionDetailRow
         label={t('TxHash')}
@@ -64,9 +63,10 @@ class TransactionDetail extends React.Component {
       />
       <TransactionDetailRow
         label={t('Payload')}
+        multiLine={true}
         shouldShow={isTransactionField(transaction.tx_type, 'payload')}
         // TODO: display other kinds of payload
-        value={payload && payload.message ? payload.message : null}
+        value={recoverPayloadWithType(transaction.payload, transaction.tx_type)}
       />
     </WBox>;
   }

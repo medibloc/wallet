@@ -31,3 +31,10 @@
     }
   }
 }
+
+.multiLine {
+  height: auto;
+  min-height: 48px;
+  max-height: 192px;
+  word-break: break-word;
+}
