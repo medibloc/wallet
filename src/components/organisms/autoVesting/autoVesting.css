@@ -2,7 +2,6 @@
 
 .relative {
   position: relative;
-  z-index: var(--popup-index);
 }
 
 .wrapper {
@@ -17,12 +16,14 @@
   right: 0;
   top: 0;
   width: 100%;
+  z-index: var(--popup-cover-index);
 }
 
 .autoVestingWrapper {
   height: 388px;
   padding: 56px 52px 32px;
   width: 480px !important;
+  z-index: var(--popup-index);
 
   & .headerWrapper {
     display: flex;

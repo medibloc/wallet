@@ -2,7 +2,6 @@
 
 .relative {
   position: relative;
-  z-index: var(--popup-index);
 }
 
 .wrapper {
@@ -17,11 +16,13 @@
   right: 0;
   top: 0;
   width: 100%;
+  z-index: var(--popup-cover-index);
 }
 
 .popupWrapper {
   height: 460px;
   width: 580px;
+  z-index: var(--popup-index);
 }
 
 .closeWrapper {

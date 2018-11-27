@@ -168,7 +168,8 @@ or "warn/action" ineastd of "red/green"
   *************************/
   --normal-index: 1;
   --menubar-index: 5;
-  --popup-index: 10;
+  --popup-cover-index: 10;
+  --popup-index: 20;
   --loadingbar-index: 100;
 
   /*************************
