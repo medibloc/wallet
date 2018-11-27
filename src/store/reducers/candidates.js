@@ -11,7 +11,9 @@ const candidates = (
     case actionTypes.candidatesCleared:
       return {};
     case actionTypes.candidatesLoaded: {
-      const allCandidates = action.data;
+      const allCandidates = action.data
+        .sort((a, b) => b.votePower - a.votePower)
+        .map((c, i) => ({ ...c, rank: (i + 1) }));
       const count = allCandidates ? allCandidates.length : 0;
       const sum = allCandidates ? allCandidates.reduce((a, b) => (
         { votePower: addMed(a.votePower, b.votePower) })) : 0;
@@ -24,23 +26,26 @@ const candidates = (
     case actionTypes.candidatesLoadFailed:
       return action.data.error;
     case actionTypes.candidatesUpdated: {
-      const allCandidates = Array.from(state.allCandidates);
+      const prevCandidates = Array.from(state.allCandidates);
       const voteDiff = action.data.voteDiff || [];
       const votePower = action.data.votePower || 0;
       let voteDiffCounter = 0;
 
       voteDiff.forEach((obj) => {
-        const index = allCandidates.findIndex(o => o.candidateId === obj.candidateId);
+        const index = prevCandidates.findIndex(o => o.candidateId === obj.candidateId);
         if (index >= 0) {
           if (obj.isAdded) {
-            allCandidates[index].votePower = addMed(allCandidates[index].votePower, votePower);
+            prevCandidates[index].votePower = addMed(prevCandidates[index].votePower, votePower);
             voteDiffCounter += 1;
           } else {
-            allCandidates[index].votePower = subMed(allCandidates[index].votePower, votePower);
+            prevCandidates[index].votePower = subMed(prevCandidates[index].votePower, votePower);
             voteDiffCounter -= 1;
           }
         }
       });
+
+      prevCandidates.sort((a, b) => b.votePower - a.votePower);
+      const allCandidates = prevCandidates.map((c, i) => ({ ...c, rank: (i + 1) }));
 
       const totalVotes = addMed(state.totalVotes, mulMed(votePower, voteDiffCounter));
 

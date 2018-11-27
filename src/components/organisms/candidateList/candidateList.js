@@ -90,7 +90,7 @@ class CandidateList extends React.Component {
               candidate={candidate}
               isVoted={this.state.votingList.includes(candidate.candidateId)}
               key={i}
-              rank={i + 1}
+              rank={candidate.rank}
               t={t}
               toggleVoting={() => this.toggleVoting(candidate.candidateId)}
               totalVotes={totalVotes}

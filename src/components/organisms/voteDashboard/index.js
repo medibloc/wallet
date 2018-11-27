@@ -6,8 +6,7 @@ import VoteDashboard from './voteDashboard';
 
 const mapStateToProps = state => ({
   account: state.account,
-  candidates: state.candidates && state.candidates.allCandidates ?
-    state.candidates.allCandidates.sort((a, b) => b.votePower - a.votePower) : [],
+  candidates: state.candidates ? state.candidates.allCandidates : [],
   totalVotes: state.candidates.totalVotes,
   votingList: state.account.voted,
   voted: state.account.voted,
