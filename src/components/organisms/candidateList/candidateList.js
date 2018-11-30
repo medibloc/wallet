@@ -100,7 +100,8 @@ class CandidateList extends React.Component {
       {this.state.showFooterMenu ?
         <VoteFooterMenu
           onClosePopUp={() => this.setShowFooterMenu(false)}
-          openPasswordStep={() => openPasswordStep(this.state.votingList)}/> : null
+          openPasswordStep={() => openPasswordStep(this.state.votingList)}
+          votingNum={this.state.votingList.length}/> : null
       }
     </WBox>;
   }

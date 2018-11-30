@@ -1,7 +1,7 @@
 @import '../../../app/variables.css';
 @import '../states.css';
 
-.headerWrapper {
+.voteFooterMenu {
   align-items: center;
   box-shadow: 0 -2px 4px 0 var(--color-black-8);
   color: var(--color-black-60);
@@ -14,12 +14,27 @@
   width: 100%;
 }
 
-.header {
-  color: var(--color-black-60);
-  font-size: var(--font-size-small);
-  line-height: 20px;
-  margin: 0 0 0 24px;
-  opacity: 1;
+.votingNumWrapper {
+  display: flex;
+  flex-direction: row;
+  margin: 22px 24px;
+
+  & .currentNumWrapper {
+    box-shadow: inset -1px 0 0 0 var(--color-black-16);
+    padding: 0 16px 0 0;
+
+    & span {
+      color: var(--color-black-87);
+    }
+
+    & .currentNum {
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  & .totalNumWrapper {
+    padding: 0 0 0 16px;
+  }
 }
 
 .buttonWrapper {

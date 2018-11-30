@@ -100,7 +100,6 @@
   "Nonce": "Nonce",
   "Not enough MED": "Not enough MED",
   "Not enough MED(includes staking)": "Not enough MED(includes staking)",
-  "Number of times left today: {{retryNum}}": "Number of times left today: {{retryNum}}",
   "OK": "OK",
   "Only letters, numbers, and periods are allowed.": "Only letters, numbers, and periods are allowed.",
   "Oops!": "Oops!",
@@ -206,6 +205,8 @@
   "Write message (optional)": "Write message (optional)",
   "Wrong Password": "Wrong Password",
   "Wrong password.": "Wrong password.",
+  "You are voting for": "You are voting for",
+  "You can vote for {{MAX_VOTE_NUM}} BP in total": "You can vote for {{MAX_VOTE_NUM}} BP in total",
   "You have already received the test MED. Please use different account or email.": "You have already received the test MED. Please use different account or email.",
   "You have enough bandwidth to send": "You have enough bandwidth to send",
   "You have the right not to consent to the necessary minimum use of personal information as described above.": "You have the right not to consent to the necessary minimum use of personal information as described above.",
@@ -223,5 +224,6 @@
   "password": "password",
   "privacy policy": "privacy policy",
   "required": "required",
-  "{{votedNum}} vote{{plural}}": "{{votedNum}} vote{{plural}}"
+  "{{votedNum}} vote{{plural}}": "{{votedNum}} vote{{plural}}",
+  "{{votingNum}} BP": "{{votingNum}} BP"
 }
