@@ -25,6 +25,8 @@
   margin: 0 0 0 56px;
 
   & .tab {
+    align-items: center;
+    display: flex;
     height: 32px;
   }
 
