@@ -1,5 +1,14 @@
 import actionTypes from '../../constants/actions';
+import BN from '../../utils/bn';
 import { addMed, mulMed, subMed } from '../../utils/med';
+
+const compare = (a, b) => {
+  if (BN.lt(b.votePower, a.votePower)) return -1;
+  if (BN.lt(a.votePower, b.votePower)) return 1;
+  if (a.alias < b.alias) return -1;
+  if (b.alias < a.alias) return 1;
+  return 0;
+};
 
 const candidates = (
   state = {
@@ -11,8 +20,9 @@ const candidates = (
     case actionTypes.candidatesCleared:
       return {};
     case actionTypes.candidatesLoaded: {
+      console.log(action.data);
       const allCandidates = action.data
-        .sort((a, b) => b.votePower - a.votePower)
+        .sort(compare)
         .map((c, i) => ({ ...c, rank: (i + 1) }));
       const count = allCandidates ? allCandidates.length : 0;
       const sum = allCandidates ? allCandidates.reduce((a, b) => (
@@ -56,7 +66,7 @@ const candidates = (
         totalVotes = addMed(totalVotes, mulMed(newVesting, action.data.candidates.length));
       }
 
-      prevCandidates.sort((a, b) => b.votePower - a.votePower);
+      prevCandidates.sort(compare);
       const allCandidates = prevCandidates.map((c, i) => ({ ...c, rank: (i + 1) }));
       totalVotes = addMed(totalVotes, mulMed(votePower, voteDiffCounter));
 
