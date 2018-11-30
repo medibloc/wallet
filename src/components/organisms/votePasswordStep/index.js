@@ -1,6 +1,7 @@
 import { translate } from 'react-i18next';
 import { connect } from 'react-redux';
-import { voted } from '../../../actions/account';
+import { errorToastDisplayed } from '../../../actions/toaster';
+import { vestedAndVoted, voted } from '../../../actions/account';
 import VotePasswordStep from './votePasswordStep';
 
 const mapStateToProps = state => ({
@@ -10,6 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  errorToastDisplayed: data => dispatch(errorToastDisplayed(data)),
+  vestedAndVoted: data => dispatch(vestedAndVoted(data)),
   voted: data => dispatch(voted(data)),
 });
 

@@ -38,9 +38,11 @@ class VotePasswordStep extends React.Component {
 
     // TODO: check failed transaction
     if (this.state.sent && (!this.props.loading ||
-      !(this.props.loading.includes(actionTypes.requestVoteTransaction))) &&
+      !(this.props.loading.includes(actionTypes.requestVoteTransaction) ||
+        this.props.loading.includes(actionTypes.requestVestAndVoteTransaction))) &&
       (prevProps.loading && prevProps.loading.length > 0 &&
-        (prevProps.loading.includes(actionTypes.requestVoteTransaction)))) {
+        (prevProps.loading.includes(actionTypes.requestVoteTransaction) ||
+          prevProps.loading.includes(actionTypes.requestVestAndVoteTransaction)))) {
       this.setState({ requestSuccess: true });
     }
 
@@ -73,28 +75,26 @@ class VotePasswordStep extends React.Component {
     const nonce = Number(this.props.account.nonce) + 1;
     this.setState({ sent: true });
     setTimeout(() => {
-      // if (this.props.autoVesting && this.props.vestingAmount) {
-      //   this.props.vestedAndVoted({
-      //     account: this.props.account,
-      //     activePeer: this.props.peers.activePeer,
-      //     chainId: this.props.peers.chainId,
-      //     description: this.props.description,
-      //     nonce,
-      //     password: this.state.password.value,
-      //     to: this.props.recipient,
-      //     transferAmount: this.props.amount,
-      //     vestingAmount: this.props.vestingAmount,
-      //   });
-      // } else {
-      this.props.voted({
-        account: this.props.account,
-        activePeer: this.props.peers.activePeer,
-        candidates: this.props.votingList,
-        chainId: this.props.peers.chainId,
-        nonce,
-        password: this.state.password.value,
-      });
-      // }
+      if (this.props.autoVesting && this.props.vestingAmount) {
+        this.props.vestedAndVoted({
+          account: this.props.account,
+          activePeer: this.props.peers.activePeer,
+          candidates: this.props.votingList,
+          chainId: this.props.peers.chainId,
+          nonce,
+          password: this.state.password.value,
+          vestingAmount: this.props.vestingAmount,
+        });
+      } else {
+        this.props.voted({
+          account: this.props.account,
+          activePeer: this.props.peers.activePeer,
+          candidates: this.props.votingList,
+          chainId: this.props.peers.chainId,
+          nonce,
+          password: this.state.password.value,
+        });
+      }
     }, 500);
   }
 

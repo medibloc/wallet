@@ -403,6 +403,91 @@ export const vestedAndSent = ({ account, activePeer, chainId, description,
 /**
  *
  */
+export const vestedAndVoted = ({ account, activePeer, candidates, chainId,
+  nonce, password, vestingAmount }) =>
+  (dispatch) => {
+    dispatch(loadingStarted(actionTypes.requestVestAndVoteTransaction));
+    dispatch(passwordVerifying());
+    Promise.all([
+      vest({
+        account,
+        activePeer,
+        chainId,
+        nonce,
+        password,
+        value: toRawMed(vestingAmount),
+      }),
+      vote({
+        account,
+        activePeer,
+        candidates,
+        chainId,
+        nonce: Number(nonce) + 1,
+        password,
+      }),
+    ]).then((values) => {
+      dispatch({
+        data: {
+          from: account.address,
+          hash: values[0].transactionId,
+          timestamp: values[0].timestamp,
+          value: toRawMed(vestingAmount),
+          tx_type: transactionTypes.vest,
+        },
+        type: actionTypes.transactionAdded,
+      });
+      dispatch({
+        data: {
+          from: account.address,
+          hash: values[1].transactionId,
+          timestamp: values[1].timestamp,
+          voted: candidates,
+          tx_type: transactionTypes.vote,
+        },
+        type: actionTypes.transactionAdded,
+      });
+      dispatch({
+        data: {
+          bandwidth: addMed(account.bandwidth, 2 * BANDWIDTH_USED_TX),
+          nonce: (Number(nonce) + 1).toString(),
+          vesting: addMed(account.vesting, toRawMed(vestingAmount)),
+          voted: candidates,
+        },
+        type: actionTypes.accountUpdated,
+      });
+      const voteAdded = difference(candidates, account.voted)
+        .map(c => ({ candidateId: c, isAdded: true }));
+      const voteSubtracted = difference(account.voted, candidates)
+        .map(c => ({ candidateId: c, isAdded: false }));
+      const voteDiff = voteAdded.concat(voteSubtracted);
+      dispatch({
+        data: {
+          candidates,
+          newVesting: toRawMed(vestingAmount),
+          voteDiff,
+          votePower: addMed(account.vesting),
+        },
+        type: actionTypes.candidatesUpdated,
+      });
+      dispatch(loadingFinished(actionTypes.requestVestAndVoteTransaction));
+      dispatch(passwordUsed());
+    })
+      .catch((error) => {
+        dispatch(loadingFinished(actionTypes.requestVestAndVoteTransaction));
+        if (error === errorTypes.wrongPasswordError) {
+          dispatch(passwordFailed());
+        } else {
+          const errorMessage = error && error.message ? `${error.message}.` :
+            i18next.t('An error occurred while creating the transaction.');
+          dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
+          dispatch(passwordUsed());
+        }
+      });
+  };
+
+/**
+ *
+ */
 export const voted = ({ account, activePeer, candidates, chainId,
   nonce, password }) =>
   (dispatch) => {
@@ -436,9 +521,9 @@ export const voted = ({ account, activePeer, candidates, chainId,
       });
       const voteAdded = difference(candidates, account.voted)
         .map(c => ({ candidateId: c, isAdded: true }));
-      const voteSubstracted = difference(account.voted, candidates)
+      const voteSubtracted = difference(account.voted, candidates)
         .map(c => ({ candidateId: c, isAdded: false }));
-      const voteDiff = voteAdded.concat(voteSubstracted);
+      const voteDiff = voteAdded.concat(voteSubtracted);
       dispatch({
         data: {
           voteDiff,

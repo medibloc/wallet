@@ -21,7 +21,7 @@
 
 .autoVestingWrapper {
   height: 388px;
-  padding: 56px 52px 32px;
+  padding: 56px 56px 32px;
   width: 480px !important;
   z-index: var(--popup-index);
 
@@ -75,9 +75,9 @@
       & .closeButton {
         border: 1px solid var(--color-black-38) !important;
         color: var(--color-black-38) !important;
-        font-size: var(--font-size-small);
+        font-size: var(--font-size-h6);
         height: 100%;
-        width: 45%;
+        width: 48%;
       }
 
       & .closeButton:hover {
@@ -86,9 +86,9 @@
       }
 
       & .okButton {
-        font-size: var(--font-size-small);
+        font-size: var(--font-size-h6);
         height: 100%;
-        width: 45%;
+        width: 48%;
       }
     }
   }

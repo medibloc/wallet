@@ -30,6 +30,7 @@ const candidates = (
       const voteDiff = action.data.voteDiff || [];
       const votePower = action.data.votePower || 0;
       let voteDiffCounter = 0;
+      let totalVotes = state.totalVotes;
 
       voteDiff.forEach((obj) => {
         const index = prevCandidates.findIndex(o => o.candidateId === obj.candidateId);
@@ -44,10 +45,20 @@ const candidates = (
         }
       });
 
+      const newVesting = action.data.newVesting;
+      if (newVesting) {
+        action.data.candidates.forEach((candidateId) => {
+          const index = prevCandidates.findIndex(o => o.candidateId === candidateId);
+          if (index >= 0) {
+            prevCandidates[index].votePower = addMed(prevCandidates[index].votePower, newVesting);
+          }
+        });
+        totalVotes = addMed(totalVotes, mulMed(newVesting, action.data.candidates.length));
+      }
+
       prevCandidates.sort((a, b) => b.votePower - a.votePower);
       const allCandidates = prevCandidates.map((c, i) => ({ ...c, rank: (i + 1) }));
-
-      const totalVotes = addMed(state.totalVotes, mulMed(votePower, voteDiffCounter));
+      totalVotes = addMed(totalVotes, mulMed(votePower, voteDiffCounter));
 
       return {
         allCandidates,

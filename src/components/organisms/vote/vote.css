@@ -1,0 +1,11 @@
+@import '../../app/variables.css';
+
+.vote {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+}

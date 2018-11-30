@@ -42,6 +42,7 @@ const actionTypes = {
   requestTransferTransaction: 'REQUEST_TRANSFER_TRANSACTION',
   requestVestTransaction: 'REQUEST_VEST_TRANSACTION',
   requestVestAndSendTransaction: 'REQUEST_VEST_AND_SEND_TRANSACTION',
+  requestVestAndVoteTransaction: 'REQUEST_VEST_AND_VOTE_TRANSACTION',
   requestVoteTransaction: 'REQUEST_VOTE_TRANSACTION',
   requestWithdrawVestingTransaction: 'REQUEST_WITHDRAW_VESTING_TRANSACTION',
   searchTransactions: 'SEARCH_TRANSACTIONS',

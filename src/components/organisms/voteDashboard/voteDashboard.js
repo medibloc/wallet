@@ -1,7 +1,7 @@
 import React from 'react';
 import CandidateDashboard from '../candidateDashboard';
 import VotingStatus from '../votingStatus';
-import VotePasswordStep from '../votePasswordStep';
+import Vote from '../vote';
 import WBox from '../../atoms/wbox/index';
 import styles from './voteDashboard.css';
 
@@ -10,7 +10,7 @@ class VoteDashboard extends React.Component {
     super(props);
 
     this.state = {
-      showVotePasswordStep: false,
+      showVoteStep: false,
       votingList: props.votingList,
     };
 
@@ -32,9 +32,9 @@ class VoteDashboard extends React.Component {
     });
   }
 
-  toggleVotePasswordStep() {
+  toggleVoteStep() {
     this.setState({
-      showVotePasswordStep: !this.state.showVotePasswordStep,
+      showVoteStep: !this.state.showVoteStep,
     });
   }
 
@@ -44,13 +44,13 @@ class VoteDashboard extends React.Component {
       <CandidateDashboard
         openPasswordStep={(votingList) => {
           this.setVotingList(votingList);
-          this.toggleVotePasswordStep();
+          this.toggleVoteStep();
         }}
         {...this.props}/>
       {
-        this.state.showVotePasswordStep ?
-          <VotePasswordStep
-            closePopUp={() => this.toggleVotePasswordStep()}
+        this.state.showVoteStep ?
+          <Vote
+            closePopUp={() => this.toggleVoteStep()}
             votingList={this.state.votingList}/> : null
       }
     </WBox>;
