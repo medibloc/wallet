@@ -22,3 +22,16 @@
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable::-webkit-scrollbar * {
+  background: transparent;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background: var(--color-black-16) !important;
+  border-radius: 4px;
+}

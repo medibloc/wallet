@@ -23,3 +23,16 @@
   overflow-y: scroll;
   width: 100%;
 }
+
+.candidateRowWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.candidateRowWrapper::-webkit-scrollbar * {
+  background: transparent;
+}
+
+.candidateRowWrapper::-webkit-scrollbar-thumb {
+  background: var(--color-black-16) !important;
+  border-radius: 4px;
+}
