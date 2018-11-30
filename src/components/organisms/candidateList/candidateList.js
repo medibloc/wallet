@@ -62,6 +62,7 @@ class CandidateList extends React.Component {
     } else {
       this.setState({
         showFooterMenu: false,
+        votingList: Array.from(this.props.voted) || [],
       });
     }
   }
