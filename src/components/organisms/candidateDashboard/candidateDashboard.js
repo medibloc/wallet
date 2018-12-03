@@ -24,6 +24,7 @@ class CandidateDashboard extends React.Component {
     return <WBox className={styles.wrapper}>
       <CandidateDashboardHeader
         candidateNum={candidates ? candidates.length : 0}
+        loadCandidates={() => this.props.loadCandidates()}
         setShowMyBP={bool => this.setShowMyBP(bool)}
         showMyBP={this.state.showMyBP}/>
       <CandidateList

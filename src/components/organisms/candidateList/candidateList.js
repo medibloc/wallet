@@ -69,7 +69,7 @@ class CandidateList extends React.Component {
 
   render() {
     const { candidates, loading, openPasswordStep, showMyBP, t, totalVotes } = this.props;
-    const candidateList = showMyBP ?
+    const candidateList = showMyBP && candidates ?
       candidates.filter(c => this.props.voted.includes(c.candidateId)) : candidates;
 
     if (loading) return null;

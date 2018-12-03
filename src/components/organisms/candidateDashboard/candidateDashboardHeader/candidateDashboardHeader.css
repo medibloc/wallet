@@ -5,8 +5,22 @@
   display: flex;
   height: 56px;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
+
+  & .leftWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  & .rightWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 }
 
 .title {
@@ -46,5 +60,16 @@
 
   & .hasLeftMargin {
     margin: 0 0 0 24px;
+  }
+}
+
+.refreshWrapper {
+  height: 24px;
+  padding: 16px;
+  width: 24px;
+
+  & .refresh {
+    height: 24px;
+    width: 24px;
   }
 }
