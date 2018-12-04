@@ -14,18 +14,25 @@ class Vote extends React.Component {
     const account = props.account;
     if (BN.lt(account.vesting, MIN_VESTING_TO_VOTE)) { // check balance
       if (BN.lt(addMed(account.balance, account.vesting),
-        addMed(MIN_VESTING_TO_VOTE, BANDWIDTH_USED_TX))) { // not enough med
+        addMed(MIN_VESTING_TO_VOTE))) { // not enough med
         this.state = {
           notEnoughMed: true,
           showAutoVesting: false,
           vestingAmount: 0,
         };
-      } else { // need more vesting
+      } else {
         const diff = subMed(MIN_VESTING_TO_VOTE, account.vesting);
         const avail = subMed(account.vesting, account.bandwidth);
         const vestingAmount = BN.lt(addMed(diff, avail), BANDWIDTH_USED_TX) ?
           BANDWIDTH_USED_TX : diff;
-        this.state = {
+        if (BN.lt(account.balance, vestingAmount)) { // not enough med
+          this.state = {
+            notEnoughMed: true,
+            showAutoVesting: false,
+            vestingAmount: 0,
+          };
+        }
+        this.state = { // need more vesting
           notEnoughMed: false,
           showAutoVesting: true,
           vestingAmount: fromRawMed(vestingAmount),
