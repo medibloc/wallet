@@ -3,14 +3,16 @@
 .wrapper {
   align-items: center;
   display: flex;
-  height: 56px;
   flex-direction: row;
+  height: 56px;
   justify-content: space-between;
+  overflow: visible;
   width: 100%;
 
   & .leftWrapper {
     align-items: center;
     display: flex;
+    height: 100%;
     flex-direction: row;
     justify-content: flex-start;
   }
@@ -18,6 +20,7 @@
   & .rightWrapper {
     align-items: center;
     display: flex;
+    height: 100%;
     flex-direction: row;
     justify-content: flex-end;
   }
@@ -64,12 +67,18 @@
 }
 
 .refreshWrapper {
-  height: 24px;
-  padding: 16px;
+  align-items: center;
+  display: flex;
+  margin: 16px 8px;
   width: 24px;
 
   & .refresh {
     height: 24px;
     width: 24px;
   }
+}
+
+.searchWrapper {
+  width: 320px;
+  padding: 0 16px;
 }

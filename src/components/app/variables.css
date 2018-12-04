@@ -167,6 +167,7 @@ or "warn/action" ineastd of "red/green"
         Z-Indexes
   *************************/
   --normal-index: 1;
+  --dropdown-index: 3;
   --menubar-index: 5;
   --popup-cover-index: 10;
   --popup-index: 20;

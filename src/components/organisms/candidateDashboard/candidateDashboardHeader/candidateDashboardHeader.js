@@ -1,6 +1,7 @@
 import { translate } from 'react-i18next';
 import React from 'react';
 import InlineSVG from 'svg-inline-react';
+import CandidateSearch from '../../../molecules/candidateSearch/candidateSearch';
 import Refresh from '../../../../assets/images/icons/refresh.svg';
 import WBox from '../../../atoms/wbox/index';
 import styles from './candidateDashboardHeader.css';
@@ -14,7 +15,7 @@ class CandidateDashboardHeader extends React.Component {
   }
 
   render() {
-    const { candidateNum, loadCandidates, setShowMyBP, showMyBP, t } = this.props;
+    const { showMyBP, t } = this.props;
     return <WBox className={styles.wrapper}>
       <div className={styles.leftWrapper}>
         <div className={styles.title}>
@@ -23,17 +24,17 @@ class CandidateDashboardHeader extends React.Component {
         <div className={styles.candidateNumWrapper}>
           <h6>
             <span>
-              {t('Total: {{candidateNum}}', { candidateNum })}{t(' ')}
+              {t('Total: {{candidateNum}}', { candidateNum: this.props.candidateNum })}{t(' ')}
             </span>
           </h6>
         </div>
         <div className={styles.candidateFilterWrapper}>
           <div className={`${styles.tab} ${!showMyBP ? styles.activeTab : styles.inactiveTab}`}
-            onClick={() => setShowMyBP(false)}>
+            onClick={() => this.props.setShowMyBP(false)}>
             <h6>{t('All')}</h6>
           </div>
           <div className={`${styles.tab} ${styles.hasLeftMargin} ${showMyBP ? styles.activeTab : styles.inactiveTab}`}
-            onClick={() => setShowMyBP(true)}>
+            onClick={() => this.props.setShowMyBP(true)}>
             <h6>{t('My BP')}</h6>
           </div>
         </div>
@@ -41,8 +42,14 @@ class CandidateDashboardHeader extends React.Component {
       <div className={styles.rightWrapper}>
         <div className={`${styles.refreshWrapper}`}>
           <InlineSVG className={`${styles.refresh}`}
-            onClick={() => loadCandidates()}
+            onClick={() => this.props.loadCandidates()}
             src={Refresh}/>
+        </div>
+        <div className={`${styles.searchWrapper}`}>
+          <CandidateSearch
+            candidates={this.props.candidates}
+            clearSearchedCandidate={() => this.props.clearSearchedCandidate()}
+            setSearchedCandidate={candidateId => this.props.setSearchedCandidate(candidateId)}/>
         </div>
       </div>
     </WBox>;

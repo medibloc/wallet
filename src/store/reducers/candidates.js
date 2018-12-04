@@ -20,7 +20,6 @@ const candidates = (
     case actionTypes.candidatesCleared:
       return {};
     case actionTypes.candidatesLoaded: {
-      console.log(action.data);
       const allCandidates = action.data
         .sort(compare)
         .map((c, i) => ({ ...c, rank: (i + 1) }));

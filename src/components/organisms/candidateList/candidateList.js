@@ -68,11 +68,17 @@ class CandidateList extends React.Component {
   }
 
   render() {
-    const { candidates, loading, openPasswordStep, showMyBP, t, totalVotes } = this.props;
-    const candidateList = showMyBP && candidates ?
-      candidates.filter(c => this.props.voted.includes(c.candidateId)) : candidates;
+    const { openPasswordStep, t } = this.props;
+    let candidateList;
+    if (!this.props.searchedCandidate) {
+      candidateList = (this.props.showMyBP && this.props.candidates) ?
+        this.props.candidates.filter(c => this.props.voted.includes(c.candidateId)) :
+        this.props.candidates;
+    } else {
+      candidateList = this.props.searchedCandidate;
+    }
 
-    if (loading) return null;
+    if (this.props.loading) return null;
     // istanbul ignore else
     if (!candidateList || candidateList.length === 0) {
       // istanbul ignore else
@@ -85,7 +91,6 @@ class CandidateList extends React.Component {
       <CandidatesHeader/>
       <div className={styles.candidateRowWrapper}>
         {candidateList
-        // .filter(fixIncomingFilter)
           .map((candidate, i) => (
             <CandidateRow
               candidate={candidate}
@@ -94,7 +99,7 @@ class CandidateList extends React.Component {
               rank={candidate.rank}
               t={t}
               toggleVoting={() => this.toggleVoting(candidate.candidateId)}
-              totalVotes={totalVotes}
+              totalVotes={this.props.totalVotes}
             />))}
       </div>
       {this.state.showFooterMenu ?

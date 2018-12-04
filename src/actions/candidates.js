@@ -5,8 +5,8 @@ import candidates from '../utils/api/candidates';
 export const loadCandidates = () =>
   (dispatch, getState) => {
     const mServer = getState().peers.mServer;
-    dispatch({ type: actionTypes.candidatesCleared });
     dispatch(loadingStarted(actionTypes.candidatesLoaded));
+    // dispatch({ type: actionTypes.candidatesCleared });
     candidates({ mServer })
       .then((response) => {
         dispatch({ data: response, type: actionTypes.candidatesLoaded });
@@ -17,4 +17,6 @@ export const loadCandidates = () =>
       });
   };
 
-export default loadCandidates;
+export const candidatesUpdated = data => (dispatch) => {
+  dispatch({ data, type: actionTypes.candidatesUpdated });
+};

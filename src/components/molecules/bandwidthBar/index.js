@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux';
 import BandwidthBar from './bandwidthBar';
 

@@ -9,6 +9,7 @@ import { send, vest, vote, withdrawVesting } from '../utils/api/account';
 // import { delegateRegisteredFailure } from './delegate';
 // import { errorAlertDialogDisplayed } from './dialog';
 // import Fees from '../constants/fees';
+import { candidatesUpdated } from './candidates';
 import { loadingStarted, loadingFinished } from './loading';
 import { addMed, subMed, toRawMed } from '../utils/med';
 import errorTypes from '../constants/errors';
@@ -460,15 +461,12 @@ export const vestedAndVoted = ({ account, activePeer, candidates, chainId,
       const voteSubtracted = difference(account.voted, candidates)
         .map(c => ({ candidateId: c, isAdded: false }));
       const voteDiff = voteAdded.concat(voteSubtracted);
-      dispatch({
-        data: {
-          candidates,
-          newVesting: toRawMed(vestingAmount),
-          voteDiff,
-          votePower: addMed(account.vesting),
-        },
-        type: actionTypes.candidatesUpdated,
-      });
+      dispatch(candidatesUpdated({
+        candidates,
+        newVesting: toRawMed(vestingAmount),
+        voteDiff,
+        votePower: addMed(account.vesting),
+      }));
       dispatch(loadingFinished(actionTypes.requestVestAndVoteTransaction));
       dispatch(passwordUsed());
     })
@@ -524,13 +522,10 @@ export const voted = ({ account, activePeer, candidates, chainId,
       const voteSubtracted = difference(account.voted, candidates)
         .map(c => ({ candidateId: c, isAdded: false }));
       const voteDiff = voteAdded.concat(voteSubtracted);
-      dispatch({
-        data: {
-          voteDiff,
-          votePower: account.vesting,
-        },
-        type: actionTypes.candidatesUpdated,
-      });
+      dispatch(candidatesUpdated({
+        voteDiff,
+        votePower: account.vesting,
+      }));
       dispatch(loadingFinished(actionTypes.requestVoteTransaction));
       dispatch(passwordUsed());
     })
