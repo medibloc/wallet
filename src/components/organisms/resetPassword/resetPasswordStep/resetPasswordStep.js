@@ -74,12 +74,12 @@ class ResetPasswordStep extends React.Component {
         error: typeof error === 'string' ? error : this.validateInput(name, value),
       },
     });
-    if (name === 'newPassword'
-      && !!this.state.newConfirmPassword
-      && this.state.newConfirmPassword !== '') {
+    const newConfirmPasswordValue = this.state.newConfirmPassword.value;
+    if (name === 'newPassword' && !!newConfirmPasswordValue && newConfirmPasswordValue !== '') {
       this.setState({
         newConfirmPassword: {
-          error: this.validateNewConfirmPassword(this.state.newConfirmPassword.value, value),
+          value: newConfirmPasswordValue,
+          error: this.validateNewConfirmPassword(newConfirmPasswordValue, value),
         },
       });
     }
@@ -97,17 +97,17 @@ class ResetPasswordStep extends React.Component {
       return this.props.t('Required');
     } else if (value.length < 8) {
       return this.props.t('Must be at least 8 characters');
-    } else if (!value.match(this.inputValidationRegexps[name])) {
+    } else if (!value.match(this.inputValidationRegexps.newPassword)) {
       return this.props.t('Try a mix of lowercase letters, uppercase letters, and numbers');
     }
     return undefined;
   }
 
-  validateNewConfirmPassword(value, newPassword = this.state.newPassword) {
+  validateNewConfirmPassword(value, newPasswordValue = this.state.newPassword.value) {
     if (!value) {
       return this.props.t('Required');
     }
-    return newPassword.value === value ? null : this.props.t('not matched with password');
+    return newPasswordValue === value ? null : this.props.t('not matched with password');
   }
 
   validateInput(name, value) {
