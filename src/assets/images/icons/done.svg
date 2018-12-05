@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="216" height="216" viewBox="0 0 216 216">
-    <g fill="none" fill-rule="evenodd">
-        <path fill="#FFF" fill-rule="nonzero" d="M0 0h216v216H0z"/>
-        <path d="M56 56h104v104H56z"/>
-        <path stroke="#4F8DF3" stroke-width="2" d="M60.333 147h17.334V95H60.333v52zm95.334-47.667c0-4.766-3.9-8.666-8.667-8.666h-27.343l4.116-19.804.13-1.386a6.523 6.523 0 0 0-1.906-4.594l-4.594-4.55L88.89 88.89c-1.603 1.56-2.557 3.727-2.557 6.11v43.333c0 4.767 3.9 8.667 8.667 8.667h39a8.608 8.608 0 0 0 7.973-5.287l13.087-30.55c.39-.996.607-2.036.607-3.163v-8.667zM62 40h92l-14.253-14M154 176H62l14.253 14"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="106" height="106" viewBox="0 0 106 106">
+    <g fill="none" fill-rule="nonzero" stroke="#4F8DF3" stroke-width="2" transform="translate(1 1)">
+        <circle cx="52" cy="52" r="52"/>
+        <path d="M20 50.433l21.766 21.875L84.313 31"/>
     </g>
 </svg>

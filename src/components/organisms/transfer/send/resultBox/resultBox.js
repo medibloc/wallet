@@ -4,7 +4,7 @@ import { PrimaryButton } from '../../../../atoms/toolbox/buttons/button';
 import TransferTabs from '../../transferTabs/index';
 import WBox from '../../../../atoms/wbox/index';
 import styles from './resultBox.css';
-import done from '../../../../../assets/images/icons/done.svg';
+import transferred from '../../../../../assets/images/icons/transferred.svg';
 
 class ResultBox extends React.Component {
   render() {
@@ -19,7 +19,7 @@ class ResultBox extends React.Component {
             </h5>
             <div className={styles.iconOuterWrapper}>
               <div className={styles.iconWrapper}>
-                <InlineSVG src={done} />
+                <InlineSVG src={transferred} />
               </div>
             </div>
           </div>
