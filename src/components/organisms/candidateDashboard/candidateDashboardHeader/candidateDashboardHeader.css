@@ -43,6 +43,7 @@
 
   & .tab {
     align-items: center;
+    cursor: pointer;
     display: flex;
     height: 32px;
   }
@@ -73,6 +74,7 @@
   width: 24px;
 
   & .refresh {
+    cursor: pointer;
     height: 24px;
     width: 24px;
   }
