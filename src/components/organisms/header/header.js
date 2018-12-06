@@ -1,13 +1,13 @@
 import React from 'react';
-import Countdown from 'react-countdown-now';
+// import Countdown from 'react-countdown-now';
 import AccountVisual from '../../atoms/accountVisual/index';
 import Box from '../../atoms/box/index';
-import CountDownTemplate from './countDownTemplate';
+// import CountDownTemplate from './countDownTemplate';
 import CopyToClipboard from '../../atoms/copyToClipboard/index';
 import MedAmount from '../../atoms/medAmount/index';
 import PrivateWrapper from '../../atoms/privateWrapper/index';
 import styles from './header.css';
-import CustomCountDown from './customCountDown';
+// import CustomCountDown from './customCountDown';
 import { addMed } from '../../../utils/med';
 
 class Header extends React.Component {
@@ -30,7 +30,7 @@ class Header extends React.Component {
                       value={account.address}
                       className={`${styles.address} account-information-address`}
                       copyClassName={styles.copy}/>
-                    {!this.props.autoLog && account.passphrase ?
+                    { /* !this.props.autoLog && account.passphrase ?
                       <div className={styles.unlocked}>{this.props.t('Unlocked')}</div> : <div/>}
                     {this.props.autoLog ? <div className={styles.timer}>
                       {((account.expireTime &&
@@ -53,7 +53,7 @@ class Header extends React.Component {
                         </div> : <div/>}
                     </div>
                       : <div/>
-                    }
+                    */ }
                   </div>
                   <Box className={styles.avatar}>
                     <AccountVisual
