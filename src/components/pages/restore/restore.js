@@ -15,10 +15,11 @@ class Restore extends React.Component {
     this.props.history.push('/');
   }
 
-  onRegister({ address, encKey, label }) {
+  onRegister({ address, encKey, encPassphrase, label }) {
     this.props.accountSaved({
       address,
       encKey,
+      encPassphrase,
       label,
       networkCode: networks.default.code,
     });

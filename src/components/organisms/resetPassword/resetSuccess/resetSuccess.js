@@ -16,7 +16,7 @@ class ResetSuccess extends React.Component {
             </div>
           </div>
           <div className={styles.titleWrapper}>
-            <h5>{t('Your password has been successfully changed.')}</h5>
+            <h6>{t('Your password has been successfully changed.')}</h6>
           </div>
         </div>
         <footer className={styles.resultBoxFooter}>

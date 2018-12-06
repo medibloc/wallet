@@ -83,10 +83,11 @@ class Login extends React.Component {
     });
   }
 
-  onLoginSubmission({ address, encKey }) {
+  onLoginSubmission(account) {
     this.props.accountSwitched({
-      address,
-      encKey,
+      address: account.address,
+      encKey: account.encKey,
+      encPassphrase: account.encPassphrase || null,
       networkCode: this.state.networkCode,
     });
     // this.props.activePeerSet({
@@ -149,10 +150,9 @@ class Login extends React.Component {
               className={`${styles.nextButton}`}
               disabled={!this.state.password}
               onClick={() => {
-                const address = this.state.selectedAddress;
-                const encKey = accounts.find(a => a.address === this.state.selectedAddress).encKey;
-                if (this.checkPasswordCorrect({ address, encKey })) {
-                  this.onLoginSubmission({ address, encKey });
+                const account = accounts.find(a => a.address === this.state.selectedAddress);
+                if (this.checkPasswordCorrect(account)) {
+                  this.onLoginSubmission(account);
                   this.props.history.push(`${routes.dashboard.path}`);
                 }
               }}/>

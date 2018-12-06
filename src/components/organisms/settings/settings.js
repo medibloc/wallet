@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { translate } from 'react-i18next';
 import InlineSVG from 'svg-inline-react';
 import styles from './settings.css';
+import BackupWallet from '../backupWallet';
 import CloseButton from '../../../assets/images/icons/buttonX.svg';
 import ResetPassword from '../resetPassword/index';
 import SettingsMenu from './settingsMenu/index';
@@ -32,11 +33,14 @@ class Settings extends React.Component {
         id: 'resetPassword',
         label: t('Reset password'),
       },
-      // {
-      //   id: 'backupWallet',
-      //   label: t('Backup wallet'),
-      // },
     ];
+
+    if (this.props.account.encPassphrase) {
+      settings.push({
+        id: 'backupWallet',
+        label: t('Backup wallet'),
+      });
+    }
 
     return (
       <Fragment>
@@ -71,6 +75,10 @@ class Settings extends React.Component {
                   {
                     (this.state.active === settings[0].id) ?
                       <ResetPassword {...this.props} /> : null
+                  }
+                  {
+                    (settings.length > 1 && this.state.active === settings[1].id) ?
+                      <BackupWallet {...this.props} /> : null
                   }
                 </div>
               </WBox>

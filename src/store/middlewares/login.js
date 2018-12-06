@@ -14,11 +14,12 @@ const loginMiddleware = store => next => (action) => {
   }
   next(action);
 
-  const { encKey, activePeer, networkCode } = action.data;
+  const { encKey, encPassphrase, activePeer, networkCode } = action.data;
   const address = action.data.address;
   const accountBasics = {
     address,
     encKey,
+    encPassphrase,
     networkCode,
   };
 

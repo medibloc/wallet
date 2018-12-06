@@ -26,9 +26,7 @@ class Safekeeping extends React.Component {
           text={passphrase}>
           <SecondaryButton
             label={`${t('Copy them')}`}
-            onClick={() => showCopySuccessToast({
-              label: t('Backup phrase copied.'),
-            })} />
+            onClick={() => showCopySuccessToast()} />
         </CopyToClipboard>
       </div>
       <PassphraseBox

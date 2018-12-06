@@ -9,6 +9,7 @@ const peerSet = (data, config) => ({
     activePeer: client(config.nodes),
     chainId: config.chainId,
     encKey: data.encKey,
+    encPassphrase: data.encPassphrase,
     mServer: mServer(config.mServerURL),
     networkCode: config.code,
     noSavedAccounts: data.noSavedAccounts,

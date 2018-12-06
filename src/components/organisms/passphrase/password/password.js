@@ -7,6 +7,7 @@ import { Input } from '../../../atoms/toolbox/inputs/input';
 import { extractAddress,
   extractKeyPair,
   getAccountFromKeyPair } from '../../../../utils/account';
+import { encryptData } from '../../../../utils/crypto';
 import regex from '../../../../utils/regex';
 import styles from './password.css';
 
@@ -115,9 +116,12 @@ class Password extends React.Component {
         onClick={() => {
           const label = this.state.label;
           const account = getAccountFromKeyPair(extractKeyPair(passphrase), this.state.password);
+          const encPassphrase = encryptData(this.state.password, passphrase);
+
           this.props.finalCallback({
             address: extractAddress(account.pubKey),
             encKey: account.encryptedPrivKey,
+            encPassphrase,
             label,
           });
         }}/>
