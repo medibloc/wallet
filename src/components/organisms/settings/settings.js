@@ -20,6 +20,7 @@ class Settings extends React.Component {
 
   logOut() {
     this.props.history.push(`${routes.login.path}`);
+    this.props.logOut();
   }
 
   setActiveSetting(active) {

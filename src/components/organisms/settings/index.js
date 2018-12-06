@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import { accountLoggedOut } from '../../../actions/account';
 import Settings from './settings';
 
 /**
@@ -10,6 +11,11 @@ const mapStateToProps = state => ({
   savedAccounts: state.savedAccounts,
 });
 
+const mapDispatchToProps = dispatch => ({
+  logOut: () => dispatch(accountLoggedOut()),
+});
+
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(translate()(Settings));
