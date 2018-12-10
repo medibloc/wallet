@@ -449,6 +449,7 @@ export const vestedAndVoted = ({ account, activePeer, candidates, chainId,
       });
       dispatch({
         data: {
+          balance: subMed(account.balance, toRawMed(vestingAmount)),
           bandwidth: addMed(account.bandwidth, 2 * BANDWIDTH_USED_TX),
           nonce: (Number(nonce) + 1).toString(),
           vesting: addMed(account.vesting, toRawMed(vestingAmount)),
