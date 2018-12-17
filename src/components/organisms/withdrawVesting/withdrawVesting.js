@@ -124,7 +124,7 @@ class WithdrawVesting extends React.Component {
   }
 
   getMaxAmount() {
-    return fromRawMed(BN.max(0, subMed(this.props.account.vesting, BANDWIDTH_USED_TX)));
+    return fromRawMed(BN.max(0, subMed(this.props.account.staking, BANDWIDTH_USED_TX)));
   }
 
   render() {
@@ -138,7 +138,7 @@ class WithdrawVesting extends React.Component {
               {t('Staking MED')}
             </h6>
             <h4 className={styles.vesting}>
-              <MedAmount val={this.props.account.vesting}/>
+              <MedAmount val={this.props.account.staking}/>
             </h4>
           </div>
           <form className={styles.form}>

@@ -12,8 +12,8 @@ class Vote extends React.Component {
   constructor(props) {
     super(props);
     const account = props.account;
-    if (BN.lt(account.vesting, MIN_VESTING_TO_VOTE)) { // check balance
-      if (BN.lt(addMed(account.balance, account.vesting),
+    if (BN.lt(account.staking, MIN_VESTING_TO_VOTE)) { // check balance
+      if (BN.lt(addMed(account.balance, account.staking),
         addMed(MIN_VESTING_TO_VOTE))) { // not enough med
         this.state = {
           notEnoughMed: true,
@@ -21,8 +21,8 @@ class Vote extends React.Component {
           vestingAmount: 0,
         };
       } else {
-        const diff = subMed(MIN_VESTING_TO_VOTE, account.vesting);
-        const avail = subMed(account.vesting, account.bandwidth);
+        const diff = subMed(MIN_VESTING_TO_VOTE, account.staking);
+        const avail = subMed(account.staking, account.bandwidth);
         const vestingAmount = BN.lt(addMed(diff, avail), BANDWIDTH_USED_TX) ?
           BANDWIDTH_USED_TX : diff;
         if (BN.lt(account.balance, vestingAmount)) { // not enough med
@@ -39,7 +39,7 @@ class Vote extends React.Component {
         };
       }
     } else { // check bandwidth
-      const avail = subMed(account.vesting, account.bandwidth);
+      const avail = subMed(account.staking, account.bandwidth);
       if (BN.lt(avail, BANDWIDTH_USED_TX)) { // need more vesting
         this.state = {
           notEnoughMed: false,

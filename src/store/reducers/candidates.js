@@ -54,15 +54,15 @@ const candidates = (
         }
       });
 
-      const newVesting = action.data.newVesting;
-      if (newVesting) {
+      const newStaking = action.data.newStaking;
+      if (newStaking) {
         action.data.candidates.forEach((candidateId) => {
           const index = prevCandidates.findIndex(o => o.candidateId === candidateId);
           if (index >= 0) {
-            prevCandidates[index].votePower = addMed(prevCandidates[index].votePower, newVesting);
+            prevCandidates[index].votePower = addMed(prevCandidates[index].votePower, newStaking);
           }
         });
-        totalVotes = addMed(totalVotes, mulMed(newVesting, action.data.candidates.length));
+        totalVotes = addMed(totalVotes, mulMed(newStaking, action.data.candidates.length));
       }
 
       prevCandidates.sort(compare);

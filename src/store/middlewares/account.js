@@ -49,7 +49,7 @@ const updateAccountData = (store) => {
 
   getAccount(peers.activePeer, account.address).then((result) => {
     if (!isEqualTo(result.balance, account.balance) ||
-      !isEqualTo(result.vesting, account.vesting) ||
+      !isEqualTo(result.staking, account.staking) ||
       !isEqualTo(result.unstaking, account.unstaking) ||
       !isEqualTo(result.nonce, account.nonce)) {
       updateTransactions(store, peers, account);

@@ -78,7 +78,7 @@ class Dashboard extends React.Component {
               <div className={`${styles.total}`}>
                 <h2>
                   <MedAmount roundTo={2}
-                    val={addMed(addMed(account.balance, account.vesting), account.unstaking)} />
+                    val={addMed(addMed(account.balance, account.staking), account.unstaking)} />
                 </h2>
               </div>
             </WBox>
@@ -98,7 +98,7 @@ class Dashboard extends React.Component {
                 </div>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
                   <MedAmount roundTo={2}
-                    val={account.vesting} />
+                    val={account.staking} />
                 </div>
               </div>
               <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>

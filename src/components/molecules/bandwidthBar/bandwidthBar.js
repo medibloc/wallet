@@ -13,7 +13,7 @@ class BandwidthBar extends React.Component {
 
   render() {
     const { account, t } = this.props;
-    const bandwidth = fromRawMed(BN.max(0, subMed(account.vesting, account.bandwidth)));
+    const bandwidth = fromRawMed(BN.max(0, subMed(account.staking, account.bandwidth)));
     const need = BN.max(0, subMed(MIN_BANDWIDTH_IN_MED, bandwidth));
     const isLow = BN.lte(MIN_BANDWIDTH_IN_MED * 0.6, need);
     const isMid = !isLow && BN.lt(0, need);

@@ -38,10 +38,10 @@ const savedAccountsMiddleware = (store) => {
       if (isSameNetwork(account, peers)) {
         getAccount(peers.activePeer, address).then((result) => {
           if (result.balance !== account.balance ||
-            result.vesting !== account.vesting ||
+            result.staking !== account.staking ||
             result.unstaking !== account.unstaking) {
             accounts[i].balance = result.balance;
-            accounts[i].vesting = result.vesting;
+            accounts[i].staking = result.staking;
             accounts[i].unstaking = result.unstaking;
             store.dispatch({
               data: {
@@ -96,8 +96,8 @@ const savedAccountsMiddleware = (store) => {
           encKey: account.encKey,
           encPassphrase: account.encPassphrase,
           networkCode: peers.networkCode,
+          staking: account.staking,
           unstaking: account.unstaking,
-          vesting: account.vesting,
         }));
         break;
       case actionTypes.activeAccountPasswordUpdated:
@@ -116,8 +116,8 @@ const savedAccountsMiddleware = (store) => {
           encKey: action.data.encKey,
           encPassphrase: action.data.encPassphrase,
           networkCode: action.data.networkCode,
+          staking: account.staking,
           unstaking: account.unstaking,
-          vesting: account.vesting,
         }));
         break;
       case actionTypes.accountRemoved:

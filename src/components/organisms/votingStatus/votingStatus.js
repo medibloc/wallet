@@ -28,7 +28,7 @@ class VotingStatus extends React.Component {
         <h6>
           <span className={styles.votingPowerTitle}>{t('Voting power: ')}</span>
           <MedAmount roundTo={2}
-            val={account.vesting}/>
+            val={account.staking}/>
         </h6>
       </div>
     </WBox>;

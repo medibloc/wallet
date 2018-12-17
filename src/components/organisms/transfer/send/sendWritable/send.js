@@ -55,7 +55,7 @@ class SendWritable extends React.Component {
     return lte(toRawMed(value), this.props.account.balance) &&
       lte(addMed(toRawMed(value), toRawMed(3 * MIN_BANDWIDTH_IN_MED)),
         addMed(this.props.account.balance,
-          subMed(this.props.account.vesting, this.props.account.bandwidth),
+          subMed(this.props.account.staking, this.props.account.bandwidth),
         ));
   }
 
@@ -164,7 +164,7 @@ class SendWritable extends React.Component {
                 label={t('Next')}
                 onClick={() => {
                   if (BN.lte(MIN_BANDWIDTH_IN_MED,
-                    fromRawMed(subMed(this.props.account.vesting, this.props.account.bandwidth)))) {
+                    fromRawMed(subMed(this.props.account.staking, this.props.account.bandwidth)))) {
                     this.nextStepWithParam(false);
                   } else {
                     this.toggleAutoVesting();

@@ -7,8 +7,8 @@ export default {
   quitCandidacy: 'quit_candidacy',
   revokeCertification: 'revoke_certification',
   send: 'transfer',
-  vest: 'vest',
+  vest: 'stake',
   vote: 'vote',
-  withdrawVesting: 'withdraw_vesting',
+  withdrawVesting: 'unstake',
 };
 

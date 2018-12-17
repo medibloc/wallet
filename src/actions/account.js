@@ -251,7 +251,7 @@ export const sent = ({ account, activePeer, amount, chainId,
 //             bandwidth: response.bandwidth,
 //             balance: response.balance,
 //             unstaking: response.unstaking,
-//             vesting: response.vesting,
+//             staking: response.staking,
 //           },
 //           type: actionTypes.updateDelegate,
 //         });
@@ -308,7 +308,7 @@ export const vested = ({ account, activePeer, amount, chainId,
           balance: subMed(account.balance, toRawMed(amount)),
           bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
           nonce: nonce.toString(),
-          vesting: addMed(account.vesting, toRawMed(amount)),
+          staking: addMed(account.staking, toRawMed(amount)),
         },
         type: actionTypes.accountUpdated,
       });
@@ -381,7 +381,7 @@ export const vestedAndSent = ({ account, activePeer, chainId, description,
             subMed(account.balance, toRawMed(vestingAmount)),
           bandwidth: addMed(account.bandwidth, 2 * BANDWIDTH_USED_TX),
           nonce: (Number(nonce) + 1).toString(),
-          vesting: addMed(account.vesting, toRawMed(vestingAmount)),
+          staking: addMed(account.staking, toRawMed(vestingAmount)),
         },
         type: actionTypes.accountUpdated,
       });
@@ -452,7 +452,7 @@ export const vestedAndVoted = ({ account, activePeer, candidates, chainId,
           balance: subMed(account.balance, toRawMed(vestingAmount)),
           bandwidth: addMed(account.bandwidth, 2 * BANDWIDTH_USED_TX),
           nonce: (Number(nonce) + 1).toString(),
-          vesting: addMed(account.vesting, toRawMed(vestingAmount)),
+          staking: addMed(account.staking, toRawMed(vestingAmount)),
           voted: candidates,
         },
         type: actionTypes.accountUpdated,
@@ -464,9 +464,9 @@ export const vestedAndVoted = ({ account, activePeer, candidates, chainId,
       const voteDiff = voteAdded.concat(voteSubtracted);
       dispatch(candidatesUpdated({
         candidates,
-        newVesting: toRawMed(vestingAmount),
+        newStaking: toRawMed(vestingAmount),
         voteDiff,
-        votePower: addMed(account.vesting),
+        votePower: addMed(account.staking),
       }));
       dispatch(loadingFinished(actionTypes.requestVestAndVoteTransaction));
       dispatch(passwordUsed());
@@ -525,7 +525,7 @@ export const voted = ({ account, activePeer, candidates, chainId,
       const voteDiff = voteAdded.concat(voteSubtracted);
       dispatch(candidatesUpdated({
         voteDiff,
-        votePower: account.vesting,
+        votePower: account.staking,
       }));
       dispatch(loadingFinished(actionTypes.requestVoteTransaction));
       dispatch(passwordUsed());
@@ -574,7 +574,7 @@ export const withdrewVesting = ({ account, activePeer, amount, chainId,
           bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
           nonce: nonce.toString(),
           unstaking: addMed(account.unstaking, toRawMed(amount)),
-          vesting: subMed(account.vesting, toRawMed(amount)),
+          staking: subMed(account.staking, toRawMed(amount)),
         },
         type: actionTypes.accountUpdated,
       });
