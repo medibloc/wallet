@@ -1,7 +1,7 @@
 export const parseCandidates = candidates =>
   candidates.map(c => ({
     address: c.address,
-    alias: c.account.alias,
+    alias: c.alias,
     candidateId: c.candidate_id,
     collateral: c.collateral,
     url: c.url,
