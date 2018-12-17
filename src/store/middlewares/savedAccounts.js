@@ -97,6 +97,7 @@ const savedAccountsMiddleware = (store) => {
           encPassphrase: account.encPassphrase,
           networkCode: peers.networkCode,
           staking: account.staking,
+          points: action.data.points,
           unstaking: account.unstaking,
         }));
         break;
@@ -111,12 +112,12 @@ const savedAccountsMiddleware = (store) => {
         updateSavedAccounts(peers, savedAccounts.accounts);
         store.dispatch(accountSaved({
           address: action.data.address,
-          bandwidth: action.data.bandwidth,
           balance: action.data.balance,
           encKey: action.data.encKey,
           encPassphrase: action.data.encPassphrase,
           networkCode: action.data.networkCode,
           staking: account.staking,
+          points: action.data.points,
           unstaking: account.unstaking,
         }));
         break;

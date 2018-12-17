@@ -197,8 +197,8 @@ export const sent = ({ account, activePeer, amount, chainId,
         dispatch({
           data: {
             balance: subMed(account.balance, toRawMed(amount)),
-            bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
             nonce: nonce.toString(),
+            points: subMed(account.points, BANDWIDTH_USED_TX),
           },
           type: actionTypes.accountUpdated,
         });
@@ -248,10 +248,10 @@ export const sent = ({ account, activePeer, amount, chainId,
 //         dispatch({
 //           data: {
 //             address,
-//             bandwidth: response.bandwidth,
 //             balance: response.balance,
-//             unstaking: response.unstaking,
 //             staking: response.staking,
+//             points: response.points,
+//             unstaking: response.unstaking,
 //           },
 //           type: actionTypes.updateDelegate,
 //         });
@@ -306,8 +306,8 @@ export const vested = ({ account, activePeer, amount, chainId,
       dispatch({
         data: {
           balance: subMed(account.balance, toRawMed(amount)),
-          bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
           nonce: nonce.toString(),
+          points: subMed(account.points, BANDWIDTH_USED_TX),
           staking: addMed(account.staking, toRawMed(amount)),
         },
         type: actionTypes.accountUpdated,
@@ -379,8 +379,8 @@ export const vestedAndSent = ({ account, activePeer, chainId, description,
           balance: (account.address !== to) ?
             subMed(subMed(account.balance, toRawMed(vestingAmount)), toRawMed(transferAmount)) :
             subMed(account.balance, toRawMed(vestingAmount)),
-          bandwidth: addMed(account.bandwidth, 2 * BANDWIDTH_USED_TX),
           nonce: (Number(nonce) + 1).toString(),
+          points: subMed(account.points, 2 * BANDWIDTH_USED_TX),
           staking: addMed(account.staking, toRawMed(vestingAmount)),
         },
         type: actionTypes.accountUpdated,
@@ -450,8 +450,8 @@ export const vestedAndVoted = ({ account, activePeer, candidates, chainId,
       dispatch({
         data: {
           balance: subMed(account.balance, toRawMed(vestingAmount)),
-          bandwidth: addMed(account.bandwidth, 2 * BANDWIDTH_USED_TX),
           nonce: (Number(nonce) + 1).toString(),
+          points: subMed(account.points, 2 * BANDWIDTH_USED_TX),
           staking: addMed(account.staking, toRawMed(vestingAmount)),
           voted: candidates,
         },
@@ -512,8 +512,8 @@ export const voted = ({ account, activePeer, candidates, chainId,
       });
       dispatch({
         data: {
-          bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
           nonce: nonce.toString(),
+          points: subMed(account.points, BANDWIDTH_USED_TX),
           voted: candidates,
         },
         type: actionTypes.accountUpdated,
@@ -571,10 +571,10 @@ export const withdrewVesting = ({ account, activePeer, amount, chainId,
       });
       dispatch({
         data: {
-          bandwidth: addMed(account.bandwidth, BANDWIDTH_USED_TX),
           nonce: nonce.toString(),
-          unstaking: addMed(account.unstaking, toRawMed(amount)),
+          points: subMed(account.points, BANDWIDTH_USED_TX),
           staking: subMed(account.staking, toRawMed(amount)),
+          unstaking: addMed(account.unstaking, toRawMed(amount)),
         },
         type: actionTypes.accountUpdated,
       });

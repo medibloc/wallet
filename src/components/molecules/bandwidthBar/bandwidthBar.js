@@ -13,8 +13,8 @@ class BandwidthBar extends React.Component {
 
   render() {
     const { account, t } = this.props;
-    const bandwidth = fromRawMed(BN.max(0, subMed(account.staking, account.bandwidth)));
-    const need = BN.max(0, subMed(MIN_BANDWIDTH_IN_MED, bandwidth));
+    const points = fromRawMed(BN.max(0, account.points));
+    const need = BN.max(0, subMed(MIN_BANDWIDTH_IN_MED, points));
     const isLow = BN.lte(MIN_BANDWIDTH_IN_MED * 0.6, need);
     const isMid = !isLow && BN.lt(0, need);
     return <div className={styles.bandwidthBarWrapper}>
@@ -30,7 +30,7 @@ class BandwidthBar extends React.Component {
         mode="determinate"
         theme={styles}
         type="linear"
-        value={parseFloat(bandwidth)} />
+        value={parseFloat(points)} />
     </div>;
   }
 }

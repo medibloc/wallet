@@ -21,7 +21,6 @@ const savedAccounts = (state = { accounts: [] }, action) => {
         changedAccount = {
           ...accounts[indexOfAccount],
           address: action.data.address,
-          bandwidth: action.data.bandwidth,
           balance: action.data.balance,
           encKey: action.data.encKey ?
             action.data.encKey :
@@ -32,6 +31,7 @@ const savedAccounts = (state = { accounts: [] }, action) => {
           label: action.data.label ?
             action.data.label :
             accounts[indexOfAccount].label,
+          points: action.data.points,
           staking: action.data.staking,
           unstaking: action.data.unstaking,
         };
