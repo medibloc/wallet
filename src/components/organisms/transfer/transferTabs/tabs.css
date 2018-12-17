@@ -22,7 +22,7 @@
 .tabInactive {
   background: var(--color-white);
   border-bottom: none;
-  color: var(--color-black-16);
+  color: var(--color-black-60);
   cursor: pointer;
   height: 100%;
   width: 100%;
