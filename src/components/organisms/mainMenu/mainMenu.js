@@ -42,14 +42,8 @@ class MainMenu extends React.Component {
 
   navigate(history, tabs, index) {
     if (!isCurrent(history, index, tabs)) {
-      if (tabs[index].id === 'explorer') {
-        if (window) {
-          window.open('http://testnet-explorer.medibloc.org/');
-        }
-      } else {
-        this.setState({ active: false, index });
-        history.replace(tabs[index].route);
-      }
+      this.setState({ active: false, index });
+      history.replace(tabs[index].route);
     }
   }
 

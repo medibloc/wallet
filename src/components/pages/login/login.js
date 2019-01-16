@@ -35,7 +35,7 @@ class Login extends React.Component {
 
     this.state = {
       selectedAddress: this.props.account.address || '',
-      networkCode: networks.default.code,
+      networkCode: process.env.NETWORK_CODE || networks.default.code,
       password: '',
       passwordValidity: '',
     };

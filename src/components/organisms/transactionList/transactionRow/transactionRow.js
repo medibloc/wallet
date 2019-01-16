@@ -7,6 +7,7 @@ import styles from './transactionRow.css';
 import Amount from '../amount';
 import Spinner from '../../../atoms/spinner';
 import { DateFromTimestamp } from '../../../atoms/timestamp';
+import getNetwork from '../../../../utils/getNetwork';
 // import { FontIcon } from '../fontIcon';
 
 class TransactionRow extends React.Component {
@@ -18,6 +19,7 @@ class TransactionRow extends React.Component {
   render() {
     const { props } = this;
     const onClick = !props.onClick ? (() => {}) : () => props.onClick(this.props);
+    const url = getNetwork(props.networkCode).mServerURL;
     return (
       <div className={`${grid.row} ${styles.rows} transactions-row`}>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
@@ -30,12 +32,12 @@ class TransactionRow extends React.Component {
             <Spinner />}
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`https://testnet-explorer.medibloc.org/en/account/${props.value.from}`} target={'_blank'}>
+          <a href={`${url}/en/account/${props.value.from}`} target={'_blank'}>
             <span> {props.value.from} </span>
           </a>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`https://testnet-explorer.medibloc.org/en/account/${props.value.to}`} target={'_blank'} className={`${styles.clickable}`}>
+          <a href={`${url}/en/account/${props.value.to}`} target={'_blank'} className={`${styles.clickable}`}>
             <span> {(props.value.tx_type === txTypes.send ||
               props.value.tx_type === txTypes.genesis) ?
               props.value.to : null} </span>

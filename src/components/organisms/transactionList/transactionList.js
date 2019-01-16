@@ -1,7 +1,7 @@
 import React from 'react';
 import tableStyle from 'react-toolbox/lib/table/theme.css';
-import TransactionRow from './transactionRow/transactionRow';
-import TransactionsHeader from './transactionsHeader/transactionsHeader';
+import TransactionRow from './transactionRow';
+import TransactionsHeader from './transactionsHeader';
 import { parseSearchParams } from '../../../utils/searchParams';
 
 import styles from './transactionList.css';

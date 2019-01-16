@@ -21,7 +21,7 @@ class Restore extends React.Component {
       encKey,
       encPassphrase,
       label,
-      networkCode: networks.default.code,
+      networkCode: process.env.NETWORK_CODE || networks.default.code,
     });
 
     this.props.history.push(`${routes.login.path}`);
