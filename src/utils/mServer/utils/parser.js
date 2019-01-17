@@ -8,4 +8,8 @@ export const parseCandidates = candidates =>
     votePower: c.vote_power,
   }));
 
-export const parseTransactions = transactions => transactions.map(tx => tx.data);
+export const parseTransactions = transactions =>
+  transactions.map(tx => ({
+    ...tx.data,
+    timestamp: (((tx || {}).data || {}).receipt || {}).timestamp,
+  }));

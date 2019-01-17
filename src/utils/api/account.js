@@ -50,7 +50,7 @@ export const send = ({ account, activePeer, chainId, description, nonce, passwor
       console.log(res);
       if (res.hash) {
         resolve({
-          timestamp: tx.rawTx.timestamp,
+          timestamp: Math.floor(new Date().getTime() / 1000),
           transactionId: res.hash,
         });
       } else {
@@ -110,7 +110,7 @@ export const vest = ({ account, activePeer, chainId, nonce, password, value }) =
       console.log(res);
       if (res.hash) {
         resolve({
-          timestamp: tx.rawTx.timestamp,
+          timestamp: Math.floor(new Date().getTime() / 1000),
           transactionId: res.hash,
         });
       } else {
@@ -141,7 +141,7 @@ export const vote = ({ account, activePeer, candidates, chainId, nonce, password
       console.log(res);
       if (res.hash) {
         resolve({
-          timestamp: tx.rawTx.timestamp,
+          timestamp: Math.floor(new Date().getTime() / 1000),
           transactionId: res.hash,
         });
       } else {
@@ -172,7 +172,7 @@ export const withdrawVesting = ({ account, activePeer, chainId, nonce, password,
       console.log(res);
       if (res.hash) {
         resolve({
-          timestamp: tx.rawTx.timestamp,
+          timestamp: Math.floor(new Date().getTime() / 1000),
           transactionId: res.hash,
         });
       } else {
