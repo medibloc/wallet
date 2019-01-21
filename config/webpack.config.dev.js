@@ -7,6 +7,8 @@ const reactConfig = require('./webpack.config.react');
 const networks = require('./networks');
 /* eslint-enable import/no-extraneous-dependencies */
 
+require('dotenv').config();
+
 const network = networks[process.env.CHAIN_VERSION];
 
 module.exports = merge(baseConfig, reactConfig, {

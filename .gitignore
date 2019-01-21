@@ -12,6 +12,7 @@ app/build-testnet
 app/package-lock.json
 *.sw[pon]
 app/app.js
+.env
 .vscode
 .idea
 reports
