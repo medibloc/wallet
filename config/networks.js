@@ -22,6 +22,13 @@ const networks = {
     mServerURL: 'https://stg-testnet-explorer.medibloc.org',
     nodes: ['https://stg-testnet-node.medibloc.org/'],
   },
+  custom: {
+    name: 'custom',
+    chainId: 999999,
+    code: 999999,
+    mServerURL: 'http://localhost:3001',
+    nodes: ['http://localhost:9921'],
+  },
 };
 
 module.exports = networks;

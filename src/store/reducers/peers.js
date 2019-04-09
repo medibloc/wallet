@@ -16,6 +16,7 @@ const peers = (state = {}, action) => {
         chainId: action.data.chainId,
         mServer: action.data.mServer,
         networkCode: action.data.networkCode,
+        testnet: action.data.testnet,
       });
     case actionTypes.activePeerUpdate:
       return Object.assign({}, state, { status: action.data });

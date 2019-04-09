@@ -32,10 +32,12 @@ const customItem = item => (
 class Login extends React.Component {
   constructor(props) {
     super(props);
-
+    const account = this.props.savedAccounts.accounts.find(
+      a => a.address === this.props.account.address);
     this.state = {
       selectedAddress: this.props.account.address || '',
-      networkCode: process.env.NETWORK_CODE || networks.default.code,
+      networkCode: account ? account.networkCode :
+        process.env.NETWORK_CODE || networks.default.code,
       password: '',
       passwordValidity: '',
     };
@@ -73,7 +75,12 @@ class Login extends React.Component {
   }
 
   handleAccountChange(address) {
-    this.setState({ selectedAddress: address });
+    const account = this.props.savedAccounts.accounts.find(a => a.address === address);
+    this.setState({
+      selectedAddress: address,
+      networkCode: account ? account.networkCode :
+        process.env.NETWORK_CODE || networks.default.code,
+    });
   }
 
   handlePasswordChange(value) {

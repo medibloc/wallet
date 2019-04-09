@@ -13,6 +13,7 @@ const peerSet = (data, config) => ({
     mServer: mServer(config.mServerURL),
     networkCode: config.code,
     noSavedAccounts: data.noSavedAccounts,
+    testnet: config.testnet || false,
   }),
   type: actionTypes.activePeerSet,
 });

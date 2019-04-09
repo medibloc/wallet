@@ -60,7 +60,7 @@ class MainMenu extends React.Component {
   }
 
   render() {
-    const { history, t } = this.props;
+    const { history, showFaucet, t } = this.props;
     const tabs = [
       {
         label: t('Dashboard'),
@@ -116,18 +116,19 @@ class MainMenu extends React.Component {
                     label={<TabTemplate img={image} label={label} />}
                   />)}
               </ToolboxTabs>
-              <div className={styles.faucetTooltipWrapper}>
-                <TooltippedDiv
-                  tooltip={t('You should click this button and follow the steps to get the test MED.')}
-                  tooltipDelay={100}
-                  tooltipPosition={'right'}>
-                  <div className={`${styles.faucetWrapper}`}
-                    onClick={() => this.toggleFaucetRequest()}>
-                    <img src={coin} className={styles.coin} />
-                    <small>{t('Test MED')}</small>
-                  </div>
-                </TooltippedDiv>
-              </div>
+              {showFaucet ?
+                <div className={styles.faucetTooltipWrapper}>
+                  <TooltippedDiv
+                    tooltip={t('You should click this button and follow the steps to get the test MED.')}
+                    tooltipDelay={100}
+                    tooltipPosition={'right'}>
+                    <div className={`${styles.faucetWrapper}`}
+                      onClick={() => this.toggleFaucetRequest()}>
+                      <img src={coin} className={styles.coin} />
+                      <small>{t('Test MED')}</small>
+                    </div>
+                  </TooltippedDiv>
+                </div> : null}
             </div>
             <div className={styles.bottomTabs}>
               <div className={styles.settingsTabWrapper}>
