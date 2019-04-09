@@ -1,4 +1,4 @@
-# Medibloc Wallet
+# MediBloc Wallet
 
 Official wallet for the [medibloc blockchain](https://github.com/medibloc/go-medibloc). Desktop version will be published soon.
 
