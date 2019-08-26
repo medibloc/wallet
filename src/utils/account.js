@@ -1,4 +1,7 @@
 import { cryptography, local, utils } from 'medjs';
+import panacea from '@medibloc/panacea-js';
+
+const { crypto } = panacea;
 
 const { Account } = local;
 
@@ -24,8 +27,9 @@ export const extractAddress = (data) => {
   if (data.indexOf(' ') < 0) {
     return data;
   }
-  const { pubKey } = cryptography.getKeyPairFromPassphrase(data);
-  return pubKey;
+  const privKey = crypto.getPrivateKeyFromMnemonic(data);
+  const encodedPubKey = crypto.getAddressFromPrivateKey(privKey);
+  return encodedPubKey;
 };
 
 export const isAddress = address => (

@@ -1,16 +1,16 @@
-// import crypto from 'crypto';
+import panacea from '@medibloc/panacea-js';
 import i18next from 'i18next';
 import { inDictionary } from './similarWord';
 
-if (global._bitcore) delete global._bitcore;
-const bip39 = require('bip39');
+const { crypto } = panacea;
 
+if (global._bitcore) delete global._bitcore;
 /**
  * Generates a passphrase using bip39
  *
  * @returns {string} The generated passphrase
  */
-export const generatePassphrase = () => bip39.generateMnemonic();
+export const generatePassphrase = () => crypto.generateMnemonic();
 
 /**
    * Checks if passphrase is valid using bip39
@@ -18,18 +18,7 @@ export const generatePassphrase = () => bip39.generateMnemonic();
    * @param {string} passphrase
    * @returns {bool} isValidPassphrase
    */
-export const isValidPassphrase = (passphrase) => {
-  const normalizedValue = passphrase.replace(/ +/g, ' ').trim();
-  let isValid;
-  try {
-    isValid = normalizedValue.split(' ').length >= 12 && bip39.validateMnemonic(normalizedValue);
-  } catch (e) {
-    // If the mnemonic check throws an error, we assume that the
-    // passphrase being entered isn't valid
-    isValid = false;
-  }
-  return isValid;
-};
+export const isValidPassphrase = passphrase => crypto.validateMnemonic(passphrase);
 
 export const getPassphraseValidationErrors = (passphrase) => {
   const passphraseArray = passphrase.trim().split(' ');
