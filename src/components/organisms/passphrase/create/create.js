@@ -7,22 +7,22 @@ import styles from './create.css';
 import AccountVisual from '../../../atoms/accountVisual/index';
 import Footer from '../../../pages/register/footer/footer';
 import Refresh from '../../../../assets/images/icons/baselineRefresh.png';
-import { generatePassphrase } from '../../../../utils/passphrase';
+import { generateMnemonic } from '../../../../utils/passphrase';
 import { extractAddress } from '../../../../utils/account';
 
 class Create extends React.Component {
   constructor(props) {
     super(props);
-    const passphrase = props.passphrase ?
-      props.passphrase : generatePassphrase();
+    const mnemonic = props.passphrase ?
+      props.mnemonic : generateMnemonic();
     this.state = {
-      passphrase,
-      address: extractAddress(passphrase),
+      mnemonic,
+      address: extractAddress(mnemonic),
     };
   }
 
   refreshAddress() {
-    const passphrase = generatePassphrase();
+    const passphrase = generateMnemonic();
     this.setState({
       passphrase,
       address: extractAddress(passphrase),
@@ -56,7 +56,7 @@ class Create extends React.Component {
         <PrimaryButton label={t('Continue')}
           className={`${styles.continueButton}`}
           onClick={() => nextStep({
-            passphrase: this.state.passphrase,
+            passphrase: this.state.mnemonic,
           })}/>
         <Footer
           history={history}

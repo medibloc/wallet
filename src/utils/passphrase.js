@@ -10,35 +10,35 @@ if (global._bitcore) delete global._bitcore;
  *
  * @returns {string} The generated passphrase
  */
-export const generatePassphrase = () => crypto.generateMnemonic();
+export const generateMnemonic = () => crypto.generateMnemonic();
 
 /**
    * Checks if passphrase is valid using bip39
    *
    * @param {string} passphrase
-   * @returns {bool} isValidPassphrase
+   * @returns {bool} isValidMnemonic
    */
-export const isValidPassphrase = passphrase => crypto.validateMnemonic(passphrase);
+export const isValidMnemonic = mnemonic => crypto.validateMnemonic(mnemonic);
 
-export const getPassphraseValidationErrors = (passphrase) => {
-  const passphraseArray = passphrase.trim().split(' ');
+export const getMnemonicValidationErrors = (mnemonic) => {
+  const mnemonicArray = mnemonic.trim().split(' ');
 
-  const partialPassphraseError = [];
-  const invalidWords = passphraseArray.filter((word) => {
+  const partialMnemonicError = [];
+  const invalidWords = mnemonicArray.filter((word) => {
     const isNotInDictionary = !inDictionary(word);
-    partialPassphraseError[passphraseArray.indexOf(word)] = isNotInDictionary;
+    partialMnemonicError[mnemonicArray.indexOf(word)] = isNotInDictionary;
     return isNotInDictionary;
   });
 
-  let validationError = i18next.t('Passphrase is not valid');
+  let validationError = i18next.t('Mnemonic is not valid');
 
-  if (passphraseArray.length < 12) {
-    validationError = i18next.t('Passphrase should have 12 words, entered passphrase has {{length}}', { length: passphraseArray.length });
+  if (mnemonicArray.length < 24) {
+    validationError = i18next.t('Mnemonic should have 24 words, entered mnemonic has {{length}}', { length: mnemonicArray.length });
   }
 
   if (invalidWords.length > 0) {
     validationError = i18next.t('Please check the highlighted words');
   }
 
-  return { validationError, partialPassphraseError };
+  return { validationError, partialPassphraseError: partialMnemonicError };
 };

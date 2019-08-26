@@ -3,8 +3,8 @@ import { translate } from 'react-i18next';
 import React from 'react';
 import { PassphraseInput } from '../../../atoms/toolbox/inputs/input';
 import styles from './passphraseinputbox.css';
-import { isValidPassphrase,
-  getPassphraseValidationErrors } from '../../../../utils/passphrase';
+import { isValidMnemonic,
+  getMnemonicValidationErrors } from '../../../../utils/passphrase';
 import keyCodes from '../../../../constants/keyCodes';
 
 class PassphraseInputBox extends React.Component {
@@ -44,7 +44,7 @@ class PassphraseInputBox extends React.Component {
     this.setState({ partialPassphraseError: [] });
     if (!passphrase) {
       error = this.props.t('Required');
-    } else if (!isValidPassphrase(passphrase)) {
+    } else if (!isValidMnemonic(passphrase)) {
       error = this.getPassphraseValidationError(passphrase);
     }
     this.props.onChange(passphrase, error);
@@ -52,7 +52,7 @@ class PassphraseInputBox extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   getPassphraseValidationError(passphrase) {
-    const { partialPassphraseError, validationError } = getPassphraseValidationErrors(passphrase);
+    const { partialPassphraseError, validationError } = getMnemonicValidationErrors(passphrase);
     this.setState({ partialPassphraseError });
 
     return validationError;
