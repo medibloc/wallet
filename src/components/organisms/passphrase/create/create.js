@@ -51,8 +51,7 @@ class Create extends React.Component {
         <Input type='text'
           parentclassname={`${styles.accountAddress}`}
           title={t('Account address')}
-          value={this.state.address.substring(0, 11) + '*'.repeat(44) +
-            this.state.address.substring(54, 65)}
+          value={this.state.address.substring(0, 14) + '*'.repeat(this.state.address.length - 15)}
           disabled={true} />
         <PrimaryButton label={t('Continue')}
           className={`${styles.continueButton}`}
