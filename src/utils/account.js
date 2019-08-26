@@ -1,51 +1,55 @@
 import { cryptography, local, utils } from 'medjs';
 import panacea from '@medibloc/panacea-js';
 
-const { crypto } = panacea;
+const { Account, crypto } = panacea;
 
-const { Account } = local;
+export const extractKeyPair = (mnemonic) => {
+  const privKey = crypto.getPrivateKeyFromMnemonic(mnemonic);
+  const pubKey = crypto.getPublicKeyFromPrivateKey(privKey);
+  return ({ privKey, pubKey });
+};
 
-export const extractKeyPair = passphrase =>
-  cryptography.getKeyPairFromPassphrase(passphrase);
+export const extractPrivKey = mnemonic => extractKeyPair(mnemonic).privKey;
 
-export const extractPrivKey = passphrase =>
-  cryptography.getKeyPairFromPassphrase(passphrase).privKey;
+export const extractPublicKey = mnemonic => extractKeyPair(mnemonic).pubKey;
 
-export const extractPublicKey = passphrase =>
-  cryptography.getKeyPairFromPassphrase(passphrase).pubKey;
+export const getPubKey = privKey => crypto.getPublicKeyFromPrivateKey(privKey);
 
-export const getPubKey = privKey =>
-  cryptography.getPubKey(privKey);
+export const getAddressFromPublicKey = pubKey => crypto.getAddressFromPublicKey(pubKey);
+
+export const getAddressFromPrivateKey = privKey => crypto.getAddressFromPrivateKey(privKey);
 
 /**
 * @param {String} data - passphrase or public key
 */
-export const extractAddress = (data) => {
-  if (!data) {
+export const extractAddressFromMnemonic = (mnemonic) => {
+  if (!mnemonic) {
     return false;
   }
-  if (data.indexOf(' ') < 0) {
-    return data;
+  if (mnemonic.indexOf(' ') < 0) {
+    return mnemonic;
   }
-  const privKey = crypto.getPrivateKeyFromMnemonic(data);
-  const encodedPubKey = crypto.getAddressFromPrivateKey(privKey);
-  return encodedPubKey;
+  const privKey = crypto.getPrivateKeyFromMnemonic(mnemonic);
+  const address = crypto.getAddressFromPrivateKey(privKey);
+  return address;
 };
 
 export const isAddress = address => (
   utils.isAddress(address)
 );
 
-export const getAccountFromPrivKey = (privKey, password) => {
-  const encryptedPrivKey = cryptography.encryptKey(password, privKey);
-  return new Account(password, encryptedPrivKey);
-};
+export const getAccountFromPrivKey = privateKey => new Account({ privateKey });
 
 export const getAccountFromKeyPair = (keyPair, password) => {
   const encryptedPrivKey = cryptography.encryptKey(password, keyPair.privKey);
-  return new Account(password, encryptedPrivKey, keyPair.pubKey);
+  return new local.Account(password, encryptedPrivKey, keyPair.pubKey);
 };
 
-export const getAccountFromEncKey = (encKey, password) => new Account(password, encKey);
+export const getAccountFromEncKey = (encKey, password) => new local.Account(password, encKey);
 
 export const getPrivKeyFromEncKey = (encKey, password) => cryptography.decryptKey(password, encKey);
+
+export const encryptPrivateKey = (privKey, password) => crypto.generateKeyStore(privKey, password);
+
+export const getPrivateKeyFromKeyStore = (keyStore, password) =>
+  crypto.getPrivateKeyFromKeyStore(keyStore, password);

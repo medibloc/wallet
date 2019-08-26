@@ -8,7 +8,7 @@
 
 .passphraseInputBox {
   background: var(--color-white);
-  height: 262px;
+  height: 350px;
   justify-content: space-around;
 
   & > .row {

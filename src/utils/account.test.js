@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { extractPublicKey, extractAddress } from './account';
+import { extractPublicKey, extractAddressFromMnemonic } from './account';
 
 describe('Utils: Account', () => {
   describe('extractPublicKey', () => {
@@ -10,17 +10,17 @@ describe('Utils: Account', () => {
     });
   });
 
-  describe('extractAddress', () => {
+  describe('extractAddressFromMnemonic', () => {
     it('should return the account address from given passphrase', () => {
       const passphrase = 'field organ country moon fancy glare pencil combine derive fringe security pave';
       const derivedAddress = '02cd94dab39ac0530331b855de5af5abddc6776692e52346dbffb40a14c186337c';
-      expect(extractAddress(passphrase)).to.be.equal(derivedAddress);
+      expect(extractAddressFromMnemonic(passphrase)).to.be.equal(derivedAddress);
     });
 
     it('should return the account address from given public key', () => {
       const publicKey = '02cd94dab39ac0530331b855de5af5abddc6776692e52346dbffb40a14c186337c';
       const derivedAddress = '02cd94dab39ac0530331b855de5af5abddc6776692e52346dbffb40a14c186337c';
-      expect(extractAddress(publicKey)).to.be.equal(derivedAddress);
+      expect(extractAddressFromMnemonic(publicKey)).to.be.equal(derivedAddress);
     });
   });
 });

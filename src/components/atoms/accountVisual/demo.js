@@ -2,7 +2,7 @@ import React from 'react';
 import Waypoint from 'react-waypoint';
 
 import { generateMnemonic } from '../../../utils/passphrase';
-import { extractAddress } from '../../../utils/account';
+import { extractAddressFromMnemonic } from '../../../utils/account';
 import AccountVisual from './index';
 import Box from '../box/index';
 
@@ -31,7 +31,7 @@ class AccountVisualDemo extends React.Component {
       bytes.push(byte);
     }
     let accounts = bytes.map(seed => generateMnemonic({ seed }))
-      .map(extractAddress);
+      .map(extractAddressFromMnemonic);
 
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;

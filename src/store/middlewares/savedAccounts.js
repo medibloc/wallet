@@ -3,7 +3,7 @@ import { accountLoading, accountLoggedOut, accountPasswordUpdated } from '../../
 import { accountsRetrieved, accountSaved } from '../../actions/savedAccounts';
 import { activePeerSet } from '../../actions/peers';
 import { getAccount } from '../../utils/api/account';
-import { extractAddress } from '../../utils/account';
+import { extractAddressFromMnemonic } from '../../utils/account';
 import { getLastActiveAccount } from '../../utils/savedAccounts';
 
 const savedAccountsMiddleware = (store) => {
@@ -34,7 +34,7 @@ const savedAccountsMiddleware = (store) => {
 
   const updateSavedAccounts = (peers, accounts) => {
     accounts.forEach((account, i) => {
-      const address = extractAddress(account.address);
+      const address = extractAddressFromMnemonic(account.address);
       if (isSameNetwork(account, peers)) {
         getAccount(peers.activePeer, address).then((result) => {
           if (result.balance !== account.balance ||
@@ -58,7 +58,7 @@ const savedAccountsMiddleware = (store) => {
 
   const checkTransactionsAndUpdateSavedAccounts = (peers, tx, savedAccounts) => {
     const changedAccounts = savedAccounts.accounts.filter((account) => {
-      const address = extractAddress(account.address);
+      const address = extractAddressFromMnemonic(account.address);
       const relevantTransactions = tx.filter((transaction) => {
         const sender = transaction ? transaction.senderId : null;
         const recipient = transaction ? transaction.recipientId : null;

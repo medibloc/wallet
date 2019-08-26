@@ -8,7 +8,10 @@ import { Input } from '../../atoms/toolbox/inputs/input';
 import logo from '../../../assets/images/MEDIBLOC.png';
 import Footer from '../register/footer/footer';
 import { PrimaryButton } from '../../atoms/toolbox/buttons/button';
-import { extractAddress, getAccountFromEncKey } from '../../../utils/account';
+import {
+  getAddressFromPrivateKey,
+  getPrivateKeyFromKeyStore,
+} from '../../../utils/account';
 import routes from '../../../constants/routes';
 
 const customItem = item => (
@@ -43,12 +46,6 @@ class Login extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    if (this.props.account && this.props.account.address) {
-      // this.redirectToReferrer();
-    }
-  }
-
   componentWillReceiveProps(props) {
     const { savedAccounts } = props;
     if (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) {
@@ -57,21 +54,16 @@ class Login extends React.Component {
     }
   }
 
-  checkPasswordCorrect({ address, encKey }) {
+  checkPasswordCorrect({ address, encKey: keyStore }) {
     try {
-      const account = getAccountFromEncKey(encKey, this.state.password);
-      return extractAddress(account.pubKey) === address;
+      const privKey = getPrivateKeyFromKeyStore(keyStore, this.state.password);
+      return getAddressFromPrivateKey(privKey) === address;
     } catch (e) {
       this.setState({
         passwordValidity: this.props.t('Wrong Password'),
       });
       return false;
     }
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  getReferrerRoute() {
-    return `${routes.dashboard.path}`;
   }
 
   handleAccountChange(address) {
@@ -97,15 +89,6 @@ class Login extends React.Component {
       encPassphrase: account.encPassphrase || null,
       networkCode: this.state.networkCode,
     });
-    // this.props.activePeerSet({
-    //   address,
-    //   encKey,
-    //   networkCode: this.state.networkCode,
-    // });
-  }
-
-  redirectToReferrer() {
-    this.props.history.replace(this.getReferrerRoute());
   }
 
   render() {
@@ -118,8 +101,6 @@ class Login extends React.Component {
       )));
     }
 
-    // return (this.props.account.loading ?
-    //   <span /> :
     return (
       <Box className={`${styles.wrapper}`}>
         <img src={logo} />

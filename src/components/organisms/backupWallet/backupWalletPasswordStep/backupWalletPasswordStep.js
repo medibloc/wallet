@@ -4,7 +4,7 @@ import { Input } from '../../../atoms/toolbox/inputs/input';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import styles from './backupWalletPasswordStep.css';
 import {
-  extractAddress,
+  extractAddressFromMnemonic,
   getPrivKeyFromEncKey,
   getPubKey,
 } from '../../../../utils/account';
@@ -35,7 +35,7 @@ class BackupWalletPasswordStep extends React.Component {
   decryptPassphrase() {
     try {
       const privKey = getPrivKeyFromEncKey(this.props.account.encKey, this.state.password.value);
-      if (extractAddress(getPubKey(privKey)) === this.props.account.address) {
+      if (extractAddressFromMnemonic(getPubKey(privKey)) === this.props.account.address) {
         return privKey;
       }
       return null;
@@ -109,7 +109,7 @@ class BackupWalletPasswordStep extends React.Component {
               onClick={() => {
                 const privKey = this.decryptPassphrase();
                 if (privKey !== null) {
-                  const address = extractAddress(getPubKey(privKey));
+                  const address = extractAddressFromMnemonic(getPubKey(privKey));
                   if (this.props.account.address === address) {
                     const passphrase = decryptData(this.state.password.value,
                       this.props.account.encPassphrase);

@@ -1,4 +1,4 @@
-// import { extractAddress } from '../../../common/src/utils/account';
+// import { extractAddressFromMnemonic } from '../../../common/src/utils/account';
 import actionTypes from '../constants/actions';
 import { loadingStarted, loadingFinished } from './loading';
 import { transaction, transactions } from '../utils/api/transaction';

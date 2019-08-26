@@ -8,7 +8,7 @@ import AccountVisual from '../../../atoms/accountVisual/index';
 import Footer from '../../../pages/register/footer/footer';
 import Refresh from '../../../../assets/images/icons/baselineRefresh.png';
 import { generateMnemonic } from '../../../../utils/passphrase';
-import { extractAddress } from '../../../../utils/account';
+import { extractAddressFromMnemonic } from '../../../../utils/account';
 
 class Create extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Create extends React.Component {
       props.mnemonic : generateMnemonic();
     this.state = {
       mnemonic,
-      address: extractAddress(mnemonic),
+      address: extractAddressFromMnemonic(mnemonic),
     };
   }
 
@@ -25,7 +25,7 @@ class Create extends React.Component {
     const passphrase = generateMnemonic();
     this.setState({
       passphrase,
-      address: extractAddress(passphrase),
+      address: extractAddressFromMnemonic(passphrase),
     });
   }
 

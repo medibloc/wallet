@@ -4,9 +4,12 @@ import { translate } from 'react-i18next';
 import Box from '../../../atoms/box/index';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import { Input } from '../../../atoms/toolbox/inputs/input';
-import { extractAddress,
-  extractKeyPair,
-  getAccountFromKeyPair } from '../../../../utils/account';
+import {
+  extractAddressFromMnemonic,
+  getAccountFromPrivKey,
+  extractPrivKey,
+  encryptPrivateKey,
+} from '../../../../utils/account';
 import { encryptData } from '../../../../utils/crypto';
 import regex from '../../../../utils/regex';
 import styles from './password.css';
@@ -115,12 +118,12 @@ class Password extends React.Component {
           !this.state.confirmPassword)}
         onClick={() => {
           const label = this.state.label;
-          const account = getAccountFromKeyPair(extractKeyPair(passphrase), this.state.password);
+          const account = getAccountFromPrivKey(extractPrivKey(passphrase));
           const encPassphrase = encryptData(this.state.password, passphrase);
 
           this.props.finalCallback({
-            address: extractAddress(account.pubKey),
-            encKey: account.encryptedPrivKey,
+            address: extractAddressFromMnemonic(account.address),
+            encKey: encryptPrivateKey(account.privateKey, this.state.password),
             encPassphrase,
             label,
           });

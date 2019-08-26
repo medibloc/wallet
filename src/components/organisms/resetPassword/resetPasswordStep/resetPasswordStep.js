@@ -5,7 +5,7 @@ import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import styles from './resetPasswordStep.css';
 import regex from '../../../../utils/regex';
 import {
-  extractAddress,
+  extractAddressFromMnemonic,
   getAccountFromPrivKey,
   getPrivKeyFromEncKey,
   getPubKey,
@@ -52,7 +52,7 @@ class ResetPasswordStep extends React.Component {
   decryptPassphrase() {
     try {
       const privKey = getPrivKeyFromEncKey(this.props.account.encKey, this.state.password.value);
-      if (extractAddress(getPubKey(privKey)) === this.props.account.address) {
+      if (extractAddressFromMnemonic(getPubKey(privKey)) === this.props.account.address) {
         return privKey;
       }
       return null;
@@ -175,7 +175,7 @@ class ResetPasswordStep extends React.Component {
               if (privKey !== null) {
                 const account = getAccountFromPrivKey(privKey,
                   this.state.newPassword.value);
-                const address = extractAddress(account.pubKey);
+                const address = extractAddressFromMnemonic(account.pubKey);
                 if (this.props.account.address === address) {
                   this.props.activeAccountPasswordUpdated({
                     address,

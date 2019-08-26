@@ -7,7 +7,7 @@ import Choice from './choice';
 import PassphraseBox from '../passphraseBox/passphrasebox';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import styles from './confirm.css';
-import { extractAddress } from '../../../../utils/account';
+import { extractAddressFromMnemonic } from '../../../../utils/account';
 
 class Confirm extends React.Component {
   constructor() {
@@ -178,7 +178,7 @@ class Confirm extends React.Component {
   }
 
   getAddress() {
-    return extractAddress(this.props.passphrase);
+    return extractAddressFromMnemonic(this.props.passphrase);
   }
 
   render() {

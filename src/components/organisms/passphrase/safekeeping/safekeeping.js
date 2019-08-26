@@ -20,7 +20,7 @@ class Safekeeping extends React.Component {
           t('The backup phrase will be used in case this app is accidentally deleted.')}</h6>
       </div>
       <div className={`${styles.comment2}`}>
-        <h6>{t('Please carefully write down these 12 words')}</h6>
+        <h6>{t('Please carefully write down these 24 words')}</h6>
         <CopyToClipboard
           className={`${styles.copyButtonWrapper}`}
           text={passphrase}>
