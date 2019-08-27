@@ -27,7 +27,6 @@ export const getAccount = (activePeer, address) =>
     const process = [
       {
         req: addr => activePeer.Account.getAccount(addr),
-        key: 'value',
         val: ['value'],
       },
       {
