@@ -48,7 +48,7 @@ export const getAccount = (activePeer, address) =>
         } else {
           data = { ...data, response };
         }
-        if (i === process.length) return resolve(data);
+        if (i === process.length - 1) return resolve(data);
       })
       .catch(err => reject(err))), Promise.resolve());
   });
