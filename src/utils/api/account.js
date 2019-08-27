@@ -15,7 +15,7 @@ export const getAccount = (activePeer, address) =>
       reject('not a valid address');
     }
 
-    let data = null;
+    let data = {};
 
     /**
      * Accound data
@@ -27,6 +27,8 @@ export const getAccount = (activePeer, address) =>
     const process = [
       {
         req: addr => activePeer.Account.getAccount(addr),
+        key: 'value',
+        val: ['value'],
       },
       {
         req: addr => activePeer.Staking.getDelagatorInfo(addr),
@@ -43,11 +45,22 @@ export const getAccount = (activePeer, address) =>
     ];
     process.reduce((acc, getData, i) => acc.then(() => getData.req(address)
       .then((response) => { // eslint-disable-line consistent-return
-        if (getData.key) {
-          data[getData.key] = response;
-        } else {
-          data = { ...data, response };
+        console.log(response);
+        let parsedData = response;
+        if (getData.val) {
+          parsedData = {};
+          getData.val
+            .forEach((v) => {
+              parsedData[v] = response[v]; // eslint-disable-line no-return-assign
+            });
         }
+
+        if (getData.key) {
+          data[getData.key] = parsedData;
+        } else {
+          data = { ...data, ...parsedData };
+        }
+        console.log(data, i, process.length);
         if (i === process.length - 1) return resolve(data);
       })
       .catch(err => reject(err))), Promise.resolve());
