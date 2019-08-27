@@ -45,7 +45,6 @@ export const getAccount = (activePeer, address) =>
     ];
     process.reduce((acc, getData, i) => acc.then(() => getData.req(address)
       .then((response) => { // eslint-disable-line consistent-return
-        console.log(response);
         let parsedData = response;
         if (getData.val) {
           parsedData = {};
@@ -60,7 +59,6 @@ export const getAccount = (activePeer, address) =>
         } else {
           data = { ...data, ...parsedData };
         }
-        console.log(data, i, process.length);
         if (i === process.length - 1) return resolve(data);
       })
       .catch(err => reject(err))), Promise.resolve());
