@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import React from 'react';
 import grid from 'flexboxgrid/dist/flexboxgrid.css';
-// import { FontIcon } from '../fontIcon';
 import Box from '../../atoms/box/index';
 import { SecondaryButton } from '../../atoms/toolbox/buttons/button';
 import WBox from '../../atoms/wbox/index';
@@ -13,7 +11,6 @@ import MedAmount from '../../atoms/medAmount/index';
 import TransactionList from '../../organisms/transactionList/transactionList';
 import Transfer from '../../organisms/transfer/index';
 import VestingSettings from '../../organisms/settings/vestingSettings/index';
-// import routes from '../../constants/routes';
 import styles from './dashboard.css';
 import { addMed } from '../../../utils/med';
 import arrowRight from '../../../assets/images/icons/baselineArrowRight.png';
@@ -58,7 +55,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    // const { transactions, t, account, loading, history } = this.props;
     const { account, t } = this.props;
 
     return <Box className={`${styles.wrapper} ${grid.row}`}>

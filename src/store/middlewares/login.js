@@ -1,7 +1,5 @@
 import i18next from 'i18next';
 import { getAccount } from '../../utils/api/account';
-// import { extractAddressFromMnemonic, extractPublicKey } from '../../utils/account';
-// import { getDelegate } from '../../utils/api/delegate';
 import { accountLoggedIn, accountLoading } from '../../actions/account';
 import actionTypes from '../../constants/actions';
 import accountConfig from '../../constants/account';
@@ -33,21 +31,6 @@ const loginMiddleware = store => next => (action) => {
       ...accountBasics,
       ...{ delegate: {}, isDelegate: false, expireTime: duration },
     }));
-
-    // return getDelegate(activePeer, { publicKey })
-    //   .then((delegateData) => {
-    //     store.dispatch(accountLoggedIn({
-    //       ...accountData,
-    //       ...accountBasics,
-    //       ...{ delegate: delegateData.delegate, isDelegate: true, expireTime: duration },
-    //     }));
-    //   }).catch(() => {
-    //     store.dispatch(accountLoggedIn({
-    //       ...accountData,
-    //       ...accountBasics,
-    //       ...{ delegate: {}, isDelegate: false, expireTime: duration },
-    //     }));
-    //   });
   }).catch(() => store.dispatch(errorToastDisplayed({ label: i18next.t('Unable to connect to the node') })));
 };
 
