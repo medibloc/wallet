@@ -27,7 +27,7 @@ class PassphraseInputBox extends React.Component {
     let passphrase = this.props.value.split(' ');
 
     if (insertedValueAsArray.length > 1) {
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 24; i++) {
         if (insertedValueAsArray[i]) {
           passphrase[i] = insertedValueAsArray[i];
           this.setState({ focus: i });
@@ -84,7 +84,7 @@ class PassphraseInputBox extends React.Component {
     return (
       <div className={`${styles.passphraseInputBoxWrapper}`}>
         <div className={`${styles.passphraseInputBox} ${this.props.className}`}>
-          {chunk([...Array(12)], 4).map((arr, i1) =>
+          {chunk([...Array(24)], 4).map((arr, i1) =>
             <div className={`${styles.row}`} key={`${arr}-${i1}`}>
               {arr.map((word, i2) => {
                 const i = (i1 * 4) + i2;
