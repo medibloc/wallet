@@ -1,4 +1,4 @@
-import { client } from 'medjs';
+import panacea from '@medibloc/panacea-js';
 import mServer from '../utils/mServer/index';
 import getNetwork from '../utils/getNetwork';
 import actionTypes from '../constants/actions';
@@ -6,7 +6,7 @@ import actionTypes from '../constants/actions';
 const peerSet = (data, config) => ({
   data: Object.assign({
     address: data.address,
-    activePeer: client(config.nodes),
+    activePeer: new panacea.Client(config.nodes[0]), // TODO @ggomma us other nodes also
     chainId: config.chainId,
     encKey: data.encKey,
     encPassphrase: data.encPassphrase,

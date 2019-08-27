@@ -1,4 +1,4 @@
-import { cryptography, local, utils } from 'medjs';
+import { cryptography, local } from 'medjs';
 import panacea from '@medibloc/panacea-js';
 
 const { Account, crypto } = panacea;
@@ -34,9 +34,7 @@ export const extractAddressFromMnemonic = (mnemonic) => {
   return address;
 };
 
-export const isAddress = address => (
-  utils.isAddress(address)
-);
+export const isAddress = address => crypto.checkAddress(address, 'panacea');
 
 export const getAccountFromPrivKey = privateKey => new Account({ privateKey });
 
