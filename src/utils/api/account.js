@@ -1,4 +1,3 @@
-import blockTypes from '../../constants/blockTypes';
 import { getAccountFromEncKey, isAddress } from '../account';
 import {
   createDefaultPayload,
@@ -15,15 +14,43 @@ export const getAccount = (activePeer, address) =>
     if (!isAddress(address)) {
       reject('not a valid address');
     }
-    activePeer.getAccount(address, null, blockTypes.tail).then((data) => {
-      if (data) {
-        resolve({
-          ...data,
-        });
-      } else {
-        reject(data);
-      }
-    }).catch(error => reject(error));
+
+    let data = null;
+
+    /**
+     * Accound data
+     * 1. Balance
+     * 2. Bonding
+     * 3. Unbonding
+     * 4. Reward
+     * */
+    const process = [
+      {
+        req: addr => activePeer.Account.getAccount(addr),
+      },
+      {
+        req: addr => activePeer.Staking.getDelagatorInfo(addr),
+        key: 'bonding',
+      },
+      {
+        req: addr => activePeer.Staking.getDelegatorUnbondingInfo(addr),
+        key: 'unbonding',
+      },
+      {
+        req: addr => activePeer.Distribution.getDelegatorRewards(addr),
+        key: 'reward',
+      },
+    ];
+    process.reduce((acc, getData, i) => acc.then(() => getData.req(address)
+      .then((response) => { // eslint-disable-line consistent-return
+        if (getData.key) {
+          data[getData.key] = response;
+        } else {
+          data = { ...data, response };
+        }
+        if (i === process.length) return resolve(data);
+      })
+      .catch(err => reject(err))), Promise.resolve());
   });
 
 export const send = ({ account, activePeer, chainId, description, nonce, password, to, value }) =>
