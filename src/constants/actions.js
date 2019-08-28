@@ -78,6 +78,7 @@ const actionTypes = {
   removePassphrase: 'REMOVE_PASSPHRASE',
   settingsUpdated: 'SETTINGS_UPDATED',
   settingsReset: 'SETTINGS_RESET',
+  settingsChangeFee: 'SETTINGS_CHANGE_FEE',
   removeSavedAccountPassphrase: 'REMOVE_SAVED_ACCOUNT_PASSPHRASE',
   passwordFailed: 'PASSWORD_FAILED',
   passwordVerifying: 'PASSWORD_VERIFYING',
