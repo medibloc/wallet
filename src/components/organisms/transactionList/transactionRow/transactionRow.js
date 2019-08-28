@@ -16,30 +16,31 @@ class TransactionRow extends React.Component {
     return (
       <div className={`${grid.row} ${styles.rows} transactions-row`}>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <div className={`${styles.clickable}`} onClick={onClick}>
-            <span> {props.value.hash} </span>
-          </div>
+          <a href={`${url}/en/tx/${props.value.txHash}`} target={'_blank'}>
+            <span> {props.value.txHash} </span>
+          </a>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
           {props.value.on_chain ? <DateFromTimestamp time={props.value.timestamp * 1000} /> :
             <Spinner />}
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`${url}/en/account/${props.value.from}`} target={'_blank'}>
-            <span> {props.value.from} </span>
+          <a href={`${url}/en/account/${props.value.fromAccount}`} target={'_blank'}>
+            <span> {props.value.fromAccount} </span>
           </a>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          <a href={`${url}/en/account/${props.value.to}`} target={'_blank'} className={`${styles.clickable}`}>
-            <span> {(props.value.tx_type === txTypes.send ||
-              props.value.tx_type === txTypes.genesis) ?
-              props.value.to : null} </span>
+          <a href={`${url}/en/account/${props.value.toAccount}`} target={'_blank'} className={`${styles.clickable}`}>
+            <span> { props.value.toAccount || null } </span>
           </a>
         </div>
         <div className={`${styles.text} ${styles.middleText} ${grid['col-sm-2']} transactions-cell`}>
           <TransactionType
-            isReceived={props.value.to && props.address && (props.value.to === props.address)}
-            type={props.value.tx_type} />
+            isReceived={
+              props.value.toAccount && props.address &&
+              (props.value.toAccount === props.address)
+            }
+            type={props.value.type} />
         </div>
         <div className={`${styles.text} ${styles.rightText} ${grid['col-sm-2']} transactions-cell`}>
           <Amount {...props} />
