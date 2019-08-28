@@ -101,20 +101,32 @@ export const sent = ({ account, activePeer, amount, chainId,
     }).then((res) => {
       dispatch({
         data: {
-          from: account.address,
-          hash: res.transactionId,
+          fromAccount: account.address,
+          txHash: res.txhash,
           timestamp: res.timestamp,
-          to,
-          value: toRawMed(amount),
-          tx_type: transactionTypes.send,
+          toAccount: to,
+          amount: toRawMed(amount),
+          type: transactionTypes.send,
         },
         type: actionTypes.transactionAdded,
       });
       if (account.address !== to) {
         dispatch({
           data: {
-            balance: subMed(account.balance, toRawMed(amount)),
-            points: subMed(account.points, BANDWIDTH_USED_TX),
+            coins: [{
+              denom: 'umed',
+              amount: subMed(subMed(account.coins[0].amount, toRawMed(amount)), toRawMed(fee)),
+            }],
+          },
+          type: actionTypes.accountUpdated,
+        });
+      } else {
+        dispatch({
+          data: {
+            coins: [{
+              denom: 'umed',
+              amount: subMed(account.coins[0].amount, toRawMed(fee)),
+            }],
           },
           type: actionTypes.accountUpdated,
         });

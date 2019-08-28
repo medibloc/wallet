@@ -11,7 +11,7 @@ const parseBalance = (account) => {
   };
 
   try {
-    balances.base = fromRawMed(account.value.coins[0].amount);
+    balances.base = fromRawMed(account.coins[0].amount);
   } catch (e) { balances.base = '0'; }
   try {
     balances.bonding = account.bonding

@@ -60,6 +60,7 @@ export const getAccount = (activePeer, address) =>
         if (getData.key) {
           data[getData.key] = parsedData;
         } else {
+          if (parsedData.value) parsedData = { ...parsedData.value };
           data = { ...data, ...parsedData };
         }
         if (i === process.length - 1) return resolve(data);
@@ -70,6 +71,7 @@ export const getAccount = (activePeer, address) =>
 export const send = ({ account, activePeer, chainId, description, password, to, value, fee }) =>
   new Promise((resolve, reject) => {
     let mAccount;
+
     try {
       const privKey = getPrivateKeyFromKeyStore(account.encKey, password);
       mAccount = getAccountFromPrivKey(privKey);
@@ -79,27 +81,24 @@ export const send = ({ account, activePeer, chainId, description, password, to, 
 
     const tx = valueTransferTx({
       // Msg params
-      fromAddress: account.value.address,
+      fromAddress: account.address,
       toAddress: to,
       amount: value,
 
       // Tx params
-      sequence: account.value.sequence,
-      accountNumber: account.value.account_number,
+      sequence: account.sequence,
+      accountNumber: account.account_number,
       chainId,
       memo: description,
       fee,
     });
 
     mAccount.sign(tx);
-    const convertedTx = tx.convertToBroadcastTx('block');
+    const convertedTx = tx.convertToBroadcastTx();
 
     activePeer.Tendermint.broadcastTx(convertedTx).then((res) => {
-      if (res.hash) {
-        resolve({
-          timestamp: Math.floor(new Date().getTime() / 1000),
-          transactionId: res.hash,
-        });
+      if (res.txhash) {
+        resolve(res);
       } else {
         reject(res);
       }
