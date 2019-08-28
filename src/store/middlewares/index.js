@@ -1,5 +1,6 @@
 import thunk from 'redux-thunk';
 import accountMiddleware from './account';
+import infoMiddleware from './info';
 import loadingBarMiddleware from './loadingBar';
 import loginMiddleware from './login';
 import peersMiddleware from './peers';
@@ -12,4 +13,5 @@ export default [
   loginMiddleware,
   peersMiddleware,
   savedAccountsMiddleware,
+  infoMiddleware,
 ];

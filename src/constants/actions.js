@@ -14,6 +14,7 @@ const actionTypes = {
   candidatesLoaded: 'CANDIDATES_LOADED',
   candidatesLoadFailed: 'CANDIDATES_LOAD_FAILED',
   candidatesUpdated: 'CANDIDATES_UPDATED',
+  infoUpdate: 'INFO_UPDATE',
   dialogDisplayed: 'DIALOG_DISPLAYED',
   storeCreated: 'STORE_CREATED',
   newBlockCreated: 'NEW_BLOCK_CREATED',
