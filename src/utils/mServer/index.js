@@ -8,5 +8,6 @@ export default (baseURL) => {
   return {
     ...candidates(sendRequest),
     ...transaction(sendRequest),
+    ...info(sendRequest),
   };
 };
