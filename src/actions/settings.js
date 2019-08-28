@@ -13,3 +13,8 @@ export const settingsReset = data => ({
   data,
   type: actionTypes.settingsReset,
 });
+
+export const changeDefaultFee = data => ({
+  data,
+  type: actionTypes.settingsChangeFee,
+});

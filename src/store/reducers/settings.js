@@ -6,6 +6,7 @@ const initialState = JSON.parse(localStorage.getItem('settings')) || {
   autoLog: true,
   onBoarding: localStorage.getItem('onboarding') !== 'false',
   showVoteIntroPage: true,
+  fee: '10',
 };
 
 /**
@@ -21,6 +22,10 @@ const settings = (state = initialState, action) => {
       return Object.assign({}, state, {
         advancedMode: false,
         autoLog: true,
+      });
+    case actionTypes.settingsChangeFee:
+      return Object.assign({}, state, {
+        fee: action.data,
       });
     default:
       return state;
