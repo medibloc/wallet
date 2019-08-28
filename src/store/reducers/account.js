@@ -52,14 +52,10 @@ const merge = (account, info) => {
  */
 const account = (state = {}, action) => {
   switch (action.type) {
-    // case actionTypes.removePassphrase:
-    //   return Object.assign({}, state, { passphrase: null, expireTime: 0 });
     case actionTypes.accountUpdated:
       return merge(state, action.data);
     case actionTypes.accountPasswordUpdated:
       return merge(state, action.data);
-    // case actionTypes.transactionsLoadFinish:
-    //   return { ...state, delegate: action.data.delegate };
     case actionTypes.accountLoggedIn:
       return { ...action.data };
     case actionTypes.accountLoggedOut:
@@ -70,15 +66,6 @@ const account = (state = {}, action) => {
       return {
         loading: true,
       };
-    // case actionTypes.accountAddVotes:
-    //   return { ...state, votes: action.votes };l
-    // case actionTypes.accountAddVoters:
-    //   return { ...state, voters: action.voters };
-    // case actionTypes.updateDelegate:
-    //   return {
-    //     ...state,
-    //     ...action.data,
-    //   };
     default:
       return state;
   }
