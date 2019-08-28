@@ -111,37 +111,44 @@ class Dashboard extends React.Component {
               </div>
             </WBox>
             <WBox className={`${styles.assetsWrapper} ${grid.row}`}>
-              <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
+              <div className={`${styles.assetsRow} ${grid['col-sm-3']}`}>
                 <div className={`${styles.assetsHeader} ${styles.hasBorderRight}`}>
                   <small>{t('Balance')}</small>
                 </div>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
-                  <MedAmount roundTo={2}
-                    val={account.balance} />
+                  <MedAmount roundTo={6}
+                    val={mulMed(balances.base, 10 ** 6)} />
                 </div>
               </div>
-              <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
+              <div className={`${styles.assetsRow} ${grid['col-sm-3']}`}>
                 <div className={`${styles.assetsHeader} ${styles.hasBorderRight}`}>
-                  <small>{t('Staking')}</small>
+                  <small>{t('Bonding')}</small>
                 </div>
                 <div className={`${styles.text} ${styles.hasBorderRight}`}>
-                  <MedAmount roundTo={2}
-                    val={account.staking} />
+                  <MedAmount roundTo={6}
+                    val={mulMed(balances.bonding, 10 ** 6)} />
                 </div>
               </div>
-              <div className={`${styles.assetsRow} ${grid['col-sm-4']}`}>
+              <div className={`${styles.assetsRow} ${grid['col-sm-3']}`}>
+                <div className={`${styles.assetsHeader} ${styles.hasBorderRight}`}>
+                  <small>{t('Unbonding')}</small>
+                </div>
+                <div className={`${styles.text} ${styles.hasBorderRight}`}>
+                  <MedAmount roundTo={6}
+                    val={mulMed(balances.unbonding, 10 ** 6)} />
+                </div>
+              </div>
+              <div className={`${styles.assetsRow} ${grid['col-sm-3']}`}>
                 <div className={styles.assetsHeader}>
-                  <small>{t('Pending')}</small>
+                  <small>{t('Reward')}</small>
                 </div>
                 <div className={`${styles.text}`}>
-                  <MedAmount roundTo={2}
-                    val={account.unstaking} />
+                  <MedAmount roundTo={6}
+                    val={mulMed(balances.reward, 10 ** 6)} />
                 </div>
               </div>
             </WBox>
           </WBox>
-          { /*  <WBox className={`${styles.graph}`}>
-          </WBox> */ }
         </Box>
         <Box className={`${styles.txListViewWrapper}`}>
           <WBox className={`${styles.txListView}`} hasBorder={true}>
