@@ -10,7 +10,7 @@ import { loadTransactions } from '../../../actions/transactions';
 import MedAmount from '../../atoms/medAmount/index';
 import TransactionList from '../../organisms/transactionList/transactionList';
 import Transfer from '../../organisms/transfer/index';
-import VestingSettings from '../../organisms/settings/vestingSettings/index';
+import FeeSettings from '../../organisms/settings/feeSettings/index';
 import styles from './dashboard.css';
 import { mulMed } from '../../../utils/med';
 import arrowRight from '../../../assets/images/icons/baselineArrowRight.png';
@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      showVestingSetting: false,
+      showFeeSetting: false,
     };
 
     this.loadAccount();
@@ -46,9 +46,9 @@ class Dashboard extends React.Component {
     this.props.history.push(`${routes.wallet.path}`);
   }
 
-  toggleVestingSetting() {
+  toggleFeeSetting() {
     this.setState({
-      showVestingSetting: !this.state.showVestingSetting,
+      showFeeSetting: !this.state.showFeeSetting,
     });
   }
 
@@ -63,8 +63,8 @@ class Dashboard extends React.Component {
             <WBox className={styles.vestingSettingsWrapper}>
               <SecondaryButton
                 className={`${styles.vestingSettings}`}
-                label={t('Staking Settings')}
-                onClick={() => this.toggleVestingSetting()} />
+                label={t('Fee Settings')}
+                onClick={() => this.toggleFeeSetting()} />
             </WBox>
             <WBox className={`${styles.totalWrapper}`}>
               <div className={`${styles.totalHeader}`}>
@@ -150,10 +150,10 @@ class Dashboard extends React.Component {
         <Transfer {...this.props} />
       </Box>
       {
-        this.state.showVestingSetting ?
-          <VestingSettings
+        this.state.showFeeSetting ?
+          <FeeSettings
             {...this.props}
-            closePopUp={() => this.toggleVestingSetting()}/> : null
+            closePopUp={() => this.toggleFeeSetting()}/> : null
       }
     </Box>;
   }

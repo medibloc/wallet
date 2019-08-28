@@ -16,7 +16,7 @@ class SendWritable extends React.Component {
     super(props);
     this.state = {
       balance: '0',
-      fee: '10', // TODO @ggomma consider how to change this
+      fee: this.props.fee || '10',
       recipient: {
         value: this.props.address || '',
       },
@@ -44,6 +44,9 @@ class SendWritable extends React.Component {
     if (prevProps.account.address !== this.props.account.address) {
       const { base } = parseBalance(this.props.account);
       this.setState({ balance: base });
+    }
+    if (prevProps.fee !== this.props.fee) {
+      this.setState({ fee: this.props.fee });
     }
   }
 

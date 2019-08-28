@@ -6,6 +6,7 @@ import Send from './send';
 const mapStateToProps = state => ({
   account: state.account,
   activePeer: state.peers.data,
+  fee: state.settings.fee,
 });
 
 export default connect(mapStateToProps)(translate()(Send));

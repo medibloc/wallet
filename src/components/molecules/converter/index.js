@@ -83,9 +83,9 @@ class Converter extends React.Component {
             }
           </div>
         </Input>
-        <span className={styles.feeWrapper}>
+        <div className={styles.feeWrapper}>
           Tx Fee : { this.props.fee } MED
-        </span>
+        </div>
       </Fragment>
     );
   }
