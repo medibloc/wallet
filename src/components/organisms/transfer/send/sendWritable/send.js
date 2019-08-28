@@ -1,9 +1,6 @@
 import React, { Fragment } from 'react';
-import { MIN_BANDWIDTH_IN_MED } from '../../../../../constants/bandwidth';
-import BN from '../../../../../utils/bn';
 import { fromRawMed, lte, toRawMed, subMed } from '../../../../../utils/med';
 import { PrimaryButton } from '../../../../atoms/toolbox/buttons/button';
-import AutoVesting from '../../../autoVesting/index';
 import BandwidthBar from '../../../../molecules/bandwidthBar/index';
 import Converter from '../../../../molecules/converter/index';
 import EventRecipient from '../../../../molecules/eventRecipient/index';
@@ -71,19 +68,12 @@ class SendWritable extends React.Component {
     return lte(toRawMed(value), toRawMed(subMed(this.state.balance, this.state.fee)));
   }
 
-  nextStepWithParam(autoVesting) {
+  nextStepWithParam() {
     this.props.nextStep({
       amount: this.state.amount.value,
-      autoVesting,
       description: this.state.description.value,
       recipient: this.state.recipient.value,
-      vestingAmount: this.state.vestingAmount,
-    });
-  }
-
-  toggleAutoVesting() {
-    this.setState({
-      showAutoVesting: !this.state.showAutoVesting,
+      fee: this.state.fee,
     });
   }
 
@@ -98,7 +88,7 @@ class SendWritable extends React.Component {
 
   validateInput(name, value) {
     if (name === 'description') {
-      if (value.length > 50) {
+      if (value.length > 100) {
         return this.props.t('Max length exceeded');
       }
       return '';
@@ -119,7 +109,6 @@ class SendWritable extends React.Component {
 
   render() {
     const { setTabSend, t } = this.props;
-    // const balance = parseBalance(this.props.account);
 
     return (
       <Fragment>
@@ -170,24 +159,11 @@ class SendWritable extends React.Component {
                         !this.state.amount.value ||
                         !!this.state.description.error)}
                 label={t('Next')}
-                onClick={() => {
-                  if (BN.lte(MIN_BANDWIDTH_IN_MED,
-                    fromRawMed(this.props.account.points))) {
-                    this.nextStepWithParam(false);
-                  } else {
-                    this.toggleAutoVesting();
-                  }
-                }}/>
+                onClick={() => this.nextStepWithParam(false)}
+              />
             </footer>
           </div>
         </div>
-        {
-          this.state.showAutoVesting ?
-            <AutoVesting
-              closePopUp={() => this.toggleAutoVesting()}
-              nextStep={() => this.nextStepWithParam(true)}
-              vestingAmount={this.state.vestingAmount}/> : null
-        }
       </Fragment>
     );
   }
