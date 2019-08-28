@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { MIN_BANDWIDTH_IN_MED } from '../../../../../constants/bandwidth';
 import BN from '../../../../../utils/bn';
-import { addMed, fromRawMed, lte, toRawMed, subMed } from '../../../../../utils/med';
+import { fromRawMed, lte, toRawMed, subMed } from '../../../../../utils/med';
 import { PrimaryButton } from '../../../../atoms/toolbox/buttons/button';
 import AutoVesting from '../../../autoVesting/index';
 import BandwidthBar from '../../../../molecules/bandwidthBar/index';
@@ -11,11 +11,14 @@ import TransferTabs from '../../transferTabs/index';
 import { Input } from '../../../../atoms/toolbox/inputs/input';
 import styles from './sendWritable.css';
 import regex from '../../../../../utils/regex';
+import parseBalance from '../../../../../utils/balanceParser';
 
 class SendWritable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      balance: '0',
+      fee: '10', // TODO @ggomma consider how to change this
       recipient: {
         value: this.props.address || '',
       },
@@ -32,6 +35,18 @@ class SendWritable extends React.Component {
       recipient: regex.address,
       amount: regex.amount,
     };
+  }
+
+  componentDidMount() {
+    const { base } = parseBalance(this.props.account);
+    this.setState({ balance: base });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.account.address !== this.props.account.address) {
+      const { base } = parseBalance(this.props.account);
+      this.setState({ balance: base });
+    }
   }
 
   calcVestingAmount(value) {
@@ -52,9 +67,7 @@ class SendWritable extends React.Component {
 
   // need 2 bandwidth for tx + 1 bandwidth for buffer
   isEnoughAmount(value) {
-    return lte(toRawMed(value), this.props.account.balance) &&
-      lte(addMed(toRawMed(value), toRawMed(3 * MIN_BANDWIDTH_IN_MED)),
-        addMed(this.props.account.balance, this.props.account.points));
+    return lte(toRawMed(value), toRawMed(subMed(this.state.balance, this.state.fee)));
   }
 
   nextStepWithParam(autoVesting) {
@@ -66,14 +79,6 @@ class SendWritable extends React.Component {
       vestingAmount: this.state.vestingAmount,
     });
   }
-
-  // setVestingAmount(value) {
-  //   this.setVestingAmount({
-  //     vestingAmount: Math.max(1,
-  //       fromRawMed(subMed(this.props.account.balance, toRawMed(this.state.amount.value))),
-  //     ),
-  //   });
-  // }
 
   toggleAutoVesting() {
     this.setState({
@@ -111,6 +116,7 @@ class SendWritable extends React.Component {
 
   render() {
     const { setTabSend, t } = this.props;
+    // const balance = parseBalance(this.props.account);
 
     return (
       <Fragment>
@@ -128,6 +134,7 @@ class SendWritable extends React.Component {
                 theme={styles}
                 title={t('MED')}
                 value={this.state.amount.value}
+                fee={this.state.fee}
               />
               <EventRecipient
                 error={this.state.recipient.error}

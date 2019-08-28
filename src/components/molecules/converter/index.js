@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 // import liskServiceApi from '../../utils/api/liskService';
 import { Input } from '../../atoms/toolbox/inputs/input';
 
@@ -60,28 +60,33 @@ class Converter extends React.Component {
       .reduce((a, v, key) => [...a, v, <div key={key}>|</div>], []) // eslint-disable-line
       .slice(0, -1);
     return (
-      <Input
-        autoFocus={this.props.autoFocus}
-        parentclassname={this.props.parentclassname}
-        error={this.props.error}
-        placeholder={this.props.placeholder}
-        label={this.props.label}
-        title={this.props.title}
-        theme={styles}
-        value={this.props.value}
-        onChange={this.props.onChange} >
-        <div className={styles.converterWrapper}>
-          {this.props.value !== '' && this.state.MED[currencies[0]] ?
-            <div
-              className={this.props.error ? `${styles.converterErr} converterErr`
-                : `${styles.converter} converter`}>
-              <div className={`${styles.convertElem} converted-price`}>~ {price}</div>
-              {intersperse}
-            </div>
-            : <div/>
-          }
-        </div>
-      </Input>
+      <Fragment>
+        <Input
+          autoFocus={this.props.autoFocus}
+          parentclassname={this.props.parentclassname}
+          error={this.props.error}
+          placeholder={this.props.placeholder}
+          label={this.props.label}
+          title={this.props.title}
+          theme={styles}
+          value={this.props.value}
+          onChange={this.props.onChange} >
+          <div className={styles.converterWrapper}>
+            {this.props.value !== '' && this.state.MED[currencies[0]] ?
+              <div0
+                className={this.props.error ? `${styles.converterErr} converterErr`
+                  : `${styles.converter} converter`}>
+                <div className={`${styles.convertElem} converted-price`}>~ {price}</div>
+                {intersperse}
+              </div0>
+              : <div/>
+            }
+          </div>
+        </Input>
+        <span className={styles.feeWrapper}>
+          Tx Fee : { this.props.fee } MED
+        </span>
+      </Fragment>
     );
   }
 }

@@ -55,7 +55,7 @@ input:read-only {
 }
 
 .recipient {
-  margin: 16px 0 0;
+  margin: 31px 0 0;
 
   & input {
     height: 40px;

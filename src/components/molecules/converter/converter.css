@@ -18,17 +18,6 @@
   }
 }
 
-.fee {
-  text-align: right;
-  margin-bottom: 24px;
-  font-size: 14px;
-  font-weight: 600;
-  position: absolute;
-  right: 0;
-  top: 70px;
-  color: var(--fee-color);
-}
-
 .converterWrapper {
   text-align: right;
   font-size: 14px;
@@ -75,4 +64,11 @@
       }
     }
   }
+}
+
+.feeWrapper {
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  color: var(--color-grayscale-medium);
 }
