@@ -87,18 +87,16 @@ class PasswordSteps extends React.Component {
   handleClick() {
     this.setState({ sent: true });
 
-    setTimeout(() => {
-      this.props.sent({
-        account: this.props.account,
-        activePeer: this.props.peers.activePeer,
-        amount: this.props.amount,
-        chainId: this.props.peers.chainId,
-        description: this.props.description,
-        password: this.state.password.value,
-        to: this.props.recipient,
-        fee: this.props.fee,
-      });
-    }, 500);
+    this.props.sent({
+      account: this.props.account,
+      activePeer: this.props.peers.activePeer,
+      amount: this.props.amount,
+      chainId: this.props.peers.chainId,
+      description: this.props.description,
+      password: this.state.password.value,
+      to: this.props.recipient,
+      fee: this.props.fee,
+    });
   }
 
   initRequestState() {
