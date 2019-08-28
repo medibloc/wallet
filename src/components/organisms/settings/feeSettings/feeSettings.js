@@ -1,20 +1,18 @@
 import React, { Fragment } from 'react';
-// import { Route, Switch } from 'react-router-dom';
 import { translate } from 'react-i18next';
 import InlineSVG from 'svg-inline-react';
-import styles from './vestSettings.css';
+import styles from './feeSettings.css';
 import CloseButton from '../../../../assets/images/icons/buttonX.svg';
 import SettingsMenu from '../settingsMenu/index';
 import WBox from '../../../atoms/wbox/index';
-import Vest from '../../vest/index';
-import WithdrawVesting from '../../withdrawVesting/index';
+import Fee from '../../fee/index';
 
-class VestSettings extends React.Component {
+class FeeSettings extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      active: 'vest',
+      active: 'fee',
     };
   }
 
@@ -26,12 +24,8 @@ class VestSettings extends React.Component {
     const { closePopUp, t } = this.props;
     const settings = [
       {
-        id: 'vest',
-        label: t('Staking'),
-      },
-      {
-        id: 'withdrawVesting',
-        label: t('Unstaking'),
+        id: 'fee',
+        label: t('Fee'),
       },
     ];
 
@@ -51,7 +45,7 @@ class VestSettings extends React.Component {
               <WBox className={styles.settingsWrapper}>
                 <div className={styles.settingsMenuWrapper}>
                   <div className={styles.menuHeader}>
-                    <h4>{ t('Staking Settings') }</h4>
+                    <h4>{ t('Fee Settings') }</h4>
                   </div>
                   <div className={styles.menuBody}>
                     <SettingsMenu
@@ -63,11 +57,7 @@ class VestSettings extends React.Component {
                 <div className={styles.settingsContentWrapper}>
                   {
                     (this.state.active === settings[0].id) ?
-                      <Vest {...this.props} /> : null
-                  }
-                  {
-                    (this.state.active === settings[1].id) ?
-                      <WithdrawVesting {...this.props} /> : null
+                      <Fee {...this.props} /> : null
                   }
                 </div>
               </WBox>
@@ -79,4 +69,4 @@ class VestSettings extends React.Component {
   }
 }
 
-export default translate()(VestSettings);
+export default translate()(FeeSettings);

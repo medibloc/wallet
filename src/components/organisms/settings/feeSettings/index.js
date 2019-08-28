@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import VestSettings from './vestSettings';
+import FeeSettings from './feeSettings';
 
 const mapStateToProps = state => ({
   account: state.account,
@@ -8,4 +8,4 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-)(translate()(VestSettings));
+)(translate()(FeeSettings));
