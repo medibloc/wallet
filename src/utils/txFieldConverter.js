@@ -25,7 +25,7 @@ export const txColorConverter = (txType, isReceived) => {
       break;
     case txTypes.revokeCertification:
       break;
-    case txTypes.genesis:
+    case txTypes.genesis: // TODO @ggomma consider genesis transaction
       color = isReceived ? 'received' : 'send';
       break;
     case txTypes.genesisVest:
@@ -49,41 +49,65 @@ export const txTypeConverter = (txType, isReceived) => {
         type = i18n.t('Transfer');
       }
       break;
-    case txTypes.addRecord:
-      type = i18n.t('Add Record');
+    case txTypes.createValidator:
+      type = i18n.t('Create Validator');
       break;
-    case txTypes.vest:
-      type = i18n.t('Staking');
+    case txTypes.editValidator:
+      type = i18n.t('Edit Validator');
       break;
-    case txTypes.withdrawVesting:
-      type = i18n.t('Unstaking');
+    case txTypes.delegate:
+      type = i18n.t('Delegate');
       break;
-    case txTypes.becomeCandidate:
-      type = i18n.t('Become Candidate');
+    case txTypes.undelegate:
+      type = i18n.t('Undelegate');
       break;
-    case txTypes.quitCandidacy:
-      type = i18n.t('Quit Candidacy');
+    case txTypes.redelegate:
+      type = i18n.t('Redelegate');
+      break;
+    case txTypes.unjail:
+      type = i18n.t('Unjail');
+      break;
+    case txTypes.submitProposal:
+      type = i18n.t('Propose');
+      break;
+    case txTypes.deposit:
+      type = i18n.t('Deposit');
       break;
     case txTypes.vote:
       type = i18n.t('Vote');
       break;
-    case txTypes.addCertification:
-      type = i18n.t('Add Certification');
+    case txTypes.textProposal:
+      type = i18n.t('Proposal');
       break;
-    case txTypes.revokeCertification:
-      type = i18n.t('Revoke Certification');
+    case txTypes.swUpgradeProposal:
+      type = i18n.t('Propose');
       break;
-    case txTypes.genesis:
-      if (isReceived === true) {
-        type = i18n.t('Received');
-      } else if (isReceived === false) {
-        type = i18n.t('Send');
-      } else {
-        type = i18n.t('Transfer');
-      }
+    case txTypes.withdrawDelegationReward:
+      type = i18n.t('Reward');
       break;
-    case txTypes.genesisVest:
-      type = i18n.t('Staking');
+    case txTypes.withdrawValidatorCommission:
+      type = i18n.t('Commission');
+      break;
+    case txTypes.modifyWithdrawAddress:
+      type = i18n.t('Modify');
+      break;
+    case txTypes.verifyInvariant:
+      type = i18n.t('Verify');
+      break;
+    case txTypes.multiSend:
+      type = i18n.t('Transfer');
+      break;
+    case txTypes.createTopic:
+      type = i18n.t('Topic');
+      break;
+    case txTypes.addWriter:
+      type = i18n.t('Writer');
+      break;
+    case txTypes.addRecord:
+      type = i18n.t('Record');
+      break;
+    case txTypes.deleteWriter:
+      type = i18n.t('Writer');
       break;
     default:
       break;
