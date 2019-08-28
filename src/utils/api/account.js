@@ -1,6 +1,10 @@
-import { getAccountFromEncKey, isAddress } from '../account';
 import {
-  createDefaultPayload,
+  getAccountFromEncKey,
+  getAccountFromPrivKey,
+  getPrivateKeyFromKeyStore,
+  isAddress,
+} from '../account';
+import {
   createVotePayload,
   valueTransferTx,
   vestTx,
@@ -63,28 +67,34 @@ export const getAccount = (activePeer, address) =>
       .catch(err => reject(err))), Promise.resolve());
   });
 
-export const send = ({ account, activePeer, chainId, description, nonce, password, to, value }) =>
+export const send = ({ account, activePeer, chainId, description, password, to, value, fee }) =>
   new Promise((resolve, reject) => {
     let mAccount;
     try {
-      mAccount = getAccountFromEncKey(account.encKey, password);
+      const privKey = getPrivateKeyFromKeyStore(account.encKey, password);
+      mAccount = getAccountFromPrivKey(privKey);
     } catch (e) {
       reject(errorTypes.wrongPasswordError);
     }
+
     const tx = valueTransferTx({
-      chain_id: chainId,
-      from: account.address,
-      to,
-      value,
-      nonce,
-      payload: description ? createDefaultPayload(description) : null,
+      // Msg params
+      fromAddress: account.value.address,
+      toAddress: to,
+      amount: value,
+
+      // Tx params
+      sequence: account.value.sequence,
+      accountNumber: account.value.account_number,
+      chainId,
+      memo: description,
+      fee,
     });
 
-    mAccount.signTx(tx, password);
-    console.log(JSON.parse(JSON.stringify(tx)));
+    mAccount.sign(tx);
+    const convertedTx = tx.convertToBroadcastTx('block');
 
-    activePeer.sendTransaction(tx).then((res) => {
-      console.log(res);
+    activePeer.Tendermint.broadcastTx(convertedTx).then((res) => {
       if (res.hash) {
         resolve({
           timestamp: Math.floor(new Date().getTime() / 1000),
@@ -98,31 +108,6 @@ export const send = ({ account, activePeer, chainId, description, nonce, passwor
       reject(error);
     });
   });
-
-// export const transactions = ({ activePeer, address, limit = 20, offset = 0,
-// orderBy = 'timestamp:desc', filter = txFilters.all }) => {
-//   let params = {
-//     recipientId: (filter === txFilters.incoming || filter === txFilters.all)
-//      ? address : undefined,
-//     senderId: (filter === txFilters.outgoing || filter === txFilters.all)
-//      ? address : undefined,
-//     limit,
-//     offset,
-//     orderBy,
-//   };
-//   params = JSON.parse(JSON.stringify(params));
-//   return requestToActivePeer(activePeer, 'transactions', params);
-// };
-
-// export const unconfirmedTransactions = (activePeer, address, limit = 20,
-//  offset = 0, orderBy = 'timestamp:desc') =>
-//   requestToActivePeer(activePeer, 'transactions/unconfirmed', {
-//     senderId: address,
-//     recipientId: address,
-//     limit,
-//     offset,
-//     orderBy,
-//   });
 
 export const vest = ({ account, activePeer, chainId, nonce, password, value }) =>
   new Promise((resolve, reject) => {

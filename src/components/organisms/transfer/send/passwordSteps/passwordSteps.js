@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import grid from 'flexboxgrid/dist/flexboxgrid.css';
-// import InlineSVG from 'svg-inline-react';
-// import spinner from '../../../assets/images/spinner.svg';
 import actionTypes from '../../../../../constants/actions';
 import { Input } from '../../../../atoms/toolbox/inputs/input';
 import { PrimaryButton } from '../../../../atoms/toolbox/buttons/button';
@@ -42,13 +40,6 @@ class PasswordSteps extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log(this.props.loadingBar, prevProps.loadingBar);
-    // console.log((this.props.loadingBar && this.props.loadingBar.sendLoadingBar));
-    // console.log((!prevProps.loadingBar || !prevProps.loadingBar.sendLoadingBar));
-    // if ((this.props.loadingBar && this.props.loadingBar.sendLoadingBar) &&
-    //   (!prevProps.loadingBar || !prevProps.loadingBar.sendLoadingBar)) {
-    //   setTimeout(() => this.handleClick(), 1000);
-    // }
     if (this.state.sent && !this.props.account.passwordVerifying &&
       prevProps.account.passwordVerifying) {
       if (this.props.account.passwordValidity) {
@@ -94,33 +85,19 @@ class PasswordSteps extends React.Component {
   }
 
   handleClick() {
-    const nonce = Number(this.props.account.nonce) + 1;
     this.setState({ sent: true });
+
     setTimeout(() => {
-      if (this.props.autoVesting && this.props.vestingAmount) {
-        this.props.vestedAndSent({
-          account: this.props.account,
-          activePeer: this.props.peers.activePeer,
-          chainId: this.props.peers.chainId,
-          description: this.props.description,
-          nonce,
-          password: this.state.password.value,
-          to: this.props.recipient,
-          transferAmount: this.props.amount,
-          vestingAmount: this.props.vestingAmount,
-        });
-      } else {
-        this.props.sent({
-          account: this.props.account,
-          activePeer: this.props.peers.activePeer,
-          amount: this.props.amount,
-          chainId: this.props.peers.chainId,
-          description: this.props.description,
-          nonce,
-          password: this.state.password.value,
-          to: this.props.recipient,
-        });
-      }
+      this.props.sent({
+        account: this.props.account,
+        activePeer: this.props.peers.activePeer,
+        amount: this.props.amount,
+        chainId: this.props.peers.chainId,
+        description: this.props.description,
+        password: this.state.password.value,
+        to: this.props.recipient,
+        fee: this.props.fee,
+      });
     }, 500);
   }
 
@@ -162,6 +139,10 @@ class PasswordSteps extends React.Component {
                 <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Asset')}</small>
                 <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.amount} MED</h6>
               </div>
+              <div className={`${grid.row} ${styles.feeInfo}`}>
+                <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Fee')}</small>
+                <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.fee} MED</h6>
+              </div>
               <div className={`${grid.row} ${styles.recipientInfo}`}>
                 <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Recipient')}</small>
                 <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.recipient}</h6>
@@ -195,11 +176,6 @@ class PasswordSteps extends React.Component {
             </footer>
           </div>
         </WBox>
-        { /* (loadingBar && loadingBar.sendLoadingBar) ?
-          <div className={`${styles.loadingBarWrapper}`}>
-            { <InlineSVG className={`${styles.spinner}`} src={spinner} /> }
-          </div> : null
-        */ }
       </Fragment>
     );
   }

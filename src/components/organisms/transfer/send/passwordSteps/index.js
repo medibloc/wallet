@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import PasswordSteps from './passwordSteps';
-import { sent, vestedAndSent } from '../../../../../actions/account';
+import { sent } from '../../../../../actions/account';
 import { errorToastDisplayed } from '../../../../../actions/toaster';
 
 const mapStateToProps = state => ({
@@ -14,7 +14,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   errorToastDisplayed: data => dispatch(errorToastDisplayed(data)),
   sent: data => dispatch(sent(data)),
-  vestedAndSent: data => dispatch(vestedAndSent(data)),
 });
 
 export default connect(

@@ -4,11 +4,6 @@ import actionTypes from '../constants/actions';
 import { BANDWIDTH_USED_TX } from '../constants/bandwidth';
 import transactionTypes from '../constants/transactionTypes';
 import { send, vest, vote, withdrawVesting } from '../utils/api/account';
-// import { registerDelegate, getDelegate, getVotes, getVoters } from '../utils/api/delegate';
-// import { loadTransactionsFinish } from './transactions';
-// import { delegateRegisteredFailure } from './delegate';
-// import { errorAlertDialogDisplayed } from './dialog';
-// import Fees from '../constants/fees';
 import { candidatesUpdated } from './candidates';
 import { loadingStarted, loadingFinished } from './loading';
 import { addMed, subMed, toRawMed } from '../utils/med';
@@ -85,90 +80,12 @@ export const passwordFailed = () => ({
   type: actionTypes.passwordFailed,
 });
 
-// /**
-//  * Gets list of all votes
-//  */
-// export const accountVotesFetched = ({ activePeer, address }) =>
-//   dispatch =>
-//     getVotes(activePeer, address).then(({ delegates }) => {
-//       dispatch({
-//         type: actionTypes.accountAddVotes,
-//         votes: delegates,
-//       });
-//     });
-//
-// /**
-//  * Gets list of all voters
-//  */
-// export const accountVotersFetched = ({ activePeer, publicKey }) =>
-//   dispatch =>
-//     getVoters(activePeer, publicKey).then(({ accounts }) => {
-//       dispatch({
-//         type: actionTypes.accountAddVoters,
-//         voters: accounts,
-//       });
-//     });
-// /**
-//  *
-//  */
-// export const secondPassphraseRegistered =
-//   ({ activePeer, secondPassphrase, account, passphrase }) =>
-//   (dispatch) => {
-//     setSecondPassphrase(activePeer, secondPassphrase, account.publicKey, passphrase)
-//       .then((data) => {
-//         dispatch({
-//           data: {
-//             id: data.transactionId,
-//             senderPublicKey: account.publicKey,
-//             senderId: account.address,
-//             amount: 0,
-//             fee: Fees.setSecondPassphrase,
-//             type: transactionTypes.setSecondPassphrase,
-//           },
-//           type: actionTypes.transactionAdded,
-//         });
-//       }).catch((error) => {
-//         const text = (error && error.message) ? error.message :
-//          i18next.t('An error occurred while registering your second passphrase.'
-//          + 'Please try again.');
-//         dispatch(errorAlertDialogDisplayed({ text }));
-//       });
-//     dispatch(passwordUsed());
-//   };
-//
-// /**
-//  *
-//  */
-// export const delegateRegistered = ({
-//   activePeer, account, passphrase, username, secondPassphrase }) =>
-//   (dispatch) => {
-//     registerDelegate(activePeer, username, passphrase, secondPassphrase)
-//       .then((data) => {
-//         // dispatch to add to pending transaction
-//         dispatch({
-//           data: {
-//             id: data.transactionId,
-//             senderPublicKey: account.publicKey,
-//             senderId: account.address,
-//             username,
-//             amount: 0,
-//             fee: Fees.registerDelegate,
-//             type: transactionTypes.registerDelegate,
-//           },
-//           type: actionTypes.transactionAdded,
-//         });
-//       })
-//       .catch((error) => {
-//         dispatch(delegateRegisteredFailure(error));
-//       });
-//     dispatch(passwordUsed());
-//   };
 
 /**
  *
  */
 export const sent = ({ account, activePeer, amount, chainId,
-  description, nonce, password, to }) =>
+  description, password, to, fee }) =>
   (dispatch) => {
     dispatch(loadingStarted(actionTypes.requestTransferTransaction));
     dispatch(passwordVerifying());
@@ -177,9 +94,9 @@ export const sent = ({ account, activePeer, amount, chainId,
       activePeer,
       chainId,
       description,
-      nonce,
       password,
       to,
+      fee: toRawMed(fee),
       value: toRawMed(amount),
     }).then((res) => {
       dispatch({
@@ -197,7 +114,6 @@ export const sent = ({ account, activePeer, amount, chainId,
         dispatch({
           data: {
             balance: subMed(account.balance, toRawMed(amount)),
-            nonce: nonce.toString(),
             points: subMed(account.points, BANDWIDTH_USED_TX),
           },
           type: actionTypes.accountUpdated,
@@ -218,64 +134,6 @@ export const sent = ({ account, activePeer, amount, chainId,
         }
       });
   };
-
-
-// export const loadDelegate = ({ activePeer, publicKey }) =>
-//   (dispatch) => {
-//     getDelegate(
-//       activePeer, { publicKey },
-//     ).then((response) => {
-//       dispatch({
-//         data: {
-//           delegate: response.delegate,
-//         },
-//         type: actionTypes.updateDelegate,
-//       });
-//     });
-//   };
-
-// export const loadAccount = ({
-//   activePeer,
-//   address,
-//   transactionsResponse,
-//   isSameAccount }) =>
-//
-//   (dispatch) => {
-//     getAccount(activePeer, address)
-//       .then((response) => {
-//         console.log(transactionsResponse);
-//         console.log(isSameAccount);
-//         dispatch({
-//           data: {
-//             address,
-//             balance: response.balance,
-//             staking: response.staking,
-//             points: response.points,
-//             unstaking: response.unstaking,
-//           },
-//           type: actionTypes.updateDelegate,
-//         });
-//       //   let accountDataUpdated = {
-//       //     confirmed: transactionsResponse.transactions,
-//       //     count: parseInt(transactionsResponse.count, 10),
-//       //     balance: response.balance,
-//       //     address,
-//       //   };
-//       //
-//       //   if (!isSameAccount && response.publicKey) {
-//       //     dispatch(loadDelegate({
-//       //       activePeer,
-//       //       publicKey: response.publicKey,
-//       //     }));
-//       //   } else if (isSameAccount && response.isDelegate) {
-//       //     accountDataUpdated = {
-//       //       ...accountDataUpdated,
-//       //       delegate: response.delegate,
-//       //     };
-//       //   }
-//       //   dispatch(loadTransactionsFinish(accountDataUpdated));
-//       });
-//   };
 
 /**
  *
