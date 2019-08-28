@@ -1,11 +1,6 @@
-// import { extractAddressFromMnemonic } from '../../../common/src/utils/account';
 import actionTypes from '../constants/actions';
 import { loadingStarted, loadingFinished } from './loading';
 import { transaction, transactions } from '../utils/api/transaction';
-// import { getDelegate } from '../utils/api/delegate';
-// import { loadAccount } from './account';
-// import txTypes from '../constants/transactionTypes';
-
 
 export const transactionsFilterSet = ({ address, limit, mServer, txTypeFilter }) =>
   (dispatch) => {
@@ -24,59 +19,20 @@ export const transactionsFilterSet = ({ address, limit, mServer, txTypeFilter })
     }));
   };
 
-// export const transactionsUpdateUnconfirmed = ({ activePeer, address, pendingTransactions }) =>
-//   (dispatch) => {
-//     unconfirmedTransactions(activePeer, address).then(response => dispatch({
-//       data: {
-//         failed: pendingTransactions.filter(tx =>
-//           response.transactions.filter(unconfirmedTx => tx.id
-// === unconfirmedTx.id).length === 0),
-//       },
-//       type: actionTypes.transactionsFailed,
-//     }));
-//   };
-
-// export const loadTransactionsFinish = accountUpdated =>
-//   (dispatch) => {
-//     loadingFinished(actionTypes.transactionsLoad);
-//     dispatch({
-//       data: accountUpdated,
-//       type: actionTypes.transactionsLoadFinish,
-//     });
-//   };
-
-export const loadTransactions = ({ activePeer, address, mServer }) =>
+export const loadTransactions = ({ address, mServer }) =>
   (dispatch) => {
     // eslint-disable-next-line no-unneeded-ternary
-    // const lastActiveAddress = address ? address : null;
-    // const isSameAccount = lastActiveAddress === address;
     dispatch(loadingStarted(actionTypes.transactionsLoad));
     // TODO: get transaction details
     transactions({ address, mServer })
       .then((transactionsResponse) => {
-        // dispatch(loadAccount({
-        //   activePeer,
-        //   address,
-        //   transactionsResponse,
-        //   isSameAccount,
-        // }));
-
         if (transactionsResponse && transactionsResponse.transactions) {
-          let txRequests = [];
-          transactionsResponse.transactions.forEach((tx) => {
-            txRequests = txRequests.concat(transaction({ activePeer, hash: tx.hash }));
-          });
-          Promise.all(txRequests).then((txs) => {
-            dispatch({
-              data: {
-                count: parseInt(transactionsResponse.count, 10),
-                confirmed: txs,
-              },
-              type: actionTypes.transactionsLoaded,
-            });
-          }).catch((err) => {
-            dispatch(loadingFinished(actionTypes.transactionsLoad));
-            console.log(err);
+          dispatch({
+            data: {
+              count: parseInt(transactionsResponse.count, 10),
+              confirmed: transactionsResponse,
+            },
+            type: actionTypes.transactionsLoaded,
           });
           dispatch(loadingFinished(actionTypes.transactionsLoad));
         } else {
@@ -91,26 +47,6 @@ export const loadTransactions = ({ activePeer, address, mServer }) =>
         }
       });
   };
-
-/**
- *
- *
- */
-// export const transactionsRequested = ({ activePeer, address, limit, offset, filter }) =>
-//   (dispatch) => {
-//     transactions({ activePeer, address, limit, offset, filter })
-//       .then((response) => {
-//         dispatch({
-//           data: {
-//             count: parseInt(response.count, 10),
-//             confirmed: response.transactions,
-//             address,
-//             filter,
-//           },
-//           type: actionTypes.transactionsLoaded,
-//         });
-//       });
-//   };
 
 export const loadTransaction = ({ hash }) =>
   (dispatch, getState) => {

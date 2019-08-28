@@ -11,5 +11,4 @@ export const parseCandidates = candidates =>
 export const parseTransactions = transactions =>
   transactions.map(tx => ({
     ...tx.data,
-    timestamp: (((tx || {}).data || {}).receipt || {}).timestamp,
   }));

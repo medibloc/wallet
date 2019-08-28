@@ -32,54 +32,35 @@ class TransactionsList extends React.Component {
       account,
       isScrollable,
       loading,
-      onClick,
       t,
       transactions,
-      // loadMore,
     } = this.props;
-
-    // const fixIncomingFilter = (transaction) => {
-    //   const isTypeNonSend = transaction.type !== txTypes.send;
-    //   const isFilterIncoming = filter && filter.value === txFilters.incoming;
-    //   const isAccountInit = transaction.type === txTypes.send
-    //     && transaction.to === transaction.from;
-    //
-    //   return !(isFilterIncoming && (isTypeNonSend || isAccountInit));
-    // };
 
     if (loading) return null;
     // istanbul ignore else
     if (transactions.length === 0) {
       // istanbul ignore else
-      return <p className={`${styles.empty} hasPaddingRow empty-message`}>
-        {t('There are no transactions.')}
-      </p>;
-
-
-      // if (dashboard || (filter && filter.value !== txFilters.all)) {
-      //   return <p className={`${styles.empty} hasPaddingRow empty-message`}>
-      //     {t('There are no {{filterName}} transactions.', {
-      //       filterName: filter && filter.name ? filter.name.toLowerCase() : '',
-      //     })}
-      //   </p>;
-      // }
-      // return null;
+      return (
+        <p className={`${styles.empty} hasPaddingRow empty-message`}>
+          {t('There are no transactions.')}
+        </p>
+      );
     }
-    return <div className={`${styles.results} transaction-results`}>
-      <TransactionsHeader tableStyle={tableStyle} />
-      <div className={`${styles.transactionRowWrapper} ${isScrollable ? styles.scrollable : null}`}>
-        {transactions
-          // .filter(fixIncomingFilter)
-          .sort((a, b) => b.timestamp - a.timestamp)
-          .map((transaction, i) => (
-            <TransactionRow address={account.address}
-              key={i}
-              t={t}
-              value={transaction}
-              onClick={onClick}
-            />))}
+    return (
+      <div className={`${styles.results} transaction-results`}>
+        <TransactionsHeader tableStyle={tableStyle} />
+        <div className={`${styles.transactionRowWrapper} ${isScrollable ? styles.scrollable : null}`}>
+          {transactions
+            .sort((a, b) => b.blockHeight - a.blockHeight)
+            .map((transaction, i) => (
+              <TransactionRow address={account.address}
+                key={i}
+                t={t}
+                value={transaction}
+              />))}
+        </div>
       </div>
-    </div>;
+    );
   }
 }
 

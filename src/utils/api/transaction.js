@@ -1,33 +1,14 @@
-import txTypes from '../../constants/transactionTypes';
 import { parseTransactions } from '../mServer/utils/parser';
 
-export const transactions = ({ address, mServer, txTypeFilter }) =>
+export const transactions = ({ address, mServer }) =>
   new Promise((resolve, reject) => {
     mServer.getAccountTransactions(address).then((res) => {
       if (res && res.transactions) {
         const txs = parseTransactions(res.transactions);
-        if (txTypeFilter) {
-          const filteredTxs = txs.filter((tx) => {
-            let flag = false;
-            if (tx && tx.tx_type) {
-              txTypes.forEach((v) => {
-                if (tx.tx_type === v) {
-                  flag = true;
-                }
-              });
-            }
-            return flag;
-          });
-          resolve({
-            count: filteredTxs.length,
-            transactions: filteredTxs,
-          });
-        } else {
-          resolve({
-            count: txs.length,
-            transactions: txs,
-          });
-        }
+        resolve({
+          count: txs.length,
+          transactions: txs,
+        });
       }
       reject(res);
     }).catch(error => reject(error));

@@ -75,10 +75,6 @@ class Dashboard extends React.Component {
     this.props.history.push(`${routes.wallet.path}`);
   }
 
-  onTransactionRowClick(props) {
-    this.props.history.push(`${routes.wallet.path}?hash=${props.value.hash}`);
-  }
-
   toggleVestingSetting() {
     this.setState({
       showVestingSetting: !this.state.showVestingSetting,
@@ -173,7 +169,6 @@ class Dashboard extends React.Component {
                 account={this.props.account}
                 history={this.props.history}
                 loading={this.props.loading}
-                onClick={props => this.onTransactionRowClick(props)}
                 t={this.props.t}
                 transactions={this.props.transactions.slice(0, 5)} />
             </div>
