@@ -113,6 +113,7 @@ export const sent = ({ account, activePeer, amount, chainId,
       if (account.address !== to) {
         dispatch({
           data: {
+            sequence: +account.sequence + 1,
             coins: [{
               denom: 'umed',
               amount: subMed(subMed(account.coins[0].amount, toRawMed(amount)), toRawMed(fee)),
@@ -123,6 +124,7 @@ export const sent = ({ account, activePeer, amount, chainId,
       } else {
         dispatch({
           data: {
+            sequence: +account.sequence + 1,
             coins: [{
               denom: 'umed',
               amount: subMed(account.coins[0].amount, toRawMed(fee)),
