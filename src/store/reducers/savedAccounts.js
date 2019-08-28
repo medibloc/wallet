@@ -59,19 +59,6 @@ const savedAccounts = (state = { accounts: [] }, action) => {
         accounts,
         lastActive: changedAccount,
       };
-    // case actionTypes.passphraseUsed:
-    //   indexOfAccount = getIndexOfSavedAccount(state.accounts, state.lastActive);
-    //   accounts[indexOfAccount] = {
-    //     ...accounts[indexOfAccount],
-    //     passphrase: action.data,
-    //   };
-    //   return {
-    //     accounts,
-    //     lastActive: {
-    //       ...state.lastActive,
-    //       passphrase: action.data,
-    //     },
-    //   };
     case actionTypes.accountSwitched:
       return {
         ...state,
@@ -84,17 +71,6 @@ const savedAccounts = (state = { accounts: [] }, action) => {
           !(account.address === action.data.address &&
           account.networkCode === action.data.networkCode)),
       };
-    // case actionTypes.removeSavedAccountPassphrase:
-    //   return {
-    //     ...state,
-    //     accounts: state.accounts.map((account) => {
-    //       if (!action.data || (`${action.data.networkCode}${action.data.passphrase}`
-    // === `${account.networkCode}${account.passphrase}`)) {
-    //         delete account.passphrase;
-    //       }
-    //       return account;
-    //     }),
-    //   };
     default:
       return state;
   }

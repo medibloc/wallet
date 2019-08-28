@@ -8,18 +8,6 @@ const transaction = (state = {}, action) => {
       return { success: true, ...action.data };
     case actionTypes.transactionLoadFailed:
       return action.data.error;
-    // case actionTypes.transactionAddDelegateName: {
-    //   const { voteArrayName, delegate } = action.data;
-    //   const arr = (state.votesName && state.votesName[voteArrayName]) || [];
-    //   const value = [].concat(arr, delegate);
-    //   return {
-    //     ...state,
-    //     votesName: {
-    //       ...state.votesName,
-    //       [voteArrayName]: value,
-    //     },
-    //   };
-    // }
     default:
       return state;
   }
