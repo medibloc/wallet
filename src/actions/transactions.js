@@ -2,22 +2,6 @@ import actionTypes from '../constants/actions';
 import { loadingStarted, loadingFinished } from './loading';
 import { transaction, transactions } from '../utils/api/transaction';
 
-export const transactionsFilterSet = ({ address, limit, mServer, txTypeFilter }) =>
-  (dispatch) => {
-    transactions({
-      address,
-      limit,
-      mServer,
-      txTypeFilter,
-    }).then(response => dispatch({
-      data: {
-        confirmed: response.transactions,
-        count: parseInt(response.count, 10),
-        txTypeFilter,
-      },
-      type: actionTypes.transactionsFiltered,
-    }));
-  };
 
 export const loadTransactions = ({ address, mServer }) =>
   (dispatch) => {
