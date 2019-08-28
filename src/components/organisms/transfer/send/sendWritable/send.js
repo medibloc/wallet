@@ -12,6 +12,7 @@ import { Input } from '../../../../atoms/toolbox/inputs/input';
 import styles from './sendWritable.css';
 import regex from '../../../../../utils/regex';
 import parseBalance from '../../../../../utils/balanceParser';
+import { isAddress } from '../../../../../utils/account';
 
 class SendWritable extends React.Component {
   constructor(props) {
@@ -104,12 +105,14 @@ class SendWritable extends React.Component {
     }
     if (!value) {
       return this.props.t('Required');
-    } else if (!value.match(this.inputValidationRegexps[name])) {
-      return name === 'amount' ? this.props.t('Invalid amount') : this.props.t('Invalid address');
+    } else if (name === 'amount' && !value.match(this.inputValidationRegexps[name])) {
+      return this.props.t('Invalid amount');
     } else if (name === 'amount' && !this.isEnoughAmount(value)) {
       return this.props.t('Not enough MED(includes staking)');
     } else if (name === 'amount' && value === '0') {
       return this.props.t('Zero not allowed');
+    } else if (name === 'recipient' && !isAddress(value)) {
+      return this.props.t('Invalid address');
     }
     return '';
   }
