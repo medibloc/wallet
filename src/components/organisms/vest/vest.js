@@ -159,6 +159,7 @@ class Vest extends React.Component {
               theme={styles}
               title={t('Staking')}
               value={this.state.amount.value}
+              price={this.props.price}
             />
             <div className={styles.passwordInputWrapper}>
               <Input

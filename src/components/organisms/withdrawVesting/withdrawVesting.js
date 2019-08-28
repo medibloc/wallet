@@ -152,6 +152,7 @@ class WithdrawVesting extends React.Component {
               theme={styles}
               title={t('Unstaking')}
               value={this.state.amount.value}
+              price={this.props.price}
             />
             <div className={styles.passwordInputWrapper}>
               <Input

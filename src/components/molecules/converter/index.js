@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-// import liskServiceApi from '../../utils/api/liskService';
 import { Input } from '../../atoms/toolbox/inputs/input';
 
 import styles from './converter.css';
@@ -9,27 +8,18 @@ class Converter extends React.Component {
     super(props);
     this.state = {
       MED: {
-        USD: '0',
-        WON: '0',
+        USD: 0,
       },
       // 0 index is active one
       currencies: ['USD', 'WON'],
     };
-    // this.updateData();
   }
 
   componentDidMount() {
-    // TODO: get from getPriceTicker
-    this.setState({ MED: { USD: '0.01', WON: '10' } });
+    const usdPrice = this.props.price;
+    this.setState({ MED: { USD: usdPrice } });
   }
 
-  // updateData() {
-  //   liskServiceApi.getPriceTicker().then((response) => {
-  //     this.setState({ ...response });
-  //   }).catch((error) => {
-  //     this.setState({ error });
-  //   });
-  // }
   /*
    * It swaping clicked currency with active currency on index 0
    */

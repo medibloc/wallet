@@ -6,6 +6,7 @@ import { changeDefaultFee } from '../../../actions/settings';
 const mapStateToProps = state => ({
   loading: state.loading,
   fee: state.settings.fee,
+  price: state.info.supply ? state.info.supply.price : 0,
 });
 
 const mapDispatchToProps = dispatch => ({

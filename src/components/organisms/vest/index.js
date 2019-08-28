@@ -5,6 +5,7 @@ import { vested } from '../../../actions/account';
 
 const mapStateToProps = state => ({
   loading: state.loading,
+  price: state.info.supply ? state.info.supply.price : 0,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -78,6 +78,7 @@ class Fee extends React.Component {
               theme={styles}
               title={t('Transaction Fee')}
               value={this.state.amount.value}
+              price={this.props.price}
             />
           </form>
           <footer className={`${styles.sendFooter}`}>

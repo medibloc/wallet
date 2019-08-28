@@ -130,6 +130,7 @@ class SendWritable extends React.Component {
                 title={t('MED')}
                 value={this.state.amount.value}
                 fee={this.state.fee}
+                price={this.props.price}
               />
               <EventRecipient
                 error={this.state.recipient.error}
