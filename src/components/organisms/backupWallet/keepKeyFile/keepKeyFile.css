@@ -1,6 +1,6 @@
 @import '../../../app/variables.css';
 
-.keepPassphrase {
+.keepKeyFile {
   align-items: center;
   display: flex;
   height: 75%;
@@ -55,7 +55,7 @@
       font-size: var(--font-size-h6);
     }
 
-    & .copyButton {
+    & .closeButton {
       margin: 0;
       font-size: var(--font-size-h6);
       width: 29%;
