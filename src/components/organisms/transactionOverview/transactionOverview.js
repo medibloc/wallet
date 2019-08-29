@@ -2,6 +2,7 @@ import React from 'react';
 import TransactionList from '../transactionList/transactionList';
 import WBox from '../../atoms/wbox/index';
 import styles from './transactionOverview.css';
+import getNetwork from '../../../utils/getNetwork';
 
 class TransactionOverview extends React.Component {
   constructor(props) {
@@ -10,13 +11,6 @@ class TransactionOverview extends React.Component {
       number: this.props.number || 12,
     };
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   return (this.props.loading && !nextProps.loading) ||
-  //     (nextProps.transactions.length !== 0 &&
-  //       (this.props.transactions.length !== nextProps.transactions.length ||
-  //         this.props.transactions[0].hash !== nextProps.transactions[0].hash));
-  // }
 
   componentDidMount() {
     this.props.loadTransactions({
@@ -27,7 +21,8 @@ class TransactionOverview extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, account, networkCode } = this.props;
+    const url = getNetwork(networkCode).mServerURL;
 
     return <WBox className={styles.txOverviewWrapper}>
       <WBox className={`${styles.txOverviewHeader}`}>
@@ -36,6 +31,11 @@ class TransactionOverview extends React.Component {
             { t('All activities') }
           </h4>
         </div>
+        <span>
+          <a href={`${url}/en/account/${account.address}`} target={'_blank'}>
+            see more
+          </a>
+        </span>
       </WBox>
       <div className={styles.txListWrapper}>
         <TransactionList
