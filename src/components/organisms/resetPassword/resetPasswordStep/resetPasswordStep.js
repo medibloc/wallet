@@ -34,13 +34,13 @@ class ResetPasswordStep extends React.Component {
     if (this.props.prevState) {
       const newState = {
         password: {
-          password: this.props.prevState.password || this.state.password.value,
+          value: this.props.prevState.password || this.state.password.value,
         },
         newPassword: {
-          password: this.props.prevState.newPassword || this.state.newPassword.value,
+          value: this.props.prevState.newPassword || this.state.newPassword.value,
         },
         newConfirmPassword: {
-          password: this.props.prevState.newConfirmPassword || this.state.newConfirmPassword.value,
+          value: this.props.prevState.newConfirmPassword || this.state.newConfirmPassword.value,
         },
       };
       this.setState(newState);
