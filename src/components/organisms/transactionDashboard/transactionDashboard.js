@@ -1,6 +1,4 @@
 import React from 'react';
-import MultiStep from '../../atoms/multiStep';
-import TransactionDetailView from '../transactionDetailView';
 import TransactionOverview from '../transactionOverview';
 import WBox from '../../atoms/wbox';
 import routes from '../../../constants/routes';
@@ -14,13 +12,6 @@ class TransactionDashboard extends React.Component {
       number: this.props.number || 12,
     };
   }
-
-  // shouldComponentUpdate(nextProps) {
-  //   return (this.props.loading && !nextProps.loading) ||
-  //     (nextProps.transactions.length !== 0 &&
-  //       (this.props.transactions.length !== nextProps.transactions.length ||
-  //         this.props.transactions[0].hash !== nextProps.transactions[0].hash));
-  // }
 
   componentDidMount() {
     this.props.loadTransactions({
@@ -37,18 +28,11 @@ class TransactionDashboard extends React.Component {
   render() {
     return (
       <WBox className={styles.wrapper}>
-        <MultiStep className={styles.transactions}
-          hideBackButton={true}>
-          <TransactionOverview
-            {...this.props}
-            onTransactionRowClick={props => this.onTransactionRowClick(props)}
-            title={'Transaction overview'}
-          />
-          <TransactionDetailView
-            {...this.props}
-            title={'Transaction detail view'}
-          />
-        </MultiStep>
+        <TransactionOverview
+          {...this.props}
+          onTransactionRowClick={props => this.onTransactionRowClick(props)}
+          title={'Transaction overview'}
+        />
       </WBox>
     );
   }
