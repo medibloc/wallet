@@ -5,9 +5,14 @@ import TransactionType from '../transactionType';
 import styles from './transactionRow.css';
 import Amount from '../amount';
 import Spinner from '../../../atoms/spinner';
-import { DateFromTimestamp } from '../../../atoms/timestamp';
 import getNetwork from '../../../../utils/getNetwork';
 
+
+const statusChecker = (status) => {
+  if (status === undefined) return <Spinner/>;
+  if (status) return <span>Success</span>;
+  return <span>Failed</span>;
+};
 
 class TransactionRow extends React.Component {
   render() {
@@ -21,8 +26,7 @@ class TransactionRow extends React.Component {
           </a>
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
-          {props.value.on_chain ? <DateFromTimestamp time={props.value.timestamp * 1000} /> :
-            <Spinner />}
+          { statusChecker(props.value.executed) }
         </div>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>
           <a href={`${url}/en/account/${props.value.fromAccount}`} target={'_blank'}>

@@ -9,7 +9,7 @@ const TransactionsHeader = ({ t }) => (
       {t('TxHash')}
     </div>
     <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>
-      {t('Timestamp')}
+      {t('Status')}
     </div>
     <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} ${styles.header} transactions-header`}>
       {t('From')}
