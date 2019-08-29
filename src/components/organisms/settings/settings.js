@@ -8,6 +8,7 @@ import ResetPassword from '../resetPassword/index';
 import SettingsMenu from './settingsMenu/index';
 import WBox from '../../atoms/wbox/index';
 import routes from '../../../constants/routes';
+import Fee from '../fee';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -28,11 +29,19 @@ class Settings extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { closePopUp, t } = this.props;
     const settings = [
       {
         id: 'resetPassword',
         label: t('Reset password'),
+      },
+      {
+        id: 'backupWallet',
+        label: t('Backup wallet'),
+      },
+      {
+        id: 'fee',
+        label: t('Fee'),
       },
     ];
 
@@ -45,7 +54,7 @@ class Settings extends React.Component {
                 <div className={styles.closeButtonWrapper}>
                   <InlineSVG
                     className={styles.closeButton}
-                    onClick={() => this.props.closePopUp()}
+                    onClick={() => closePopUp()}
                     src={CloseButton} />
                 </div>
               </header>
@@ -73,6 +82,10 @@ class Settings extends React.Component {
                   {
                     (settings.length > 1 && this.state.active === settings[1].id) ?
                       <BackupWallet {...this.props} /> : null
+                  }
+                  {
+                    (settings.length > 2 && this.state.active === settings[2].id) ?
+                      <Fee {...this.props} /> : null
                   }
                 </div>
               </WBox>
