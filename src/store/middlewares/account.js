@@ -38,6 +38,15 @@ const updateAccountData = (store) => {
       !isEqualTo(result.nonce, account.nonce)) {
       updateTransactions(store, peers, account);
     }
+
+    // If account is new and has no log in blockchain
+    // It means that account does not have any balance. (No future transaction)
+    if (!result.address) {
+      result = {
+        account_number: null,
+        address: account.address,
+      };
+    }
     store.dispatch(accountUpdated(result));
     store.dispatch(activePeerUpdate({ online: true }));
   }).catch((res) => {
