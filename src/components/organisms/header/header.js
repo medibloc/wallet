@@ -23,7 +23,7 @@ class Header extends React.Component {
                   <div className={styles.information} align="right">
                     <div className={styles.total}>
                       <MedAmount roundTo={6}
-                        val={mulMed(balances.total, 10 ** 6)} />
+                        val={mulMed(balances.base, 10 ** 6)} />
                       <h5>MED</h5>
                     </div>
                     <CopyToClipboard
