@@ -20,8 +20,8 @@ import MultiStepNav from './multiStepNav';
  *
  */
 class MultiStep extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       step: {
@@ -77,7 +77,9 @@ class MultiStep extends React.Component {
   }
 
   render() {
-    const { children, className, finalCallback, hideBackButton, prevPage } = this.props;
+    const {
+      children, className, finalCallback, hideBackButton, prevPage, forceToAppear = false,
+    } = this.props;
     const { step } = this.state;
     const extraProps = {
       nextStep: step.nextStep,
@@ -93,12 +95,14 @@ class MultiStep extends React.Component {
     } else {
       extraProps.prevState = Object.assign({}, step.data[step.current + 1]);
     }
+
     return (<div className={className}>
       {
         React.cloneElement(children[step.current], extraProps)
       }
       {
         <MultiStepNav
+          forceToAppear={forceToAppear}
           current={step.current}
           hideBackButton={hideBackButton}
           prevPage={prevPage}

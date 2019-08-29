@@ -3,7 +3,7 @@ import backButton from '../../../assets/images/icons/backButton.png';
 import styles from './multiStep.css';
 
 const MultiStepNav = ({ hideBackButton, steps, showBackButton,
-  current, prevStep, prevPage }) => {
+  current, prevStep, prevPage, forceToAppear }) => {
   // Checks if all titles are defined and showNav is not false
   const validateTitles = () => {
     const titlesAreValid = steps.reduce((acc, step) =>
@@ -20,7 +20,7 @@ const MultiStepNav = ({ hideBackButton, steps, showBackButton,
     }
   };
 
-  return (validateTitles() && (!hideBackButton && showBackButton) ?
+  return (validateTitles() && (forceToAppear || (!hideBackButton && showBackButton)) ?
     <div className={styles.navigation}>
       <a onClick={backButtonFn} className={`${styles.backButton} multistep-back`}>
         <img className={styles.icon} src={backButton} />
