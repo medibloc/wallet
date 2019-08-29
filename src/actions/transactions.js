@@ -20,6 +20,7 @@ export const loadTransactions = ({ address, mServer }) =>
             data: {
               count: parseInt(transactionsResponse.count, 10),
               confirmed: transactionsResponse.transactions,
+              total: parseInt(transactionsResponse.total, 10),
             },
             type: actionTypes.transactionsLoaded,
           });
@@ -30,6 +31,7 @@ export const loadTransactions = ({ address, mServer }) =>
             data: {
               count: 0,
               confirmed: [],
+              total: 0,
             },
             type: actionTypes.transactionsLoaded,
           });

@@ -1,11 +1,19 @@
 import actionTypes from '../../constants/actions';
 import txFilter from '../../constants/transactionFilters';
+
+const initialState = {
+  pending: [],
+  confirmed: [],
+  count: null,
+  total: null,
+};
+
 /**
  *
  * @param {Array} state
  * @param {Object} action
  */
-const transactions = (state = { pending: [], confirmed: [], count: null }, action) => {
+const transactions = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.transactionAdded:
       return Object.assign({}, state, {
@@ -32,6 +40,7 @@ const transactions = (state = { pending: [], confirmed: [], count: null }, actio
           ...action.data.confirmed,
         ],
         count: action.data.count,
+        total: action.data.total,
       });
     case actionTypes.transactionsUpdated:
       return Object.assign({}, state, {
@@ -47,17 +56,20 @@ const transactions = (state = { pending: [], confirmed: [], count: null }, actio
               transaction => transaction.id === confirmedTransaction.id).length === 0),
         ],
         count: action.data.count,
+        total: action.data.total,
       });
     case actionTypes.transactionsFiltered:
       return Object.assign({}, state, {
         confirmed: action.data.confirmed,
         count: action.data.count,
+        total: action.data.total,
         filter: action.data.filter,
       });
     case actionTypes.transactionsLoadFinish:
       return Object.assign({}, state, {
         confirmed: action.data.confirmed,
         count: action.data.count,
+        total: action.data.total,
         account: {
           address: action.data.address,
           balance: action.data.balance,
@@ -66,7 +78,7 @@ const transactions = (state = { pending: [], confirmed: [], count: null }, actio
         filter: txFilter.all,
       });
     case (actionTypes.accountSwitched):
-      return { pending: [], confirmed: [], count: 0 };
+      return { pending: [], confirmed: [], count: 0, total: 0 };
     default:
       return state;
   }

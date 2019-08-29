@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
     ...state.transactions.confirmed]
     .sort((a, b) => b.timestamp - a.timestamp),
   pendingTransactions: state.transactions.pending,
+  total: state.transactions.total,
 });
 
 const mapDispatchToProps = dispatch => ({

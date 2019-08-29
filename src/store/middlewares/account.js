@@ -16,12 +16,14 @@ const updateTransactions = (store, peers) => {
     : state.account.address;
 
   getTransactions({
+    // TODO @ggomma move limit parameter to config
     address, limit: 25, mServer: peers.mServer, filter,
   }).then((response) => {
     store.dispatch({
       data: {
         confirmed: response.transactions,
         count: parseInt(response.count, 10),
+        total: response.total,
       },
       type: actionTypes.transactionsUpdated,
     });
