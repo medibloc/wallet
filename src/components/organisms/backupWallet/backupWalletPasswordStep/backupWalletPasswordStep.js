@@ -4,11 +4,20 @@ import { Input } from '../../../atoms/toolbox/inputs/input';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import styles from './backupWalletPasswordStep.css';
 import {
-  extractAddressFromMnemonic,
-  getPrivKeyFromEncKey,
-  getPubKey,
+  getAddressFromPrivateKey, getPrivateKeyFromKeyStore,
 } from '../../../../utils/account';
-import { decryptData } from '../../../../utils/crypto';
+
+const download = (filename, text) => {
+  const element = document.createElement('a');
+  element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`);
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+  document.body.removeChild(element);
+};
 
 class BackupWalletPasswordStep extends React.Component {
   constructor(props) {
@@ -34,8 +43,9 @@ class BackupWalletPasswordStep extends React.Component {
 
   decryptPassphrase() {
     try {
-      const privKey = getPrivKeyFromEncKey(this.props.account.encKey, this.state.password.value);
-      if (extractAddressFromMnemonic(getPubKey(privKey)) === this.props.account.address) {
+      const privKey = getPrivateKeyFromKeyStore(
+        this.props.account.encKey, this.state.password.value);
+      if (getAddressFromPrivateKey(privKey) === this.props.account.address) {
         return privKey;
       }
       return null;
@@ -48,15 +58,6 @@ class BackupWalletPasswordStep extends React.Component {
       });
       return null;
     }
-  }
-
-  failToRecoverPassphrase() {
-    this.setState({
-      password: {
-        ...this.state.password,
-        error: this.props.t('Sorry, failed to recover your passphrase.'),
-      },
-    });
   }
 
   handleChange(name, value, error) {
@@ -105,20 +106,14 @@ class BackupWalletPasswordStep extends React.Component {
             <PrimaryButton
               className={`backupWallet-next-button ${styles.nextButton}`}
               disabled={(!this.state.password.value)}
-              label={t('Next')}
+              label={t('Download')}
               onClick={() => {
                 const privKey = this.decryptPassphrase();
                 if (privKey !== null) {
-                  const address = extractAddressFromMnemonic(getPubKey(privKey));
-                  if (this.props.account.address === address) {
-                    const passphrase = decryptData(this.state.password.value,
-                      this.props.account.encPassphrase);
-                    if (passphrase) {
-                      this.props.nextStep({ passphrase });
-                    } else {
-                      this.failToRecoverPassphrase();
-                    }
-                  }
+                  const keyStore = this.props.account.encKey;
+                  const filename = `${this.props.account.address}.txt`;
+                  download(filename, JSON.stringify(keyStore));
+                  this.props.nextStep();
                 }
               }}/>
           </footer>
