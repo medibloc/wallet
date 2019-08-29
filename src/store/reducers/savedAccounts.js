@@ -1,12 +1,14 @@
 import { getIndexOfSavedAccount } from '../../utils/savedAccounts';
 import actionTypes from '../../constants/actions';
 
+const initialState = { accounts: [] };
+
 /**
  *
  * @param {Array} state
  * @param {Object} action
  */
-const savedAccounts = (state = { accounts: [] }, action) => {
+const savedAccounts = (state = initialState, action) => {
   const accounts = [...state.accounts];
   let indexOfAccount;
   let changedAccount;
@@ -67,6 +69,8 @@ const savedAccounts = (state = { accounts: [] }, action) => {
           !(account.address === action.data.address &&
           account.networkCode === action.data.networkCode)),
       };
+    case actionTypes.resetAll:
+      return initialState;
     default:
       return state;
   }

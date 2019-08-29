@@ -79,6 +79,8 @@ const transactions = (state = initialState, action) => {
       });
     case (actionTypes.accountSwitched):
       return { pending: [], confirmed: [], count: 0, total: 0 };
+    case actionTypes.resetAll:
+      return initialState;
     default:
       return state;
   }

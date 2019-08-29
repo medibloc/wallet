@@ -86,6 +86,7 @@ const actionTypes = {
   updateProcess: 'PROCESS_UPDATE',
   resetProcess: 'PROCESS_RESET',
   startProcess: 'PROCESS_START',
+  resetAll: '__RESET_ALL__',
 };
 
 export default actionTypes;

@@ -27,6 +27,8 @@ const settings = (state = initialState, action) => {
       return Object.assign({}, state, {
         fee: action.data,
       });
+    case actionTypes.resetAll:
+      return initialState;
     default:
       return state;
   }

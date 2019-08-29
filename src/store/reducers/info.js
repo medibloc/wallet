@@ -12,6 +12,8 @@ const info = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.infoUpdate:
       return Object.assign({}, state, action.data);
+    case actionTypes.resetAll:
+      return initialState;
     default:
       return state;
   }

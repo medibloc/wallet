@@ -44,3 +44,7 @@ export const removeLastActiveAccount = () => {
   localStorage.removeItem('lastActiveAccountIndex');
   localStorage.removeItem('loggedIn');
 };
+
+export const reset = () => {
+  localStorage.clear();
+};

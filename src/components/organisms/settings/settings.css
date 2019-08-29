@@ -67,12 +67,12 @@
     }
 
     & .menuBody {
-      height: 70%;
+      height: 60%;
     }
 
     & .menuFooter {
       height: 10%;
-      margin: 0 47px 41px 42px;
+      margin: 0 47px 0 42px;
       padding: 0 !important;
 
       & .logOutWrapper {

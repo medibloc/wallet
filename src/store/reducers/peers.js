@@ -20,6 +20,8 @@ const peers = (state = {}, action) => {
       });
     case actionTypes.activePeerUpdate:
       return Object.assign({}, state, { status: action.data });
+    case actionTypes.resetAll:
+      return {};
     default:
       return state;
   }

@@ -19,6 +19,13 @@ class Settings extends React.Component {
     };
   }
 
+  reset() {
+    if (window.confirm('This will remove all data.\nAre you sure to reset all?')) {
+      this.props.resetAll();
+      this.props.history.push(`${routes.startPage.path}`);
+    }
+  }
+
   logOut() {
     this.props.history.push(`${routes.login.path}`);
     this.props.logOut();
@@ -72,6 +79,10 @@ class Settings extends React.Component {
                   <div className={styles.menuFooter}>
                     <h6 className={styles.logOutWrapper}
                       onClick={() => this.logOut()}>{ t('Log out') }</h6>
+                  </div>
+                  <div className={styles.menuFooter}>
+                    <h6 className={styles.logOutWrapper}
+                      onClick={() => this.reset()}>{ t('Reset') }</h6>
                   </div>
                 </div>
                 <div className={styles.settingsContentWrapper}>

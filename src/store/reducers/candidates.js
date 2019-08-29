@@ -10,12 +10,14 @@ const compare = (a, b) => {
   return 0;
 };
 
+const initialState = {
+  allCandidates: [],
+  count: 0,
+  totalVotes: 0,
+};
+
 const candidates = (
-  state = {
-    allCandidates: [],
-    count: 0,
-    totalVotes: 0,
-  }, action) => {
+  state = initialState, action) => {
   switch (action.type) {
     case actionTypes.candidatesCleared:
       return {};
@@ -75,6 +77,8 @@ const candidates = (
         totalVotes,
       };
     }
+    case actionTypes.resetAll:
+      return initialState;
     default:
       return state;
   }

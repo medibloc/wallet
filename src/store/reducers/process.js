@@ -13,6 +13,8 @@ const process = (state = initialState, action) => {
       return Object.assign({}, state, action.data);
     case actionTypes.resetProcess:
       return { onProcess: false, error: null };
+    case actionTypes.resetAll:
+      return initialState;
     default:
       return state;
   }

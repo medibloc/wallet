@@ -8,6 +8,8 @@ const transaction = (state = {}, action) => {
       return { success: true, ...action.data };
     case actionTypes.transactionLoadFailed:
       return action.data.error;
+    case actionTypes.resetAll:
+      return {};
     default:
       return state;
   }

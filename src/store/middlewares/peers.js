@@ -3,6 +3,7 @@ import actionTypes from '../../constants/actions';
 import networks from '../../constants/networks';
 import localJSONStorage from '../../utils/localJSONStorage';
 import { getLoggedInMark } from '../../utils/savedAccounts';
+import routes from '../../constants/routes';
 
 const peersMiddleware = store => next => (action) => {
   next(action);
@@ -18,8 +19,8 @@ const peersMiddleware = store => next => (action) => {
         store.dispatch(activePeerUpdate({ online: true }));
       }
 
-      if (!getLoggedInMark()) {
-        window.location.pathname = '/';
+      if (!getLoggedInMark() && !['/', '/#', '/#/'].includes(window.location.pathname)) {
+        window.location.pathname = routes.startPage.path;
       }
       break;
     default:

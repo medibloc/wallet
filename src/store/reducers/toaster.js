@@ -16,6 +16,8 @@ const toaster = (state = [], action) => {
       ];
     case actionTypes.toastHidden:
       return state.filter(toast => toast.index !== action.data.index);
+    case actionTypes.resetAll:
+      return [];
     default:
       return state;
   }

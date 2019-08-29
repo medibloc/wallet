@@ -11,6 +11,8 @@ const loadingBar = (state = [], action) => {
       return { ...state, sendLoadingBar: true };
     case actionTypes.sendLoadingBarHidden:
       return { ...state, sendLoadingBar: false };
+    case actionTypes.resetAll:
+      return [];
     default:
       return state;
   }

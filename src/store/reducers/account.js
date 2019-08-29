@@ -68,6 +68,8 @@ const account = (state = {}, action) => {
       return {
         loading: true,
       };
+    case actionTypes.resetAll:
+      return {};
     default:
       return state;
   }

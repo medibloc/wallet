@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import { accountLoggedOut } from '../../../actions/account';
+import { resetAll } from '../../../actions/settings';
 import Settings from './settings';
 
 /**
@@ -13,6 +14,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logOut: () => dispatch(accountLoggedOut()),
+  resetAll: () => dispatch(resetAll()),
 });
 
 export default connect(
