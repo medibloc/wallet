@@ -5,10 +5,8 @@ import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import styles from './resetPasswordStep.css';
 import regex from '../../../../utils/regex';
 import {
-  extractAddressFromMnemonic,
-  getAccountFromPrivKey,
-  getPrivKeyFromEncKey,
-  getPubKey,
+  encryptPrivateKey,
+  getAddressFromPrivateKey, getPrivateKeyFromKeyStore,
 } from '../../../../utils/account';
 
 class ResetPasswordStep extends React.Component {
@@ -51,8 +49,9 @@ class ResetPasswordStep extends React.Component {
 
   decryptPassphrase() {
     try {
-      const privKey = getPrivKeyFromEncKey(this.props.account.encKey, this.state.password.value);
-      if (extractAddressFromMnemonic(getPubKey(privKey)) === this.props.account.address) {
+      const privKey = getPrivateKeyFromKeyStore(
+        this.props.account.encKey, this.state.password.value);
+      if (getAddressFromPrivateKey(privKey) === this.props.account.address) {
         return privKey;
       }
       return null;
@@ -173,13 +172,12 @@ class ResetPasswordStep extends React.Component {
             onClick={() => {
               const privKey = this.decryptPassphrase();
               if (privKey !== null) {
-                const account = getAccountFromPrivKey(privKey,
-                  this.state.newPassword.value);
-                const address = extractAddressFromMnemonic(account.pubKey);
-                if (this.props.account.address === address) {
+                const encKey = encryptPrivateKey(privKey, this.state.newPassword.value);
+                const newPrivKey = getPrivateKeyFromKeyStore(encKey, this.state.newPassword.value);
+                if (privKey === newPrivKey) {
                   this.props.activeAccountPasswordUpdated({
-                    address,
-                    encKey: account.encryptedPrivKey,
+                    address: getAddressFromPrivateKey(privKey),
+                    encKey,
                     networkCode: this.props.account.networkCode,
                   });
                   this.props.nextStep();
