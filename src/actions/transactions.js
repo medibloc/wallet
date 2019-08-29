@@ -2,10 +2,15 @@ import actionTypes from '../constants/actions';
 import { loadingStarted, loadingFinished } from './loading';
 import { transaction, transactions } from '../utils/api/transaction';
 
+// this flag prevents loadTransactions function called more than once
+// which apply empty transactions on the state
+let flag = true;
 
 export const loadTransactions = ({ address, mServer }) =>
   (dispatch) => {
     // eslint-disable-next-line no-unneeded-ternary
+    if (!flag) return;
+    flag = false;
     dispatch(loadingStarted(actionTypes.transactionsLoad));
     // TODO: get transaction details
     transactions({ address, mServer })
@@ -14,11 +19,12 @@ export const loadTransactions = ({ address, mServer }) =>
           dispatch({
             data: {
               count: parseInt(transactionsResponse.count, 10),
-              confirmed: transactionsResponse,
+              confirmed: transactionsResponse.transactions,
             },
             type: actionTypes.transactionsLoaded,
           });
           dispatch(loadingFinished(actionTypes.transactionsLoad));
+          flag = true;
         } else {
           dispatch({
             data: {
@@ -28,6 +34,7 @@ export const loadTransactions = ({ address, mServer }) =>
             type: actionTypes.transactionsLoaded,
           });
           dispatch(loadingFinished(actionTypes.transactionsLoad));
+          flag = true;
         }
       });
   };
