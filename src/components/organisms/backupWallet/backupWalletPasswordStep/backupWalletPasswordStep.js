@@ -34,7 +34,7 @@ class BackupWalletPasswordStep extends React.Component {
     if (this.props.prevState) {
       const newState = {
         password: {
-          password: this.props.prevState.password || this.state.password.value,
+          value: this.props.prevState.password || this.state.password.value,
         },
       };
       this.setState(newState);
