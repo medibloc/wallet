@@ -83,6 +83,9 @@ const actionTypes = {
   removeSavedAccountPassphrase: 'REMOVE_SAVED_ACCOUNT_PASSPHRASE',
   passwordFailed: 'PASSWORD_FAILED',
   passwordVerifying: 'PASSWORD_VERIFYING',
+  updateProcess: 'PROCESS_UPDATE',
+  resetProcess: 'PROCESS_RESET',
+  startProcess: 'PROCESS_START',
 };
 
 export default actionTypes;

@@ -6,6 +6,7 @@ import transactionTypes from '../constants/transactionTypes';
 import { send, vest, vote, withdrawVesting } from '../utils/api/account';
 import { candidatesUpdated } from './candidates';
 import { loadingStarted, loadingFinished } from './loading';
+import { updateProcess, resetProcess } from './process';
 import { addMed, subMed, toRawMed } from '../utils/med';
 import errorTypes from '../constants/errors';
 
@@ -133,16 +134,19 @@ export const sent = ({ account, activePeer, amount, chainId,
           type: actionTypes.accountUpdated,
         });
       }
+      dispatch(resetProcess());
       dispatch(loadingFinished(actionTypes.requestTransferTransaction));
       dispatch(passwordUsed());
     })
       .catch((error) => {
         dispatch(loadingFinished(actionTypes.requestTransferTransaction));
         if (error === errorTypes.wrongPasswordError) {
+          dispatch(updateProcess({ error }));
           dispatch(passwordFailed());
         } else {
-          const errorMessage = error && error.message ? `${error.message}.` :
+          const errorMessage = error && error.raw_log ? `${error.raw_log}.` :
             i18next.t('An error occurred while creating the transaction.');
+          dispatch(updateProcess({ error: errorMessage }));
           dispatch({ data: { errorMessage }, type: actionTypes.transactionFailed });
           dispatch(passwordUsed());
         }
