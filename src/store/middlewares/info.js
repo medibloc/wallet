@@ -1,5 +1,7 @@
 import { updateInfo } from '../../actions/info';
 
+// Prevent infoUpdate called more than once
+let flag = true;
 
 const updateCoinInfo = (store) => {
   const { peers } = store.getState();
@@ -12,9 +14,11 @@ const updateCoinInfo = (store) => {
 
 const infoMiddleware = store => next => (action) => {
   const currentState = store.getState();
-  if (currentState.peers && currentState.peers.mServer &&
+
+  if (flag && currentState.peers && currentState.peers.mServer &&
   currentState.info && Object.keys(currentState.info).length === 0) {
     updateCoinInfo(store);
+    flag = false;
   }
   next(action);
 };
