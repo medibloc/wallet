@@ -16,6 +16,25 @@
   }
 }
 
+.caseWrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--header-margin-top);
+
+  & .header {
+    margin-bottom: 20px;
+  }
+
+  & .caseButton {
+    width: 400px;
+    height: 50px;
+    margin: 10px;
+    margin-top: 20px;
+    font-weight: 700;
+    font-size: 20px;
+  }
+}
+
 .restore {
   align-items: center;
   display: flex;
