@@ -1,4 +1,5 @@
 import React from 'react';
+import grid from 'flexboxgrid/dist/flexboxgrid.css';
 import tableStyle from 'react-toolbox/lib/table/theme.css';
 import TransactionRow from './transactionRow';
 import TransactionsHeader from './transactionsHeader';
@@ -34,6 +35,7 @@ class TransactionsList extends React.Component {
       loading,
       t,
       transactions,
+      total,
     } = this.props;
 
     if (loading) return null;
@@ -46,6 +48,8 @@ class TransactionsList extends React.Component {
         </p>
       );
     }
+    const seeMoreText = 'Click "see more" to see more transactions';
+
     return (
       <div className={`${styles.results} transaction-results`}>
         <TransactionsHeader tableStyle={tableStyle} />
@@ -58,6 +62,14 @@ class TransactionsList extends React.Component {
                 t={t}
                 value={transaction}
               />))}
+          {
+            // In case that account holds transactions more than 30(default display value)
+            transactions.length < total && (
+              <div className={`${grid.row} ${styles.showMore}`}>
+                { seeMoreText }
+              </div>
+            )
+          }
         </div>
       </div>
     );

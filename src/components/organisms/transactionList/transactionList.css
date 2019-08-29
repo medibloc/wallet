@@ -35,3 +35,16 @@
   background: var(--color-black-16) !important;
   border-radius: 4px;
 }
+
+.showMore {
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -1px 0 0 var(--color-divide-border);
+  border-top: 0;
+  color: var(--color-grayscale-dark);
+  height: 39px;
+  margin-right: 0;
+  margin-left: 0;
+  white-space: nowrap;
+  padding: 0 24px;
+}

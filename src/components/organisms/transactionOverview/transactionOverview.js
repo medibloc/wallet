@@ -47,7 +47,9 @@ class TransactionOverview extends React.Component {
           nextStep={this.props.nextStep}
           onClick={this.props.onTransactionRowClick}
           t={this.props.t}
-          transactions={this.props.transactions} />
+          transactions={this.props.transactions}
+          total={this.props.total}
+        />
       </div>
     </WBox>;
   }
