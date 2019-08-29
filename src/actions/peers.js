@@ -9,7 +9,6 @@ const peerSet = (data, config) => ({
     activePeer: new panacea.Client(config.nodes[0]), // TODO @ggomma us other nodes also
     chainId: config.chainId,
     encKey: data.encKey,
-    encPassphrase: data.encPassphrase,
     mServer: mServer(config.mServerURL),
     networkCode: config.code,
     noSavedAccounts: data.noSavedAccounts,

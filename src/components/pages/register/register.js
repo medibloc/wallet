@@ -17,11 +17,10 @@ class Register extends React.Component {
     this.props.history.push('/');
   }
 
-  onRegister({ address, encKey, encPassphrase, label }) {
+  onRegister({ address, encKey, label }) {
     this.props.accountSaved({
       address,
       encKey,
-      encPassphrase,
       label,
       networkCode: process.env.NETWORK_CODE || networks.default.code,
     });

@@ -36,13 +36,6 @@ class Settings extends React.Component {
       },
     ];
 
-    if (this.props.account.encPassphrase) {
-      settings.push({
-        id: 'backupWallet',
-        label: t('Backup wallet'),
-      });
-    }
-
     return (
       <Fragment>
         <div className={styles.relative}>

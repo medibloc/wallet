@@ -1,7 +1,6 @@
 import i18next from 'i18next';
 import difference from 'lodash.difference';
 import actionTypes from '../constants/actions';
-import { BANDWIDTH_USED_TX } from '../constants/bandwidth';
 import transactionTypes from '../constants/transactionTypes';
 import { send, vest, vote, withdrawVesting } from '../utils/api/account';
 import { candidatesUpdated } from './candidates';
@@ -183,7 +182,6 @@ export const vested = ({ account, activePeer, amount, chainId,
         data: {
           balance: subMed(account.balance, toRawMed(amount)),
           nonce: nonce.toString(),
-          points: subMed(account.points, BANDWIDTH_USED_TX),
           staking: addMed(account.staking, toRawMed(amount)),
         },
         type: actionTypes.accountUpdated,
@@ -256,7 +254,6 @@ export const vestedAndSent = ({ account, activePeer, chainId, description,
             subMed(subMed(account.balance, toRawMed(vestingAmount)), toRawMed(transferAmount)) :
             subMed(account.balance, toRawMed(vestingAmount)),
           nonce: (Number(nonce) + 1).toString(),
-          points: subMed(account.points, 2 * BANDWIDTH_USED_TX),
           staking: addMed(account.staking, toRawMed(vestingAmount)),
         },
         type: actionTypes.accountUpdated,
@@ -327,7 +324,6 @@ export const vestedAndVoted = ({ account, activePeer, candidates, chainId,
         data: {
           balance: subMed(account.balance, toRawMed(vestingAmount)),
           nonce: (Number(nonce) + 1).toString(),
-          points: subMed(account.points, 2 * BANDWIDTH_USED_TX),
           staking: addMed(account.staking, toRawMed(vestingAmount)),
           voted: candidates,
         },
@@ -389,7 +385,6 @@ export const voted = ({ account, activePeer, candidates, chainId,
       dispatch({
         data: {
           nonce: nonce.toString(),
-          points: subMed(account.points, BANDWIDTH_USED_TX),
           voted: candidates,
         },
         type: actionTypes.accountUpdated,
@@ -448,7 +443,6 @@ export const withdrewVesting = ({ account, activePeer, amount, chainId,
       dispatch({
         data: {
           nonce: nonce.toString(),
-          points: subMed(account.points, BANDWIDTH_USED_TX),
           staking: subMed(account.staking, toRawMed(amount)),
           unstaking: addMed(account.unstaking, toRawMed(amount)),
         },

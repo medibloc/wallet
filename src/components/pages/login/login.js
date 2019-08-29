@@ -86,7 +86,6 @@ class Login extends React.Component {
     this.props.accountSwitched({
       address: account.address,
       encKey: account.encKey,
-      encPassphrase: account.encPassphrase || null,
       networkCode: this.state.networkCode,
     });
   }

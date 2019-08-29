@@ -10,7 +10,6 @@ import {
   extractPrivKey,
   encryptPrivateKey,
 } from '../../../../utils/account';
-import { encryptData } from '../../../../utils/crypto';
 import regex from '../../../../utils/regex';
 import styles from './password.css';
 
@@ -119,12 +118,10 @@ class Password extends React.Component {
         onClick={() => {
           const label = this.state.label;
           const account = getAccountFromPrivKey(extractPrivKey(passphrase));
-          const encPassphrase = encryptData(this.state.password, passphrase);
 
           this.props.finalCallback({
             address: extractAddressFromMnemonic(account.address),
             encKey: encryptPrivateKey(account.privateKey, this.state.password),
-            encPassphrase,
             label,
           });
         }}/>

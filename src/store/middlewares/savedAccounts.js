@@ -24,7 +24,6 @@ const savedAccountsMiddleware = (store) => {
       store.dispatch(activePeerSet({
         address: account.address,
         encKey: account.encKey,
-        encPassphrase: account.encPassphrase,
         networkCode,
       }));
     }
@@ -85,7 +84,6 @@ const savedAccountsMiddleware = (store) => {
         store.dispatch(activePeerSet({
           address: action.data.address,
           encKey: action.data.encKey,
-          encPassphrase: action.data.encPassphrase,
           networkCode: action.data.networkCode,
         }));
         break;
@@ -94,10 +92,8 @@ const savedAccountsMiddleware = (store) => {
           address: account.address,
           balance: account.balance,
           encKey: account.encKey,
-          encPassphrase: account.encPassphrase,
           networkCode: peers.networkCode,
           staking: account.staking,
-          points: action.data.points,
           unstaking: account.unstaking,
         }));
         break;
@@ -114,10 +110,8 @@ const savedAccountsMiddleware = (store) => {
           address: action.data.address,
           balance: action.data.balance,
           encKey: action.data.encKey,
-          encPassphrase: action.data.encPassphrase,
           networkCode: action.data.networkCode,
           staking: account.staking,
-          points: action.data.points,
           unstaking: account.unstaking,
         }));
         break;

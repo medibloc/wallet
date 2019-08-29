@@ -30,6 +30,12 @@ class Dashboard extends React.Component {
     this.loadTransactions();
   }
 
+  componentDidMount() {
+    // Check whether user is logged in
+    // or just access to dashboard without login process (Direct url access)
+    console.log(this.props);
+  }
+
   loadAccount() {
     this.props.accountReload();
   }

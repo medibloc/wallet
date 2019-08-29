@@ -25,13 +25,9 @@ const savedAccounts = (state = { accounts: [] }, action) => {
           encKey: action.data.encKey ?
             action.data.encKey :
             accounts[indexOfAccount].encKey,
-          encPassphrase: action.data.encPassphrase ?
-            action.data.encPassphrase :
-            accounts[indexOfAccount].encPassphrase,
           label: action.data.label ?
             action.data.label :
             accounts[indexOfAccount].label,
-          points: action.data.points,
           staking: action.data.staking,
           unstaking: action.data.unstaking,
         };
