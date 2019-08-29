@@ -1,9 +1,5 @@
 import React from 'react';
-import InlineSVG from 'svg-inline-react';
 import { Input } from '../../atoms/toolbox/inputs/input';
-import TooltippedDiv from '../../atoms/toolbox/tooltippedDiv/tooltippedDiv';
-
-import eventAddress from '../../../assets/images/icons/eventAddress.svg';
 import styles from './eventRecipient.css';
 
 class EventRecipient extends React.Component {
@@ -19,18 +15,6 @@ class EventRecipient extends React.Component {
         theme={styles}
         value={this.props.value}
         onChange={this.props.onChange} >
-        <div className={`${styles.eventAddressWrapper}`}>
-          <TooltippedDiv
-            tooltip={this.props.t('Click to insert event address')}
-            tooltipDelay={100}
-            tooltipPosition={'top'}>
-            <div className={`${styles.eventAddress}`}>
-              <InlineSVG
-                onClick={() => this.props.toggleEventAddress()}
-                src={eventAddress}/>
-            </div>
-          </TooltippedDiv>
-        </div>
       </Input>
     );
   }
