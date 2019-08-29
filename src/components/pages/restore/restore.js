@@ -12,6 +12,7 @@ import routes from '../../../constants/routes';
 import { PrimaryButton } from '../../atoms/toolbox/buttons/button';
 import KeyFile from '../../organisms/passphrase/keyFile';
 import PasswordForKeyfile from '../../organisms/passphrase/passwordForKeyfile';
+import Footer from '../register/footer/footer';
 
 
 class Restore extends React.Component {
@@ -41,7 +42,7 @@ class Restore extends React.Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { history, t } = this.props;
     const { restoreCase } = this.state;
 
     return (
@@ -88,6 +89,10 @@ class Restore extends React.Component {
             </MultiStep>
           )
         }
+        <Footer
+          history={history}
+          t={t}
+          type={'restore'} />
       </Box>
     );
   }
