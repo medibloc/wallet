@@ -127,10 +127,8 @@ export const vest = ({ account, activePeer, chainId, nonce, password, value }) =
     });
 
     mAccount.signTx(tx, password);
-    console.log(JSON.parse(JSON.stringify(tx)));
 
     activePeer.sendTransaction(tx).then((res) => {
-      console.log(res);
       if (res.hash) {
         resolve({
           timestamp: Math.floor(new Date().getTime() / 1000),
@@ -161,7 +159,6 @@ export const vote = ({ account, activePeer, candidates, chainId, nonce, password
     mAccount.signTx(tx, password);
 
     activePeer.sendTransaction(tx).then((res) => {
-      console.log(res);
       if (res.hash) {
         resolve({
           timestamp: Math.floor(new Date().getTime() / 1000),
@@ -188,11 +185,9 @@ export const withdrawVesting = ({ account, activePeer, chainId, nonce, password,
       nonce,
       value,
     });
-    console.log(JSON.parse(JSON.stringify(tx)));
 
     mAccount.signTx(tx, password);
     activePeer.sendTransaction(tx).then((res) => {
-      console.log(res);
       if (res.hash) {
         resolve({
           timestamp: Math.floor(new Date().getTime() / 1000),
