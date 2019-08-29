@@ -8,6 +8,7 @@ import styles from './mainMenu.css';
 import coin from '../../../assets/images/main-menu-icons/coin.png';
 import * as menuLogos from '../../../assets/images/main-menu-icons/*.svg'; //eslint-disable-line
 import routes from '../../../constants/routes';
+import { getLoggedInMark } from '../../../utils/savedAccounts';
 
 const getIndex = (history, tabs) => {
   let index = -1;
@@ -39,6 +40,13 @@ class MainMenu extends React.Component {
       index: 0,
     };
   }
+
+  componentWillMount() {
+    if (!getLoggedInMark()) {
+      this.props.history.push(`${routes.login.path}`);
+    }
+  }
+
 
   navigate(history, tabs, index) {
     if (!isCurrent(history, index, tabs)) {

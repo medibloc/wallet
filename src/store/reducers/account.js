@@ -1,5 +1,6 @@
 import { deepEquals } from '../../utils/polyfills';
 import actionTypes from '../../constants/actions';
+import { removeLastActiveAccount } from '../../utils/savedAccounts';
 
 /**
  * If the new value of the given property on the account is changed,
@@ -59,6 +60,7 @@ const account = (state = {}, action) => {
     case actionTypes.accountLoggedIn:
       return { ...action.data };
     case actionTypes.accountLoggedOut:
+      removeLastActiveAccount();
       return {
         afterLogout: true,
       };

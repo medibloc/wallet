@@ -13,6 +13,7 @@ import {
   getPrivateKeyFromKeyStore,
 } from '../../../utils/account';
 import routes from '../../../constants/routes';
+import { setLoggedInMark } from '../../../utils/savedAccounts';
 
 const customItem = item => (
   <div className={`${styles.dropDownWrapper}`}>
@@ -83,6 +84,7 @@ class Login extends React.Component {
   }
 
   onLoginSubmission(account) {
+    setLoggedInMark();
     this.props.accountSwitched({
       address: account.address,
       encKey: account.encKey,

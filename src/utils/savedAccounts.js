@@ -33,3 +33,14 @@ export const setLastActiveAccount = ({ address, networkCode }) => {
     localStorage.setItem('lastActiveAccountIndex', lastActiveAccountIndex);
   }
 };
+
+export const setLoggedInMark = () => {
+  localStorage.setItem('loggedIn', 'true');
+};
+
+export const getLoggedInMark = () => localStorage.getItem('loggedIn');
+
+export const removeLastActiveAccount = () => {
+  localStorage.removeItem('lastActiveAccountIndex');
+  localStorage.removeItem('loggedIn');
+};
