@@ -11,7 +11,6 @@ import OfflineWrapper from '../atoms/offlineWrapper/index';
 import Toaster from '../molecules/toaster/index';
 
 import routes from '../../constants/routes';
-// eslint-disable-next-line import/no-named-as-default
 
 class App extends React.Component {
   constructor(props) {
