@@ -97,7 +97,9 @@ export const send = ({ account, activePeer, chainId, description, password, to, 
     const convertedTx = tx.convertToBroadcastTx();
 
     activePeer.Tendermint.broadcastTx(convertedTx).then((res) => {
-      if (res.txhash) {
+      if (res.raw_log) {
+        reject(res);
+      } else if (res.txhash) {
         resolve(res);
       } else {
         reject(res);
