@@ -44,5 +44,15 @@
       margin: 0;
       width: 100%;
     }
+
+    & .backButton {
+      margin: 0;
+      width: 100%;
+      background: red;
+
+      &:hover {
+        background: red !important;
+      }
+    }
   }
 }

@@ -70,7 +70,13 @@ class PasswordSteps extends React.Component {
       this.showWrongPasswordToast();
     }
 
-    if (this.state.passwordCorrected && this.state.requestSuccess) {
+    if (this.props.process.error && this.props.process.onProcess) {
+      this.showTransactionErrorToast();
+      this.props.updateProcess({ onProcess: false });
+    }
+
+    if (this.state.passwordCorrected && this.state.requestSuccess
+      && !this.props.process.onProcess) {
       this.props.nextStep();
     }
   }
@@ -86,6 +92,7 @@ class PasswordSteps extends React.Component {
 
   handleClick() {
     this.setState({ sent: true });
+    this.props.startProcess();
 
     this.props.sent({
       account: this.props.account,
@@ -112,6 +119,12 @@ class PasswordSteps extends React.Component {
   showWrongPasswordToast() {
     this.props.errorToastDisplayed({
       label: this.props.t('Wrong password.'),
+    });
+  }
+
+  showTransactionErrorToast() {
+    this.props.errorToastDisplayed({
+      label: this.props.t('Something is wrong in transaction'),
     });
   }
 
