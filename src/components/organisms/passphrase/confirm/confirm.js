@@ -101,7 +101,7 @@ class Confirm extends React.Component {
   }
 
   resetForm() {
-    const words = this.props.passphrase.match(/\w+/g);
+    const words = this.props.mnemonic.match(/\w+/g);
 
     /**
      * Returns a random index which doesn't exist in list
@@ -178,11 +178,11 @@ class Confirm extends React.Component {
   }
 
   getAddress() {
-    return extractAddressFromMnemonic(this.props.passphrase);
+    return extractAddressFromMnemonic(this.props.mnemonic);
   }
 
   render() {
-    const { t, nextStep, passphrase } = this.props;
+    const { t, nextStep, mnemonic } = this.props;
     const { isConfirmed, formStatus,
       missing, totalStep, wordOptions, words } = this.state;
     const errorTitleVisibility = (formStatus === 'invalid') ? styles.visible : '';
@@ -204,9 +204,7 @@ class Confirm extends React.Component {
         label={t('Confirm')}
         disabled={!isConfirmed}
         className={`${styles.nextButton}`}
-        onClick={() => nextStep({
-          passphrase,
-        })}/>
+        onClick={() => nextStep({ mnemonic })}/>
       <div className={`${styles.errorTitle}`}>
         <h6 className={`${errorTitleVisibility}`}>
         </h6>

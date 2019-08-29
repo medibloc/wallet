@@ -9,7 +9,7 @@ import styles from './safekeeping.css';
 
 class Safekeeping extends React.Component {
   render() {
-    const { t, nextStep, passphrase, showCopySuccessToast } = this.props;
+    const { t, nextStep, mnemonic, showCopySuccessToast } = this.props;
 
     return (<Box className={`${styles.safekeeping}`}>
       <header>
@@ -23,7 +23,7 @@ class Safekeeping extends React.Component {
         <h6>{t('Please carefully write down these 24 words')}</h6>
         <CopyToClipboard
           className={`${styles.copyButtonWrapper}`}
-          text={passphrase}>
+          text={mnemonic}>
           <SecondaryButton
             label={`${t('Copy them')}`}
             onClick={() => showCopySuccessToast()} />
@@ -31,12 +31,12 @@ class Safekeeping extends React.Component {
       </div>
       <PassphraseBox
         className={`${styles.passphrase}`}
-        passphrase={passphrase} />
+        passphrase={mnemonic} />
       <PrimaryButton
         label={t('I\'ve written it down')}
         className={`${styles.nextButton}`}
         onClick={() => nextStep({
-          passphrase,
+          mnemonic,
         })}/>
       <div className={`${styles.comment3}`}>
         <h6>{t('You will confirm this phrase on the next screen.')}</h6>

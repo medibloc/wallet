@@ -22,15 +22,18 @@ class Create extends React.Component {
   }
 
   refreshAddress() {
-    const passphrase = generateMnemonic();
+    const mnemonic = generateMnemonic();
     this.setState({
-      passphrase,
-      address: extractAddressFromMnemonic(passphrase),
+      mnemonic,
+      address: extractAddressFromMnemonic(mnemonic),
     });
   }
 
   render() {
     const { history, t, nextStep } = this.props;
+    const { address, mnemonic } = this.state;
+    if (!address) this.refreshAddress();
+
     return (
       <section className={`${styles.createWrapper}`}>
         <header>
@@ -38,7 +41,7 @@ class Create extends React.Component {
         </header>
         <div className={`${styles.accountVisual}`}>
           <AccountVisual
-            address={this.state.address}
+            address={address || ''}
             size={120} sizeS={120} />
           <img
             className={`${styles.refreshButton}`}
@@ -51,13 +54,11 @@ class Create extends React.Component {
         <Input type='text'
           parentclassname={`${styles.accountAddress}`}
           title={t('Account address')}
-          value={this.state.address.substring(0, 14) + '*'.repeat(this.state.address.length - 15)}
+          value={address ? address.substring(0, 14) + '*'.repeat(address.length - 15) : ''}
           disabled={true} />
         <PrimaryButton label={t('Continue')}
           className={`${styles.continueButton}`}
-          onClick={() => nextStep({
-            passphrase: this.state.mnemonic,
-          })}/>
+          onClick={() => nextStep({ mnemonic })}/>
         <Footer
           history={history}
           t={t}

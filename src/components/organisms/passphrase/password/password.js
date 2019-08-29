@@ -74,7 +74,7 @@ class Password extends React.Component {
   }
 
   render() {
-    const { t, passphrase } = this.props;
+    const { t, mnemonic } = this.props;
     return (<Box className={`${styles.passwordWrapper}`}>
       <header>
         <h2>{t('Protect Your Account')}</h2>
@@ -117,7 +117,7 @@ class Password extends React.Component {
           !this.state.confirmPassword)}
         onClick={() => {
           const label = this.state.label;
-          const account = getAccountFromPrivKey(extractPrivKey(passphrase));
+          const account = getAccountFromPrivKey(extractPrivKey(mnemonic));
 
           this.props.finalCallback({
             address: extractAddressFromMnemonic(account.address),
