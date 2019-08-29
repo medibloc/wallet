@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import Box from '../../../atoms/box/index';
-import Footer from '../../../pages/register/footer/footer';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import PassphraseInputBox from '../passphraseInputBox/passphraseinputbox';
 import styles from './enter.css';
@@ -40,7 +39,7 @@ class Enter extends React.Component {
   }
 
   render() {
-    const { history, t, nextStep } = this.props;
+    const { t, nextStep } = this.props;
     return (<Box className={`${styles.enter}`}>
       <header>
         <h2>{t('Save backup phrase')}</h2>
@@ -65,10 +64,6 @@ class Enter extends React.Component {
         onClick={() => nextStep({
           passphrase: this.state.passphrase,
         })}/>
-      <Footer
-        history={history}
-        t={t}
-        type={'restore'} />
     </Box>);
   }
 }

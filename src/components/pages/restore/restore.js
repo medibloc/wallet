@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import Enter from '../../organisms/passphrase/enter/enter';
@@ -41,29 +41,38 @@ class Restore extends React.Component {
   }
 
   render() {
-    const { history, t } = this.props;
+    const { t, history } = this.props;
     const { restoreCase } = this.state;
+    const footer = (
+      <Footer
+        history={history}
+        t={t}
+        type={'restore'} />
+    );
 
     return (
       <Box className={`${styles.wrapper}`}>
         <img src={logo} />
         {
           restoreCase === null && (
-            <div className={`${styles.caseWrapper}`}>
-              <header className={`${styles.header}`}>
-                <h2>{t('Choose restore method')}</h2>
-              </header>
-              <PrimaryButton
-                label={t('From mnemonic (24 words)')}
-                className={`${styles.caseButton}`}
-                onClick={() => this.changeCase(0)}
-              />
-              <PrimaryButton
-                label={t('From keyfile')}
-                className={`${styles.caseButton}`}
-                onClick={() => this.changeCase(1)}
-              />
-            </div>
+            <Fragment>
+              <div className={`${styles.caseWrapper}`}>
+                <header className={`${styles.header}`}>
+                  <h2>{t('Choose restore method')}</h2>
+                </header>
+                <PrimaryButton
+                  label={t('From mnemonic (24 words)')}
+                  className={`${styles.caseButton}`}
+                  onClick={() => this.changeCase(0)}
+                />
+                <PrimaryButton
+                  label={t('From keyfile')}
+                  className={`${styles.caseButton}`}
+                  onClick={() => this.changeCase(1)}
+                />
+              </div>
+              { footer }
+            </Fragment>
           )
         }
         {
@@ -71,7 +80,9 @@ class Restore extends React.Component {
             <MultiStep className={`${styles.restore}`}
               prevPage={() => this.changeCase(null)}
               finalCallback={(...args) => this.onRegister(...args)}
-              forceToAppear={true}>
+              forceToAppear={true}
+              footer={footer}
+            >
               <Enter title={'Enter'} t={t} />
               <Password title={'Password'} t={t} />
             </MultiStep>
@@ -82,16 +93,14 @@ class Restore extends React.Component {
             <MultiStep className={`${styles.restore}`}
               prevPage={() => this.changeCase(null)}
               finalCallback={(...args) => this.onRegister(...args)}
-              forceToAppear={true}>
+              forceToAppear={true}
+              footer={footer}
+            >
               <KeyFile title={'KeyFile'} t={t} />
               <PasswordForKeyfile title={'Password'} t={t} />
             </MultiStep>
           )
         }
-        <Footer
-          history={history}
-          t={t}
-          type={'restore'} />
       </Box>
     );
   }

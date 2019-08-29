@@ -78,7 +78,8 @@ class MultiStep extends React.Component {
 
   render() {
     const {
-      children, className, finalCallback, hideBackButton, prevPage, forceToAppear = false,
+      children, className, finalCallback, hideBackButton,
+      prevPage, forceToAppear = false, footer = false,
     } = this.props;
     const { step } = this.state;
     const extraProps = {
@@ -100,6 +101,7 @@ class MultiStep extends React.Component {
       {
         React.cloneElement(children[step.current], extraProps)
       }
+      { footer }
       {
         <MultiStepNav
           forceToAppear={forceToAppear}

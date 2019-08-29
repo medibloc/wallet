@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { translate } from 'react-i18next';
 import Box from '../../../atoms/box/index';
-import Footer from '../../../pages/register/footer/footer';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import styles from './keyFile.css';
 
@@ -22,7 +21,6 @@ class KeyFile extends React.Component {
           const keyFile = JSON.parse(re.target.result);
           this.props.nextStep({ keyFile });
         } catch (ee) {
-          console.log(this.props);
           this.props.errorToastDisplayed({
             label: this.props.t('Invalid keyfile'),
           });
@@ -34,7 +32,7 @@ class KeyFile extends React.Component {
   }
 
   render() {
-    const { history, t } = this.props;
+    const { t } = this.props;
 
     return (
       <Box className={`${styles.enter}`}>
@@ -46,10 +44,6 @@ class KeyFile extends React.Component {
           className={`${styles.nextButton}`}
           onClick={() => this.uploadKeyFile()}
         />
-        <Footer
-          history={history}
-          t={t}
-          type={'restore'} />
       </Box>
     );
   }
