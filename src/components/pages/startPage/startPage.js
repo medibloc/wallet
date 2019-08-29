@@ -24,7 +24,7 @@ class StartPage extends React.Component {
               <img src={logo} />
               <div className={`${styles.contentWrapper}`}>
                 <div className={`${styles.titleWrapper}`}>
-                  {t('WELCOME TO MEDIBLOC TESTNET WALLET')}
+                  {t('WELCOME TO MEDIBLOC WALLET')}
                 </div>
                 <section className={`${styles.buttonWrapper}`}>
                   <ArrowBlueButton
