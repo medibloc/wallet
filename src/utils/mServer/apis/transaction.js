@@ -8,7 +8,16 @@ export default (sendRequest) => {
     },
   });
 
+  const getTransaction = hash => sendRequest({
+    method: 'get',
+    path: '/api/v1/transactions',
+    payload: {
+      q: hash,
+    },
+  });
+
   return {
     getAccountTransactions,
+    getTransaction,
   };
 };

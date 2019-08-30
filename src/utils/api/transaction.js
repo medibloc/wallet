@@ -18,15 +18,18 @@ export const transactions = ({ address, mServer }) =>
     }).catch(error => reject(error));
   });
 
-export const transaction = ({ activePeer, hash }) =>
+export const transaction = ({ hash, mServer }) =>
   new Promise((resolve, reject) => {
-    activePeer.getTransaction(hash).then((data) => {
-      if (data) {
+    mServer.getTransaction(hash).then((res) => {
+      if (res.error) {
+        reject(res.error);
+      }
+      if (res) {
         resolve({
-          ...data,
+          transactions: parseTransactions(res.transactions),
         });
       } else {
-        reject(data);
+        reject(res);
       }
     }).catch(error => reject(error));
   });

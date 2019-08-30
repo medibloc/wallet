@@ -42,22 +42,26 @@ const transactions = (state = initialState, action) => {
         count: action.data.count,
         total: action.data.total,
       });
-    case actionTypes.transactionsUpdated:
+    case actionTypes.transactionsUpdated: {
+      // Remove transaction from pendingTransactions if success
+      const filteredPendingTransactions = state.pending.filter(
+        pendingTransaction => !action.data.confirmed.some(
+          transaction => transaction.txHash.includes(pendingTransaction.txHash)));
+      // Prevent duplicate transaction in confirmed transactions
+      const filteredConfirmedTransactions = [
+        ...action.data.confirmed,
+        ...state.confirmed.filter(
+          confirmedTransaction => !action.data.confirmed.some(
+            transaction => transaction.txHash.includes(confirmedTransaction.txHash))),
+      ];
       return Object.assign({}, state, {
-        // Filter any newly confirmed transaction from pending
-        pending: state.pending.filter(
-          pendingTransaction => action.data.confirmed.filter(
-            transaction => transaction.id === pendingTransaction.id).length === 0),
-        // Add any newly confirmed transaction to confirmed
-        confirmed: [
-          ...action.data.confirmed,
-          ...state.confirmed.filter(
-            confirmedTransaction => action.data.confirmed.filter(
-              transaction => transaction.id === confirmedTransaction.id).length === 0),
-        ],
-        count: action.data.count,
-        total: action.data.total,
+        pending: filteredPendingTransactions,
+        confirmed: filteredConfirmedTransactions,
+        count: action.data.count ||
+          filteredPendingTransactions.length + filteredConfirmedTransactions.length,
+        total: action.data.total || state.total,
       });
+    }
     case actionTypes.transactionsFiltered:
       return Object.assign({}, state, {
         confirmed: action.data.confirmed,

@@ -41,14 +41,19 @@ export const loadTransactions = ({ address, mServer }) =>
       });
   };
 
-export const loadTransaction = ({ hash }) =>
+export const loadTransaction = ({ hash, fromPending = false }) =>
   (dispatch, getState) => {
-    const activePeer = getState().peers.activePeer;
-    dispatch({ type: actionTypes.transactionCleared });
-    transaction({ activePeer, hash })
+    const mServer = getState().peers.mServer;
+    if (!fromPending) dispatch({ type: actionTypes.transactionCleared });
+    transaction({ hash, mServer })
       .then((response) => {
-        dispatch({ data: response, type: actionTypes.transactionLoaded });
+        if (fromPending) {
+          dispatch({ data: { confirmed: response.transactions },
+            type: actionTypes.transactionsUpdated });
+        } else {
+          dispatch({ data: response, type: actionTypes.transactionLoaded });
+        }
       }).catch((error) => {
-        dispatch({ data: error, type: actionTypes.transactionLoadFailed });
+        if (!fromPending) dispatch({ data: error, type: actionTypes.transactionLoadFailed });
       });
   };
