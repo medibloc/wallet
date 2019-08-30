@@ -13,7 +13,6 @@ import routes from '../../../constants/routes';
 class StartPage extends React.Component {
   render() {
     const { history, savedAccounts, t } = this.props;
-    console.log(this.props);
 
     return (
       (savedAccounts && savedAccounts.accounts && savedAccounts.accounts.length > 0) ?
