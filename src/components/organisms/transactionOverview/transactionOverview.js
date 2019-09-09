@@ -22,7 +22,7 @@ class TransactionOverview extends React.Component {
 
   render() {
     const { t, account, networkCode } = this.props;
-    const url = getNetwork(networkCode).mServerURL;
+    const url = getNetwork(networkCode).mClientURL;
 
     return <WBox className={styles.txOverviewWrapper}>
       <WBox className={`${styles.txOverviewHeader}`}>

@@ -17,7 +17,7 @@ const statusChecker = (status) => {
 class TransactionRow extends React.Component {
   render() {
     const { props } = this;
-    const url = getNetwork(props.networkCode).mServerURL;
+    const url = getNetwork(props.networkCode).mClientURL;
     return (
       <div className={`${grid.row} ${styles.rows} transactions-row`}>
         <div className={`${styles.text} ${styles.leftText} ${grid['col-sm-2']} transactions-cell`}>

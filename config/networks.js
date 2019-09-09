@@ -4,6 +4,7 @@ const networks = {
     chainId: 'panacea-1',
     code: 0,
     mServerURL: 'http://explorer-server.medibloc.org',
+    mClientURL: 'http://explroer.medibloc.org',
     nodes: ['http://13.209.177.91:1318'],
   },
   testnet: { // network name translation t('Testnet');
@@ -13,6 +14,7 @@ const networks = {
     code: 1,
     faucetURL: 'https://testnet-explorer.medibloc.org',
     mServerURL: 'http://testnet-explorer-server.medibloc.org',
+    mClientURL: 'http://testnet-explorer.medibloc.org',
     nodes: ['http://52.78.196.16:1318'],
   },
   testnet_stg: { // network name translation t('Testnet-Stg');
@@ -29,6 +31,7 @@ const networks = {
     chainId: 'test',
     code: 999999,
     mServerURL: 'http://localhost:3000',
+    mClientURL: 'http://localhost:3000',
     nodes: ['http://localhost:1318'],
   },
 };
