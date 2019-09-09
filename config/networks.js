@@ -1,17 +1,19 @@
 const networks = {
   mainnet: { // network name translation t('Mainnet');
     name: 'Mainnet',
+    chainId: 'panacea-1',
     code: 0,
-    nodes: ['http://localhost:9921'],
+    mServerURL: 'http://explorer-server.medibloc.org',
+    nodes: ['http://13.209.177.91:1318'],
   },
   testnet: { // network name translation t('Testnet');
     name: 'Testnet',
     testnet: true,
-    chainId: 181112,
+    chainId: 'hygieia-1',
     code: 1,
     faucetURL: 'https://testnet-explorer.medibloc.org',
-    mServerURL: 'https://testnet-explorer.medibloc.org',
-    nodes: ['https://testnet-node.medibloc.org/'],
+    mServerURL: 'http://testnet-explorer-server.medibloc.org',
+    nodes: ['http://52.78.196.16:1318'],
   },
   testnet_stg: { // network name translation t('Testnet-Stg');
     name: 'Testnet-Stg',
@@ -24,10 +26,10 @@ const networks = {
   },
   custom: {
     name: 'custom',
-    chainId: 999999,
+    chainId: 'test',
     code: 999999,
-    mServerURL: 'http://localhost:3001',
-    nodes: ['http://localhost:9921'],
+    mServerURL: 'http://localhost:3000',
+    nodes: ['http://localhost:1318'],
   },
 };
 
