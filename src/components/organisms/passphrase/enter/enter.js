@@ -62,7 +62,7 @@ class Enter extends React.Component {
         disabled={(!!this.state.passphraseValidity ||
           !this.state.passphrase)}
         onClick={() => nextStep({
-          passphrase: this.state.passphrase,
+          mnemonic: this.state.passphrase,
         })}/>
     </Box>);
   }
