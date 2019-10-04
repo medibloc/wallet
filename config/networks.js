@@ -5,7 +5,7 @@ const networks = {
     code: 0,
     mServerURL: 'https://explorer-server.medibloc.org',
     mClientURL: 'https://explroer.medibloc.org',
-    nodes: ['http://13.209.177.91:1318'],
+    nodes: ['https://wallet-lcd.gopanacea.org'],
   },
   testnet: { // network name translation t('Testnet');
     name: 'Testnet',
@@ -15,7 +15,7 @@ const networks = {
     faucetURL: 'https://testnet-explorer.medibloc.org',
     mServerURL: 'https://testnet-explorer-server.medibloc.org',
     mClientURL: 'https://testnet-explorer.medibloc.org',
-    nodes: ['http://52.78.196.16:1318'],
+    nodes: ['https://testnet-wallet-lcd.gopanacea.org'],
   },
 };
 
