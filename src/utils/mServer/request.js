@@ -30,7 +30,7 @@ const configConverter = ({ method, path, payload }) => ({
 export default (baseURL) => {
   const sendRequest = (args) => {
     const config = {
-      // baseURL,
+      ...(process.env.NODE_ENV === 'production' ? { baseURL } : { }),
       ...configConverter(args),
     };
     return axios(config).then(res => res.data);
