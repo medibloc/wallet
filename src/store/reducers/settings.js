@@ -6,7 +6,7 @@ const initialState = JSON.parse(localStorage.getItem('settings')) || {
   autoLog: true,
   onBoarding: localStorage.getItem('onboarding') !== 'false',
   showVoteIntroPage: true,
-  fee: '10',
+  fee: '1',
 };
 
 /**
