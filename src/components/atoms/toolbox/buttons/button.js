@@ -9,6 +9,7 @@ import primaryButtonTheme from './css/primaryButton.css';
 import secondaryButtonTheme from './css/secondaryButton.css';
 import secondaryBlueButtonTheme from './css/secondaryBlueButton.css';
 import secondaryLightButtonTheme from './css/secondaryLightButton.css';
+import warningButtonTheme from './css/warningButton.css';
 import whiteArrow from '../../../../assets/images/icons/whiteArrow.svg';
 
 class TBArrowBlackButton extends React.Component {
@@ -89,7 +90,8 @@ const ChoiceButton = themr('choiceButton', choiceButtonTheme)(TBChoiceButton);
 const PrimaryButton = themr('importantButton', primaryButtonTheme)(TBPrimaryButton);
 const SecondaryButton = themr('secondaryButton', secondaryButtonTheme)(TBSecondaryButton);
 const SecondaryLightButton = themr('lightButton', secondaryLightButtonTheme)(TBSecondaryLightButton);
+const WarningButton = themr('importantButton', warningButtonTheme)(TBPrimaryButton);
 
 export { ArrowBlackButton, ArrowBlueButton, Button,
-  ChoiceButton, PrimaryButton, SecondaryButton, SecondaryLightButton };
+  ChoiceButton, PrimaryButton, SecondaryButton, SecondaryLightButton, WarningButton };
 export default Button;

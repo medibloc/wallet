@@ -1,0 +1,35 @@
+@import '../../app/variables.css';
+
+.formatWalletWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+  margin: 0 auto 30px;
+  width: 80%;
+}
+
+.emptyWrapper {
+  height: 70%;
+}
+
+.formatWalletFooter {
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  justify-content: flex-end;
+  padding: 0 !important;
+  margin: 0;
+
+  & .nextButton {
+    margin: 8px 0 0;
+  }
+}

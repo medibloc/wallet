@@ -1,0 +1,9 @@
+@import './base.css';
+
+.button {
+  min-width: 96px;
+  min-height: 40px;
+
+  @mixin buttonBasics;
+  @mixin buttonWarning;
+}

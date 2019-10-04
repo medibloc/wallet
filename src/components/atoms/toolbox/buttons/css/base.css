@@ -106,3 +106,12 @@
     background-color: var(--color-mid-blue) !important;
   }
 }
+
+@define-mixin buttonWarning {
+  color: var(--color-white) !important;
+  background: var(--color-error);
+
+  &:hover {
+   background: var(--color-action-dark) !important;
+ }
+}

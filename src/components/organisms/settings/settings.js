@@ -5,6 +5,7 @@ import styles from './settings.css';
 import BackupWallet from '../backupWallet';
 import CloseButton from '../../../assets/images/icons/buttonX.svg';
 import ResetPassword from '../resetPassword/index';
+import FormatWallet from '../formatWallet/index';
 import SettingsMenu from './settingsMenu/index';
 import WBox from '../../atoms/wbox/index';
 import routes from '../../../constants/routes';
@@ -50,6 +51,10 @@ class Settings extends React.Component {
         id: 'fee',
         label: t('Fee'),
       },
+      {
+        id: 'formatWallet',
+        label: t('Format wallet'),
+      },
     ];
 
     return (
@@ -80,10 +85,6 @@ class Settings extends React.Component {
                     <h6 className={styles.logOutWrapper}
                       onClick={() => this.logOut()}>{ t('Log out') }</h6>
                   </div>
-                  <div className={styles.menuFooter}>
-                    <h6 className={styles.logOutWrapper}
-                      onClick={() => this.reset()}>{ t('Reset') }</h6>
-                  </div>
                 </div>
                 <div className={styles.settingsContentWrapper}>
                   {
@@ -97,6 +98,10 @@ class Settings extends React.Component {
                   {
                     (settings.length > 2 && this.state.active === settings[2].id) ?
                       <Fee {...this.props} /> : null
+                  }
+                  {
+                    (settings.length > 3 && this.state.active === settings[3].id) ?
+                      <FormatWallet {...this.props} /> : null
                   }
                 </div>
               </WBox>
