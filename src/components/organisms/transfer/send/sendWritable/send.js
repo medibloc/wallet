@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { fromRawMed, lte, toRawMed, subMed } from '../../../../../utils/med';
 import { PrimaryButton } from '../../../../atoms/toolbox/buttons/button';
-import BandwidthBar from '../../../../molecules/bandwidthBar/index';
 import Converter from '../../../../molecules/converter/index';
 import EventRecipient from '../../../../molecules/eventRecipient/index';
 import TransferTabs from '../../transferTabs/index';
@@ -154,7 +153,6 @@ class SendWritable extends React.Component {
               />
             </form>
             <footer className={`${styles.sendFooter}`}>
-              <BandwidthBar t={t}/>
               <PrimaryButton
                 className={`send-next-button ${styles.nextButton}`}
                 disabled={(!!this.state.recipient.error ||

@@ -46,10 +46,10 @@ input:read-only {
 }
 
 .description {
-  margin: 16px 0 0;
+  margin: 24px 0 0;
 
   & input {
-    height: 80px;
+    height: 90px;
     padding: 12px;
   }
 }
