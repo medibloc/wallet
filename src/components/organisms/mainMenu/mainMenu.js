@@ -1,11 +1,8 @@
 import React, { Fragment } from 'react';
 import InlineSVG from 'svg-inline-react';
 import { Tab, Tabs as ToolboxTabs } from 'react-toolbox/lib/tabs';
-import RequestFaucet from '../requestFaucet/index';
 import Settings from '../settings/index';
-import TooltippedDiv from '../../atoms/toolbox/tooltippedDiv/tooltippedDiv';
 import styles from './mainMenu.css';
-import coin from '../../../assets/images/main-menu-icons/coin.png';
 import * as menuLogos from '../../../assets/images/main-menu-icons/*.svg'; //eslint-disable-line
 import routes from '../../../constants/routes';
 
@@ -34,7 +31,6 @@ class MainMenu extends React.Component {
     super();
     this.state = {
       active: false,
-      showFaucetRequest: false,
       showSetting: false,
       index: 0,
     };
@@ -47,12 +43,6 @@ class MainMenu extends React.Component {
     }
   }
 
-  toggleFaucetRequest() {
-    this.setState({
-      showFaucetRequest: !this.state.showFaucetRequest,
-    });
-  }
-
   toggleSetting() {
     this.setState({
       showSetting: !this.state.showSetting,
@@ -60,7 +50,7 @@ class MainMenu extends React.Component {
   }
 
   render() {
-    const { history, showFaucet, t } = this.props;
+    const { history, t } = this.props;
     const tabs = [
       {
         label: t('Dashboard'),
@@ -116,19 +106,6 @@ class MainMenu extends React.Component {
                     label={<TabTemplate img={image} label={label} />}
                   />)}
               </ToolboxTabs>
-              {showFaucet ?
-                <div className={styles.faucetTooltipWrapper}>
-                  <TooltippedDiv
-                    tooltip={t('You should click this button and follow the steps to get the test MED.')}
-                    tooltipDelay={100}
-                    tooltipPosition={'right'}>
-                    <div className={`${styles.faucetWrapper}`}
-                      onClick={() => this.toggleFaucetRequest()}>
-                      <img src={coin} className={styles.coin} />
-                      <small>{t('Test MED')}</small>
-                    </div>
-                  </TooltippedDiv>
-                </div> : null}
             </div>
             <div className={styles.bottomTabs}>
               <div className={styles.settingsTabWrapper}>
@@ -147,13 +124,6 @@ class MainMenu extends React.Component {
             <Settings
               {...this.props}
               closePopUp={() => this.toggleSetting()}/> : null
-        }
-        {
-          this.state.showFaucetRequest ?
-            <RequestFaucet
-              {...this.props}
-              closePopUp={() => this.toggleFaucetRequest()}
-            /> : null
         }
       </Fragment>
     );
