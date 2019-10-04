@@ -1,5 +1,5 @@
 export { default as account } from './account';
-export { default as candidates } from './candidates';
+// export { default as candidates } from './candidates';
 export { default as info } from './info';
 export { default as peers } from './peers';
 export { default as loading } from './loading';

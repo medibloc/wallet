@@ -1,4 +1,4 @@
-import BPDashboard from '../components/pages/bpDashboard';
+// import BPDashboard from '../components/pages/bpDashboard';
 import Dashboard from '../components/pages/dashboard';
 import Login from '../components/pages/login';
 import Register from '../components/pages/register';
@@ -8,11 +8,11 @@ import WalletDashboard from '../components/pages/walletDashboard';
 
 
 export default {
-  blockProducer: {
-    path: '/blockProducer',
-    component: BPDashboard,
-    isPrivate: true,
-  },
+  // blockProducer: {
+  //   path: '/blockProducer',
+  //   component: BPDashboard,
+  //   isPrivate: true,
+  // },
   dashboard: {
     path: '/dashboard',
     component: Dashboard,
