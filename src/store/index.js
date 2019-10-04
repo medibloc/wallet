@@ -17,7 +17,9 @@ const logger = createLogger({
   predicate: (getState, action) => action.type !== '',
 });
 
-const store = createStore(App, composeEnhancers(applyMiddleware(...middleWares.concat(logger))));
+const store = process.env.NODE_ENV === 'production' ?
+  createStore(App, composeEnhancers(applyMiddleware(...middleWares)))
+  : createStore(App, composeEnhancers(applyMiddleware(...middleWares.concat(logger))));
 
 store.dispatch({ type: actionTypes.storeCreated });
 // throttle prevents subscribers called too often to prevent poor performance
