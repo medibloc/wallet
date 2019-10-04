@@ -112,6 +112,6 @@
   background: var(--color-error);
 
   &:hover {
-   background: var(--color-action-dark) !important;
- }
+    background: var(--color-action-dark) !important;
+  }
 }

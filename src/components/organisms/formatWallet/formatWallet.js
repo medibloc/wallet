@@ -4,10 +4,6 @@ import { WarningButton } from '../../atoms/toolbox/buttons/button';
 import styles from './formatWallet.css';
 
 class Fee extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   reset() {
     if (window.confirm('This will remove all data.\nAre you sure to reset all?')) {
       this.props.resetAll();
