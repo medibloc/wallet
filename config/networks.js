@@ -10,7 +10,7 @@ const networks = {
   testnet: { // network name translation t('Testnet');
     name: 'Testnet',
     testnet: true,
-    chainId: 'hygieia-1',
+    chainId: 'hygieia-3',
     code: 1,
     faucetURL: 'https://testnet-explorer.medibloc.org',
     mServerURL: 'https://testnet-explorer-server.medibloc.org',

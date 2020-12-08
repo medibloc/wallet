@@ -48,12 +48,12 @@ export const getAccount = (activePeer, address) =>
     ];
     process.reduce((acc, getData, i) => acc.then(() => getData.req(address)
       .then((response) => { // eslint-disable-line consistent-return
-        let parsedData = response;
+        let parsedData = response.result;
         if (getData.val) {
           parsedData = {};
           getData.val
             .forEach((v) => {
-              parsedData[v] = response[v]; // eslint-disable-line no-return-assign
+              parsedData[v] = response.result[v]; // eslint-disable-line no-return-assign
             });
         }
 

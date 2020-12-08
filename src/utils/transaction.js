@@ -1,9 +1,8 @@
 import { local } from 'medjs';
-import panacea from '@medibloc/panacea-js';
+import { Message, Tx, Coin, Fee } from '@medibloc/panacea-js';
 import transactionTypes from '../constants/transactionTypes';
 import transactionAttributes from '../constants/transactionAttributes';
 
-const { Message, Tx, Coin, Fee } = panacea;
 const { transaction } = local;
 const txFieldArr = transactionAttributes.TX_FIELDS_ARR;
 

@@ -1,8 +1,6 @@
-import panacea from '@medibloc/panacea-js';
+import { crypto } from '@medibloc/panacea-js';
 import i18next from 'i18next';
 import { inDictionary } from './similarWord';
-
-const { crypto } = panacea;
 
 if (global._bitcore) delete global._bitcore;
 /**

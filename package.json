@@ -1,6 +1,6 @@
 {
   "name": "medibloc-wallet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MediBloc Wallet",
   "homepage": "https://github.com/medibloc/wallet",
   "bugs": "https://github.com/medibloc/wallet/issues",
@@ -11,7 +11,7 @@
     "build:testnet": "npm run build:testnet:pre",
     "build:testnet:pre": "cpx \"./app/build/**\" ./app/build-testnet && npm run build:testnet:post",
     "build:testnet:post": "replace '\"mainnet\";//defaultNetwork' '\"testnet\";//defaultNetwork' ./app/build-testnet/index.html ",
-    "build-prod": "webpack --config ./config/webpack.config.prod --env.prod",
+    "build-prod": "node --max-old-space-size=2048 node_modules/.bin/webpack --config ./config/webpack.config.prod --env.prod",
     "build-electron": "webpack --config ./config/webpack.config.electron",
     "bundlesize": "bundlesize",
     "clean-build": "rm -rf app/build",
@@ -36,7 +36,7 @@
     "url": "https://github.com/medibloc/wallet"
   },
   "dependencies": {
-    "@medibloc/panacea-js": "1.2.0",
+    "@medibloc/panacea-js": "1.3.1",
     "axios": "0.19.0",
     "bignumber.js": "4.0.4",
     "bip39": "2.5.0",
