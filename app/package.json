@@ -1,6 +1,6 @@
 {
   "name": "medibloc-wallet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MediBloc Wallet",
   "main": "./build/main.js",
   "author": {
