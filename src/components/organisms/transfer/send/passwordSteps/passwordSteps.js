@@ -177,9 +177,7 @@ class PasswordSteps extends React.Component {
                 />
                 <PrimaryButton
                   disabled={
-                    !this.state.password.value ||
-                    (this.props.loading && this.props.loading.length > 0) ||
-                    this.state.sent
+                    !this.state.password.value || this.state.sent
                   }
                   label={t('Next')}
                   onClick={() => this.handleClick()} />
