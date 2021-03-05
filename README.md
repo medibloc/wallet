@@ -48,6 +48,9 @@ Then, the dev server can be run:
 npm run dev
 ```
 
+
+## Deploying
+
 ### Packaging for production
 
 ```bash
@@ -58,7 +61,10 @@ For other networks, see the `build:testnet` script in the [package.json](https:/
 This process would be improved in near future.
 
 The package is built in the output directory: `app/build/`.
-Upload those files to the AWS S3 bucket which is associated to a proper AWS Cloudfront.
+
+### Uploading the package to AWS S3
+
+Upload the package to the AWS S3 bucket which is associated to a proper AWS Cloudfront.
 ```bash
 cd app/build/
 aws cp . s3://BUCKET_NAME/ --recursive
