@@ -54,12 +54,8 @@ npm run dev
 ### Packaging for production
 
 ```bash
-npm run build
+CHAIN_VERSION=mainnet npm run build
 ```
-That command makes a package for Mainnet by default.
-For other networks, see the `build:testnet` script in the [package.json](https://github.com/medibloc/wallet/blob/master/config/networks.js) for now.
-This process would be improved in near future.
-
 The package is built in the output directory: `app/build/`.
 
 ### Uploading the package to AWS S3
