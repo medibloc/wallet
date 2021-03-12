@@ -161,7 +161,16 @@ class SendWritable extends React.Component {
                         !this.state.amount.value ||
                         !!this.state.memo.error)}
                 label={t('Next')}
-                onClick={() => this.nextStepWithParam(false)}
+                onClick={() => {
+                  if (this.state.memo.value ||
+                      window.confirm('Some cryptocurrency exchanges require a memo. ' +
+                        'In that case, the transfer may not reach the recipient successfully, if you don\'t enter a memo. ' +
+                        'Please check with your exchange to see which memo you need to enter.' +
+                        '\n\nAre you sure to continue without a memo?')
+                  ) {
+                    this.nextStepWithParam(false);
+                  }
+                }}
               />
             </footer>
           </div>
