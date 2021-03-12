@@ -163,7 +163,7 @@ class SendWritable extends React.Component {
                 label={t('Next')}
                 onClick={() => {
                   if (this.state.memo.value ||
-                      window.confirm('If the recipient is a cryptocurrency exchange (not a personal wallet), they may require a memo.' +
+                      window.confirm('If the recipient is a cryptocurrency exchange (not a personal wallet), they may require a memo. ' +
                         'In that case, the transfer may not reach the recipient successfully, if you don\'t enter a memo. ' +
                         'Please check with the exchange to see which memo you need to enter.' +
                         '\n\nAre you sure to continue without a memo?')
