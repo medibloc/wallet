@@ -68,7 +68,7 @@ export const getAccount = (activePeer, address) =>
       .catch(err => reject(err))), Promise.resolve());
   });
 
-export const send = ({ account, activePeer, chainId, description, password, to, value, fee }) =>
+export const send = ({ account, activePeer, chainId, memo, password, to, value, fee }) =>
   new Promise((resolve, reject) => {
     let mAccount;
 
@@ -89,7 +89,7 @@ export const send = ({ account, activePeer, chainId, description, password, to, 
       sequence: account.sequence,
       accountNumber: account.account_number,
       chainId,
-      memo: description,
+      memo: memo,
       fee,
     });
 

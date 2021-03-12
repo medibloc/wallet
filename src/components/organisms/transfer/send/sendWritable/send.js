@@ -22,8 +22,8 @@ class SendWritable extends React.Component {
       amount: {
         value: this.props.amount || '',
       },
-      description: {
-        value: this.props.description || '',
+      memo: {
+        value: this.props.memo || '',
       },
       showAutoVesting: false,
       vestingAmount: this.props.vestingAmount || 0,
@@ -73,7 +73,7 @@ class SendWritable extends React.Component {
   nextStepWithParam() {
     this.props.nextStep({
       amount: this.state.amount.value,
-      description: this.state.description.value,
+      memo: this.state.memo.value,
       recipient: this.state.recipient.value,
       fee: this.state.fee,
     });
@@ -89,7 +89,7 @@ class SendWritable extends React.Component {
   }
 
   validateInput(name, value) {
-    if (name === 'description') {
+    if (name === 'memo') {
       if (value.length > 100) {
         return this.props.t('Max length exceeded');
       }
@@ -143,13 +143,13 @@ class SendWritable extends React.Component {
                 value={this.state.recipient.value}
               />
               <Input
-                error={this.state.description.error}
-                placeholder={t('Write message (optional)')}
-                onChange={(...args) => this.handleChange('description', ...args)}
-                parentclassname={`${styles.description}`}
+                error={this.state.memo.error}
+                placeholder={t('Write a memo (optional)')}
+                onChange={(...args) => this.handleChange('memo', ...args)}
+                parentclassname={`${styles.memo}`}
                 theme={styles}
-                title={t('Description')}
-                value={this.state.description.value}
+                title={t('Memo')}
+                value={this.state.memo.value}
               />
             </form>
             <footer className={`${styles.sendFooter}`}>
@@ -159,7 +159,7 @@ class SendWritable extends React.Component {
                         !this.state.recipient.value ||
                         !!this.state.amount.error ||
                         !this.state.amount.value ||
-                        !!this.state.description.error)}
+                        !!this.state.memo.error)}
                 label={t('Next')}
                 onClick={() => this.nextStepWithParam(false)}
               />

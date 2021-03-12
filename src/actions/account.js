@@ -85,7 +85,7 @@ export const passwordFailed = () => ({
  *
  */
 export const sent = ({ account, activePeer, amount, chainId,
-  description, password, to, fee }) =>
+  memo, password, to, fee }) =>
   (dispatch) => {
     dispatch(loadingStarted(actionTypes.requestTransferTransaction));
     dispatch(passwordVerifying());
@@ -93,7 +93,7 @@ export const sent = ({ account, activePeer, amount, chainId,
       account,
       activePeer,
       chainId,
-      description,
+      memo,
       password,
       to,
       fee: toRawMed(fee),
@@ -202,7 +202,7 @@ export const vested = ({ account, activePeer, amount, chainId,
       });
   };
 
-export const vestedAndSent = ({ account, activePeer, chainId, description,
+export const vestedAndSent = ({ account, activePeer, chainId, memo,
   nonce, password, to, transferAmount, vestingAmount }) =>
   (dispatch) => {
     dispatch(loadingStarted(actionTypes.requestVestAndSendTransaction));
@@ -220,7 +220,7 @@ export const vestedAndSent = ({ account, activePeer, chainId, description,
         account,
         activePeer,
         chainId,
-        description,
+        memo,
         nonce: Number(nonce) + 1,
         password,
         to,
