@@ -99,7 +99,7 @@ class PasswordSteps extends React.Component {
       activePeer: this.props.peers.activePeer,
       amount: this.props.amount,
       chainId: this.props.peers.chainId,
-      description: this.props.description,
+      memo: this.props.memo,
       password: this.state.password.value,
       to: this.props.recipient,
       fee: this.props.fee,
@@ -158,9 +158,9 @@ class PasswordSteps extends React.Component {
                 <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Recipient')}</small>
                 <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.recipient}</h6>
               </div>
-              <div className={`${grid.row} ${styles.descriptionInfo}`}>
-                <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Description')}</small>
-                <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.description}</h6>
+              <div className={`${grid.row} ${styles.memoInfo}`}>
+                <small className={`${styles.transferFields} ${grid['col-sm-4']}`}>{t('Memo')}</small>
+                <h6 className={`${styles.transferBody} ${grid['col-sm-8']}`}>{this.props.memo}</h6>
               </div>
             </div>
             <footer className={`${styles.passwordStepsFooter}`}>

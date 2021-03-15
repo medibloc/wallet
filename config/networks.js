@@ -1,7 +1,7 @@
 const networks = {
   mainnet: { // network name translation t('Mainnet');
     name: 'Mainnet',
-    chainId: 'panacea-1',
+    chainId: 'panacea-2',
     code: 0,
     mServerURL: 'https://explorer-server.medibloc.org',
     mClientURL: 'https://explorer.medibloc.org',
