@@ -89,7 +89,7 @@ export const send = ({ account, activePeer, chainId, memo, password, to, value, 
       sequence: account.sequence,
       accountNumber: account.account_number,
       chainId,
-      memo: memo,
+      memo,
       fee,
     });
 
