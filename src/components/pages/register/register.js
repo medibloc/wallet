@@ -8,7 +8,6 @@ import Password from '../../organisms/passphrase/password/password';
 import Safekeeping from '../../organisms/passphrase/safekeeping/safekeeping';
 import networks from '../../../constants/networks';
 import Box from '../../atoms/box/index';
-import logo from '../../../assets/images/MEDIBLOC.png';
 import styles from './register.css';
 import routes from '../../../constants/routes';
 
@@ -37,7 +36,7 @@ class Register extends React.Component {
   render() {
     const { t } = this.props;
     return (<Box className={`${styles.wrapper}`}>
-      <img src={logo} />
+      <img src="/assets/images/medibloc.svg" />
       <MultiStep className={`${styles.register}`}
         prevPage={() => this.backToLogin()}
         finalCallback={(...args) => this.onRegister(...args)}>
