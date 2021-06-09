@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom';
 import styles from './startPage.css';
 import Box from '../../atoms/box/index';
 import bg from '../../../assets/images/main_bg.png';
-import logo from '../../../assets/images/MEDIBLOC.png';
 import { ArrowBlackButton, ArrowBlueButton } from '../../atoms/toolbox/buttons/button';
 import routes from '../../../constants/routes';
 
@@ -21,7 +20,7 @@ class StartPage extends React.Component {
           <Box className={`${styles.wrapper}`}
             style={{ backgroundImage: `url(${bg})` }}>
             <div className={`${styles.startPageWrapper}`}>
-              <img src={logo} />
+              <img src="/assets/images/medibloc.svg" />
               <div className={`${styles.contentWrapper}`}>
                 <div className={`${styles.titleWrapper}`}>
                   {t('WELCOME TO MEDIBLOC WALLET')}

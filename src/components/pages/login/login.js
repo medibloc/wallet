@@ -5,7 +5,6 @@ import AccountVisual from '../../atoms/accountVisual/index';
 import Box from '../../atoms/box/index';
 import DropDown from '../../atoms/toolbox/dropdown/dropdown';
 import { Input } from '../../atoms/toolbox/inputs/input';
-import logo from '../../../assets/images/MEDIBLOC.png';
 import Footer from '../register/footer/footer';
 import { PrimaryButton } from '../../atoms/toolbox/buttons/button';
 import {
@@ -104,7 +103,7 @@ class Login extends React.Component {
 
     return (
       <Box className={`${styles.wrapper}`}>
-        <img src={logo} />
+        <img src="/assets/images/medibloc.svg" />
         <div className={`${styles.loginWrapper}`}>
           <section className={`${styles.login}`}>
             <header>

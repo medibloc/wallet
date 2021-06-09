@@ -6,7 +6,6 @@ import MultiStep from '../../atoms/multiStep';
 import Password from '../../organisms/passphrase/password/password';
 import networks from '../../../constants/networks';
 import Box from '../../atoms/box/index';
-import logo from '../../../assets/images/MEDIBLOC.png';
 import styles from './restore.css';
 import routes from '../../../constants/routes';
 import { PrimaryButton } from '../../atoms/toolbox/buttons/button';
@@ -52,7 +51,7 @@ class Restore extends React.Component {
 
     return (
       <Box className={`${styles.wrapper}`}>
-        <img src={logo} />
+        <img src="/assets/images/medibloc.svg" />
         {
           restoreCase === null && (
             <Fragment>
