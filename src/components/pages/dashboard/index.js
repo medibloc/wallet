@@ -6,9 +6,7 @@ import Box from '../../atoms/box/index';
 import { SecondaryButton } from '../../atoms/toolbox/buttons/button';
 import WBox from '../../atoms/wbox/index';
 import { accountReload } from '../../../actions/account';
-import { loadTransactions } from '../../../actions/transactions';
 import MedAmount from '../../atoms/medAmount/index';
-import TransactionList from '../../organisms/transactionList/transactionList';
 import Transfer from '../../organisms/transfer/index';
 import FeeSettings from '../../organisms/settings/feeSettings/index';
 import styles from './dashboard.css';
@@ -135,14 +133,6 @@ class Dashboard extends React.Component {
                 </div>
               </div>
             </WBox>
-            <div className={styles.txListWrapper}>
-              <TransactionList
-                account={this.props.account}
-                history={this.props.history}
-                loading={this.props.loading}
-                t={this.props.t}
-                transactions={this.props.transactions.slice(0, 5)} />
-            </div>
           </WBox>
         </Box>
       </Box>
@@ -173,7 +163,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   accountReload: () => dispatch(accountReload()),
-  loadTransactions: data => dispatch(loadTransactions(data)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(translate()(Dashboard));

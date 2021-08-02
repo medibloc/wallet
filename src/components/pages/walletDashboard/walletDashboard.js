@@ -1,6 +1,5 @@
 import { translate } from 'react-i18next';
 import React from 'react';
-import TransactionDashboard from '../../organisms/transactionDashboard';
 import Transfer from '../../organisms/transfer/index';
 import WBox from '../../atoms/wbox/index';
 import styles from './walletDashboard.css';
@@ -12,9 +11,6 @@ class WalletDashboard extends React.Component {
         <Transfer
           autoFocus={true}
           {...this.props}/>
-      </WBox>
-      <WBox className={styles.txDashboard} hasBorder={true}>
-        <TransactionDashboard {...this.props}/>
       </WBox>
     </div>;
   }

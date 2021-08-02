@@ -56,7 +56,8 @@ class Login extends React.Component {
 
   checkPasswordCorrect({ address, encKey: keyStore }) {
     try {
-      const privKey = getPrivateKeyFromKeyStore(keyStore, this.state.password);
+      const privKeyHex = getPrivateKeyFromKeyStore(keyStore, this.state.password);
+      const privKey = Uint8Array.from(Buffer.from(privKeyHex, 'hex'));
       return getAddressFromPrivateKey(privKey) === address;
     } catch (e) {
       this.setState({

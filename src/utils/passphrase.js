@@ -1,4 +1,6 @@
-import { crypto } from '@medibloc/panacea-js';
+import { EnglishMnemonic } from '@cosmjs/crypto';
+import { panaceaWalletOpts } from '@medibloc/panacea-js';
+import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing';
 import i18next from 'i18next';
 import { inDictionary } from './similarWord';
 
@@ -8,15 +10,26 @@ if (global._bitcore) delete global._bitcore;
  *
  * @returns {string} The generated passphrase
  */
-export const generateMnemonic = () => crypto.generateMnemonic();
+export async function generateMnemonic() {
+  const wallet = await DirectSecp256k1HdWallet.generate(24, panaceaWalletOpts);
+  return wallet.mnemonic;
+}
 
 /**
    * Checks if passphrase is valid using bip39
    *
-   * @param {string} passphrase
-   * @returns {bool} isValidMnemonic
+   * @param {string} mnemonic
+   * @returns {boolean} isValidMnemonic
    */
-export const isValidMnemonic = mnemonic => crypto.validateMnemonic(mnemonic);
+export const isValidMnemonic = (mnemonic) => {
+  try {
+    // eslint-disable-next-line no-new
+    new EnglishMnemonic(mnemonic);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
 
 export const getMnemonicValidationErrors = (mnemonic) => {
   const mnemonicArray = mnemonic.trim().split(' ');
