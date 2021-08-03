@@ -8,12 +8,10 @@ const FileChanger = require('webpack-file-changer');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./webpack.config');
 const reactConfig = require('./webpack.config.react');
-const networks = require('./networks');
+const network = require('./network');
 /* eslint-enable import/no-extraneous-dependencies */
 
 require('dotenv').config();
-
-const network = networks[process.env.CHAIN_VERSION];
 
 module.exports = merge(baseConfig, reactConfig, {
   output: {

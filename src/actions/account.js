@@ -104,6 +104,7 @@ export const sent = ({ account, activePeer, amount, chainId,
           fromAccount: account.address,
           txHash: res.txhash,
           timestamp: res.timestamp,
+          executed: true, // to display 'Status' as 'Success'
           toAccount: to,
           amount: toRawMed(amount),
           type: transactionTypes.send,

@@ -4,7 +4,7 @@ import { translate } from 'react-i18next';
 import Enter from '../../organisms/passphrase/enter/enter';
 import MultiStep from '../../atoms/multiStep';
 import Password from '../../organisms/passphrase/password/password';
-import networks from '../../../constants/networks';
+import network from '../../../constants/network';
 import Box from '../../atoms/box/index';
 import styles from './restore.css';
 import routes from '../../../constants/routes';
@@ -33,7 +33,7 @@ class Restore extends React.Component {
       address,
       encKey,
       label,
-      networkCode: process.env.NETWORK_CODE || networks.default.code,
+      networkCode: process.env.NETWORK_CODE || network.code,
     });
 
     this.props.history.push(`${routes.login.path}`);

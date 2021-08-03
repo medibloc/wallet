@@ -41,11 +41,11 @@ class BackupWalletPasswordStep extends React.Component {
     }
   }
 
-  decryptPassphrase() {
+  async decryptPassphrase() {
     try {
       const privKey = getPrivateKeyFromKeyStore(
         this.props.account.encKey, this.state.password.value);
-      if (getAddressFromPrivateKey(privKey) === this.props.account.address) {
+      if (await getAddressFromPrivateKey(privKey) === this.props.account.address) {
         return privKey;
       }
       return null;

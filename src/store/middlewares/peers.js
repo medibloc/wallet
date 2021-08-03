@@ -1,6 +1,6 @@
 import { activePeerSet, activePeerUpdate } from '../../actions/peers';
 import actionTypes from '../../constants/actions';
-import networks from '../../constants/networks';
+import network from '../../constants/network';
 import localJSONStorage from '../../utils/localJSONStorage';
 import { getLoggedInMark } from '../../utils/savedAccounts';
 import routes from '../../constants/routes';
@@ -8,7 +8,7 @@ import routes from '../../constants/routes';
 const peersMiddleware = store => next => (action) => {
   next(action);
 
-  const networkCode = process.env.NETWORK_CODE || networks.default.code;
+  const networkCode = process.env.NETWORK_CODE || network.code;
   const hasNoSavedAccounts = !localJSONStorage.get('accounts', []).length;
 
   switch (action.type) {

@@ -95,7 +95,7 @@ class PasswordForKeyfile extends React.Component {
             !this.state.label ||
             !!this.state.passwordValidity ||
             !this.state.password)}
-          onClick={() => {
+          onClick={async () => {
             const label = this.state.label;
             let privKey = null;
             try {
@@ -107,7 +107,7 @@ class PasswordForKeyfile extends React.Component {
             }
 
             if (privKey) {
-              const account = getAccountFromPrivKey(privKey);
+              const account = await getAccountFromPrivKey(privKey);
 
               this.props.finalCallback({
                 address: account.address,

@@ -6,7 +6,7 @@ import Confirm from '../../organisms/passphrase/confirm/confirm';
 import Create from '../../organisms/passphrase/create/create';
 import Password from '../../organisms/passphrase/password/password';
 import Safekeeping from '../../organisms/passphrase/safekeeping/safekeeping';
-import networks from '../../../constants/networks';
+import network from '../../../constants/network';
 import Box from '../../atoms/box/index';
 import styles from './register.css';
 import routes from '../../../constants/routes';
@@ -21,7 +21,7 @@ class Register extends React.Component {
       address,
       encKey,
       label,
-      networkCode: process.env.NETWORK_CODE || networks.default.code,
+      networkCode: process.env.NETWORK_CODE || network.code,
     });
 
     this.props.history.push(`${routes.login.path}`);

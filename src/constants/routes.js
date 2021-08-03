@@ -4,7 +4,7 @@ import Login from '../components/pages/login';
 import Register from '../components/pages/register';
 import Restore from '../components/pages/restore';
 import StartPage from '../components/pages/startPage';
-import WalletDashboard from '../components/pages/walletDashboard';
+import NotSupportFeature from '../components/pages/notSupportFeature';
 
 
 export default {
@@ -16,11 +16,6 @@ export default {
   dashboard: {
     path: '/dashboard',
     component: Dashboard,
-    isPrivate: true,
-  },
-  wallet: {
-    path: '/wallet',
-    component: WalletDashboard,
     isPrivate: true,
   },
   setting: {
@@ -57,5 +52,10 @@ export default {
     path: '/explorer',
     component: Dashboard,
     isPrivate: true,
+  },
+  notSupportFeature: {
+    path: '/notSupportFeature',
+    component: NotSupportFeature,
+    isPrivate: false,
   },
 };

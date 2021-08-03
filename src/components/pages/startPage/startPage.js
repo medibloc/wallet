@@ -33,7 +33,7 @@ class StartPage extends React.Component {
                   <ArrowBlackButton
                     label={'Create wallet ID'}
                     className={`${styles.registerButton} ${styles.hasMarginTop}`}
-                    onClick={() => history.push(`${routes.register.path}`)}/>
+                    onClick={() => history.push(`${routes.notSupportFeature.path}`)}/>
                 </section>
               </div>
             </div>

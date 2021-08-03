@@ -33,7 +33,7 @@ const savedAccountsMiddleware = (store) => {
 
   const updateSavedAccounts = (peers, accounts) => {
     accounts.forEach((account, i) => {
-      const address = extractAddressFromMnemonic(account.address);
+      const address = account.address;
       if (isSameNetwork(account, peers)) {
         getAccount(peers.activePeer, address).then((result) => {
           if (result.balance !== account.balance ||

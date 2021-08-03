@@ -44,7 +44,7 @@ class TransactionsList extends React.Component {
       // istanbul ignore else
       return (
         <p className={`${styles.empty} hasPaddingRow empty-message`}>
-          {t('There are no transactions.')}
+          {t('Please click the "See all transactions" button')}
         </p>
       );
     }
