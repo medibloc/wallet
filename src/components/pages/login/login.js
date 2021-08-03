@@ -54,11 +54,12 @@ class Login extends React.Component {
     }
   }
 
-  checkPasswordCorrect({ address, encKey: keyStore }) {
+  async checkPasswordCorrect({ address, encKey: keyStore }) {
     try {
       const privKeyHex = getPrivateKeyFromKeyStore(keyStore, this.state.password);
       const privKey = Uint8Array.from(Buffer.from(privKeyHex, 'hex'));
-      return getAddressFromPrivateKey(privKey) === address;
+      const expectedAddress = await getAddressFromPrivateKey(privKey);
+      return expectedAddress === address;
     } catch (e) {
       this.setState({
         passwordValidity: this.props.t('Wrong Password'),
@@ -138,9 +139,9 @@ class Login extends React.Component {
               label={t('Next')}
               className={`${styles.nextButton}`}
               disabled={!this.state.password}
-              onClick={() => {
+              onClick={async () => {
                 const account = accounts.find(a => a.address === this.state.selectedAddress);
-                if (this.checkPasswordCorrect(account)) {
+                if (await this.checkPasswordCorrect(account)) {
                   this.onLoginSubmission(account);
                   this.props.history.push(`${routes.dashboard.path}`);
                 }
