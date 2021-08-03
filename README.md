@@ -1,16 +1,13 @@
 # Panacea Web Wallet
 
-An official web wallet for [Panacea](https://github.com/medibloc/panacea).
+An official web wallet for [Panacea Core](https://github.com/medibloc/panacea-core) v2+.
 
 ## Building
 
 ### Prerequisites
 
 - Node.js v10.13.0 ~ v10.24.0
-- [Panacea LCD(Light Client Daemon)](https://medibloc.gitbook.io/panacea-core/guide/light-client-daemon)
-  - or, the pre-deployed LCD can be used. See below.
-- [Panacea Explorer Server](https://github.com/medibloc/explorer)
-  - or, the pre-deployed Explorer Server can be used. See below.
+- [Panacea Tendermint RPC Endpoint](https://docs.cosmos.network/v0.43/core/grpc_rest.html#tendermint-rpc)
   
 ### Installing dependencies
 
