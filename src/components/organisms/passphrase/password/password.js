@@ -5,7 +5,6 @@ import Box from '../../../atoms/box/index';
 import { PrimaryButton } from '../../../atoms/toolbox/buttons/button';
 import { Input } from '../../../atoms/toolbox/inputs/input';
 import {
-  extractAddressFromMnemonic,
   getAccountFromPrivKey,
   extractPrivKey,
   encryptPrivateKey,
@@ -115,12 +114,12 @@ class Password extends React.Component {
           !this.state.password ||
           !!this.state.confirmPasswordValidity ||
           !this.state.confirmPassword)}
-        onClick={() => {
+        onClick={async () => {
           const label = this.state.label;
-          const account = getAccountFromPrivKey(extractPrivKey(mnemonic));
+          const account = await getAccountFromPrivKey(await extractPrivKey(mnemonic));
 
           this.props.finalCallback({
-            address: extractAddressFromMnemonic(account.address),
+            address: account.address,
             encKey: encryptPrivateKey(account.privateKey, this.state.password),
             label,
           });

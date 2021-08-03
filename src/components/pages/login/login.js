@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './login.css';
-import networks from '../../../constants/networks';
+import network from '../../../constants/network';
 import AccountVisual from '../../atoms/accountVisual/index';
 import Box from '../../atoms/box/index';
 import DropDown from '../../atoms/toolbox/dropdown/dropdown';
@@ -40,7 +40,7 @@ class Login extends React.Component {
     this.state = {
       selectedAddress: this.props.account.address || '',
       networkCode: account ? account.networkCode :
-        process.env.NETWORK_CODE || networks.default.code,
+        process.env.NETWORK_CODE || network.code,
       password: '',
       passwordValidity: '',
     };
@@ -54,10 +54,11 @@ class Login extends React.Component {
     }
   }
 
-  checkPasswordCorrect({ address, encKey: keyStore }) {
+  async checkPasswordCorrect({ address, encKey: keyStore }) {
     try {
       const privKey = getPrivateKeyFromKeyStore(keyStore, this.state.password);
-      return getAddressFromPrivateKey(privKey) === address;
+      const expectedAddress = await getAddressFromPrivateKey(privKey);
+      return expectedAddress === address;
     } catch (e) {
       this.setState({
         passwordValidity: this.props.t('Wrong Password'),
@@ -71,7 +72,7 @@ class Login extends React.Component {
     this.setState({
       selectedAddress: address,
       networkCode: account ? account.networkCode :
-        process.env.NETWORK_CODE || networks.default.code,
+        process.env.NETWORK_CODE || network.code,
     });
   }
 
@@ -137,9 +138,9 @@ class Login extends React.Component {
               label={t('Next')}
               className={`${styles.nextButton}`}
               disabled={!this.state.password}
-              onClick={() => {
+              onClick={async () => {
                 const account = accounts.find(a => a.address === this.state.selectedAddress);
-                if (this.checkPasswordCorrect(account)) {
+                if (await this.checkPasswordCorrect(account)) {
                   this.onLoginSubmission(account);
                   this.props.history.push(`${routes.dashboard.path}`);
                 }

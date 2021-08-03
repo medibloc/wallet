@@ -14,8 +14,8 @@ import FeeSettings from '../../organisms/settings/feeSettings/index';
 import styles from './dashboard.css';
 import { mulMed } from '../../../utils/med';
 import arrowRight from '../../../assets/images/icons/baselineArrowRight.png';
-import routes from '../../../constants/routes';
 import parseBalance from '../../../utils/balanceParser';
+import getNetwork from '../../../utils/getNetwork';
 
 
 class Dashboard extends React.Component {
@@ -42,10 +42,6 @@ class Dashboard extends React.Component {
     });
   }
 
-  moveToWalletDashboard() {
-    this.props.history.push(`${routes.wallet.path}`);
-  }
-
   toggleFeeSetting() {
     this.setState({
       showFeeSetting: !this.state.showFeeSetting,
@@ -55,6 +51,7 @@ class Dashboard extends React.Component {
   render() {
     const { account, t } = this.props;
     const balances = parseBalance(account);
+    const explorerUrl = getNetwork().mClientURL;
 
     return <Box className={`${styles.wrapper} ${grid.row}`}>
       <Box className={`${styles.mainWrapper} ${grid['col-sm-8']}`}>
@@ -125,10 +122,11 @@ class Dashboard extends React.Component {
                   { t('Recent activities') }
                 </h4>
               </div>
-              <div className={styles.txListHeaderMore}
-                onClick={() => this.moveToWalletDashboard()}>
+              <div className={styles.txListHeaderMore}>
                 <h6>
-                  { t('See all transactions') }
+                  <a href={`${explorerUrl}/en/account/${this.props.account.address}`} target={'_blank'}>
+                    { t('See all transactions') }
+                  </a>
                 </h6>
                 <div className={styles.arrowRightWrapper}>
                   <img className={styles.arrowRight} src={arrowRight}/>

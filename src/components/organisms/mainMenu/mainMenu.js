@@ -58,22 +58,6 @@ class MainMenu extends React.Component {
         id: 'dashboard',
         image: menuLogos.dashboard,
       },
-      {
-        label: t('Wallet'),
-        route: `${routes.wallet.path}`,
-        id: 'transactions',
-        image: menuLogos.wallet,
-      // }, {
-      //   label: t('Block Producer'),
-      //   route: `${routes.blockProducer.path}`,
-      //   id: 'bp',
-      //   image: menuLogos.bp,
-      // }, {
-      //   label: t('Explorer'),
-      //   route: `${routes.explorer.path}`,
-      //   id: 'explorer',
-      //   image: menuLogos.explorer,
-      },
     ];
 
     const settingTab = {

@@ -47,11 +47,11 @@ class ResetPasswordStep extends React.Component {
     }
   }
 
-  decryptPassphrase() {
+  async decryptPassphrase() {
     try {
       const privKey = getPrivateKeyFromKeyStore(
         this.props.account.encKey, this.state.password.value);
-      if (getAddressFromPrivateKey(privKey) === this.props.account.address) {
+      if (await getAddressFromPrivateKey(privKey) === this.props.account.address) {
         return privKey;
       }
       return null;
@@ -169,14 +169,15 @@ class ResetPasswordStep extends React.Component {
               !!this.state.newConfirmPassword.error ||
               !this.state.newConfirmPassword.value)}
             label={t('Complete')}
-            onClick={() => {
-              const privKey = this.decryptPassphrase();
+            onClick={async () => {
+              const privKey = await this.decryptPassphrase();
               if (privKey !== null) {
                 const encKey = encryptPrivateKey(privKey, this.state.newPassword.value);
+                // eslint-disable-next-line max-len
                 const newPrivKey = getPrivateKeyFromKeyStore(encKey, this.state.newPassword.value);
                 if (privKey === newPrivKey) {
                   this.props.activeAccountPasswordUpdated({
-                    address: getAddressFromPrivateKey(privKey),
+                    address: await getAddressFromPrivateKey(privKey),
                     encKey,
                     networkCode: this.props.account.networkCode,
                   });

@@ -1,0 +1,30 @@
+@import '../../app/variables.css';
+
+.wrapper {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.notSupportFeature {
+  min-height: 400px;
+  max-width: 260px;
+  margin: 150px auto;
+  text-align: center;
+
+  & h2 {
+    color: var(--color-dodger-blue);
+    font-size: 50px;
+    font-weight: var(--font-weight-light);
+  }
+
+  & h4 {
+    color: var(--color-dodger-blue);
+    font-weight: var(--font-weight-light);
+    margin: 8px 0 0;
+  }
+}
